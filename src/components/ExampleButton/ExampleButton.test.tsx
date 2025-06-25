@@ -1,29 +1,30 @@
-import { render, screen } from '@testing-library/preact';
-import { describe, it, expect } from 'vitest';
-import { ExampleButton } from './ExampleButton';
-import '@testing-library/jest-dom';
+import { render, screen } from "@testing-library/preact";
+import { describe, it, expect } from "vitest";
 
-describe('ExampleButton', () => {
-  it('renders children', () => {
+import { ExampleButton } from "./ExampleButton";
+import "@testing-library/jest-dom";
+
+describe("ExampleButton", () => {
+  it("renders children", () => {
     render(<ExampleButton>Click me</ExampleButton>);
-    expect(screen.getByText('Click me')).toBeInTheDocument();
+    expect(screen.getByText("Click me")).toBeInTheDocument();
   });
 
-  it('passes props to button', () => {
+  it("passes props to button", () => {
     render(<ExampleButton data-testid="btn">Test</ExampleButton>);
-    const btn = screen.getByTestId('btn');
-    expect(btn.tagName).toBe('BUTTON');
-    expect(btn).toHaveTextContent('Test');
+    const btn = screen.getByTestId("btn");
+    expect(btn.tagName).toBe("BUTTON");
+    expect(btn).toHaveTextContent("Test");
   });
 
-  it('applies custom className', () => {
+  it("applies custom className", () => {
     render(<ExampleButton className="custom">A</ExampleButton>);
-    expect(screen.getByText('A')).toHaveClass('custom');
+    expect(screen.getByText("A")).toHaveClass("custom");
   });
 
-  it('has correct styles', () => {
+  it("has correct styles", () => {
     render(<ExampleButton>Styled</ExampleButton>);
-    const btn = screen.getByText('Styled');
-    expect(btn).toHaveStyle({ background: 'var(--color-primary, #0070f3)' });
+    const btn = screen.getByText("Styled");
+    expect(btn).toHaveStyle({ background: "var(--color-primary, #0070f3)" });
   });
 });
