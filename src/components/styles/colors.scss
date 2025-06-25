@@ -1,0 +1,14 @@
+// Global color variables and theme structure
+:root {
+  --color-primary: #0070f3;
+  --color-primary-dark: #005bb5;
+  --color-bg: #fff;
+  --color-text: #111;
+}
+
+[data-theme='dark'] {
+  --color-primary: #1e90ff;
+  --color-primary-dark: #003366;
+  --color-bg: #111;
+  --color-text: #fff;
+}
