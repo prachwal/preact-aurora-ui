@@ -1,0 +1,63 @@
+@use "../styles/colors.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/spacing.scss" as *;
+@use "../styles/breakpoints.scss" as *;
+
+$page-header-bg: var(--color-bg-header, transparent);
+$page-header-title-color: var(--color-text-primary, #222);
+$page-header-subtitle-color: var(--color-text-secondary, #666);
+$page-header-padding-x: var(--space-lg);
+$page-header-padding-y: var(--space-md);
+$page-header-radius: 8px;
+
+.pageHeader {
+  background: $page-header-bg;
+  padding: $page-header-padding-y $page-header-padding-x;
+  border-radius: $page-header-radius;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  box-sizing: border-box;
+}
+
+.main {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.title {
+  color: $page-header-title-color;
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  margin: 0;
+}
+
+.subtitle {
+  color: $page-header-subtitle-color;
+  font-size: var(--font-size-base);
+  margin-top: var(--space-2xs);
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+}
+
+@media (max-width: $breakpoint-sm) {
+  .pageHeader {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+
+  .title {
+    font-size: var(--font-size-lg);
+  }
+}

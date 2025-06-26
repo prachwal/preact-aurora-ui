@@ -1,7 +1,6 @@
 import type { ComponentChildren } from "preact";
 import type { JSX } from "preact/jsx-runtime";
 
-// eslint-disable-next-line import/no-unresolved
 import styles from "./Header.module.scss";
 
 export interface HeaderProps {
