@@ -1,0 +1,52 @@
+@use "../styles/colors.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/spacing.scss" as *;
+@use "../styles/breakpoints.scss" as *;
+
+$card-bg: var(--color-bg);
+$card-radius: 8px;
+$card-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.04);
+$card-padding: var(--space-lg);
+$card-title-color: var(--color-primary);
+$card-title-size: var(--font-size-lg);
+$card-subtitle-color: var(--color-text-secondary);
+$card-subtitle-size: var(--font-size-sm);
+
+.card {
+  background: $card-bg;
+  border-radius: $card-radius;
+  box-shadow: $card-shadow;
+  padding: $card-padding;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.title {
+  color: $card-title-color;
+  font-size: $card-title-size;
+  font-weight: 700;
+  margin: 0;
+}
+
+.subtitle {
+  color: $card-subtitle-color;
+  font-size: $card-subtitle-size;
+  margin-bottom: var(--space-xs);
+}
+
+.content {
+  flex: 1 1 auto;
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-xs);
+}

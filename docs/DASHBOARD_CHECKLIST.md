@@ -80,7 +80,7 @@ Aby stworzyć w pełni responsywny layout typu dashboard zgodny z podejściem an
   - testy, stories, index
   - [Plan implementacji](./PLAN_GRID_ROW_COL.md)
 
-- [ ] **Card**  
+- [x] **Card**  
        Kafelek na dane/statystyki
   - Card.tsx
   - Card.module.scss
