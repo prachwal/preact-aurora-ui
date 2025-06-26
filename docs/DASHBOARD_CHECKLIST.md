@@ -22,7 +22,7 @@ Aby stworzyć w pełni responsywny layout typu dashboard zgodny z podejściem an
   - index.ts
   - [Plan implementacji](./PLAN_HEADER.md)
 
-- [ ] **Sider / Sidebar**  
+- [x] **Sider / Sidebar**  
        Nawigacja boczna (menu, ikony, collapse)
   - Sidebar.tsx
   - Sidebar.module.scss

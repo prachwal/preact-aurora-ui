@@ -1,0 +1,42 @@
+@use "../styles/colors.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/spacing.scss" as *;
+@use "../styles/breakpoints.scss" as *;
+
+// Lokalne zmienne na bazie custom properties
+$sidebar-bg: var(--color-bg-sidebar, var(--color-surface));
+$sidebar-color: var(--color-sidebar-text, var(--color-on-surface));
+$sidebar-width: 240px;
+$sidebar-padding-x: var(--space-md);
+$sidebar-padding-y: var(--space-sm);
+$sidebar-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  min-width: $sidebar-width;
+  height: 100%;
+  background: $sidebar-bg;
+  color: $sidebar-color;
+  padding: $sidebar-padding-y $sidebar-padding-x;
+  box-shadow: $sidebar-shadow;
+  font-family: var(--font-family-base);
+  z-index: 90;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.actions {
+  margin-top: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
