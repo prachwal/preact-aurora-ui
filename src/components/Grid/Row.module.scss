@@ -1,0 +1,21 @@
+@use "../styles/colors.scss" as *;
+@use "../styles/spacing.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/breakpoints.scss" as *;
+
+$row-gap: var(--space-md);
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $row-gap;
+}
+.align-start { align-items: flex-start; }
+.align-center { align-items: center; }
+.align-end { align-items: flex-end; }
+.align-stretch { align-items: stretch; }
+.justify-start { justify-content: flex-start; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }

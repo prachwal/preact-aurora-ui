@@ -1,0 +1,12 @@
+@use "../styles/colors.scss" as *;
+@use "../styles/spacing.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/breakpoints.scss" as *;
+
+$grid-gap: var(--space-md);
+
+.grid {
+  display: grid;
+  width: 100%;
+  gap: $grid-gap;
+}

@@ -69,7 +69,7 @@ Aby stworzyć w pełni responsywny layout typu dashboard zgodny z podejściem an
   - index.ts
   - [Plan implementacji](./PLAN_PAGEHEADER.md)
 
-- [ ] **Grid / Row / Col**  
+- [x] **Grid / Row / Col**  
        System siatki do responsywnego układu
   - Grid.tsx
   - Row.tsx

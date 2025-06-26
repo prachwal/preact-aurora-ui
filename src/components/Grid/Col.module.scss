@@ -1,0 +1,12 @@
+@use "../styles/colors.scss" as *;
+@use "../styles/spacing.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/breakpoints.scss" as *;
+
+$col-padding: var(--space-xs);
+
+.col {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: $col-padding;
+}
