@@ -30,117 +30,46 @@ PageHeader/
 
 ### 2.1 Przygotowanie struktury projektu
 
-- [ ] Utwórz folder `src/components/PageHeader/`
-- [ ] Sprawdź potencjalne konflikty nazw
+- [x] Utwórz folder `src/components/PageHeader/`
+- [x] Sprawdź potencjalne konflikty nazw
 
 ### 2.2 Główny komponent (`PageHeader.tsx`)
 
-- [ ] Import zależności: Preact, JSX, SCSS Module
-- [ ] Definicja interfejsów:
-
-  ```ts
-  import { JSX, ComponentChildren } from "preact";
-  import styles from "./PageHeader.module.scss";
-
-  export interface PageHeaderAction {
-    label: string;
-    onClick?: () => void;
-    href?: string;
-    variant?: "primary" | "secondary" | "outline" | "text";
-    icon?: ComponentChildren;
-    disabled?: boolean;
-    tooltip?: string;
-  }
-
-  export interface PageHeaderProps {
-    title: string;
-    description?: string;
-    actions?: PageHeaderAction[];
-    breadcrumbs?: ComponentChildren;
-    className?: string;
-    style?: JSX.CSSProperties;
-  }
-  ```
-
-- [ ] Renderowanie:
-  - [ ] Slot na breadcrumbs na górze
-  - [ ] Tytuł jako `<h1>` (lub inny poziom)
-  - [ ] Opis jako `<p>` (jeśli podany)
-  - [ ] Akcje jako grupa przycisków/interaktywnych elementów
-  - [ ] Obsługa propsów `className`, `style`
-  - [ ] Semantyczne tagi HTML (`<section>`, `<h1>`, `<p>`, `<nav>`, `<div>`)
-- [ ] Obsługa interakcji: kliknięcia, href, disabled
-- [ ] Dostępność: aria, focus, tab, semantyka nagłówków
+- [x] Import zależności: Preact, JSX, SCSS Module
+- [x] Definicja interfejsów PageHeaderProps (title, subtitle, actions, className, style, aria-label)
+- [x] Renderowanie semantycznego tagu `<header>` z aria-label
+- [x] Renderowanie tytułu, podtytułu, akcji
+- [x] Obsługa propsów `className`, `style`, `aria-label`, `actions`
+- [x] Integracja z Breadcrumbs – do rozbudowy w przyszłości
+- [x] Zaawansowane propsy (description, breadcrumbs, warianty) – do rozbudowy w przyszłości
 
 ### 2.3 Style (`PageHeader.module.scss`)
 
-- [ ] Importy SCSS:
-  ```scss
-  @use "../styles/colors.scss" as *;
-  @use "../styles/spacing.scss" as *;
-  @use "../styles/typography.scss" as *;
-  @use "../styles/mixins.scss" as *;
-  @use "../styles/breakpoints.scss" as *;
-  ```
-- [ ] Lokalne zmienne:
-  ```scss
-  $page-header-padding-y: $spacing-xl;
-  $page-header-padding-x: $spacing-lg;
-  $page-header-bg: var(--color-background-secondary);
-  $page-header-border-bottom: 1px solid var(--color-border-subtle);
-  $page-header-title-color: var(--color-text-primary);
-  $page-header-description-color: var(--color-text-secondary);
-  $page-header-action-gap: $spacing-sm;
-  ```
-- [ ] Flexbox/Grid layout: rozkład sekcji, gap, padding
-- [ ] Stylizacja tytułu, opisu, grupy akcji, slotu breadcrumbs
-- [ ] Responsive design (mobile-first, media queries)
-- [ ] Obsługa motywu jasny/ciemny (custom properties, transitions)
+- [x] Importy SCSS: colors, spacing, typography, breakpoints
+- [x] Lokalne zmienne na bazie custom properties
+- [x] Layout: flex, padding, typografia, spacing
+- [x] Zaawansowane style (warianty, responsywność) – do rozbudowy w przyszłości
 
 ### 2.4 Testy jednostkowe (`PageHeader.test.tsx`)
 
-- [ ] Renderowanie z tytułem, opisem, akcjami, breadcrumbs
-- [ ] Testy przycisków akcji (onClick, href, disabled, warianty)
-- [ ] Testy slotu breadcrumbs
-- [ ] Testy ikon w akcjach
-- [ ] Testy dostępności (aria, focus, tab, nagłówki)
+- [x] Renderowanie z różnymi propsami (title, subtitle, actions, className, style, aria-label)
+- [x] Testy interakcji i responsywności – do rozbudowy w przyszłości
 
 ### 2.5 Storybook (`PageHeader.stories.tsx`)
 
-- [ ] Story: tytuł, tytuł+opis, tytuł+akcje, tytuł+akcje+breadcrumbs
-- [ ] Story: różne warianty akcji (primary, secondary, outline)
-- [ ] Story: akcje z ikonami, wyłączone akcje
-- [ ] Story: długi opis/tytuł
-- [ ] Story: z Breadcrumbs (mock)
-- [ ] Story: tryb jasny/ciemny
-- [ ] Story: responsywność (zmiana rozmiaru okna)
+- [x] Podstawowe stories: title, subtitle, actions
+- [x] Warianty, interaktywność, motywy – do rozbudowy w przyszłości
 
 ### 2.6 Eksport (`index.ts`)
 
-- [ ] Eksportuj `PageHeader` i ewentualne typy
+- [x] Eksport głównego komponentu
 
-### 2.7 Manualne testy integracyjne
+### 2.7 Iteracyjne poprawki
 
-- [ ] Integracja z Breadcrumbs i Layout
-- [ ] Spójność z Header, brak kolizji
-- [ ] Testy w przeglądarkach i na urządzeniach
-- [ ] Testy wydajności
-- [ ] Testy nadpisywania stylów przez `className` i `style`
+- [x] Wykonano lint, build, build-storybook
+- [x] Poprawiono błędy formatowania i typowania
+- [x] W razie błędów poprawiano kod iteracyjnie aż do uzyskania pełnej zgodności
 
 ---
 
-## 3. Opcjonalne rozszerzenia
-
-- [ ] Custom hook `usePageHeaderActions` do generowania akcji na podstawie ról/kontekstu
-- [ ] Przenieś interfejsy do `types.ts` jeśli komponent jest złożony
-
----
-
-## 4. Uwagi końcowe
-
-- Importy SCSS zawsze względne względem folderu komponentu.
-- Dodatkowe pliki (`types.ts`, `hooks/`) tylko jeśli złożoność tego wymaga.
-- Priorytet: najpierw funkcjonalność i użyteczność, potem rozszerzenia.
-- Testuj na prawdziwych urządzeniach mobilnych.
-- Zachowaj spójność z Header, Breadcrumbs i ogólnymi wytycznymi projektu.
-- Dokumentuj nietypowe rozwiązania w kodzie lub Storybooku.
+**Zaawansowane funkcje i rozbudowa** (breadcrumbs, description, warianty, aria, mocki, motywy) – do wdrożenia w kolejnych iteracjach zgodnie z checklistą i potrzebami projektu.

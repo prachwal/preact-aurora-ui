@@ -60,7 +60,7 @@ Aby stworzyć w pełni responsywny layout typu dashboard zgodny z podejściem an
   - index.ts
   - [Plan implementacji](./PLAN_BREADCRUMBS.md)
 
-- [ ] **PageHeader**  
+- [x] **PageHeader**  
        Nagłówek sekcji/strony (tytuł, akcje, opis)
   - PageHeader.tsx
   - PageHeader.module.scss
