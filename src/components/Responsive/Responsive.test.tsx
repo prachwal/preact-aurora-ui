@@ -1,6 +1,6 @@
 import { renderHook, act } from "@testing-library/preact";
-
 import { describe, it, expect } from "vitest";
+
 import { useBreakpoint } from "./useBreakpoint";
 
 describe("useBreakpoint", () => {

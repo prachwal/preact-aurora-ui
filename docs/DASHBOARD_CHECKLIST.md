@@ -116,7 +116,7 @@ Aby stworzyć w pełni responsywny layout typu dashboard zgodny z podejściem an
   - index.ts
   - [Plan implementacji](./PLAN_LOADER.md)
 
-- [ ] **Responsive utilities**  
+- [x] **Responsive utilities**  
        Hooki/utilsy do obsługi responsywności (np. useBreakpoint)
   - [Plan implementacji](./PLAN_RESPONSIVE.md)
 
