@@ -12,10 +12,15 @@ $content-padding-y: var(--space-md);
 .content {
   width: 100%;
   flex: 1 1 auto;
-  background: $content-bg;
+  background: var(--color-bg);
   color: $content-color;
   padding: $content-padding-y $content-padding-x;
   font-family: var(--font-family-base);
   min-height: 0;
   box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }

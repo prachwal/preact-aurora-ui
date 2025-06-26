@@ -3,14 +3,14 @@
 @use "../styles/spacing.scss" as *;
 @use "../styles/breakpoints.scss" as *;
 
-$footer-bg: var(--color-bg-secondary);
 $footer-color: var(--color-text-secondary);
 $footer-padding: var(--space-md) var(--space-lg);
 $footer-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.03);
 $footer-z: 10;
 
 .footer {
-  background: $footer-bg;
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border);
   color: $footer-color;
   padding: $footer-padding;
   min-height: 48px;

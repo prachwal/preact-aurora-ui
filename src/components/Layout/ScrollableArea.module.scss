@@ -1,0 +1,18 @@
+.scrollable-area {
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.scrollable-area> :global(.content),
+.scrollable-area> :global(.footer) {
+  flex-shrink: 0;
+}
+
+.scrollable-area> :global(.content) {
+  flex: 1 1 auto;
+  min-height: 0;
+}

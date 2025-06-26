@@ -2,6 +2,7 @@
 @use "../styles/spacing.scss" as *;
 @use "../styles/typography.scss" as *;
 @use "../styles/breakpoints.scss" as *;
+@use "../Layout/ScrollableArea.module.scss" as *;
 
 $layout-bg: var(--color-background);
 $layout-padding: $spacing-lg;
@@ -11,22 +12,33 @@ $layout-gap: $spacing-md;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  height: 100vh;
   width: 100%;
-  background: $layout-bg;
+  background: var(--color-bg);
   box-sizing: border-box;
+  gap: $layout-gap;
 }
 
 .layout--horizontal {
   flex-direction: row;
+  gap: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .layout--vertical {
+  display: flex;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .layout--fullHeight {
   min-height: 100vh;
-  height: 100%;
+  height: 100vh;
+  width: 100%; // zamiast 100vw
 }
 
 @media (max-width: $breakpoint-sm) {

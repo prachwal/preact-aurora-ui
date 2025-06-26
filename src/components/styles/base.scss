@@ -3,3 +3,18 @@
 @use "./typography.scss" as *;
 @use "./spacing.scss" as *;
 @use "./breakpoints.scss" as *;
+
+html,
+body {
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+#app {
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+}

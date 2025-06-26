@@ -30,13 +30,13 @@ export function Sidebar({
       aria-label={ariaLabel}
       role="complementary"
     >
+      {actions && <div className={styles.actions}>{actions}</div>}
       {nav && (
         <nav className={styles.nav} aria-label="Sidebar navigation">
           {nav}
         </nav>
       )}
       <div className={styles.spacer} />
-      {actions && <div className={styles.actions}>{actions}</div>}
       {children}
     </aside>
   );
