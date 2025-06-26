@@ -63,10 +63,10 @@ export interface MenuItem {
 ### 3. Styling i SCSS (`Sidebar.module.scss`)
 
 - [ ] Importuj SCSS przez `@use` z folderu `styles/` (wszystkie importy względne względem folderu komponentu):
-  - `@use "../../styles/colors.scss" as *;`
-  - `@use "../../styles/spacing.scss" as *;`
-  - `@use "../../styles/typography.scss" as *;`
-  - `@use "../../styles/breakpoints.scss" as *;` (opcjonalnie)
+  - `@use "../styles/colors.scss" as *;`
+  - `@use "../styles/spacing.scss" as *;`
+  - `@use "../styles/typography.scss" as *;`
+  - `@use "../styles/breakpoints.scss" as *;` (opcjonalnie)
 - [ ] Zdefiniuj lokalne zmienne na bazie custom properties:
   - `$sidebar-width: 16rem;`
   - `$sidebar-collapsed-width: 4rem;`
@@ -84,10 +84,10 @@ export interface MenuItem {
 #### Przykład nagłówka SCSS:
 
 ```scss
-@use "../../styles/colors.scss" as *;
-@use "../../styles/spacing.scss" as *;
-@use "../../styles/typography.scss" as *;
-@use "../../styles/breakpoints.scss" as *;
+@use "../styles/colors.scss" as *;
+@use "../styles/spacing.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/breakpoints.scss" as *;
 
 $sidebar-width: 16rem;
 $sidebar-collapsed-width: 4rem;

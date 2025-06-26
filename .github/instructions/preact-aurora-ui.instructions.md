@@ -21,9 +21,9 @@ applyTo: "**"
 - Każdy plik SCSS komponentu powinien:
   - Używać `@use` (nie `@import`) do ładowania bazowych plików SCSS:
     ```scss
-    @use "../../styles/colors.scss" as *;
-    @use "../../styles/typography.scss" as *;
-    @use "../../styles/spacing.scss" as *;
+    @use "../styles/colors.scss" as *;
+    @use "../styles/typography.scss" as *;
+    @use "../styles/spacing.scss" as *;
     ```
   - W nagłówku definiować lokalne zmienne SCSS (np. `$button-bg`) i przypisywać im wartości z globalnych custom properties (np. `var(--color-primary)`).
   - Dzięki temu można nadpisać dowolny parametr lokalnie lub globalnie przez kaskadę.
@@ -35,9 +35,9 @@ applyTo: "**"
 ## Przykład nagłówka SCSS komponentu
 
 ```scss
-@use "../../styles/colors.scss" as *;
-@use "../../styles/typography.scss" as *;
-@use "../../styles/spacing.scss" as *;
+@use "../styles/colors.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/spacing.scss" as *;
 
 // Lokalne zmienne na bazie globalnych custom properties
 $button-bg: var(--color-primary);

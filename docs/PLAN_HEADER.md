@@ -67,10 +67,10 @@ Header/
 - [ ] **Setup zmiennych i importów**
 
   ```scss
-  @use "../../styles/colors.scss" as *;
-  @use "../../styles/spacing.scss" as *;
-  @use "../../styles/typography.scss" as *;
-  @use "../../styles/mixins.scss" as *; // Opcjonalnie, dla reużywalnych stylów
+  @use "../styles/colors.scss" as *;
+  @use "../styles/spacing.scss" as *;
+  @use "../styles/typography.scss" as *;
+  @use "../styles/mixins.scss" as *; // Opcjonalnie, dla reużywalnych stylów
   // opcjonalnie: @use '../../styles/breakpoints.scss' as *;
   ```
 

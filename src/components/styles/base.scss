@@ -1,4 +1,5 @@
 // Base SCSS imports for all components
-@use './colors.scss' as *;
-@use './typography.scss' as *;
-@use './spacing.scss' as *;
+@use "./colors.scss" as *;
+@use "./typography.scss" as *;
+@use "./spacing.scss" as *;
+@use "./breakpoints.scss" as *;

@@ -71,11 +71,11 @@ Breadcrumbs/
 
 - [ ] Importy SCSS:
   ```scss
-  @use "../../styles/colors.scss" as *;
-  @use "../../styles/spacing.scss" as *;
-  @use "../../styles/typography.scss" as *;
-  @use "../../styles/mixins.scss" as *;
-  @use "../../styles/breakpoints.scss" as *;
+  @use "../styles/colors.scss" as *;
+  @use "../styles/spacing.scss" as *;
+  @use "../styles/typography.scss" as *;
+  @use "../styles/mixins.scss" as *;
+  @use "../styles/breakpoints.scss" as *;
   ```
 - [ ] Lokalne zmienne:
   ```scss

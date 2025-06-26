@@ -1,6 +1,6 @@
-import { h } from "preact";
 import { render, screen } from "@testing-library/preact";
 import { describe, it, expect } from "vitest";
+
 import Layout from "./Layout";
 import "@testing-library/jest-dom";
 
@@ -9,7 +9,7 @@ describe("Layout", () => {
     render(
       <Layout>
         <div data-testid="child">Test</div>
-      </Layout>
+      </Layout>,
     );
     const child = screen.getByTestId("child");
     expect(child).toBeInTheDocument();
@@ -19,7 +19,7 @@ describe("Layout", () => {
     render(
       <Layout className="custom-class" style={{ background: "red" }}>
         <span>Test</span>
-      </Layout>
+      </Layout>,
     );
     const layout = screen.getByText("Test").parentElement;
     expect(layout).toHaveClass("custom-class");
@@ -30,7 +30,7 @@ describe("Layout", () => {
     render(
       <Layout direction="horizontal" fullHeight={false}>
         <span>Test</span>
-      </Layout>
+      </Layout>,
     );
     const layout = screen.getByText("Test").parentElement;
     expect(layout?.className).toMatch(/layout--horizontal/);

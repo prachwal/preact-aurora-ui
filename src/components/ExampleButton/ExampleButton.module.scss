@@ -6,9 +6,9 @@ $button-radius: 4px;
 $button-padding: var(--space-sm) var(--space-lg);
 $button-font-size: var(--font-size-base);
 
-@use '../styles/colors.scss' as *;
-@use '../styles/typography.scss' as *;
-@use '../styles/spacing.scss' as *;
+@use "../styles/colors.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/spacing.scss" as *;
 
 .example-button {
   background: $button-bg;

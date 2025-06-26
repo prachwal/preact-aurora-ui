@@ -84,11 +84,11 @@ export function Content({
 ### 3. Styling i SCSS (`Content.module.scss`)
 
 - [ ] Importuj SCSS przez `@use` z folderu `styles/` (wszystkie importy względne względem folderu komponentu):
-  - `@use "../../styles/colors.scss" as *;`
-  - `@use "../../styles/spacing.scss" as *;`
-  - `@use "../../styles/typography.scss" as *;`
-  - `@use "../../styles/mixins.scss" as *;` (opcjonalnie)
-  - `@use "../../styles/breakpoints.scss" as *;`
+  - `@use "../styles/colors.scss" as *;`
+  - `@use "../styles/spacing.scss" as *;`
+  - `@use "../styles/typography.scss" as *;`
+  - `@use "../styles/mixins.scss" as *;` (opcjonalnie)
+  - `@use "../styles/breakpoints.scss" as *;`
 - [ ] Zdefiniuj lokalne zmienne na bazie custom properties:
   - `$content-bg: var(--color-background-primary);`
   - `$content-default-padding: $spacing-lg;`
@@ -102,10 +102,10 @@ export function Content({
 #### Przykład nagłówka SCSS:
 
 ```scss
-@use "../../styles/colors.scss" as *;
-@use "../../styles/spacing.scss" as *;
-@use "../../styles/typography.scss" as *;
-@use "../../styles/breakpoints.scss" as *;
+@use "../styles/colors.scss" as *;
+@use "../styles/spacing.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/breakpoints.scss" as *;
 
 $content-bg: var(--color-background-primary);
 $content-default-padding: $spacing-lg;

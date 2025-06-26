@@ -1,4 +1,6 @@
 import type { ComponentChildren, JSX } from "preact";
+
+// eslint-disable-next-line import/no-unresolved
 import styles from "./Layout.module.scss";
 
 export interface LayoutProps {

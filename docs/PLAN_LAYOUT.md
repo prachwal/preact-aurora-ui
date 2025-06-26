@@ -64,11 +64,11 @@ Layout/
 
 - [ ] Importy SCSS:
   ```scss
-  @use "../../styles/colors.scss" as *;
-  @use "../../styles/spacing.scss" as *;
-  @use "../../styles/typography.scss" as *;
-  @use "../../styles/mixins.scss" as *; // opcjonalnie
-  @use "../../styles/breakpoints.scss" as *;
+  @use "../styles/colors.scss" as *;
+  @use "../styles/spacing.scss" as *;
+  @use "../styles/typography.scss" as *;
+  @use "../styles/mixins.scss" as *; // opcjonalnie
+  @use "../styles/breakpoints.scss" as *;
   ```
 - [ ] Definicja lokalnych zmiennych:
   ```scss

@@ -1,4 +1,3 @@
-import { h } from "preact";
 import { Layout } from "./Layout";
 
 export default {
@@ -14,8 +13,16 @@ export default {
   },
 };
 
-const Box = ({ color = "#eee", children }: { color?: string; children: any }) => (
-  <div style={{ background: color, padding: 16, borderRadius: 8 }}>{children}</div>
+const Box = ({
+  color = "#eee",
+  children,
+}: {
+  color?: string;
+  children: any;
+}) => (
+  <div style={{ background: color, padding: 16, borderRadius: 8 }}>
+    {children}
+  </div>
 );
 
 export const Default = () => (
