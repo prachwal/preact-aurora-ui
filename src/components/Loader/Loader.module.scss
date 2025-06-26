@@ -1,0 +1,46 @@
+@use "../styles/colors.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/spacing.scss" as *;
+
+$loader-size-sm: 1.25rem;
+$loader-size-md: 2rem;
+$loader-size-lg: 3rem;
+$loader-color: var(--color-primary);
+$loader-border: 3px;
+
+.loader {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: $loader-color;
+
+  &.sm .spinner {
+    width: $loader-size-sm;
+    height: $loader-size-sm;
+  }
+
+  &.md .spinner {
+    width: $loader-size-md;
+    height: $loader-size-md;
+  }
+
+  &.lg .spinner {
+    width: $loader-size-lg;
+    height: $loader-size-lg;
+  }
+}
+
+.spinner {
+  width: $loader-size-md;
+  height: $loader-size-md;
+  border: $loader-border solid rgba(0, 0, 0, 0.08);
+  border-top: $loader-border solid currentColor;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

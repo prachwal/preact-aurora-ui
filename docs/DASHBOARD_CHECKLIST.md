@@ -98,7 +98,7 @@ Aby stworzyć w pełni responsywny layout typu dashboard zgodny z podejściem an
   - index.ts
   - [Plan implementacji](./PLAN_MENU.md)
 
-- [ ] **Drawer / Modal**  
+- [x] **Drawer / Modal**  
        Panel wysuwany/modalny (opcjonalnie)
   - Drawer.tsx
   - Drawer.module.scss
@@ -107,7 +107,7 @@ Aby stworzyć w pełni responsywny layout typu dashboard zgodny z podejściem an
   - index.ts
   - [Plan implementacji](./PLAN_DRAWER.md)
 
-- [ ] **Loader / Spinner**  
+- [x] **Loader / Spinner**  
        Komponent ładowania
   - Loader.tsx
   - Loader.module.scss
@@ -125,3 +125,9 @@ Aby stworzyć w pełni responsywny layout typu dashboard zgodny z podejściem an
 Każdy komponent zgodnie z instrukcją: SCSS Modules, zmienne lokalne na bazie custom properties, testy, stories, index.ts.
 
 Zacznij od Layout, Header, Sidebar, Content, Footer, Grid/Row/Col – to podstawa dashboardu. Pozostałe komponenty (Card, Breadcrumbs, Menu, Loader) dodawaj wg potrzeb projektu.
+
+## Dalsze iteracje i rozbudowa
+
+- [ ] Zaawansowane funkcje, warianty, motywy, accessibility beyond basics
+- [ ] Integracja z routingiem, mocki, performance, customizacja
+- [ ] Manualne testy integracyjne, hooki/types dla złożonych komponentów

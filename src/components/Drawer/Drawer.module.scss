@@ -1,0 +1,107 @@
+@use "../styles/colors.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/spacing.scss" as *;
+@use "../styles/breakpoints.scss" as *;
+
+$drawer-bg: var(--color-bg);
+$drawer-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.18);
+$drawer-z: 1200;
+$drawer-width: 320px;
+$drawer-radius: 8px;
+
+.drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: $drawer-z;
+  pointer-events: none;
+
+  &.open {
+    pointer-events: auto;
+  }
+
+  &.closed {
+    display: none;
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.panel {
+  position: absolute;
+  background: $drawer-bg;
+  box-shadow: $drawer-shadow;
+  border-radius: $drawer-radius;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  width: $drawer-width;
+  max-width: 100vw;
+  transition: transform 0.3s cubic-bezier(.4, 0, .2, 1);
+  display: flex;
+  flex-direction: column;
+
+  &.right {
+    right: 0;
+    transform: translateX(0);
+  }
+
+  &.left {
+    left: 0;
+    transform: translateX(0);
+  }
+
+  &.top {
+    left: 0;
+    right: 0;
+    top: 0;
+    height: $drawer-width;
+    width: 100vw;
+    max-width: none;
+    border-radius: 0 0 $drawer-radius $drawer-radius;
+  }
+
+  &.bottom {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: $drawer-width;
+    width: 100vw;
+    max-width: none;
+    border-radius: $drawer-radius $drawer-radius 0 0;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+}
+
+.close {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: var(--color-text);
+}
+
+.content {
+  flex: 1 1 auto;
+  padding: var(--space-md);
+  overflow: auto;
+}
