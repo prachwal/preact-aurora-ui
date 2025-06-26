@@ -4,139 +4,132 @@
 
 ### Główne cele
 
-- Stworzenie elastycznego, responsywnego layoutu dashboardu
-- Zapewnienie konsistentnego układu dla całej aplikacji
-- Obsługa różnych wariantów layoutu (z/bez sidebar, różne pozycje)
-- Pełna kontrola nad kompozycją komponentów
+- Stworzenie elastycznego i w pełni responsywnego komponentu głównego układu (Layout) dla całego dashboardu.
+- Zapewnienie spójnego układu wizualnego dla wszystkich widoków aplikacji, niezależnie od urządzenia i rozmiaru ekranu.
+- Obsługa różnych wariantów układu: z paskiem bocznym (sidebar), bez paska bocznego (pełna szerokość), kompaktowy.
+- Umożliwienie pełnej kontroli nad kompozycją podkomponentów (Header, Sidebar, Footer) poprzez system slotów.
+- Zapewnienie wysokiej dostępności (WCAG) i optymalnej wydajności renderowania.
 
 ### Architektura komponentu
 
 ```
 Layout/
 ├── Layout.tsx           # Główny komponent
-├── Layout.module.scss   # Style modułowe
+├── Layout.module.scss   # Style modułowe (SCSS Modules)
 ├── Layout.test.tsx      # Testy jednostkowe
-├── Layout.stories.tsx   # Dokumentacja Storybook
+├── Layout.stories.tsx   # Storybook
 ├── index.ts             # Eksport publiczny
+// (opcjonalnie) types.ts, hooks/
 ```
 
-## Detailed Implementation Checklist
+## Szczegółowa checklista implementacji
 
 ### 1. Przygotowanie struktury projektu
 
-- [ ] **Utworzenie folderu głównego**
-  - Lokalizacja: `src/components/Layout/`
-  - Sprawdzenie konfliktów z istniejącymi komponentami
+- [ ] Utwórz folder `src/components/Layout/`.
+- [ ] Sprawdź potencjalne konflikty nazw z istniejącymi komponentami.
 
-### 2. Implementacja głównego komponentu
+### 2. Implementacja głównego komponentu (`Layout.tsx`)
 
-#### **Plik: `Layout.tsx`**
-
-- [ ] **Podstawowa struktura komponentu**
-
-  ```typescript
-  import { ComponentChildren } from "preact";
-  import styles from "./Layout.module.scss";
-
+- [ ] Import zależności: `ComponentChildren`, `JSX` z Preact, style modułowe.
+- [ ] Zdefiniuj interfejs `LayoutProps`:
+  ```ts
   interface LayoutProps {
     children: ComponentChildren;
     variant?: "sidebar" | "full" | "compact";
     sidebarPosition?: "left" | "right";
-    header?: ComponentChildren;
-    sidebar?: ComponentChildren;
-    footer?: ComponentChildren;
+    hasHeader?: boolean;
+    hasSidebar?: boolean;
+    hasFooter?: boolean;
+    headerComponent?: ComponentChildren;
+    sidebarComponent?: ComponentChildren;
+    footerComponent?: ComponentChildren;
     className?: string;
     style?: JSX.CSSProperties;
+    initialSidebarCollapsed?: boolean;
   }
   ```
+- [ ] Domyślna klasa CSS dla głównego kontenera (np. `layout`).
+- [ ] Warunkowe renderowanie sekcji (Header, Sidebar, Footer) na podstawie propsów.
+- [ ] Kompozycja slotów: wstrzykiwanie `headerComponent`, `sidebarComponent`, `footerComponent`, `children`.
+- [ ] Użycie semantycznych tagów HTML (`<header>`, `<aside>`, `<main>`, `<footer>`).
+- [ ] Przekazywanie dodatkowych props (`className`, `style`).
+- [ ] Obsługa stanu `isSidebarCollapsed` (useState, inicjacja przez `initialSidebarCollapsed`).
+- [ ] Funkcja `handleSidebarToggle` do przełączania sidebara (przekazywana do slotów).
+- [ ] Wykrywanie urządzenia mobilnego (np. `window.matchMedia`).
+- [ ] Przekazywanie stanu sidebara do SidebarComponent i HeaderComponent.
+- [ ] Accessibility: ARIA labels, role, keyboard navigation, screen reader compatibility.
 
-- [ ] **Implementacja renderowania**
-  - Conditional rendering dla różnych wariantów
-  - Kompozycja slotów: header, sidebar, content, footer
-  - Forwarding propsów do głównego kontenera
-  - Domyślna klasa CSS (np. `layout`)
+### 3. Styling i responsywność (`Layout.module.scss`)
 
-- [ ] **Obsługa stanu layoutu** (opcjonalnie)
-  - Stan sidebar (collapsed/expanded)
-  - Stan responsywności (mobile/desktop)
-
-- [ ] **Accessibility features**
-  - ARIA labels i roles
-  - Keyboard navigation support
-  - Screen reader compatibility
-
-### 3. Styling i responsywność
-
-#### **Plik: `Layout.module.scss`**
-
-- [ ] **Setup zmiennych i importów**
-
+- [ ] Importy SCSS:
   ```scss
   @use "../../styles/colors.scss" as *;
   @use "../../styles/spacing.scss" as *;
   @use "../../styles/typography.scss" as *;
-  // opcjonalnie: @use '../../styles/breakpoints.scss' as *;
+  @use "../../styles/mixins.scss" as *; // opcjonalnie
+  @use "../../styles/breakpoints.scss" as *;
   ```
-
-- [ ] **Definicja lokalnych zmiennych**
-
+- [ ] Definicja lokalnych zmiennych:
   ```scss
   $layout-header-height: 4rem;
   $layout-sidebar-width: 16rem;
-  $layout-sidebar-collapsed: 4rem;
+  $layout-sidebar-collapsed-width: 4rem;
   $layout-footer-height: 3rem;
-  $layout-bg: var(--color-bg);
+  $layout-bg: var(--color-background-primary);
+  $layout-transition: 0.3s ease-out;
+  $layout-z-index-header: 1000;
+  $layout-z-index-sidebar: 999;
+  $layout-z-index-overlay: 998;
   ```
+- [ ] CSS Grid jako główny mechanizm układu.
+- [ ] Sticky positioning dla header/sidebar.
+- [ ] Mobile-first, media queries z `breakpoints.scss`.
+- [ ] Sidebar jako overlay na mobile, stały na desktopie.
+- [ ] Theme support: custom properties, transitions.
 
-- [ ] **Implementacja Grid/Flexbox layoutu**
-  - CSS Grid lub Flexbox dla głównej struktury
-  - Sticky positioning dla header/sidebar
+### 4. Testy jednostkowe (`Layout.test.tsx`)
 
-- [ ] **Responsive design**
-  - Mobile-first approach
-  - Media queries dla tablet/desktop
-  - Adaptive sidebar behavior (overlay na mobile)
+- [ ] Renderowanie Layoutu z różnymi propsami.
+- [ ] Sprawdzenie klas CSS i struktury DOM.
+- [ ] Testy interakcji (toggle sidebar).
+- [ ] Responsywność (zmiana szerokości viewportu).
+- [ ] Accessibility (ARIA, role, keyboard).
+- [ ] Integracja slotów (mockowanie Header, Sidebar, Footer).
 
-- [ ] **Theme support**
-  - Light/dark mode przez custom properties
-  - Smooth transitions
+### 5. Storybook (`Layout.stories.tsx`)
 
-### 4. Testy jednostkowe
+- [ ] Story z podstawowym układem (Header, Sidebar, Content, Footer).
+- [ ] Warianty: full, compact, sidebar right, bez Header/Footer/Sidebar.
+- [ ] Interaktywność: toggle sidebar, responsywność.
+- [ ] Theme: light/dark mode.
+- [ ] State: długi content, różne kombinacje widoczności slotów.
 
-#### **Plik: `Layout.test.tsx`**
+### 6. Eksport (`index.ts`)
 
-- [ ] Renderowanie Layoutu z dziećmi
-- [ ] Obecność klas CSS i struktury DOM
-- [ ] Responsywność (np. snapshoty dla różnych szerokości)
-- [ ] Integracja z Header, Sidebar, Content, Footer (mock)
-- [ ] Accessibility (ARIA, keyboard)
-
-### 5. Storybook
-
-#### **Plik: `Layout.stories.tsx`**
-
-- [ ] Story z podstawowym układem (Header, Sidebar, Content, Footer)
-- [ ] Warianty: bez Sidebar, z Footer, różne szerokości
-- [ ] Motyw jasny/ciemny
-- [ ] Interaktywność: sidebar toggle, responsywność
-
-### 6. Eksport
-
-#### **Plik: `index.ts`**
-
-- [ ] Eksportuj Layout z folderu
+- [ ] Eksportuj Layout z folderu.
+- [ ] Eksportuj typy (jeśli w osobnym pliku).
 
 ### 7. Manualne testy integracyjne
 
-- [ ] Sprawdź Layout w aplikacji z innymi komponentami
-- [ ] Zweryfikuj zachowanie na urządzeniach mobilnych i desktop
-- [ ] Zweryfikuj możliwość nadpisania stylów przez propsy/className
+- [ ] Integracja z Header, Sidebar, Content, Footer w aplikacji.
+- [ ] Testy na różnych przeglądarkach i urządzeniach.
+- [ ] Testy wydajności i płynności animacji.
+- [ ] Testy nadpisywania stylów przez propsy.
+
+### Opcjonalne rozszerzenia
+
+- [ ] `useLayoutState` – hook do globalnego stanu układu (jeśli złożoność wymaga).
+- [ ] `useResponsiveLayout` – hook do wykrywania breakpointów.
+- [ ] Przeniesienie typów do `types.ts` (jeśli kod rośnie).
 
 ---
 
-**Uwagi:**
+## Uwagi końcowe
 
-- Importy SCSS muszą być względne względem folderu komponentu.
-- Dodatkowe pliki typu `types.ts`, `hooks/` są opcjonalne – twórz je tylko jeśli są potrzebne.
-- Przestrzegaj zasad SCSS Modules i typowania Preact.
-- Dokumentuj nietypowe rozwiązania w kodzie lub w Storybooku.
+- Importy SCSS zawsze powinny być względne względem folderu komponentu.
+- Dodatkowe pliki i podfoldery (`types.ts`, `hooks/`) twórz tylko jeśli złożoność komponentu tego wymaga.
+- Priorytet: funkcjonalność i użyteczność, potem rozszerzenia.
+- Testuj na prawdziwych urządzeniach mobilnych.
+- Zachowaj spójność z Header i Sidebar.
+- Dokumentuj nietypowe rozwiązania w kodzie lub Storybooku.
