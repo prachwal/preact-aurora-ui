@@ -11,13 +11,13 @@ export interface FooterProps {
 }
 
 /**
- * Footer – pasek dolny dashboardu
+ * Footer – stopka dashboardu
  */
 export function Footer({
   children,
   className = "",
   style,
-  "aria-label": ariaLabel = "Footer",
+  "aria-label": ariaLabel = "Stopka",
 }: FooterProps) {
   return (
     <footer

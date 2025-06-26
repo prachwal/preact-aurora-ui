@@ -12,17 +12,9 @@ export default meta;
 type Story = StoryObj<typeof Footer>;
 
 export const Default: Story = {
-  render: () => (
-    <Footer>
-      <span style={{ fontSize: 14, color: "#888" }}>© 2025 Aurora UI</span>
-    </Footer>
-  ),
+  render: () => <Footer>Copyright 2025</Footer>,
 };
 
-export const WithCustomClass: Story = {
-  render: () => (
-    <Footer className="custom-class">
-      <span>Custom class footer</span>
-    </Footer>
-  ),
+export const CustomClass: Story = {
+  render: () => <Footer className="custom">Custom class</Footer>,
 };

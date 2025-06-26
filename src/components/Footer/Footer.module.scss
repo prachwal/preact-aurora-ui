@@ -3,24 +3,22 @@
 @use "../styles/spacing.scss" as *;
 @use "../styles/breakpoints.scss" as *;
 
-// Lokalne zmienne na bazie custom properties
-$footer-bg: var(--color-bg-footer, var(--color-surface));
-$footer-color: var(--color-footer-text, var(--color-on-surface));
-$footer-height: 48px;
-$footer-padding-x: var(--space-lg);
-$footer-padding-y: var(--space-xs);
-$footer-shadow: 0 -2px 8px rgba(0, 0, 0, 0.04);
+$footer-bg: var(--color-bg-secondary);
+$footer-color: var(--color-text-secondary);
+$footer-padding: var(--space-md) var(--space-lg);
+$footer-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.03);
+$footer-z: 10;
 
 .footer {
-  width: 100%;
-  min-height: $footer-height;
   background: $footer-bg;
   color: $footer-color;
-  padding: $footer-padding-y $footer-padding-x;
+  padding: $footer-padding;
+  min-height: 48px;
   box-shadow: $footer-shadow;
-  font-family: var(--font-family-base);
+  z-index: $footer-z;
   display: flex;
   align-items: center;
-  justify-content: center;
-  z-index: 80;
+  justify-content: space-between;
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
 }
