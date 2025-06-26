@@ -1,0 +1,62 @@
+@use "../styles/colors.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/spacing.scss" as *;
+@use "../styles/breakpoints.scss" as *;
+
+$menu-bg: var(--color-bg-secondary);
+$menu-color: var(--color-text);
+$menu-selected-bg: var(--color-primary);
+$menu-selected-color: var(--color-bg);
+$menu-disabled-color: var(--color-text-disabled);
+$menu-radius: 6px;
+$menu-padding: var(--space-xs) var(--space-md);
+
+.menu {
+  background: $menu-bg;
+  border-radius: $menu-radius;
+  padding: var(--space-xs) 0;
+  width: 100%;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: $menu-color;
+  padding: $menu-padding;
+  border-radius: $menu-radius;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+
+  &:hover:not(.disabled) {
+    background: var(--color-primary-light);
+    color: $menu-selected-color;
+  }
+
+  &.selected {
+    background: $menu-selected-bg;
+    color: $menu-selected-color;
+  }
+
+  &.disabled {
+    color: $menu-disabled-color;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+}
+
+.label {
+  flex: 1 1 auto;
+}

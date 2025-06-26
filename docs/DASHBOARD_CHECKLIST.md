@@ -89,7 +89,7 @@ Aby stworzyć w pełni responsywny layout typu dashboard zgodny z podejściem an
   - index.ts
   - [Plan implementacji](./PLAN_CARD.md)
 
-- [ ] **Menu**  
+- [x] **Menu**  
        Komponent menu (sidebar/topbar)
   - Menu.tsx
   - Menu.module.scss
