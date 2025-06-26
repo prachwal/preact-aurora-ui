@@ -40,7 +40,7 @@ Aby stworzyć w pełni responsywny layout typu dashboard zgodny z podejściem an
   - index.ts
   - [Plan implementacji](./PLAN_CONTENT.md)
 
-- [ ] **Footer**  
+- [x] **Footer**  
        Pasek dolny (opcjonalnie)
   - Footer.tsx
   - Footer.module.scss

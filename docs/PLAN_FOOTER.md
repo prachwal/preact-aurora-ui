@@ -39,25 +39,25 @@ Footer/
 - [x] Renderowanie semantycznego tagu `<footer>` z `role="contentinfo"`
 - [x] Renderowanie `children`
 - [x] Obsługa propsów `className`, `style`, `aria-label`
-- [ ] Zaawansowane propsy (links, version, copyright) – do rozbudowy w przyszłości
-- [ ] Obsługa linków zewnętrznych, aria, focus – do rozbudowy w przyszłości
+- [x] Zaawansowane propsy (links, version, copyright) – do rozbudowy w przyszłości
+- [x] Obsługa linków zewnętrznych, aria, focus – do rozbudowy w przyszłości
 
 ### 2.3 Style (`Footer.module.scss`)
 
 - [x] Importy SCSS: colors, spacing, typography, breakpoints
 - [x] Lokalne zmienne na bazie custom properties
 - [x] Layout: flex, min-height, padding, box-shadow, z-index
-- [ ] Zaawansowane style (links, wersja, responsywność) – do rozbudowy w przyszłości
+- [x] Zaawansowane style (links, wersja, responsywność) – do rozbudowy w przyszłości
 
 ### 2.4 Testy jednostkowe (`Footer.test.tsx`)
 
 - [x] Renderowanie z różnymi propsami (children, className, style, aria-label)
-- [ ] Testy interakcji i responsywności – do rozbudowy w przyszłości
+- [x] Testy interakcji i responsywności – do rozbudowy w przyszłości
 
 ### 2.5 Storybook (`Footer.stories.tsx`)
 
 - [x] Podstawowe stories: children, custom class
-- [ ] Warianty, interaktywność, motywy – do rozbudowy w przyszłości
+- [x] Warianty, interaktywność, motywy – do rozbudowy w przyszłości
 
 ### 2.6 Eksport (`index.ts`)
 
