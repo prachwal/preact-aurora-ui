@@ -30,13 +30,13 @@ Breadcrumbs/
 
 ### 2.1 Przygotowanie struktury projektu
 
-- [ ] Utwórz folder `src/components/Breadcrumbs/`
-- [ ] Sprawdź potencjalne konflikty nazw
+- [x] Utwórz folder `src/components/Breadcrumbs/`
+- [x] Sprawdź potencjalne konflikty nazw
 
 ### 2.2 Główny komponent (`Breadcrumbs.tsx`)
 
-- [ ] Import zależności: Preact, JSX, SCSS Module
-- [ ] Definicja interfejsów:
+- [x] Import zależności: Preact, JSX, SCSS Module
+- [x] Definicja interfejsów:
 
   ```ts
   import { JSX, ComponentChildren } from "preact";

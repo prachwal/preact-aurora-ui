@@ -51,7 +51,7 @@ Aby stworzyć w pełni responsywny layout typu dashboard zgodny z podejściem an
 
 ## Komponenty wspierające
 
-- [ ] **Breadcrumbs**  
+- [x] **Breadcrumbs**  
        Ścieżka nawigacji
   - Breadcrumbs.tsx
   - Breadcrumbs.module.scss
