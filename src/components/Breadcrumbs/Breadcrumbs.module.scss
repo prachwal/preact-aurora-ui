@@ -1,31 +1,37 @@
 @use "../styles/colors.scss" as *;
-@use "../styles/typography.scss" as *;
 @use "../styles/spacing.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/mixins.scss" as *;
 @use "../styles/breakpoints.scss" as *;
 
 // Lokalne zmienne na bazie custom properties
-$breadcrumbs-bg: var(--color-bg-breadcrumbs, transparent);
-$breadcrumbs-color: var(--color-breadcrumbs-text, var(--color-on-surface));
-$breadcrumbs-separator: var(--color-breadcrumbs-separator, var(--color-border));
+$breadcrumbs-text-color: var(--color-text-secondary, #666);
+$breadcrumbs-link-color: var(--color-link-primary, #1976d2);
+$breadcrumbs-active-color: var(--color-text-primary, #222);
+$breadcrumbs-separator-color: var(--color-text-tertiary, #bbb);
+$breadcrumbs-font-size: var(--font-size-sm, 15px);
+$breadcrumbs-padding: var(--space-xs, 8px) 0;
+$breadcrumbs-gap: var(--space-xs, 8px);
 $breadcrumbs-radius: 4px;
-$breadcrumbs-padding-x: var(--space-xs);
-$breadcrumbs-padding-y: var(--space-2xs);
-$breadcrumbs-font-size: var(--font-size-sm);
 
 .breadcrumbs {
   display: block;
-  background: $breadcrumbs-bg;
-  color: $breadcrumbs-color;
+  background: transparent;
+  color: $breadcrumbs-text-color;
   border-radius: $breadcrumbs-radius;
-  padding: $breadcrumbs-padding-y $breadcrumbs-padding-x;
+  padding: $breadcrumbs-padding;
   font-size: $breadcrumbs-font-size;
   font-family: var(--font-family-base);
+  width: 100%;
+  overflow-x: auto;
+  @include hide-scrollbar;
+  transition: background 0.2s;
 }
 
 .list {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2xs);
+  gap: $breadcrumbs-gap;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -34,24 +40,72 @@ $breadcrumbs-font-size: var(--font-size-sm);
 .item {
   display: flex;
   align-items: center;
+  min-width: 0;
 }
 
 .link {
-  color: inherit;
+  color: $breadcrumbs-link-color;
   text-decoration: underline;
   cursor: pointer;
+  outline: none;
+  background: none;
+  border: none;
+  transition: color 0.2s;
 
-  &:hover {
+  &:hover,
+  &:focus {
+    color: var(--color-link-primary-hover, #115293); // fallback na ciemniejszy odcień
     text-decoration: none;
   }
 }
 
-.text {
-  color: $breadcrumbs-color;
+.active {
+  color: $breadcrumbs-active-color;
+  font-weight: 600;
+  cursor: default;
+  text-decoration: none;
 }
 
 .separator {
-  color: $breadcrumbs-separator;
+  color: $breadcrumbs-separator-color;
   margin: 0 0.25em;
   user-select: none;
+  font-size: 1em;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 0.25em;
+  font-size: 1em;
+}
+
+// Responsive
+@media (max-width: $breakpoint-sm) {
+  .breadcrumbs {
+    font-size: 13px;
+    padding: var(--space-2xs, 4px) 0;
+  }
+
+  .list {
+    gap: var(--space-2xs, 4px);
+  }
+}
+
+// Motyw dark
+[data-theme="dark"] .breadcrumbs {
+  color: var(--color-text-secondary-dark, #aaa);
+  background: transparent;
+}
+
+[data-theme="dark"] .link {
+  color: var(--color-link-primary-dark, #90caf9);
+}
+
+[data-theme="dark"] .active {
+  color: var(--color-text-primary-dark, #fff);
+}
+
+[data-theme="dark"] .separator {
+  color: var(--color-text-tertiary-dark, #555);
 }

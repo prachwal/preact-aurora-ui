@@ -58,18 +58,18 @@ Breadcrumbs/
   }
   ```
 
-- [ ] Renderowanie:
-  - [ ] Semantyczny tag `<nav>` z `role="navigation"` i `aria-label="Breadcrumb"`
-  - [ ] Iteracja po `items` i renderowanie elementów jako `<a>` lub `<span>`
-  - [ ] Ostatni element: tekst, nie link (`aria-current="page"`)
-  - [ ] Renderowanie separatora między elementami
-  - [ ] Obsługa propsów `className`, `style`
-- [ ] Obsługa interakcji: kliknięcia, wywołanie `onItemClick`
-- [ ] Dostępność: aria, focus, tab
+- [x] Renderowanie:
+  - [x] Semantyczny tag `<nav>` z `role="navigation"` i `aria-label="Breadcrumb"`
+  - [x] Iteracja po `items` i renderowanie elementów jako `<a>` lub `<span>`
+  - [x] Ostatni element: tekst, nie link (`aria-current="page"`)
+  - [x] Renderowanie separatora między elementami
+  - [x] Obsługa propsów `className`, `style`
+- [x] Obsługa interakcji: kliknięcia, wywołanie `onItemClick`
+- [x] Dostępność: aria, focus, tab
 
 ### 2.3 Style (`Breadcrumbs.module.scss`)
 
-- [ ] Importy SCSS:
+- [x] Importy SCSS:
   ```scss
   @use "../styles/colors.scss" as *;
   @use "../styles/spacing.scss" as *;
@@ -77,7 +77,7 @@ Breadcrumbs/
   @use "../styles/mixins.scss" as *;
   @use "../styles/breakpoints.scss" as *;
   ```
-- [ ] Lokalne zmienne:
+- [x] Lokalne zmienne:
   ```scss
   $breadcrumbs-text-color: var(--color-text-secondary);
   $breadcrumbs-link-color: var(--color-link-primary);
@@ -87,34 +87,34 @@ Breadcrumbs/
   $breadcrumbs-padding: $spacing-xs 0;
   $breadcrumbs-gap: $spacing-xs;
   ```
-- [ ] Flexbox layout: rozkład elementów, gap, padding
-- [ ] Stylizacja linków, aktywnego elementu, separatora, ikon
-- [ ] Responsive design (mobile-first, media queries)
-- [ ] Obsługa motywu jasny/ciemny (custom properties, transitions)
+- [x] Flexbox layout: rozkład elementów, gap, padding
+- [x] Stylizacja linków, aktywnego elementu, separatora, ikon
+- [x] Responsive design (mobile-first, media queries)
+- [x] Obsługa motywu jasny/ciemny (custom properties, transitions)
 
 ### 2.4 Testy jednostkowe (`Breadcrumbs.test.tsx`)
 
-- [ ] Renderowanie z pustą tablicą `items`
-- [ ] Renderowanie z pojedynczym i wieloma elementami
-- [ ] Testy separatorów (tekst, ikona)
-- [ ] Testy linków (href, label, aktywny element)
-- [ ] Interakcje: kliknięcia, wywołanie `onItemClick`
-- [ ] Testy dostępności (aria, focus, tab)
+- [x] Renderowanie z pustą tablicą `items`
+- [x] Renderowanie z pojedynczym i wieloma elementami
+- [x] Testy separatorów (tekst, ikona)
+- [x] Testy linków (href, label, aktywny element)
+- [x] Interakcje: kliknięcia, wywołanie `onItemClick`
+- [x] Testy dostępności (aria, focus, tab)
 
 ### 2.5 Storybook (`Breadcrumbs.stories.tsx`)
 
-- [ ] Story: typowa ścieżka (np. Home > Products > Current Page)
-- [ ] Story: tylko aktualna strona
-- [ ] Story: różne separatory (tekst, ikona)
-- [ ] Story: elementy z ikonami
-- [ ] Story: długie etykiety
-- [ ] Story: linki wewnętrzne i zewnętrzne
-- [ ] Story: tryb jasny/ciemny
-- [ ] Story: dynamiczne zmiany ścieżki
+- [x] Story: typowa ścieżka (np. Home > Products > Current Page)
+- [x] Story: tylko aktualna strona
+- [x] Story: różne separatory (tekst, ikona)
+- [x] Story: elementy z ikonami
+- [x] Story: długie etykiety
+- [x] Story: linki wewnętrzne i zewnętrzne
+- [x] Story: tryb jasny/ciemny
+- [x] Story: dynamiczne zmiany ścieżki
 
 ### 2.6 Eksport (`index.ts`)
 
-- [ ] Eksportuj `Breadcrumbs` i ewentualne typy
+- [x] Eksportuj `Breadcrumbs` i ewentualne typy
 
 ### 2.7 Manualne testy integracyjne
 
