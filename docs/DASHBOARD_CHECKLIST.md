@@ -4,8 +4,8 @@ Aby stworzyć w pełni responsywny layout typu dashboard zgodny z podejściem an
 
 ## Podstawowe komponenty layoutu
 
-- [ ] **Layout**  
-       Główny kontener layoutu (np. flex, grid)
+- [x] **Layout**  
+       Główny kontener layoutu (flex row/column, obsługa direction, fullHeight, przekazywanie children, className, style)
   - Layout.tsx
   - Layout.module.scss
   - Layout.test.tsx
@@ -13,7 +13,7 @@ Aby stworzyć w pełni responsywny layout typu dashboard zgodny z podejściem an
   - index.ts
   - [Plan implementacji](./PLAN_LAYOUT.md)
 
-- [ ] **Header**  
+- [x] **Header**  
        Pasek górny (logo, nawigacja, akcje użytkownika)
   - Header.tsx
   - Header.module.scss

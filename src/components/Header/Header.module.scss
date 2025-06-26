@@ -1,0 +1,50 @@
+@use "../styles/colors.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/spacing.scss" as *;
+@use "../styles/breakpoints.scss" as *;
+
+// Lokalne zmienne na bazie custom properties
+$header-bg: var(--color-bg-header, var(--color-primary));
+$header-color: var(--color-header-text, var(--color-on-primary));
+$header-height: 56px;
+$header-padding-x: var(--space-lg);
+$header-padding-y: var(--space-xs);
+$header-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+.header {
+  display: flex;
+  align-items: center;
+  min-height: $header-height;
+  width: 100%;
+  background: $header-bg;
+  color: $header-color;
+  padding: $header-padding-y $header-padding-x;
+  box-shadow: $header-shadow;
+  font-family: var(--font-family-base);
+  z-index: 100;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  margin-right: var(--space-lg);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-left: var(--space-lg);
+}
