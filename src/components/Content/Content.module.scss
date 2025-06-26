@@ -1,0 +1,21 @@
+@use "../styles/colors.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/spacing.scss" as *;
+@use "../styles/breakpoints.scss" as *;
+
+// Lokalne zmienne na bazie custom properties
+$content-bg: var(--color-bg-content, var(--color-surface));
+$content-color: var(--color-content-text, var(--color-on-surface));
+$content-padding-x: var(--space-lg);
+$content-padding-y: var(--space-md);
+
+.content {
+  width: 100%;
+  flex: 1 1 auto;
+  background: $content-bg;
+  color: $content-color;
+  padding: $content-padding-y $content-padding-x;
+  font-family: var(--font-family-base);
+  min-height: 0;
+  box-sizing: border-box;
+}

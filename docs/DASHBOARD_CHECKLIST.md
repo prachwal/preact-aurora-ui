@@ -31,7 +31,7 @@ Aby stworzyć w pełni responsywny layout typu dashboard zgodny z podejściem an
   - index.ts
   - [Plan implementacji](./PLAN_SIDEBAR.md)
 
-- [ ] **Content**  
+- [x] **Content**  
        Główna część na treść dashboardu
   - Content.tsx
   - Content.module.scss
