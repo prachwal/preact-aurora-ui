@@ -1,0 +1,26 @@
+@use "../styles/colors.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/spacing.scss" as *;
+@use "../styles/breakpoints.scss" as *;
+
+// Lokalne zmienne na bazie custom properties
+$footer-bg: var(--color-bg-footer, var(--color-surface));
+$footer-color: var(--color-footer-text, var(--color-on-surface));
+$footer-height: 48px;
+$footer-padding-x: var(--space-lg);
+$footer-padding-y: var(--space-xs);
+$footer-shadow: 0 -2px 8px rgba(0, 0, 0, 0.04);
+
+.footer {
+  width: 100%;
+  min-height: $footer-height;
+  background: $footer-bg;
+  color: $footer-color;
+  padding: $footer-padding-y $footer-padding-x;
+  box-shadow: $footer-shadow;
+  font-family: var(--font-family-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 80;
+}

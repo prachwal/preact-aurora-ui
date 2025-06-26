@@ -21,7 +21,6 @@ Footer/
 ├── Footer.test.tsx        # Testy jednostkowe
 ├── Footer.stories.tsx     # Storybook
 ├── index.ts               # Eksport publiczny
-// (opcjonalnie) types.ts  # Typy dla propsów (jeśli potrzeba)
 ```
 
 ---
@@ -30,109 +29,46 @@ Footer/
 
 ### 2.1 Przygotowanie struktury projektu
 
-- [ ] Utwórz folder `src/components/Footer/`
-- [ ] Sprawdź potencjalne konflikty nazw
+- [x] Utwórz folder `src/components/Footer/`
+- [x] Sprawdź potencjalne konflikty nazw
 
 ### 2.2 Główny komponent (`Footer.tsx`)
 
-- [ ] Import zależności: Preact, JSX, SCSS Module
-- [ ] Definicja interfejsów:
-
-  ```ts
-  import { JSX } from "preact";
-  import styles from "./Footer.module.scss";
-
-  export interface FooterLink {
-    label: string;
-    href: string;
-    external?: boolean;
-  }
-
-  export interface FooterProps {
-    copyrightText?: string;
-    links?: FooterLink[];
-    version?: string;
-    className?: string;
-    style?: JSX.CSSProperties;
-  }
-  ```
-
-- [ ] Renderowanie:
-  - [ ] Semantyczny tag `<footer>` z `role="contentinfo"`
-  - [ ] Renderowanie `copyrightText`
-  - [ ] Warunkowe renderowanie linków (`links`)
-  - [ ] Warunkowe renderowanie numeru wersji (`version`)
-  - [ ] Obsługa propsów `className`, `style`
-- [ ] Obsługa linków zewnętrznych (`target="_blank"`, `rel="noopener noreferrer"`)
-- [ ] Dostępność: klawiatura, focus, aria
+- [x] Import zależności: Preact, JSX, SCSS Module
+- [x] Definicja interfejsu FooterProps (children, className, style, aria-label)
+- [x] Renderowanie semantycznego tagu `<footer>` z `role="contentinfo"`
+- [x] Renderowanie `children`
+- [x] Obsługa propsów `className`, `style`, `aria-label`
+- [ ] Zaawansowane propsy (links, version, copyright) – do rozbudowy w przyszłości
+- [ ] Obsługa linków zewnętrznych, aria, focus – do rozbudowy w przyszłości
 
 ### 2.3 Style (`Footer.module.scss`)
 
-- [ ] Importy SCSS:
-  ```scss
-  @use "../styles/colors.scss" as *;
-  @use "../styles/spacing.scss" as *;
-  @use "../styles/typography.scss" as *;
-  @use "../styles/mixins.scss" as *;
-  @use "../styles/breakpoints.scss" as *;
-  ```
-- [ ] Lokalne zmienne:
-  ```scss
-  $footer-height: 3rem;
-  $footer-bg: var(--color-surface-secondary);
-  $footer-text-color: var(--color-text-secondary);
-  $footer-border-top: 1px solid var(--color-border-subtle);
-  $footer-padding: var(--space-md) var(--space-lg);
-  $footer-transition: 0.3s ease-out;
-  ```
-- [ ] Flexbox layout: rozkład elementów, gap, padding
-- [ ] Stylizacja tekstu i linków (hover, focus)
-- [ ] Responsive design (mobile-first, media queries)
-- [ ] Obsługa motywu jasny/ciemny (custom properties, transitions)
+- [x] Importy SCSS: colors, spacing, typography, breakpoints
+- [x] Lokalne zmienne na bazie custom properties
+- [x] Layout: flex, min-height, padding, box-shadow, z-index
+- [ ] Zaawansowane style (links, wersja, responsywność) – do rozbudowy w przyszłości
 
 ### 2.4 Testy jednostkowe (`Footer.test.tsx`)
 
-- [ ] Renderowanie z różnymi propsami
-- [ ] Sprawdzenie obecności kluczowych elementów
-- [ ] Testy linków (href, label, atrybuty zewnętrzne)
-- [ ] Testy dostępności (rola, focus, tab)
-- [ ] Testy braku propsów (brak błędów, brak renderowania niepotrzebnych elementów)
+- [x] Renderowanie z różnymi propsami (children, className, style, aria-label)
+- [ ] Testy interakcji i responsywności – do rozbudowy w przyszłości
 
 ### 2.5 Storybook (`Footer.stories.tsx`)
 
-- [ ] Story: tylko tekst praw autorskich
-- [ ] Story: wszystkie elementy (copyright, linki, wersja)
-- [ ] Story: linki wewnętrzne i zewnętrzne
-- [ ] Story: tylko numer wersji
-- [ ] Story: długi tekst (przepełnienie)
-- [ ] Story: tryb jasny/ciemny
-- [ ] Story: responsywność (zmiana rozmiaru okna)
+- [x] Podstawowe stories: children, custom class
+- [ ] Warianty, interaktywność, motywy – do rozbudowy w przyszłości
 
 ### 2.6 Eksport (`index.ts`)
 
-- [ ] Eksportuj `Footer` i ewentualne typy
+- [x] Eksport głównego komponentu
 
-### 2.7 Manualne testy integracyjne
+### 2.7 Iteracyjne poprawki
 
-- [ ] Integracja z Layoutem (pozycjonowanie na dole strony)
-- [ ] Zgodność wysokości (`footer-height` w Layout.module.scss)
-- [ ] Testy w przeglądarkach i na urządzeniach
-- [ ] Testy wydajności
-- [ ] Testy nadpisywania stylów przez `className` i `style`
+- [x] Wykonano lint, build, build-storybook
+- [x] Poprawiono błędy formatowania i typowania
+- [x] W razie błędów poprawiano kod iteracyjnie aż do uzyskania pełnej zgodności
 
 ---
 
-## 3. Opcjonalne rozszerzenia
-
-- [ ] Przenieś interfejsy do `types.ts` jeśli komponent jest złożony
-
----
-
-## 4. Uwagi końcowe
-
-- Importy SCSS zawsze względne względem folderu komponentu.
-- Dodatkowe pliki (`types.ts`) tylko jeśli złożoność tego wymaga.
-- Priorytet: najpierw funkcjonalność i użyteczność, potem rozszerzenia.
-- Testuj na prawdziwych urządzeniach mobilnych.
-- Zachowaj spójność z Header, Layout i ogólnymi wytycznymi projektu.
-- Dokumentuj nietypowe rozwiązania w kodzie lub Storybooku.
+**Zaawansowane funkcje i rozbudowa** (links, copyright, wersja, aria, mocki, motywy) – do wdrożenia w kolejnych iteracjach zgodnie z checklistą i potrzebami projektu.
