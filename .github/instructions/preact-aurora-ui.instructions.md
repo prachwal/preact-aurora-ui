@@ -1,6 +1,11 @@
 ---
-applyTo: '**'
+applyTo: "**"
 ---
+
+# Organizacja plików checklist
+
+- Wszystkie pliki z checklistami, dokumentacją wdrożeniową i podobnymi należy umieszczać w podfolderze `docs/` w katalogu głównym projektu, a nie bezpośrednio w katalogu głównym.
+- Przykład: checklistę dashboardu znajdziesz w `docs/DASHBOARD_CHECKLIST.md`.
 
 # SCSS Style System
 
@@ -12,12 +17,13 @@ applyTo: '**'
   - `index.ts` – eksporty komponentów z folderu (ułatwia importy w innych projektach).
 
 ## SCSS
+
 - Każdy plik SCSS komponentu powinien:
   - Używać `@use` (nie `@import`) do ładowania bazowych plików SCSS:
     ```scss
-    @use '../../styles/colors.scss' as *;
-    @use '../../styles/typography.scss' as *;
-    @use '../../styles/spacing.scss' as *;
+    @use "../../styles/colors.scss" as *;
+    @use "../../styles/typography.scss" as *;
+    @use "../../styles/spacing.scss" as *;
     ```
   - W nagłówku definiować lokalne zmienne SCSS (np. `$button-bg`) i przypisywać im wartości z globalnych custom properties (np. `var(--color-primary)`).
   - Dzięki temu można nadpisać dowolny parametr lokalnie lub globalnie przez kaskadę.
@@ -27,10 +33,11 @@ applyTo: '**'
 - Przykład w `ExampleButton/ExampleButton.module.scss`.
 
 ## Przykład nagłówka SCSS komponentu
+
 ```scss
-@use '../../styles/colors.scss' as *;
-@use '../../styles/typography.scss' as *;
-@use '../../styles/spacing.scss' as *;
+@use "../../styles/colors.scss" as *;
+@use "../../styles/typography.scss" as *;
+@use "../../styles/spacing.scss" as *;
 
 // Lokalne zmienne na bazie globalnych custom properties
 $button-bg: var(--color-primary);
@@ -42,16 +49,18 @@ $button-font-size: var(--font-size-base);
 ```
 
 ## Testy komponentów
+
 - Używaj `vitest`, `@testing-library/preact`, `@testing-library/jest-dom`.
 - Importy w testach:
   ```tsx
-  import { render, screen } from '@testing-library/preact';
-  import { describe, it, expect } from 'vitest';
-  import { ExampleButton } from './ExampleButton';
-  import '@testing-library/jest-dom';
+  import { render, screen } from "@testing-library/preact";
+  import { describe, it, expect } from "vitest";
+  import { ExampleButton } from "./ExampleButton";
+  import "@testing-library/jest-dom";
   ```
 
 ## Zasady
+
 - Nie używamy już goober ani CSS-in-JS.
 - Wszystkie style komponentów są w SCSS Modules.
 - Zmienne lokalne zawsze pobierają wartości z globalnych custom properties.

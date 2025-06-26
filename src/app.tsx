@@ -1,4 +1,4 @@
-import { ExampleButton } from "./components/ExampleButton";
+import { ExampleButton } from "./components";
 
 export function App() {
   return (
