@@ -1,288 +1,163 @@
-# Plan implementacji: Sidebar Dashboard Component
+# Plan implementacji: Komponent Sidebar
 
-## Analiza wymagań i architektura
+---
 
-### Główne cele
+## Cel
 
-- Stworzenie responsywnej nawigacji bocznej dla dashboardu
-- Obsługa collapse/expand functionality
-- Integracja z systemem nawigacji i routing
-- Wsparcie dla różnych typów menu items (links, groups, dividers)
+Stworzenie responsywnego, dostępnego i rozszerzalnego komponentu `Sidebar` jako nawigacji bocznej dashboardu, zgodnie z architekturą projektu, zasadami SCSS Modules oraz checklistami wdrożeniowymi.
 
-### Architektura komponentu
+---
+
+## Struktura plików
 
 ```
-Sidebar/
+src/components/Sidebar/
 ├── Sidebar.tsx           # Główny komponent
 ├── Sidebar.module.scss   # Style modułowe
-├── Sidebar.test.tsx      # Testy jednostkowe
-├── Sidebar.stories.tsx   # Dokumentacja Storybook
-├── index.ts              # Eksport publiczny
-// (opcjonalnie) types.ts, components/, hooks/
+├── Sidebar.test.tsx      # Testy jednostkowe (Vitest + Testing Library)
+├── Sidebar.stories.tsx   # Storybook (dokumentacja i demo)
+├── index.ts              # Eksporty
+└── types.ts              # (opcjonalnie) Typy, hooks/, components/
 ```
 
-## Detailed Implementation Checklist
+---
+
+## Checklist wdrożenia
 
 ### 1. Przygotowanie struktury projektu
 
-- [ ] **Utworzenie folderu głównego**
-  - Lokalizacja: `src/components/Sidebar/`
-  - Sprawdzenie konfliktów z istniejącymi komponentami
+- [ ] Utwórz folder `src/components/Sidebar/`.
+- [ ] Sprawdź brak konfliktów nazw.
 
-### 2. Implementacja głównego komponentu
+### 2. Implementacja komponentu `Sidebar.tsx`
 
-#### **Plik: `Sidebar.tsx`**
+- [ ] Importuj zależności oraz style modułowe przez `import styles from './Sidebar.module.scss'`.
+- [ ] Zdefiniuj typy propsów (np. `items`, `collapsed`, `onToggle`, `position`, `variant`, `width`, `collapsedWidth`, `onItemClick`, `activeItem`, `className`, `style`).
+- [ ] Komponuj elementy: toggle button, navigation menu, footer section.
+- [ ] Forwarduj propsy do głównego kontenera.
+- [ ] Ustaw domyślną klasę CSS (np. `sidebar`).
+- [ ] Obsłuż stan collapsed/expanded, active item, submenu visibility, mobile overlay.
+- [ ] Obsłuż zdarzenia nawigacji (kliknięcia, submenu, keyboard navigation).
+- [ ] Dodaj ARIA labels, roles, wsparcie dla screen readerów i klawiatury.
+- [ ] Dodaj komentarze wyjaśniające nietypowe rozwiązania.
 
-- [ ] **Podstawowa struktura komponentu**
-  - Import dependencies
-  - Typowanie propsów (np. `items`, `collapsed`, `onToggle`, `position`, `variant`, `width`, `collapsedWidth`, `onItemClick`, `activeItem`, `className`, `style`)
-  - Kompozycja elementów: toggle button, navigation menu, footer section
-  - Forwarding propsów do głównego kontenera
-  - Domyślna klasa CSS (np. `sidebar`)
+#### Przykład kodu typu MenuItem:
 
-- [ ] **Obsługa stanu**
-  - Stan collapsed/expanded
-  - Active menu item tracking
-  - Submenu visibility state
-  - Mobile overlay state
+```typescript
+export interface MenuItem {
+  id: string;
+  label: string;
+  icon?: string;
+  href?: string;
+  onClick?: () => void;
+  active?: boolean;
+  disabled?: boolean;
+  badge?: string | number;
+  children?: MenuItem[];
+  divider?: boolean;
+}
+```
 
-- [ ] **Navigation handling**
-  - Menu item click events
-  - Active state management
-  - Submenu toggle functionality
-  - Keyboard navigation support
+---
 
-- [ ] **Accessibility features**
-  - ARIA labels i roles (`navigation`, `menubar`, `menuitem`)
-  - Keyboard navigation support (Tab, Enter, Arrow keys)
-  - Screen reader compatibility
-  - Focus management dla collapsed state
+### 3. Styling i SCSS (`Sidebar.module.scss`)
 
-### 3. Styling i responsywność
+- [ ] Importuj SCSS przez `@use` z folderu `styles/` (wszystkie importy względne względem folderu komponentu):
+  - `@use "../../styles/colors.scss" as *;`
+  - `@use "../../styles/spacing.scss" as *;`
+  - `@use "../../styles/typography.scss" as *;`
+  - `@use "../../styles/breakpoints.scss" as *;` (opcjonalnie)
+- [ ] Zdefiniuj lokalne zmienne na bazie custom properties:
+  - `$sidebar-width: 16rem;`
+  - `$sidebar-collapsed-width: 4rem;`
+  - `$sidebar-z-index: 999;`
+  - `$sidebar-bg: var(--color-surface);`
+  - `$sidebar-border: var(--color-border);`
+  - `$sidebar-shadow: var(--shadow-md);`
+  - `$sidebar-transition: 0.3s ease;`
+- [ ] Zapewnij layout: fixed/sticky, width transitions, spacing, overflow, z-index.
+- [ ] Stwórz style dla menu items: hover/active, ikony, zagnieżdżenia, tooltips, badge/counter.
+- [ ] Zapewnij responsywność (mobile overlay, touch, breakpoints, swipe gestures).
+- [ ] Wspieraj motyw jasny/ciemny przez zmienne CSS.
+- [ ] Dodaj animacje i przejścia (width, hover, submenu, loading, micro-interactions).
 
-#### **Plik: `Sidebar.module.scss`**
+#### Przykład nagłówka SCSS:
 
-- [ ] **Setup zmiennych i importów**
+```scss
+@use "../../styles/colors.scss" as *;
+@use "../../styles/spacing.scss" as *;
+@use "../../styles/typography.scss" as *;
+@use "../../styles/breakpoints.scss" as *;
 
-  ```scss
-  @use "../../styles/colors.scss" as *;
-  @use "../../styles/spacing.scss" as *;
-  @use "../../styles/typography.scss" as *;
-  // opcjonalnie: @use '../../styles/breakpoints.scss' as *;
-  ```
+$sidebar-width: 16rem;
+$sidebar-collapsed-width: 4rem;
+$sidebar-z-index: 999;
+$sidebar-bg: var(--color-surface);
+$sidebar-border: var(--color-border);
+$sidebar-shadow: var(--shadow-md);
+$sidebar-transition: 0.3s ease;
+```
 
-- [ ] **Definicja lokalnych zmiennych**
+---
 
-  ```scss
-  $sidebar-width: 16rem;
-  $sidebar-collapsed-width: 4rem;
-  $sidebar-z-index: 999;
-  $sidebar-bg: var(--color-surface);
-  $sidebar-border: var(--color-border);
-  $sidebar-shadow: var(--shadow-md);
-  $sidebar-transition: 0.3s ease;
-  ```
+### 4. Testy jednostkowe (`Sidebar.test.tsx`)
 
-- [ ] **Layout styling**
-  - Fixed/sticky positioning
-  - Width transitions dla collapse/expand
-  - Proper spacing i padding
-  - Overflow handling
-  - Z-index management
+- [ ] Testuj renderowanie z różnymi propsami i strukturą menu.
+- [ ] Testuj interakcje: toggle, kliknięcia, submenu, keyboard navigation.
+- [ ] Testuj responsywność: mobile overlay, breakpoints, touch, swipe.
+- [ ] Testuj accessibility: ARIA, role, screen reader, focus.
+- [ ] Testuj integrację z Layoutem i Routerem (mock).
 
-- [ ] **Menu items styling**
-  - Hover/active states
-  - Icon + text alignment
-  - Nested menu indentation
-  - Tooltip positioning dla collapsed state
-  - Badge/counter support
+---
 
-- [ ] **Responsive design**
-  - Mobile overlay behavior
-  - Touch-friendly interactions
-  - Breakpoint-specific behavior
-  - Swipe gestures support (opcjonalnie)
+### 5. Storybook (`Sidebar.stories.tsx`)
 
-- [ ] **Theme support**
-  - Light/dark mode przez custom properties
-  - Brand color customization
-  - High contrast support
-  - Smooth transitions
+- [ ] Stwórz historie dla:
+  - podstawowej nawigacji (różne typy menu items)
+  - collapsed/expanded
+  - różnych pozycji (left/right)
+  - minimal/full-featured
+  - prostego/nested menu
+  - icons, badges, counters
+  - długich list (scroll)
+  - interakcji (toggle, submenu, responsive)
+  - trybu jasnego/ciemnego, brand/high contrast
+  - różnych szerokości
+  - loading/empty/error/permissions
 
-- [ ] **Animation i transitions**
-  - Smooth width transitions
-  - Menu item hover effects
-  - Submenu expand/collapse
-  - Loading states
-  - Micro-interactions
+---
 
-### 4. Testy jednostkowe
+### 6. Eksport (`index.ts`)
 
-#### **Plik: `Sidebar.test.tsx`**
+- [ ] Eksportuj komponent i typy z folderu Sidebar.
 
-- [ ] **Podstawowe renderowanie**
-  - Renderowanie Sidebara z różnymi propsami
-  - Obecność klas CSS i struktury DOM
-  - Default props handling
-  - Menu items rendering
-
-- [ ] **Interakcje**
-  - Toggle collapse/expand functionality
-  - Menu item click handling
-  - Submenu toggle behavior
-  - Active state management
-  - Keyboard navigation
-
-- [ ] **Responsywność**
-  - Mobile overlay behavior
-  - Breakpoint transitions
-  - Touch interactions
-  - Swipe gestures (jeśli implementowane)
-
-- [ ] **Accessibility**
-  - ARIA attributes presence
-  - Keyboard navigation
-  - Screen reader compatibility
-  - Focus management
-  - Role assignments
-
-- [ ] **Integration**
-  - Layout integration (mock)
-  - Router integration (mock)
-  - State persistence
-  - Event propagation
-
-### 5. Storybook
-
-#### **Plik: `Sidebar.stories.tsx`**
-
-- [ ] **Basic Stories**
-  - Story z podstawową nawigacją (różne typy menu items)
-  - Collapsed/expanded states
-  - Different positions (left/right)
-  - Warianty: minimal, full-featured
-
-- [ ] **Content Variations**
-  - Simple menu (flat structure)
-  - Nested menu z submenus
-  - Menu z icons, badges, counters
-  - Long menu lists z scrolling
-
-- [ ] **Interactive Stories**
-  - Toggle functionality
-  - Menu item selection
-  - Submenu interactions
-  - Responsive behavior demonstration
-
-- [ ] **Theme Stories**
-  - Light/dark mode
-  - Custom brand colors
-  - High contrast mode
-  - Different width configurations
-
-- [ ] **State Stories**
-  - Loading states
-  - Empty states
-  - Error states
-  - Different user permissions
-
-### 6. Eksport
-
-#### **Plik: `index.ts`**
-
-- [ ] Eksportuj Sidebar z folderu
-- [ ] Eksportuj typy (jeśli w osobnym pliku)
+---
 
 ### 7. Manualne testy integracyjne
 
-- [ ] **Layout Integration**
-  - Sprawdź Sidebar w aplikacji z Layoutem
-  - Proper positioning i z-index handling
-  - Content area adjustment
-  - Header integration
-
-- [ ] **Responsywność**
-  - Zachowanie na urządzeniach mobilnych i desktop
-  - Overlay behavior na mobile
-  - Touch interactions
-  - Orientation changes
-
-- [ ] **Navigation Integration**
-  - Router integration
-  - Active state synchronization
-  - Deep linking support
-  - Navigation history
-
-- [ ] **Performance**
-  - Smooth animations
-  - Memory usage przy large menus
-  - Bundle size impact
-  - Render performance
-
-- [ ] **Customization**
-  - Style overrides przez className/style props
-  - Custom menu item rendering
-  - Theme customization
-  - Width customization
+- [ ] Użyj Sidebar w Layout, sprawdź positioning, z-index, współpracę z Headerem i Content.
+- [ ] Testuj responsywność na desktop/mobile, overlay, touch, orientation.
+- [ ] Testuj integrację z Routerem, synchronizację active state, deep linking, history.
+- [ ] Monitoruj wydajność (animacje, memory, bundle size, render).
+- [ ] Testuj możliwość nadpisywania stylów przez `className` i `style`, custom rendering, theme/width customization.
 
 ---
 
 ## Opcjonalne rozszerzenia
 
-### Advanced Features (jeśli potrzebne)
-
-- [ ] **Search functionality**
-  - Menu items filtering
-  - Keyboard shortcuts
-  - Recent items
-
-- [ ] **Drag & Drop**
-  - Menu reordering
-  - Custom menu organization
-  - Persistence
-
-- [ ] **Multi-level menus**
-  - Unlimited nesting depth
-  - Breadcrumb navigation
-  - Collapse all/expand all
-
-### Custom Hooks (jeśli złożoność wymaga)
-
-- [ ] **useSidebarState**
-  - Collapse state management
-  - Persistence w localStorage
-  - Mobile overlay handling
-
-- [ ] **useMenuNavigation**
-  - Active item tracking
-  - Keyboard navigation
-  - Router integration
-
-### Types (jeśli w osobnym pliku)
-
-- [ ] **MenuItem interface**
-  ```typescript
-  interface MenuItem {
-    id: string;
-    label: string;
-    icon?: string;
-    href?: string;
-    onClick?: () => void;
-    active?: boolean;
-    disabled?: boolean;
-    badge?: string | number;
-    children?: MenuItem[];
-    divider?: boolean;
-  }
-  ```
+- [ ] Search w menu, keyboard shortcuts, recent items.
+- [ ] Drag & Drop, reordering, persistence.
+- [ ] Multi-level menus, breadcrumbs, collapse/expand all.
+- [ ] Custom hooks: `useSidebarState`, `useMenuNavigation` (jeśli złożoność wymaga).
+- [ ] Przenieś typy do osobnego pliku `types.ts`.
 
 ---
 
-**Uwagi:**
+## Uwagi końcowe
 
-- Importy SCSS muszą być względne względem folderu komponentu
-- Rozszerzenia (types.ts, hooks/, components/) twórz tylko jeśli potrzebne
-- Priorytet: funkcjonalność > złożoność
-- Testuj na prawdziwych urządzeniach mobilnych
-- Zachowaj consistency z Header komponentem
-- Dokumentuj nietypowe rozwiązania w kodzie lub Storybooku
+- **Importy SCSS muszą być względne względem folderu komponentu.**
+- **Rozszerzenia (types.ts, hooks/, components/) twórz tylko, gdy złożoność komponentu tego wymaga.**
+- **Priorytetem jest pełna funkcjonalność i użyteczność komponentu.**
+- **Testuj na prawdziwych urządzeniach mobilnych – emulatory nie oddają wszystkich niuansów.**
+- **Zachowaj spójność z Headerem i instrukcją projektu (SCSS Modules, struktura plików, checklisty, eksporty, testy, Storybook, accessibility).**
+- **Dokumentuj nietypowe rozwiązania w kodzie lub Storybooku.**
