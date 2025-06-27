@@ -1,15 +1,74 @@
-// Global color variables and theme structure
+// Global color variables and theme structure - Modern design system
 :root {
-  --color-primary: #0070f3;
-  --color-primary-dark: #005bb5;
-  --color-bg: #f6f8fa;
-  --color-text: #111;
-  --color-border: #e5e7eb;
+  // Primary colors - inspired by Material Design 3
+  --color-primary: #1976d2;
+  --color-primary-dark: #1565c0;
+  --color-primary-light: #42a5f5;
+  --color-primary-50: #e3f2fd;
+  --color-primary-100: #bbdefb;
+
+  // Surface colors
+  --color-surface: #ffffff;
+  --color-surface-variant: #f5f5f5;
+  --color-background: #fafafa;
+  --color-outline: #e0e0e0;
+  --color-outline-variant: #f0f0f0;
+
+  // Text colors
+  --color-on-surface: #1d1b20;
+  --color-on-surface-variant: #49454f;
+  --color-on-primary: #ffffff;
+
+  // Legacy support
+  --color-bg: var(--color-background);
+  --color-text: var(--color-on-surface);
+  --color-text-secondary: var(--color-on-surface-variant);
+  --color-border: var(--color-outline);
+
+  // Semantic colors
+  --color-success: #4caf50;
+  --color-warning: #ff9800;
+  --color-error: #f44336;
+  --color-info: #2196f3;
+
+  // Shadows - Material Design elevation
+  --shadow-1: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.24);
+  --shadow-2: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+  --shadow-3: 0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23);
+  --shadow-4: 0px 14px 28px rgba(0, 0, 0, 0.25), 0px 10px 10px rgba(0, 0, 0, 0.22);
+
+  // Spacing system
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
 }
 
 [data-theme="dark"] {
-  --color-primary: #1e90ff;
-  --color-primary-dark: #003366;
-  --color-bg: #111;
-  --color-text: #fff;
+  // Primary colors for dark theme
+  --color-primary: #90caf9;
+  --color-primary-dark: #64b5f6;
+  --color-primary-light: #bbdefb;
+  --color-primary-50: #0d47a1;
+  --color-primary-100: #1565c0;
+
+  // Surface colors
+  --color-surface: #121212;
+  --color-surface-variant: #1e1e1e;
+  --color-background: #0a0a0a;
+  --color-outline: #333333;
+  --color-outline-variant: #2a2a2a;
+
+  // Text colors
+  --color-on-surface: #e1e1e1;
+  --color-on-surface-variant: #a1a1a1;
+  --color-on-primary: #000000;
+
+  // Shadows for dark theme
+  --shadow-1: 0px 1px 3px rgba(0, 0, 0, 0.3), 0px 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0px 3px 6px rgba(0, 0, 0, 0.4), 0px 3px 6px rgba(0, 0, 0, 0.5);
+  --shadow-3: 0px 10px 20px rgba(0, 0, 0, 0.5), 0px 6px 6px rgba(0, 0, 0, 0.6);
+  --shadow-4: 0px 14px 28px rgba(0, 0, 0, 0.6), 0px 10px 10px rgba(0, 0, 0, 0.7);
 }

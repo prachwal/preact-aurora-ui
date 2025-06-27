@@ -9,10 +9,23 @@ export interface ColProps {
   style?: JSX.CSSProperties;
   span?: number;
   offset?: number;
+
+  // Enhanced responsive props
+  xs?: number;
+  sm?: number;
+  md?: number;
+  lg?: number;
+  xl?: number;
+  order?: number;
 }
 
 /**
  * Col – kolumna siatki
+ *
+ * @param span - Liczba kolumn do zajęcia (1-12)
+ * @param offset - Przesunięcie kolumny
+ * @param xs,sm,md,lg,xl - Responsive breakpoint spans
+ * @param order - Kolejność wyświetlania (CSS order)
  */
 export function Col({
   children,
@@ -20,19 +33,35 @@ export function Col({
   style,
   span = 1,
   offset = 0,
+  xs,
+  sm,
+  md,
+  lg,
+  xl,
+  order,
 }: ColProps) {
+  const classes = [
+    styles.col,
+    span > 0 ? styles[`col--span-${span}`] : "",
+    offset > 0 ? styles[`col--offset-${offset}`] : "",
+    xs ? styles[`col--xs-${xs}`] : "",
+    sm ? styles[`col--sm-${sm}`] : "",
+    md ? styles[`col--md-${md}`] : "",
+    lg ? styles[`col--lg-${lg}`] : "",
+    xl ? styles[`col--xl-${xl}`] : "",
+    order ? styles[`col--order-${order}`] : "",
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const colStyle: JSX.CSSProperties = {
+    ...style,
+    ...(order && { order }),
+  };
+
   return (
-    <div
-      className={`${styles.col} ${className}`.trim()}
-      style={{
-        ...style,
-        gridColumn: `span ${span} / span ${span}`,
-        marginLeft: offset
-          ? `calc(${offset} * var(--grid-col-width, 1fr))`
-          : undefined,
-      }}
-      role="gridcell"
-    >
+    <div className={classes} style={colStyle} role="gridcell">
       {children}
     </div>
   );

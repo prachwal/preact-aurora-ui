@@ -22,7 +22,9 @@ export function Loader({
 }: LoaderProps) {
   return (
     <span
-      className={[styles.loader, styles[size], className].filter(Boolean).join(" ")}
+      className={[styles.loader, styles[size], className]
+        .filter(Boolean)
+        .join(" ")}
       style={{ ...style, color }}
       role="status"
       aria-label={ariaLabel}

@@ -1,10 +1,21 @@
-// src/styles/spacing.scss
+// Modern spacing system - 8pt grid based
+:root {
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+}
 
-$spacing-xs: 4px;
-$spacing-sm: 8px;
-$spacing-md: 16px;
-$spacing-lg: 24px;
-$spacing-xl: 32px;
+$spacing-xs: var(--space-xs);
+$spacing-sm: var(--space-sm);
+$spacing-md: var(--space-md);
+$spacing-lg: var(--space-lg);
+$spacing-xl: var(--space-xl);
+$spacing-2xl: var(--space-2xl);
+$spacing-3xl: var(--space-3xl);
 
 // Mapy do użycia w komponentach
 $spacings: (
@@ -13,4 +24,6 @@ $spacings: (
   md: $spacing-md,
   lg: $spacing-lg,
   xl: $spacing-xl,
+  2xl: $spacing-2xl,
+  3xl: $spacing-3xl,
 );

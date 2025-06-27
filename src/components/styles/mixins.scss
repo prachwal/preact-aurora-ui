@@ -1,17 +1,21 @@
-// src/styles/mixins.scss
-// Uniwersalne mixiny i narzędzia SCSS dla projektu Aurora UI
+// Basic mixins for Aurora UI components
+// Enhanced version available in mixins-enhanced.scss
+
+@use "./mixins-enhanced.scss" as *;
 
 @mixin hide-scrollbar {
   scrollbar-width: none;
   /* Firefox */
   -ms-overflow-style: none;
-
   /* IE 10+ */
+
   &::-webkit-scrollbar {
     display: none;
+    /* Chrome, Safari, Opera */
   }
 }
 
+// Legacy support - use mixins-enhanced.scss for new features
 // Przykład użycia:
 // .my-scrollable {
 //   overflow-x: auto;

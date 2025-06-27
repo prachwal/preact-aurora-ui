@@ -10,3 +10,68 @@ $col-padding: var(--space-xs);
   min-width: 0;
   padding: $col-padding;
 }
+
+// Span classes (1-12 columns)
+@for $i from 1 through 12 {
+  .col--span-#{$i} {
+    grid-column: span #{$i};
+  }
+}
+
+// Offset classes (1-11 columns)
+@for $i from 1 through 11 {
+  .col--offset-#{$i} {
+    margin-left: calc(#{$i} * (100% / 12));
+  }
+}
+
+// Order classes (1-12)
+@for $i from 1 through 12 {
+  .col--order-#{$i} {
+    order: #{$i};
+  }
+}
+
+// Responsive breakpoint classes
+// Extra small (xs) - mobile first, so no media query needed
+@for $i from 1 through 12 {
+  .col--xs-#{$i} {
+    grid-column: span #{$i};
+  }
+}
+
+// Small (sm) and up
+@media (min-width: $breakpoint-sm) {
+  @for $i from 1 through 12 {
+    .col--sm-#{$i} {
+      grid-column: span #{$i};
+    }
+  }
+}
+
+// Medium (md) and up
+@media (min-width: $breakpoint-md) {
+  @for $i from 1 through 12 {
+    .col--md-#{$i} {
+      grid-column: span #{$i};
+    }
+  }
+}
+
+// Large (lg) and up
+@media (min-width: $breakpoint-lg) {
+  @for $i from 1 through 12 {
+    .col--lg-#{$i} {
+      grid-column: span #{$i};
+    }
+  }
+}
+
+// Extra large (xl) and up
+@media (min-width: $breakpoint-xl) {
+  @for $i from 1 through 12 {
+    .col--xl-#{$i} {
+      grid-column: span #{$i};
+    }
+  }
+}

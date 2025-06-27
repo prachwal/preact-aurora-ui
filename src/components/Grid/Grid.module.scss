@@ -10,3 +10,51 @@ $grid-gap: var(--space-md);
   width: 100%;
   gap: $grid-gap;
 }
+
+// Justify content variants
+.grid--justify-start {
+  justify-content: start;
+}
+
+.grid--justify-center {
+  justify-content: center;
+}
+
+.grid--justify-end {
+  justify-content: end;
+}
+
+.grid--justify-between {
+  justify-content: space-between;
+}
+
+.grid--justify-around {
+  justify-content: space-around;
+}
+
+// Align items variants
+.grid--align-start {
+  align-items: start;
+}
+
+.grid--align-center {
+  align-items: center;
+}
+
+.grid--align-end {
+  align-items: end;
+}
+
+.grid--align-stretch {
+  align-items: stretch;
+}
+
+// Responsive behavior
+.grid--responsive {
+  // Default 12-column grid that adapts to container
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+  @media (min-width: $breakpoint-sm) {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
