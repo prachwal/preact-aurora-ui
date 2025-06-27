@@ -26,7 +26,7 @@ describe('Col', () => {
       </Col>,
     );
     const col = screen.getByRole('gridcell');
-    expect(col.style.gridColumn).toMatch('span 2');
-    expect(col.style.marginLeft).toBeDefined();
+    expect(col.className).toContain('col--span-2');
+    expect(col.className).toContain('col--offset-1');
   });
 });

@@ -11,7 +11,8 @@ describe('Loader', () => {
   });
   it('applies size classes', () => {
     render(<Loader size="lg" />);
-    expect(screen.getByTestId('loader-root')).toHaveClass('lg');
+    const loader = screen.getByTestId('loader-root');
+    expect(loader.className).toContain('lg');
   });
   it('applies custom color', () => {
     render(<Loader color="#f00" />);
