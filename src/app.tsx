@@ -198,12 +198,14 @@ export function App() {
         />
 
         {/* Scrollable Content */}
-        <Content variant="dashboard" padding="lg" scrollable>
+        <Content variant="dashboard" scrollable>
           {/* Breadcrumbs */}
           <Breadcrumbs
             items={breadcrumbItems}
             separator="/"
-            style={{ marginBottom: "var(--space-lg)" }}
+            style={{
+              marginBottom: "var(--space-lg)",
+            }}
           />
 
           {/* Page Header */}
@@ -431,9 +433,7 @@ export function App() {
                       }}
                     >
                       <div>
-                        <div style={{ fontWeight: "500" }}>
-                          {product.name}
-                        </div>
+                        <div style={{ fontWeight: "500" }}>{product.name}</div>
                         <div
                           style={{
                             fontSize: "var(--font-size-sm)",

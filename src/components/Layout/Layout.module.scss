@@ -38,7 +38,7 @@ $layout-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   height: 100%;
   flex: 1 1 auto;
   min-height: 0;
-  overflow: hidden; // Prevent overflow in vertical layout
+  overflow: visible; // Allow content to be visible
 }
 
 .layout--fullHeight {
