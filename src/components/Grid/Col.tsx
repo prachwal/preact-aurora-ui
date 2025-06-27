@@ -31,7 +31,7 @@ export function Col({
   children,
   className = "",
   style,
-  span = 1,
+  span,
   offset = 0,
   xs,
   sm,
@@ -40,9 +40,12 @@ export function Col({
   xl,
   order,
 }: ColProps) {
+  // Use span only if no responsive props are provided
+  const defaultSpan = span || (!xs && !sm && !md && !lg && !xl ? 1 : undefined);
+
   const classes = [
     styles.col,
-    span > 0 ? styles[`col--span-${span}`] : "",
+    defaultSpan ? styles[`col--span-${defaultSpan}`] : "",
     offset > 0 ? styles[`col--offset-${offset}`] : "",
     xs ? styles[`col--xs-${xs}`] : "",
     sm ? styles[`col--sm-${sm}`] : "",
