@@ -15,7 +15,8 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "preact": "10.26.9"
+    "preact": "10.26.9",
+    "preact-iso": "^2.9.2"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.0.1",
