@@ -1,0 +1,500 @@
+@use "../styles/colors.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/spacing.scss" as *;
+@use "../styles/breakpoints.scss" as *;
+@use "../styles/mixins-enhanced.scss" as *;
+
+// Button Material Design 3 Variables
+$button-font-family: var(--font-family-base);
+$button-font-weight: var(--font-weight-medium);
+$button-line-height: var(--line-height-tight);
+$button-letter-spacing: var(--letter-spacing-wide);
+$button-border-radius: 20px;
+$button-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Button sizes
+$button-height-small: 32px;
+$button-height-medium: 40px;
+$button-height-large: 48px;
+
+$button-padding-x-small: var(--space-md);
+$button-padding-x-medium: var(--space-lg);
+$button-padding-x-large: var(--space-xl);
+
+$button-font-size-small: var(--font-size-sm);
+$button-font-size-medium: var(--font-size-base);
+$button-font-size-large: var(--font-size-lg);
+
+// Icon sizes
+$icon-size-small: 16px;
+$icon-size-medium: 18px;
+$icon-size-large: 20px;
+
+// Base button styles
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  font-family: $button-font-family;
+  font-weight: $button-font-weight;
+  line-height: $button-line-height;
+  letter-spacing: $button-letter-spacing;
+  border: none;
+  border-radius: $button-border-radius;
+  cursor: pointer;
+  text-decoration: none;
+  transition: $button-transition;
+  user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+
+  // Prevent text selection and improve touch targets
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  // Disabled state
+  &:disabled,
+  &.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.38;
+  }
+
+  // Loading state
+  &.loading {
+    pointer-events: none;
+
+    .content {
+      opacity: 0;
+    }
+  }
+
+  // Full width
+  &.fullWidth {
+    width: 100%;
+  }
+
+  // Icon only button adjustments
+  &.iconOnly {
+    padding: 0;
+    aspect-ratio: 1;
+
+    &.small {
+      width: $button-height-small;
+      height: $button-height-small;
+    }
+
+    &.medium {
+      width: $button-height-medium;
+      height: $button-height-medium;
+    }
+
+    &.large {
+      width: $button-height-large;
+      height: $button-height-large;
+    }
+  }
+}
+
+// Button content wrapper
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+// Loading spinner
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+// Icon styles
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+// Size variants
+.small {
+  height: $button-height-small;
+  padding: 0 $button-padding-x-small;
+  font-size: $button-font-size-small;
+
+  .icon {
+    width: $icon-size-small;
+    height: $icon-size-small;
+  }
+
+  .spinner {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.medium {
+  height: $button-height-medium;
+  padding: 0 $button-padding-x-medium;
+  font-size: $button-font-size-medium;
+
+  .icon {
+    width: $icon-size-medium;
+    height: $icon-size-medium;
+  }
+
+  .spinner {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.large {
+  height: $button-height-large;
+  padding: 0 $button-padding-x-large;
+  font-size: $button-font-size-large;
+
+  .icon {
+    width: $icon-size-large;
+    height: $icon-size-large;
+  }
+
+  .spinner {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+// Variant styles - Material Design 3
+
+// Filled (Primary)
+.filled {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  box-shadow: var(--shadow-1);
+
+  &:hover:not(:disabled):not(.disabled) {
+    background-color: var(--color-primary-dark);
+    box-shadow: var(--shadow-2);
+  }
+
+  &:active:not(:disabled):not(.disabled) {
+    background-color: var(--color-primary-dark);
+    box-shadow: var(--shadow-1);
+    transform: translateY(1px);
+  }
+}
+
+// Outlined
+.outlined {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-outline);
+
+  &:hover:not(:disabled):not(.disabled) {
+    background-color: var(--color-primary-50);
+    border-color: var(--color-primary);
+  }
+
+  &:active:not(:disabled):not(.disabled) {
+    background-color: var(--color-primary-100);
+    border-color: var(--color-primary-dark);
+  }
+}
+
+// Text
+.text {
+  background-color: transparent;
+  color: var(--color-primary);
+  padding-left: var(--space-sm);
+  padding-right: var(--space-sm);
+
+  &:hover:not(:disabled):not(.disabled) {
+    background-color: var(--color-primary-50);
+  }
+
+  &:active:not(:disabled):not(.disabled) {
+    background-color: var(--color-primary-100);
+  }
+}
+
+// Elevated
+.elevated {
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-1);
+
+  &:hover:not(:disabled):not(.disabled) {
+    background-color: var(--color-surface-variant);
+    box-shadow: var(--shadow-2);
+  }
+
+  &:active:not(:disabled):not(.disabled) {
+    background-color: var(--color-surface-variant);
+    box-shadow: var(--shadow-1);
+    transform: translateY(1px);
+  }
+}
+
+// Tonal
+.tonal {
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-dark);
+
+  &:hover:not(:disabled):not(.disabled) {
+    background-color: var(--color-primary-50);
+    box-shadow: var(--shadow-1);
+  }
+
+  &:active:not(:disabled):not(.disabled) {
+    background-color: var(--color-primary-100);
+    transform: translateY(1px);
+  }
+}
+
+// Color variants (primary is the default, handled in base variants)
+
+.secondary {
+  &.filled {
+    background-color: var(--color-on-surface-variant);
+    color: var(--color-surface);
+
+    &:hover:not(:disabled):not(.disabled) {
+      background-color: var(--color-on-surface);
+    }
+  }
+
+  &.outlined {
+    color: var(--color-on-surface-variant);
+    border-color: var(--color-outline);
+
+    &:hover:not(:disabled):not(.disabled) {
+      background-color: var(--color-surface-variant);
+      border-color: var(--color-on-surface-variant);
+    }
+  }
+
+  &.text {
+    color: var(--color-on-surface-variant);
+
+    &:hover:not(:disabled):not(.disabled) {
+      background-color: var(--color-surface-variant);
+    }
+  }
+
+  &.tonal {
+    background-color: var(--color-surface-variant);
+    color: var(--color-on-surface-variant);
+
+    &:hover:not(:disabled):not(.disabled) {
+      background-color: var(--color-outline-variant);
+    }
+  }
+}
+
+.success {
+  &.filled {
+    background-color: var(--color-success);
+    color: white;
+
+    &:hover:not(:disabled):not(.disabled) {
+      background-color: #45a049;
+    }
+  }
+
+  &.outlined {
+    color: var(--color-success);
+    border-color: var(--color-success);
+
+    &:hover:not(:disabled):not(.disabled) {
+      background-color: rgba(76, 175, 80, 0.08);
+    }
+  }
+
+  &.text {
+    color: var(--color-success);
+
+    &:hover:not(:disabled):not(.disabled) {
+      background-color: rgba(76, 175, 80, 0.08);
+    }
+  }
+
+  &.tonal {
+    background-color: rgba(76, 175, 80, 0.12);
+    color: var(--color-success);
+
+    &:hover:not(:disabled):not(.disabled) {
+      background-color: rgba(76, 175, 80, 0.16);
+    }
+  }
+}
+
+.warning {
+  &.filled {
+    background-color: var(--color-warning);
+    color: white;
+
+    &:hover:not(:disabled):not(.disabled) {
+      background-color: #f57c00;
+    }
+  }
+
+  &.outlined {
+    color: var(--color-warning);
+    border-color: var(--color-warning);
+
+    &:hover:not(:disabled):not(.disabled) {
+      background-color: rgba(255, 152, 0, 0.08);
+    }
+  }
+
+  &.text {
+    color: var(--color-warning);
+
+    &:hover:not(:disabled):not(.disabled) {
+      background-color: rgba(255, 152, 0, 0.08);
+    }
+  }
+
+  &.tonal {
+    background-color: rgba(255, 152, 0, 0.12);
+    color: var(--color-warning);
+
+    &:hover:not(:disabled):not(.disabled) {
+      background-color: rgba(255, 152, 0, 0.16);
+    }
+  }
+}
+
+.error {
+  &.filled {
+    background-color: var(--color-error);
+    color: white;
+
+    &:hover:not(:disabled):not(.disabled) {
+      background-color: #d32f2f;
+    }
+  }
+
+  &.outlined {
+    color: var(--color-error);
+    border-color: var(--color-error);
+
+    &:hover:not(:disabled):not(.disabled) {
+      background-color: rgba(244, 67, 54, 0.08);
+    }
+  }
+
+  &.text {
+    color: var(--color-error);
+
+    &:hover:not(:disabled):not(.disabled) {
+      background-color: rgba(244, 67, 54, 0.08);
+    }
+  }
+
+  &.tonal {
+    background-color: rgba(244, 67, 54, 0.12);
+    color: var(--color-error);
+
+    &:hover:not(:disabled):not(.disabled) {
+      background-color: rgba(244, 67, 54, 0.16);
+    }
+  }
+}
+
+// Dark theme support
+[data-theme="dark"] {
+  .button {
+    &.filled {
+      box-shadow: none;
+
+      &:hover:not(:disabled):not(.disabled) {
+        box-shadow: var(--shadow-1);
+      }
+    }
+
+    &.elevated {
+      background-color: var(--color-surface-variant);
+
+      &:hover:not(:disabled):not(.disabled) {
+        background-color: var(--color-outline-variant);
+      }
+    }
+  }
+}
+
+// Responsive design
+@include mobile-only {
+  .button {
+    // Increase touch targets on mobile
+    min-height: 44px;
+
+    &.small {
+      height: 36px;
+    }
+
+    &.medium {
+      height: 44px;
+    }
+
+    &.large {
+      height: 52px;
+    }
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .button {
+    &.outlined {
+      border-width: 2px;
+    }
+
+    &:focus-visible {
+      outline-width: 3px;
+    }
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+
+  .spinner {
+    animation: none;
+  }
+}

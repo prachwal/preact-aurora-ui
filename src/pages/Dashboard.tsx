@@ -1,6 +1,7 @@
 import { Grid, Col } from '../components/Grid';
 import { Card } from '../components/Card';
 import { PageHeader } from '../components/PageHeader';
+import { Button } from '../components/Button';
 
 export function Dashboard() {
   return (
@@ -11,29 +12,8 @@ export function Dashboard() {
         subtitle="Welcome back! Here's what's happening with your projects today."
         actions={
           <div style={{ display: 'flex', gap: 'var(--space-sm)' }}>
-            <button
-              style={{
-                background: 'transparent',
-                border: '1px solid var(--color-outline)',
-                borderRadius: '8px',
-                padding: 'var(--space-sm) var(--space-md)',
-                cursor: 'pointer',
-              }}
-            >
-              Export
-            </button>
-            <button
-              style={{
-                background: 'var(--color-primary)',
-                color: 'var(--color-on-primary)',
-                border: 'none',
-                borderRadius: '8px',
-                padding: 'var(--space-sm) var(--space-md)',
-                cursor: 'pointer',
-              }}
-            >
-              New Project
-            </button>
+            <Button variant="outlined">Export</Button>
+            <Button variant="filled">New Project</Button>
           </div>
         }
         style={{ marginBottom: 'var(--space-lg)' }}
