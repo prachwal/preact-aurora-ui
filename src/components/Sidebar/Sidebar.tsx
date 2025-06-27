@@ -53,9 +53,9 @@ export function Sidebar({
     styles.sidebar,
     styles[`sidebar--variant-${variant}`],
     styles[`sidebar--elevation-${elevation}`],
-    collapsible ? styles["sidebar--collapsible"] : "",
-    collapsed ? styles["sidebar--collapsed"] : "",
-    borderless ? styles["sidebar--borderless"] : "",
+    collapsible ? styles["sidebar--collapsible"] : undefined,
+    collapsed ? styles["sidebar--collapsed"] : undefined,
+    borderless ? styles["sidebar--borderless"] : undefined,
     styles[`sidebar--position-${position}`],
     className,
   ]
@@ -64,10 +64,9 @@ export function Sidebar({
 
   const sidebarStyle = {
     ...style,
-    ...(width &&
-      !collapsed && {
-      width: typeof width === "number" ? `${width}px` : width,
-    }),
+    ...(width && !collapsed
+      ? { width: typeof width === "number" ? `${width}px` : width }
+      : {}),
   };
 
   return (
