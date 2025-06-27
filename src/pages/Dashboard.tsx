@@ -183,7 +183,7 @@ export function Dashboard() {
           >
             <div
               style={{
-                height: "300px",
+                height: "100%",
                 background: "var(--color-surface-variant)",
                 borderRadius: "8px",
                 display: "flex",
