@@ -18,6 +18,7 @@ $sidebar-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   flex-direction: column;
   min-width: $sidebar-width;
   width: $sidebar-width;
+  max-width: $sidebar-width;
   flex-shrink: 0;
   height: 100%;
   background: $sidebar-bg;
@@ -29,6 +30,7 @@ $sidebar-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-right: 1px solid var(--color-outline-variant);
   transition: $sidebar-transition;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .actions {
@@ -77,6 +79,11 @@ $sidebar-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 
   ul {
     display: flex;
@@ -85,18 +92,27 @@ $sidebar-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     margin: 0;
     padding: 0;
     list-style: none;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
 
   li {
     display: flex;
     align-items: center;
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
 
   a {
     display: flex;
     align-items: center;
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
     color: var(--color-on-surface);
     text-decoration: none;
     font-weight: var(--font-weight-medium);
@@ -230,7 +246,8 @@ $sidebar-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
 // Enhanced variants
 .sidebar--variant-default {
-  /* Default styling already applied in base .sidebar class */
+  // Default styling already applied in base .sidebar class
+  background: $sidebar-bg;
 }
 
 .sidebar--variant-rail {
@@ -321,7 +338,8 @@ $sidebar-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
 // Position variants
 .sidebar--position-left {
-  /* Default left position behavior */
+  // Default left position behavior
+  border-right: 1px solid var(--color-outline-variant);
 }
 
 .sidebar--position-right {

@@ -12,6 +12,8 @@ $content-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 .content {
   position: relative;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   flex: 1 1 auto;
   background: $content-bg;
   color: $content-color;
@@ -132,15 +134,26 @@ $content-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
 
-  // List improvements
-  ul,
-  ol {
+  // List improvements (tylko dla zwykłych list treści, nie komponentów nawigacyjnych)
+  ul:not([role="navigation"] *),
+  ol:not([role="navigation"] *) {
     margin: 0 0 var(--space-lg) 0;
     padding-left: var(--space-xl);
 
     li {
       margin-bottom: var(--space-sm);
       color: var(--color-on-surface-variant);
+    }
+  }
+
+  // Breadcrumbs i inne komponenty nawigacyjne nie powinny mieć margin
+  [role="navigation"] ul,
+  [role="navigation"] ol {
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin-bottom: 0;
     }
   }
 
@@ -192,7 +205,8 @@ $content-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
 // Content variants
 .content--variant-default {
-  /* Default styling already applied in base .content class */
+  // Default styling already applied in base .content class
+  background: $content-bg;
 }
 
 .content--variant-article {

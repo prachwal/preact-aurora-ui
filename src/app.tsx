@@ -102,11 +102,7 @@ export function App() {
       />
 
       {/* Main Content Area */}
-      <Layout
-        direction="vertical"
-        variant="dashboard"
-        style={{ flex: 1, minWidth: 0 }}
-      >
+      <Layout direction="vertical" variant="dashboard">
         {/* Header */}
         <Header
           variant="default"
@@ -204,7 +200,7 @@ export function App() {
             items={breadcrumbItems}
             separator="/"
             style={{
-              marginBottom: "var(--space-lg)",
+              marginBottom: "var(--space-sm)",
             }}
           />
 
@@ -239,11 +235,11 @@ export function App() {
                 </button>
               </div>
             }
-            style={{ marginBottom: "var(--space-xl)" }}
+            style={{ marginBottom: "var(--space-lg)" }}
           />
 
           {/* Dashboard Grid */}
-          <Grid responsive columns={12} gutter={[24, 24]}>
+          <Grid responsive columns={12} gutter={[16, 16]}>
             {/* Stats Cards */}
             <Col xs={12} sm={6} md={6} lg={3}>
               <Card

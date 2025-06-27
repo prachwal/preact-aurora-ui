@@ -8,7 +8,10 @@ $col-padding: var(--space-xs);
 .col {
   flex: 1 1 0;
   min-width: 0;
+  max-width: 100%;
   padding: $col-padding;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
 }
 
 // Span classes (1-12 columns)

@@ -1,0 +1,33 @@
+// Global styles to prevent horizontal scroll
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  font-family: var(--font-family-base);
+  background: var(--color-background);
+  color: var(--color-on-surface);
+}
+
+#app {
+  width: 100%;
+  max-width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+}

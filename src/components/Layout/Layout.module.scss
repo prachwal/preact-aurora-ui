@@ -76,11 +76,13 @@ $layout-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   &.layout--horizontal {
     > :first-child {
       flex-shrink: 0; // Sidebar shouldn't shrink
+      min-width: 0; // Allow shrinking below content
     }
 
     > :last-child {
       flex: 1 1 auto; // Content area takes remaining space
-      min-width: 0;
+      min-width: 0; // Critical for preventing overflow
+      overflow: hidden; // Prevent horizontal scroll
     }
   }
 }

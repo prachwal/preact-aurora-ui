@@ -10,7 +10,7 @@ $breadcrumbs-link-color: var(--color-link-primary, #1976d2);
 $breadcrumbs-active-color: var(--color-text-primary, #222);
 $breadcrumbs-separator-color: var(--color-text-tertiary, #bbb);
 $breadcrumbs-font-size: var(--font-size-sm, 15px);
-$breadcrumbs-padding: var(--space-xs, 8px) 0;
+$breadcrumbs-padding: var(--space-2xs, 4px) 0; // Zmniejszono padding
 $breadcrumbs-gap: var(--space-xs, 8px);
 $breadcrumbs-radius: 4px;
 
@@ -23,18 +23,19 @@ $breadcrumbs-radius: 4px;
   font-size: $breadcrumbs-font-size;
   font-family: var(--font-family-base);
   width: 100%;
-  overflow-x: auto;
-  @include hide-scrollbar;
+  overflow: visible; // Zmieniono z overflow-x: auto
   transition: background 0.2s;
 }
 
 .list {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: $breadcrumbs-gap;
   list-style: none;
   margin: 0;
   padding: 0;
+  min-width: 0;
 }
 
 .item {
