@@ -19,6 +19,10 @@ export function RouterBreadcrumbs() {
         { label: "Dashboard", href: "/", icon: "🏠" },
         { label: "Users", href: "/users" },
       ],
+      "/theme-demo": [
+        { label: "Dashboard", href: "/", icon: "🏠" },
+        { label: "Theme Demo", href: "/theme-demo" },
+      ],
       "/settings": [
         { label: "Dashboard", href: "/", icon: "🏠" },
         { label: "Settings", href: "/settings" },

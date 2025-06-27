@@ -1,0 +1,122 @@
+@use "../styles/colors.scss" as *;
+
+// Light theme colors - default
+:root {
+  // Primary colors
+  --color-primary: #2563eb;
+  --color-primary-dark: #1d4ed8;
+  --color-primary-light: #3b82f6;
+  --color-primary-rgb: 37, 99, 235;
+
+  // Secondary colors  
+  --color-secondary: #64748b;
+  --color-secondary-dark: #475569;
+  --color-secondary-light: #94a3b8;
+
+  // Status colors
+  --color-success: #059669;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
+  --color-info: #0891b2;
+
+  // Surface colors
+  --color-background: #ffffff;
+  --color-surface: #f8fafc;
+  --color-surface-variant: #f1f5f9;
+
+  // Text colors
+  --color-on-surface: #0f172a;
+  --color-on-surface-variant: #64748b;
+  --color-on-primary: #ffffff;
+  --color-on-secondary: #ffffff;
+
+  // Border colors
+  --color-outline: #e2e8f0;
+  --color-outline-variant: #f1f5f9;
+
+  // Elevation shadows
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+// Dark theme colors
+[data-theme="dark"] {
+  // Primary colors (slightly adjusted for dark theme)
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+  --color-primary-light: #60a5fa;
+  --color-primary-rgb: 59, 130, 246;
+
+  // Secondary colors
+  --color-secondary: #94a3b8;
+  --color-secondary-dark: #64748b;
+  --color-secondary-light: #cbd5e1;
+
+  // Status colors (adjusted for dark theme)
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #06b6d4;
+
+  // Surface colors
+  --color-background: #0f172a;
+  --color-surface: #1e293b;
+  --color-surface-variant: #334155;
+
+  // Text colors
+  --color-on-surface: #f8fafc;
+  --color-on-surface-variant: #cbd5e1;
+  --color-on-primary: #ffffff;
+  --color-on-secondary: #0f172a;
+
+  // Border colors
+  --color-outline: #475569;
+  --color-outline-variant: #334155;
+
+  // Elevation shadows (darker for dark theme)
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.2);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.2);
+}
+
+// Smooth transitions for theme changes
+* {
+  transition:
+    background-color 200ms ease-in-out,
+    border-color 200ms ease-in-out,
+    color 200ms ease-in-out,
+    box-shadow 200ms ease-in-out;
+}
+
+// Override transitions for specific elements that shouldn't animate
+input,
+textarea,
+select,
+button:active,
+[role="button"]:active {
+  transition: none;
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  :root {
+    --color-outline: #000000;
+    --color-outline-variant: #666666;
+  }
+
+  [data-theme="dark"] {
+    --color-outline: #ffffff;
+    --color-outline-variant: #cccccc;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

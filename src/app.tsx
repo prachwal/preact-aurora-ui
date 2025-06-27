@@ -1,11 +1,13 @@
 import { LocationProvider } from "preact-iso";
 
-import { AppLayout } from "./components";
+import { AppLayout, ThemeProvider } from "./components";
 
 export function App() {
   return (
-    <LocationProvider>
-      <AppLayout />
-    </LocationProvider>
+    <ThemeProvider defaultTheme={{ mode: "light" }}>
+      <LocationProvider>
+        <AppLayout />
+      </LocationProvider>
+    </ThemeProvider>
   );
 }

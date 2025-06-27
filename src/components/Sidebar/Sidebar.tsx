@@ -64,7 +64,10 @@ export function Sidebar({
 
   const sidebarStyle = {
     ...style,
-    ...(width && { width: typeof width === "number" ? `${width}px` : width }),
+    ...(width &&
+      !collapsed && {
+      width: typeof width === "number" ? `${width}px` : width,
+    }),
   };
 
   return (

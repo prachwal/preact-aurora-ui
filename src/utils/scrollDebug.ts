@@ -122,7 +122,7 @@ export function logScrollDebug(): void {
 
   console.group("📋 All Scrollable/Overflow Elements");
   console.log(
-    `Found ${scrollableElements.length} elements with scroll/overflow`
+    `Found ${scrollableElements.length} elements with scroll/overflow`,
   );
 
   scrollableElements.forEach((info, index) => {
@@ -163,7 +163,7 @@ export function logScrollDebug(): void {
 
   // Horizontal scroll culprits
   const horizontalScrollElements = scrollableElements.filter(
-    (info) => info.hasHorizontalScroll
+    (info) => info.hasHorizontalScroll,
   );
   if (horizontalScrollElements.length > 0) {
     console.group("🚨 HORIZONTAL SCROLL CULPRITS");

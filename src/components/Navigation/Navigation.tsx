@@ -29,6 +29,12 @@ export function Navigation({ onSelect }: NavigationProps) {
       href: "/users",
     },
     {
+      key: "theme-demo",
+      label: "Theme Demo",
+      icon: "🎨",
+      href: "/theme-demo",
+    },
+    {
       key: "settings",
       label: "Settings",
       icon: "⚙️",

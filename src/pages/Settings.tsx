@@ -1,6 +1,7 @@
 import { Grid, Col } from "../components/Grid";
 import { Card } from "../components/Card";
 import { PageHeader } from "../components/PageHeader";
+import { ThemeToggle } from "../components";
 
 export function Settings() {
   return (
@@ -47,7 +48,9 @@ export function Settings() {
                     padding: "var(--space-sm)",
                     border: "1px solid var(--color-outline)",
                     borderRadius: "6px",
-                    background: "var(--color-surface)",
+                    background: "var(--color-background)",
+                    color: "var(--color-on-surface)",
+                    fontSize: "var(--font-size-base)",
                   }}
                 />
               </div>
@@ -69,7 +72,9 @@ export function Settings() {
                     padding: "var(--space-sm)",
                     border: "1px solid var(--color-outline)",
                     borderRadius: "6px",
-                    background: "var(--color-surface)",
+                    background: "var(--color-background)",
+                    color: "var(--color-on-surface)",
+                    fontSize: "var(--font-size-base)",
                     resize: "vertical",
                   }}
                 />
@@ -90,7 +95,9 @@ export function Settings() {
                     padding: "var(--space-sm)",
                     border: "1px solid var(--color-outline)",
                     borderRadius: "6px",
-                    background: "var(--color-surface)",
+                    background: "var(--color-background)",
+                    color: "var(--color-on-surface)",
+                    fontSize: "var(--font-size-base)",
                   }}
                 >
                   <option>UTC (GMT+0)</option>
@@ -169,6 +176,125 @@ export function Settings() {
                   <input type="checkbox" defaultChecked />
                   <span>Send email alerts for suspicious activity</span>
                 </label>
+              </div>
+            </div>
+          </Card>
+        </Col>
+
+        {/* Theme Settings */}
+        <Col xs={12} lg={6}>
+          <Card
+            title="Theme Settings"
+            variant="elevated"
+            elevation={2}
+            padding="lg"
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "var(--space-lg)",
+              }}
+            >
+              <div>
+                <label
+                  style={{
+                    display: "block",
+                    marginBottom: "var(--space-sm)",
+                    fontWeight: "500",
+                  }}
+                >
+                  Appearance
+                </label>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "var(--space-md)",
+                    marginBottom: "var(--space-md)",
+                  }}
+                >
+                  <ThemeToggle variant="button" showLabel />
+                  <span
+                    style={{
+                      fontSize: "var(--font-size-sm)",
+                      color: "var(--color-on-surface-variant)",
+                    }}
+                  >
+                    Toggle between light and dark themes
+                  </span>
+                </div>
+              </div>
+              <div>
+                <label
+                  style={{
+                    display: "block",
+                    marginBottom: "var(--space-sm)",
+                    fontWeight: "500",
+                  }}
+                >
+                  Theme Preview
+                </label>
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
+                    gap: "var(--space-md)",
+                    padding: "var(--space-md)",
+                    background: "var(--color-surface-variant)",
+                    borderRadius: "8px",
+                    border: "1px solid var(--color-outline)",
+                  }}
+                >
+                  <div
+                    style={{
+                      padding: "var(--space-sm)",
+                      background: "var(--color-primary)",
+                      color: "var(--color-on-primary)",
+                      borderRadius: "6px",
+                      textAlign: "center",
+                      fontSize: "var(--font-size-sm)",
+                    }}
+                  >
+                    Primary
+                  </div>
+                  <div
+                    style={{
+                      padding: "var(--space-sm)",
+                      background: "var(--color-secondary)",
+                      color: "var(--color-on-secondary)",
+                      borderRadius: "6px",
+                      textAlign: "center",
+                      fontSize: "var(--font-size-sm)",
+                    }}
+                  >
+                    Secondary
+                  </div>
+                  <div
+                    style={{
+                      padding: "var(--space-sm)",
+                      background: "var(--color-success)",
+                      color: "var(--color-on-primary)",
+                      borderRadius: "6px",
+                      textAlign: "center",
+                      fontSize: "var(--font-size-sm)",
+                    }}
+                  >
+                    Success
+                  </div>
+                  <div
+                    style={{
+                      padding: "var(--space-sm)",
+                      background: "var(--color-error)",
+                      color: "var(--color-on-primary)",
+                      borderRadius: "6px",
+                      textAlign: "center",
+                      fontSize: "var(--font-size-sm)",
+                    }}
+                  >
+                    Error
+                  </div>
+                </div>
               </div>
             </div>
           </Card>

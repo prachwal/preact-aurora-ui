@@ -9,6 +9,8 @@ import {
   AppRouter,
   Navigation,
   RouterBreadcrumbs,
+  ThemeToggle,
+  SidebarToggle,
 } from "../index";
 
 export function AppLayout() {
@@ -43,30 +45,6 @@ export function AppLayout() {
         position="left"
         width={280}
         nav={<Navigation onSelect={handleMenuSelect} />}
-        actions={
-          <button
-            aria-label={
-              sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"
-            }
-            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-            style={{
-              background: "var(--color-primary)",
-              color: "var(--color-on-primary)",
-              border: "none",
-              borderRadius: "8px",
-              padding: "var(--space-md)",
-              cursor: "pointer",
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "var(--space-sm)",
-            }}
-          >
-            <span>{sidebarCollapsed ? "☰" : "◀"}</span>
-            {!sidebarCollapsed && <span>Menu</span>}
-          </button>
-        }
       />
 
       {/* Main Content Area */}
@@ -86,40 +64,17 @@ export function AppLayout() {
                 fontSize: "var(--font-size-lg)",
               }}
             >
+              <SidebarToggle
+                collapsed={sidebarCollapsed}
+                onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
+                size="md"
+                variant="minimal"
+                iconType="hamburger"
+                style={{ marginRight: "var(--space-sm)" }}
+              />
               <span>🚀</span>
               <span>Aurora UI</span>
             </div>
-          }
-          nav={
-            <nav style={{ display: "flex", gap: "var(--space-lg)" }}>
-              <a
-                href="/dashboard"
-                style={{
-                  color: "var(--color-primary)",
-                  textDecoration: "none",
-                }}
-              >
-                Dashboard
-              </a>
-              <a
-                href="/analytics"
-                style={{
-                  color: "var(--color-on-surface)",
-                  textDecoration: "none",
-                }}
-              >
-                Analytics
-              </a>
-              <a
-                href="/users"
-                style={{
-                  color: "var(--color-on-surface)",
-                  textDecoration: "none",
-                }}
-              >
-                Users
-              </a>
-            </nav>
           }
           actions={
             <div
@@ -129,34 +84,7 @@ export function AppLayout() {
                 alignItems: "center",
               }}
             >
-              <button
-                style={{
-                  background: "transparent",
-                  border: "1px solid var(--color-outline)",
-                  borderRadius: "50%",
-                  width: "40px",
-                  height: "40px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  cursor: "pointer",
-                }}
-                aria-label="Notifications"
-              >
-                🔔
-              </button>
-              <button
-                style={{
-                  background: "var(--color-primary)",
-                  color: "var(--color-on-primary)",
-                  border: "none",
-                  borderRadius: "8px",
-                  padding: "var(--space-sm) var(--space-md)",
-                  cursor: "pointer",
-                }}
-              >
-                Profile
-              </button>
+              <ThemeToggle variant="icon" size="md" />
             </div>
           }
         />

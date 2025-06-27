@@ -1,0 +1,80 @@
+@use "../styles/colors.scss" as *;
+@use "../styles/spacing.scss" as *;
+@use "../styles/typography.scss" as *;
+
+// Local variables
+$toggle-bg: var(--color-surface-variant);
+$toggle-bg-hover: var(--color-outline);
+$toggle-icon-color: var(--color-on-surface-variant);
+$toggle-icon-color-hover: var(--color-on-surface);
+$toggle-border: var(--color-outline);
+$toggle-border-radius: 8px;
+$toggle-padding: var(--space-sm);
+$toggle-transition: all 0.2s ease-in-out;
+
+.themeToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $toggle-bg;
+  border: 1px solid $toggle-border;
+  border-radius: $toggle-border-radius;
+  padding: $toggle-padding;
+  cursor: pointer;
+  transition: $toggle-transition;
+  color: $toggle-icon-color;
+  font-size: var(--font-size-lg);
+  min-width: 40px;
+  height: 40px;
+
+  &:hover {
+    background: $toggle-bg-hover;
+    color: $toggle-icon-color-hover;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+.themeToggle--variant-icon {
+  border-radius: 50%;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.themeToggle--variant-button {
+  border-radius: $toggle-border-radius;
+  padding: $toggle-padding var(--space-md);
+  min-width: auto;
+
+  .icon {
+    margin-right: var(--space-xs);
+  }
+}
+
+.themeToggle--size-sm {
+  min-width: 32px;
+  height: 32px;
+  font-size: var(--font-size-base);
+  padding: var(--space-xs);
+}
+
+.themeToggle--size-lg {
+  min-width: 48px;
+  height: 48px;
+  font-size: var(--font-size-xl);
+  padding: var(--space-md);
+}

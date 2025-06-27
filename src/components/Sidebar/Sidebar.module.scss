@@ -2,12 +2,13 @@
 @use "../styles/typography.scss" as *;
 @use "../styles/spacing.scss" as *;
 @use "../styles/breakpoints.scss" as *;
+@use "../Menu/Menu.module.scss" as menu;
 
 // Local variables - Modern sidebar design
 $sidebar-bg: var(--color-surface);
 $sidebar-color: var(--color-on-surface);
 $sidebar-width: 280px;
-$sidebar-collapsed-width: 72px;
+$sidebar-collapsed-width: 80px;
 $sidebar-padding: var(--space-lg);
 $sidebar-shadow: var(--shadow-2);
 $sidebar-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -359,23 +360,59 @@ $sidebar-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 .sidebar--collapsed {
   min-width: $sidebar-collapsed-width;
   width: $sidebar-collapsed-width;
+  padding: var(--space-sm) 0;
+  overflow: visible;
 
   .nav {
     overflow: visible;
+    padding: 0;
 
-    li a {
+    :global(.menu) {
+      padding: 0;
+      overflow: visible;
+      background: transparent;
+    }
+
+    :global(.list) {
+      padding: 0;
+      margin: 0;
+    }
+
+    :global(.item) {
       justify-content: center;
+      padding: var(--space-md) var(--space-sm);
+      margin: var(--space-xs) var(--space-xs);
+      border-radius: 8px;
+      width: calc(100% - 2 * var(--space-xs));
+      overflow: visible;
+      box-sizing: border-box;
 
-      .sidebar-label {
-        opacity: 0;
-        width: 0;
-        overflow: hidden;
-        transition: all 0.2s ease;
+      :global(.icon) {
+        margin: 0;
+        font-size: var(--font-size-xl);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        text-align: center;
       }
+    }
 
-      .sidebar-icon {
-        margin-right: 0;
-      }
+    // Ukryj wszystkie teksty/etykiety - używając selektorów atrybutów
+    span[class*="label"] {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      width: 0 !important;
+      height: 0 !important;
+      overflow: hidden !important;
+      position: absolute !important;
+      left: -9999px !important;
+    }
+
+    // Dodatkowe selektory dla pewności
+    span:not([class*="icon"]):not([aria-hidden]) {
+      display: none !important;
     }
   }
 

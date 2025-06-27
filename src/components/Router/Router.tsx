@@ -1,6 +1,6 @@
 import { Router, Route } from "preact-iso";
 
-import { Dashboard, Analytics, Users, Settings } from "../../pages";
+import { Dashboard, Analytics, Users, Settings, ThemeDemo } from "../../pages";
 
 export function AppRouter() {
   return (
@@ -10,6 +10,7 @@ export function AppRouter() {
       <Route path="/analytics" component={Analytics} />
       <Route path="/users" component={Users} />
       <Route path="/settings" component={Settings} />
+      <Route path="/theme-demo" component={ThemeDemo} />
       <Route
         default
         component={() => (

@@ -13,3 +13,4 @@ export * from "./Router/Router";
 export * from "./Navigation/Navigation";
 export * from "./RouterBreadcrumbs/RouterBreadcrumbs";
 export * from "./AppLayout/AppLayout";
+export * from "./ThemeProvider";
