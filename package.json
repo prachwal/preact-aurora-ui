@@ -11,7 +11,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build:all": "sh build-and-copy.sh",
-    "lint": "eslint 'src/**/*.{ts,tsx,js,jsx}' --max-warnings=0"
+    "lint": "eslint 'src/**/*.{ts,tsx,js,jsx}' --max-warnings=0",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "preact": "10.26.9"
