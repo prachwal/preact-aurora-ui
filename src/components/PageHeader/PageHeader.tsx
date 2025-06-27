@@ -1,7 +1,7 @@
-import type { ComponentChildren } from "preact";
-import type { JSX } from "preact/jsx-runtime";
+import type { ComponentChildren } from 'preact';
+import type { JSX } from 'preact/jsx-runtime';
 
-import styles from "./PageHeader.module.scss";
+import styles from './PageHeader.module.scss';
 
 export interface PageHeaderProps {
   title: string;
@@ -9,7 +9,7 @@ export interface PageHeaderProps {
   actions?: ComponentChildren;
   className?: string;
   style?: JSX.CSSProperties;
-  "aria-label"?: string;
+  'aria-label'?: string;
 }
 
 /**
@@ -19,9 +19,9 @@ export function PageHeader({
   title,
   subtitle,
   actions,
-  className = "",
+  className = '',
   style,
-  "aria-label": ariaLabel = "Page header",
+  'aria-label': ariaLabel = 'Page header',
 }: PageHeaderProps) {
   return (
     <header

@@ -1,7 +1,7 @@
-import type { ComponentChildren } from "preact";
-import type { JSX } from "preact/jsx-runtime";
+import type { ComponentChildren } from 'preact';
+import type { JSX } from 'preact/jsx-runtime';
 
-import styles from "./Breadcrumbs.module.scss";
+import styles from './Breadcrumbs.module.scss';
 
 export interface BreadcrumbItem {
   label: string;
@@ -16,7 +16,7 @@ export interface BreadcrumbsProps {
   className?: string;
   style?: JSX.CSSProperties;
   onItemClick?: (item: BreadcrumbItem, idx: number, e: Event) => void;
-  "aria-label"?: string;
+  'aria-label'?: string;
 }
 
 /**
@@ -24,11 +24,11 @@ export interface BreadcrumbsProps {
  */
 export function Breadcrumbs({
   items,
-  separator = "/",
-  className = "",
+  separator = '/',
+  className = '',
   style,
   onItemClick,
-  "aria-label": ariaLabel = "Breadcrumb",
+  'aria-label': ariaLabel = 'Breadcrumb',
 }: BreadcrumbsProps) {
   if (!items || items.length === 0) return null;
   return (
@@ -51,7 +51,7 @@ export function Breadcrumbs({
               e.preventDefault?.();
             },
             onKeyDown: (e: KeyboardEvent) => {
-              if ((e.key === "Enter" || e.key === " ") && onItemClick) {
+              if ((e.key === 'Enter' || e.key === ' ') && onItemClick) {
                 onItemClick(item, idx, e as any);
               }
             },
@@ -60,9 +60,7 @@ export function Breadcrumbs({
             <li key={idx} className={styles.item}>
               {isLink ? (
                 <a href={item.href} {...linkProps} aria-label={item.label}>
-                  {item.icon ? (
-                    <span className={styles.icon}>{item.icon}</span>
-                  ) : null}
+                  {item.icon ? <span className={styles.icon}>{item.icon}</span> : null}
                   {item.label}
                 </a>
               ) : (
@@ -70,11 +68,9 @@ export function Breadcrumbs({
                   className={styles.active}
                   tabIndex={0}
                   aria-label={item.label}
-                  aria-current={isLast ? ("page" as const) : undefined}
+                  aria-current={isLast ? ('page' as const) : undefined}
                 >
-                  {item.icon ? (
-                    <span className={styles.icon}>{item.icon}</span>
-                  ) : null}
+                  {item.icon ? <span className={styles.icon}>{item.icon}</span> : null}
                   {item.label}
                 </span>
               )}

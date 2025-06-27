@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/preact";
-import { useState } from "preact/hooks";
+import type { Meta, StoryObj } from '@storybook/preact';
+import { useState } from 'preact/hooks';
 
-import { Drawer } from "./Drawer";
+import { Drawer } from './Drawer';
 
 const meta: Meta = {
-  title: "Dashboard/Drawer",
+  title: 'Dashboard/Drawer',
   component: Drawer,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
 };
 export default meta;
 
@@ -32,12 +32,7 @@ export const Left: Story = {
     return (
       <>
         <button onClick={() => setOpen(true)}>Open left</button>
-        <Drawer
-          isOpen={isOpen}
-          onClose={() => setOpen(false)}
-          position="left"
-          title="Left Drawer"
-        >
+        <Drawer isOpen={isOpen} onClose={() => setOpen(false)} position="left" title="Left Drawer">
           Left content
         </Drawer>
       </>
@@ -51,12 +46,7 @@ export const Modal: Story = {
     return (
       <>
         <button onClick={() => setOpen(true)}>Open modal</button>
-        <Drawer
-          isOpen={isOpen}
-          onClose={() => setOpen(false)}
-          isModal
-          title="Modal Drawer"
-        >
+        <Drawer isOpen={isOpen} onClose={() => setOpen(false)} isModal title="Modal Drawer">
           Modal content
         </Drawer>
       </>
@@ -70,12 +60,7 @@ export const NoOverlay: Story = {
     return (
       <>
         <button onClick={() => setOpen(true)}>Open no overlay</button>
-        <Drawer
-          isOpen={isOpen}
-          onClose={() => setOpen(false)}
-          isModal={false}
-          title="No Overlay"
-        >
+        <Drawer isOpen={isOpen} onClose={() => setOpen(false)} isModal={false} title="No Overlay">
           No overlay content
         </Drawer>
       </>

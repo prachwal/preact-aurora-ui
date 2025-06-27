@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/preact";
+import type { Meta, StoryObj } from '@storybook/preact';
 
-import { Sidebar } from "./Sidebar";
+import { Sidebar } from './Sidebar';
 
 const meta: Meta = {
-  title: "Dashboard/Sidebar",
+  title: 'Dashboard/Sidebar',
   component: Sidebar,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
 };
 export default meta;
 
@@ -17,10 +17,10 @@ export const Default: Story = {
       nav={
         <ul
           style={{
-            display: "flex",
-            flexDirection: "column",
+            display: 'flex',
+            flexDirection: 'column',
             gap: 12,
-            listStyle: "none",
+            listStyle: 'none',
             margin: 0,
           }}
         >

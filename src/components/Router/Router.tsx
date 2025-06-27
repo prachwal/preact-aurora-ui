@@ -1,6 +1,6 @@
-import { Router, Route } from "preact-iso";
+import { Router, Route } from 'preact-iso';
 
-import { Dashboard, Analytics, Users, Settings, ThemeDemo } from "../../pages";
+import { Dashboard, Analytics, Users, Settings, ThemeDemo } from '../../pages';
 
 export function AppRouter() {
   return (
@@ -16,9 +16,9 @@ export function AppRouter() {
         component={() => (
           <div
             style={{
-              textAlign: "center",
-              padding: "var(--space-2xl)",
-              color: "var(--color-on-surface-variant)",
+              textAlign: 'center',
+              padding: 'var(--space-2xl)',
+              color: 'var(--color-on-surface-variant)',
             }}
           >
             <h2>404 - Page Not Found</h2>

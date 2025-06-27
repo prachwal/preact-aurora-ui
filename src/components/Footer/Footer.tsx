@@ -1,7 +1,7 @@
-import type { ComponentChildren } from "preact";
-import type { JSX } from "preact/jsx-runtime";
+import type { ComponentChildren } from 'preact';
+import type { JSX } from 'preact/jsx-runtime';
 
-import styles from "./Footer.module.scss";
+import styles from './Footer.module.scss';
 
 export interface FooterLink {
   label: string;
@@ -19,10 +19,10 @@ export interface FooterProps {
   children?: ComponentChildren;
   className?: string;
   style?: JSX.CSSProperties;
-  "aria-label"?: string;
+  'aria-label'?: string;
 
   // Enhanced props for flexibility
-  variant?: "default" | "minimal" | "extended";
+  variant?: 'default' | 'minimal' | 'extended';
   sticky?: boolean;
   elevation?: 0 | 1 | 2;
   copyright?: string;
@@ -42,10 +42,10 @@ export interface FooterProps {
  */
 export function Footer({
   children,
-  className = "",
+  className = '',
   style,
-  "aria-label": ariaLabel = "Stopka",
-  variant = "default",
+  'aria-label': ariaLabel = 'Stopka',
+  variant = 'default',
   sticky = false,
   elevation = 0,
   copyright,
@@ -56,23 +56,18 @@ export function Footer({
     styles.footer,
     styles[`footer--variant-${variant}`],
     styles[`footer--elevation-${elevation}`],
-    sticky ? styles["footer--sticky"] : "",
+    sticky ? styles['footer--sticky'] : '',
     className,
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   const currentYear = new Date().getFullYear();
   const copyrightText = copyright || `© ${currentYear} Aurora UI`;
 
   return (
-    <footer
-      className={classes}
-      style={style}
-      aria-label={ariaLabel}
-      role="contentinfo"
-    >
-      {variant === "extended" && (
+    <footer className={classes} style={style} aria-label={ariaLabel} role="contentinfo">
+      {variant === 'extended' && (
         <div className={styles.main}>
           <div className={styles.content}>
             {children}
@@ -83,8 +78,8 @@ export function Footer({
                     <li key={link.href}>
                       <a
                         href={link.href}
-                        target={link.external ? "_blank" : undefined}
-                        rel={link.external ? "noopener noreferrer" : undefined}
+                        target={link.external ? '_blank' : undefined}
+                        rel={link.external ? 'noopener noreferrer' : undefined}
                       >
                         {link.label}
                       </a>
@@ -116,17 +111,17 @@ export function Footer({
       )}
 
       <div className={styles.bottom}>
-        {variant !== "extended" && children}
+        {variant !== 'extended' && children}
         <div className={styles.copyright}>{copyrightText}</div>
-        {variant !== "extended" && links.length > 0 && (
+        {variant !== 'extended' && links.length > 0 && (
           <nav className={styles.nav} aria-label="Footer links">
             <ul className={styles.linksList}>
               {links.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    target={link.external ? "_blank" : undefined}
-                    rel={link.external ? "noopener noreferrer" : undefined}
+                    target={link.external ? '_blank' : undefined}
+                    rel={link.external ? 'noopener noreferrer' : undefined}
                   >
                     {link.label}
                   </a>

@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/preact";
+import type { Meta, StoryObj } from '@storybook/preact';
 
-import { Card } from "./Card";
+import { Card } from './Card';
 
 const meta: Meta = {
-  title: "Dashboard/Card",
+  title: 'Dashboard/Card',
   component: Card,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
 };
 export default meta;
 

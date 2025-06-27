@@ -1,7 +1,7 @@
-import type { ComponentChildren } from "preact";
-import type { JSX } from "preact/jsx-runtime";
+import type { ComponentChildren } from 'preact';
+import type { JSX } from 'preact/jsx-runtime';
 
-import styles from "./Sidebar.module.scss";
+import styles from './Sidebar.module.scss';
 
 export interface SidebarProps {
   children?: ComponentChildren;
@@ -9,17 +9,17 @@ export interface SidebarProps {
   style?: JSX.CSSProperties;
   nav?: preact.VNode;
   actions?: preact.VNode;
-  "aria-label"?: string;
+  'aria-label'?: string;
 
   // Enhanced props for flexibility
-  variant?: "default" | "rail" | "temporary" | "permanent";
+  variant?: 'default' | 'rail' | 'temporary' | 'permanent';
   width?: number | string;
   collapsible?: boolean;
   collapsed?: boolean;
   onToggle?: () => void;
   elevation?: 0 | 1 | 2 | 3 | 4;
   borderless?: boolean;
-  position?: "left" | "right";
+  position?: 'left' | 'right';
 }
 
 /**
@@ -35,38 +35,36 @@ export interface SidebarProps {
  */
 export function Sidebar({
   children,
-  className = "",
+  className = '',
   style,
   nav,
   actions,
-  "aria-label": ariaLabel = "Sidebar",
-  variant = "default",
+  'aria-label': ariaLabel = 'Sidebar',
+  variant = 'default',
   width,
   collapsible = false,
   collapsed = false,
   onToggle: _onToggle,
   elevation = 1,
   borderless = false,
-  position = "left",
+  position = 'left',
 }: SidebarProps) {
   const classes = [
     styles.sidebar,
     styles[`sidebar--variant-${variant}`],
     styles[`sidebar--elevation-${elevation}`],
-    collapsible ? styles["sidebar--collapsible"] : undefined,
-    collapsed ? styles["sidebar--collapsed"] : undefined,
-    borderless ? styles["sidebar--borderless"] : undefined,
+    collapsible ? styles['sidebar--collapsible'] : undefined,
+    collapsed ? styles['sidebar--collapsed'] : undefined,
+    borderless ? styles['sidebar--borderless'] : undefined,
     styles[`sidebar--position-${position}`],
     className,
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   const sidebarStyle = {
     ...style,
-    ...(width && !collapsed
-      ? { width: typeof width === "number" ? `${width}px` : width }
-      : {}),
+    ...(width && !collapsed ? { width: typeof width === 'number' ? `${width}px` : width } : {}),
   };
 
   return (

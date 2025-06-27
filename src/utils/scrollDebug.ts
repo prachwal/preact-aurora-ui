@@ -63,16 +63,16 @@ function getElementSelector(element: Element): string {
   if (element.className) {
     const classes = element.className
       .toString()
-      .split(" ")
+      .split(' ')
       .filter((c) => c);
-    selector += "." + classes.join(".");
+    selector += '.' + classes.join('.');
   }
 
   return selector;
 }
 
 export function debugAllScrollableElements(): ScrollDebugInfo[] {
-  const allElements = document.querySelectorAll("*");
+  const allElements = document.querySelectorAll('*');
   const scrollableElements: ScrollDebugInfo[] = [];
 
   allElements.forEach((element) => {
@@ -82,8 +82,8 @@ export function debugAllScrollableElements(): ScrollDebugInfo[] {
     if (
       info.hasHorizontalScroll ||
       info.hasVerticalScroll ||
-      info.overflowX !== "visible" ||
-      info.overflowY !== "visible"
+      info.overflowX !== 'visible' ||
+      info.overflowY !== 'visible'
     ) {
       scrollableElements.push(info);
     }
@@ -93,19 +93,19 @@ export function debugAllScrollableElements(): ScrollDebugInfo[] {
 }
 
 export function logScrollDebug(): void {
-  console.group("🔍 SCROLL DEBUG REPORT");
+  console.group('🔍 SCROLL DEBUG REPORT');
 
   // Window/viewport info
-  console.group("📊 Viewport Info");
-  console.log("Window inner size:", {
+  console.group('📊 Viewport Info');
+  console.log('Window inner size:', {
     width: window.innerWidth,
     height: window.innerHeight,
   });
-  console.log("Document scroll size:", {
+  console.log('Document scroll size:', {
     width: document.documentElement.scrollWidth,
     height: document.documentElement.scrollHeight,
   });
-  console.log("Document client size:", {
+  console.log('Document client size:', {
     width: document.documentElement.clientWidth,
     height: document.documentElement.clientHeight,
   });
@@ -113,23 +113,21 @@ export function logScrollDebug(): void {
 
   // Body scroll info
   const bodyInfo = getElementScrollDebugInfo(document.body);
-  console.group("🌐 Body Element");
+  console.group('🌐 Body Element');
   console.table(bodyInfo);
   console.groupEnd();
 
   // All scrollable elements
   const scrollableElements = debugAllScrollableElements();
 
-  console.group("📋 All Scrollable/Overflow Elements");
-  console.log(
-    `Found ${scrollableElements.length} elements with scroll/overflow`,
-  );
+  console.group('📋 All Scrollable/Overflow Elements');
+  console.log(`Found ${scrollableElements.length} elements with scroll/overflow`);
 
   scrollableElements.forEach((info, index) => {
     console.group(`${index + 1}. ${info.selector}`);
 
     if (info.hasHorizontalScroll) {
-      console.warn("🔴 HAS HORIZONTAL SCROLL!", {
+      console.warn('🔴 HAS HORIZONTAL SCROLL!', {
         scrollWidth: info.scrollWidth,
         clientWidth: info.clientWidth,
         difference: info.scrollWidth - info.clientWidth,
@@ -137,7 +135,7 @@ export function logScrollDebug(): void {
     }
 
     if (info.hasVerticalScroll) {
-      console.info("🟡 Has vertical scroll", {
+      console.info('🟡 Has vertical scroll', {
         scrollHeight: info.scrollHeight,
         clientHeight: info.clientHeight,
         difference: info.scrollHeight - info.clientHeight,
@@ -145,28 +143,26 @@ export function logScrollDebug(): void {
     }
 
     console.table({
-      "Scroll Width": info.scrollWidth,
-      "Client Width": info.clientWidth,
-      "Offset Width": info.offsetWidth,
-      "Scroll Height": info.scrollHeight,
-      "Client Height": info.clientHeight,
-      "Offset Height": info.offsetHeight,
-      "Overflow X": info.overflowX,
-      "Overflow Y": info.overflowY,
+      'Scroll Width': info.scrollWidth,
+      'Client Width': info.clientWidth,
+      'Offset Width': info.offsetWidth,
+      'Scroll Height': info.scrollHeight,
+      'Client Height': info.clientHeight,
+      'Offset Height': info.offsetHeight,
+      'Overflow X': info.overflowX,
+      'Overflow Y': info.overflowY,
     });
 
-    console.log("Computed Styles:", info.computedStyles);
+    console.log('Computed Styles:', info.computedStyles);
     console.groupEnd();
   });
 
   console.groupEnd();
 
   // Horizontal scroll culprits
-  const horizontalScrollElements = scrollableElements.filter(
-    (info) => info.hasHorizontalScroll,
-  );
+  const horizontalScrollElements = scrollableElements.filter((info) => info.hasHorizontalScroll);
   if (horizontalScrollElements.length > 0) {
-    console.group("🚨 HORIZONTAL SCROLL CULPRITS");
+    console.group('🚨 HORIZONTAL SCROLL CULPRITS');
     horizontalScrollElements.forEach((info) => {
       console.error(`Element: ${info.selector}`, {
         element: info.element,
@@ -188,16 +184,16 @@ export function startScrollMonitoring(): () => void {
   const monitor = () => {
     clearTimeout(timeoutId);
     timeoutId = window.setTimeout(() => {
-      console.log("📏 Scroll state changed, running debug...");
+      console.log('📏 Scroll state changed, running debug...');
       logScrollDebug();
     }, 500);
   };
 
   // Monitor resize
-  window.addEventListener("resize", monitor);
+  window.addEventListener('resize', monitor);
 
   // Monitor scroll
-  window.addEventListener("scroll", monitor);
+  window.addEventListener('scroll', monitor);
 
   // Monitor DOM changes
   const observer = new MutationObserver(monitor);
@@ -205,7 +201,7 @@ export function startScrollMonitoring(): () => void {
     childList: true,
     subtree: true,
     attributes: true,
-    attributeFilter: ["style", "class"],
+    attributeFilter: ['style', 'class'],
   });
 
   // Initial run
@@ -213,8 +209,8 @@ export function startScrollMonitoring(): () => void {
 
   // Return cleanup function
   return () => {
-    window.removeEventListener("resize", monitor);
-    window.removeEventListener("scroll", monitor);
+    window.removeEventListener('resize', monitor);
+    window.removeEventListener('scroll', monitor);
     observer.disconnect();
     clearTimeout(timeoutId);
   };

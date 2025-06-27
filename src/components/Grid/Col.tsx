@@ -1,7 +1,7 @@
-import type { ComponentChildren } from "preact";
-import type { JSX } from "preact/jsx-runtime";
+import type { ComponentChildren } from 'preact';
+import type { JSX } from 'preact/jsx-runtime';
 
-import styles from "./Col.module.scss";
+import styles from './Col.module.scss';
 
 export interface ColProps {
   children?: ComponentChildren;
@@ -29,7 +29,7 @@ export interface ColProps {
  */
 export function Col({
   children,
-  className = "",
+  className = '',
   style,
   span,
   offset = 0,
@@ -45,18 +45,18 @@ export function Col({
 
   const classes = [
     styles.col,
-    defaultSpan ? styles[`col--span-${defaultSpan}`] : "",
-    offset > 0 ? styles[`col--offset-${offset}`] : "",
-    xs ? styles[`col--xs-${xs}`] : "",
-    sm ? styles[`col--sm-${sm}`] : "",
-    md ? styles[`col--md-${md}`] : "",
-    lg ? styles[`col--lg-${lg}`] : "",
-    xl ? styles[`col--xl-${xl}`] : "",
-    order ? styles[`col--order-${order}`] : "",
+    defaultSpan ? styles[`col--span-${defaultSpan}`] : '',
+    offset > 0 ? styles[`col--offset-${offset}`] : '',
+    xs ? styles[`col--xs-${xs}`] : '',
+    sm ? styles[`col--sm-${sm}`] : '',
+    md ? styles[`col--md-${md}`] : '',
+    lg ? styles[`col--lg-${lg}`] : '',
+    xl ? styles[`col--xl-${xl}`] : '',
+    order ? styles[`col--order-${order}`] : '',
     className,
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   const colStyle: JSX.CSSProperties = {
     ...style,

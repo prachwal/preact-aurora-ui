@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useState } from 'preact/hooks';
 
 import {
   Layout,
@@ -11,7 +11,7 @@ import {
   RouterBreadcrumbs,
   ThemeToggle,
   SidebarToggle,
-} from "../index";
+} from '../index';
 
 export function AppLayout() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -26,8 +26,8 @@ export function AppLayout() {
       }
     };
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   });
 
   const handleMenuSelect = (key: string) => {
@@ -38,7 +38,7 @@ export function AppLayout() {
     <Layout direction="horizontal" fullHeight>
       {/* Sidebar */}
       <Sidebar
-        variant={isMobile ? "temporary" : "default"}
+        variant={isMobile ? 'temporary' : 'default'}
         collapsible
         collapsed={sidebarCollapsed}
         elevation={2}
@@ -57,11 +57,11 @@ export function AppLayout() {
           logo={
             <div
               style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "var(--space-sm)",
-                fontWeight: "bold",
-                fontSize: "var(--font-size-lg)",
+                display: 'flex',
+                alignItems: 'center',
+                gap: 'var(--space-sm)',
+                fontWeight: 'bold',
+                fontSize: 'var(--font-size-lg)',
               }}
             >
               <SidebarToggle
@@ -70,7 +70,7 @@ export function AppLayout() {
                 size="md"
                 variant="minimal"
                 iconType="hamburger"
-                style={{ marginRight: "var(--space-sm)" }}
+                style={{ marginRight: 'var(--space-sm)' }}
               />
               <span>🚀</span>
               <span>Aurora UI</span>
@@ -79,9 +79,9 @@ export function AppLayout() {
           actions={
             <div
               style={{
-                display: "flex",
-                gap: "var(--space-sm)",
-                alignItems: "center",
+                display: 'flex',
+                gap: 'var(--space-sm)',
+                alignItems: 'center',
               }}
             >
               <ThemeToggle variant="icon" size="md" />
@@ -104,9 +104,9 @@ export function AppLayout() {
           elevation={1}
           copyright="Aurora UI © 2025"
           links={[
-            { label: "Privacy Policy", href: "/privacy" },
-            { label: "Terms of Service", href: "/terms" },
-            { label: "Support", href: "/support" },
+            { label: 'Privacy Policy', href: '/privacy' },
+            { label: 'Terms of Service', href: '/terms' },
+            { label: 'Support', href: '/support' },
           ]}
         />
       </Layout>

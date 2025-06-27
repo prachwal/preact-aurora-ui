@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/preact";
+import type { Meta, StoryObj } from '@storybook/preact';
 
-import { Content } from "./Content";
+import { Content } from './Content';
 
 const meta: Meta = {
-  title: "Dashboard/Content",
+  title: 'Dashboard/Content',
   component: Content,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
 };
 export default meta;
 
@@ -14,7 +14,7 @@ type Story = StoryObj<typeof Content>;
 export const Default: Story = {
   render: () => (
     <Content>
-      <div style={{ padding: 32, background: "#f5f5f5", borderRadius: 8 }}>
+      <div style={{ padding: 32, background: '#f5f5f5', borderRadius: 8 }}>
         Main dashboard content
       </div>
     </Content>

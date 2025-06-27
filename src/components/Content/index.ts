@@ -1,2 +1,2 @@
-export type { ContentProps } from "./Content";
-export { Content } from "./Content";
+export type { ContentProps } from './Content';
+export { Content } from './Content';

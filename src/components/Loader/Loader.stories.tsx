@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/preact";
+import type { Meta, StoryObj } from '@storybook/preact';
 
-import { Loader } from "./Loader";
+import { Loader } from './Loader';
 
 const meta: Meta = {
-  title: "Dashboard/Loader",
+  title: 'Dashboard/Loader',
   component: Loader,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
 };
 export default meta;
 

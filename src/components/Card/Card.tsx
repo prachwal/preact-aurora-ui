@@ -1,7 +1,7 @@
-import type { ComponentChildren } from "preact";
-import type { JSX } from "preact/jsx-runtime";
+import type { ComponentChildren } from 'preact';
+import type { JSX } from 'preact/jsx-runtime';
 
-import styles from "./Card.module.scss";
+import styles from './Card.module.scss';
 
 export interface CardProps {
   children?: ComponentChildren;
@@ -10,12 +10,12 @@ export interface CardProps {
   title?: string;
   subtitle?: string;
   actions?: ComponentChildren;
-  "aria-label"?: string;
+  'aria-label'?: string;
 
   // Enhanced props for flexibility
-  variant?: "default" | "outlined" | "elevated" | "filled";
+  variant?: 'default' | 'outlined' | 'elevated' | 'filled';
   elevation?: 0 | 1 | 2 | 3 | 4 | 8 | 12 | 16 | 24;
-  padding?: "none" | "sm" | "md" | "lg";
+  padding?: 'none' | 'sm' | 'md' | 'lg';
   hoverable?: boolean;
   clickable?: boolean;
   onClick?: () => void;
@@ -34,15 +34,15 @@ export interface CardProps {
  */
 export function Card({
   children,
-  className = "",
+  className = '',
   style,
   title,
   subtitle,
   actions,
-  "aria-label": ariaLabel = "Kafelek",
-  variant = "default",
+  'aria-label': ariaLabel = 'Kafelek',
+  variant = 'default',
   elevation = 1,
-  padding = "md",
+  padding = 'md',
   hoverable = false,
   clickable = false,
   onClick,
@@ -53,13 +53,13 @@ export function Card({
     styles[`card--variant-${variant}`],
     styles[`card--elevation-${elevation}`],
     styles[`card--padding-${padding}`],
-    hoverable ? styles["card--hoverable"] : "",
-    clickable ? styles["card--clickable"] : "",
-    loading ? styles["card--loading"] : "",
+    hoverable ? styles['card--hoverable'] : '',
+    clickable ? styles['card--clickable'] : '',
+    loading ? styles['card--loading'] : '',
     className,
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   const handleClick = () => {
     if (clickable && onClick && !loading) {
@@ -73,7 +73,7 @@ export function Card({
       style={style}
       aria-label={ariaLabel}
       onClick={handleClick}
-      role={clickable ? "button" : undefined}
+      role={clickable ? 'button' : undefined}
       tabIndex={clickable ? 0 : undefined}
       data-loading={loading}
     >

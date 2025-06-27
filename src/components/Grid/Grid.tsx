@@ -1,7 +1,7 @@
-import type { ComponentChildren } from "preact";
-import type { JSX } from "preact/jsx-runtime";
+import type { ComponentChildren } from 'preact';
+import type { JSX } from 'preact/jsx-runtime';
 
-import styles from "./Grid.module.scss";
+import styles from './Grid.module.scss';
 
 export interface GridProps {
   children?: ComponentChildren;
@@ -13,8 +13,8 @@ export interface GridProps {
   columns?: number | string;
   responsive?: boolean;
   gutter?: number | [number, number];
-  justify?: "start" | "center" | "end" | "between" | "around";
-  align?: "start" | "center" | "end" | "stretch";
+  justify?: 'start' | 'center' | 'end' | 'between' | 'around';
+  align?: 'start' | 'center' | 'end' | 'stretch';
 }
 
 /**
@@ -28,31 +28,31 @@ export interface GridProps {
  */
 export function Grid({
   children,
-  className = "",
+  className = '',
   style,
   gap,
   columns = 12,
   responsive = true,
   gutter,
-  justify = "start",
-  align = "stretch",
+  justify = 'start',
+  align = 'stretch',
 }: GridProps) {
   const classes = [
     styles.grid,
-    responsive ? styles["grid--responsive"] : "",
+    responsive ? styles['grid--responsive'] : '',
     styles[`grid--justify-${justify}`],
     styles[`grid--align-${align}`],
     className,
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   const gridStyle: JSX.CSSProperties = {
     ...style,
   };
 
   // Handle columns
-  if (typeof columns === "number") {
+  if (typeof columns === 'number') {
     gridStyle.gridTemplateColumns = `repeat(${columns}, 1fr)`;
   } else {
     gridStyle.gridTemplateColumns = columns;

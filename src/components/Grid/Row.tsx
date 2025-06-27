@@ -1,14 +1,14 @@
-import type { ComponentChildren } from "preact";
-import type { JSX } from "preact/jsx-runtime";
+import type { ComponentChildren } from 'preact';
+import type { JSX } from 'preact/jsx-runtime';
 
-import styles from "./Row.module.scss";
+import styles from './Row.module.scss';
 
 export interface RowProps {
   children?: ComponentChildren;
   className?: string;
   style?: JSX.CSSProperties;
-  align?: "start" | "center" | "end" | "stretch";
-  justify?: "start" | "center" | "end" | "between" | "around";
+  align?: 'start' | 'center' | 'end' | 'stretch';
+  justify?: 'start' | 'center' | 'end' | 'between' | 'around';
   gap?: string;
 }
 
@@ -17,22 +17,17 @@ export interface RowProps {
  */
 export function Row({
   children,
-  className = "",
+  className = '',
   style,
-  align = "stretch",
-  justify = "start",
+  align = 'stretch',
+  justify = 'start',
   gap,
 }: RowProps) {
   return (
     <div
-      className={[
-        styles.row,
-        styles[`align-${align}`],
-        styles[`justify-${justify}`],
-        className,
-      ]
+      className={[styles.row, styles[`align-${align}`], styles[`justify-${justify}`], className]
         .filter(Boolean)
-        .join(" ")}
+        .join(' ')}
       style={{ ...style, ...(gap ? { gap } : {}) }}
       role="row"
     >

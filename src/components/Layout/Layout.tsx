@@ -1,17 +1,17 @@
-import type { ComponentChildren, JSX } from "preact";
+import type { ComponentChildren, JSX } from 'preact';
 
-import styles from "./Layout.module.scss";
+import styles from './Layout.module.scss';
 
 export interface LayoutProps {
   children: ComponentChildren;
   className?: string;
   style?: JSX.CSSProperties;
-  direction?: "horizontal" | "vertical";
+  direction?: 'horizontal' | 'vertical';
   fullHeight?: boolean;
-  variant?: "default" | "dashboard" | "app" | "minimal";
-  padding?: boolean | "none" | "sm" | "md" | "lg" | "xl";
-  gap?: "none" | "sm" | "md" | "lg" | "xl";
-  overflow?: "hidden" | "auto" | "visible";
+  variant?: 'default' | 'dashboard' | 'app' | 'minimal';
+  padding?: boolean | 'none' | 'sm' | 'md' | 'lg' | 'xl';
+  gap?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
+  overflow?: 'hidden' | 'auto' | 'visible';
 }
 
 /**
@@ -25,32 +25,30 @@ export interface LayoutProps {
  */
 export function Layout({
   children,
-  className = "",
+  className = '',
   style,
-  direction = "vertical",
+  direction = 'vertical',
   fullHeight = true,
-  variant = "default",
+  variant = 'default',
   padding = false,
-  gap = "none",
-  overflow = "hidden",
+  gap = 'none',
+  overflow = 'hidden',
 }: LayoutProps) {
   const paddingClass =
-    padding !== false
-      ? `layout--padding-${typeof padding === "boolean" ? "md" : padding}`
-      : "";
+    padding !== false ? `layout--padding-${typeof padding === 'boolean' ? 'md' : padding}` : '';
 
   const classes = [
     styles.layout,
     styles[`layout--${direction}`],
     styles[`layout--variant-${variant}`],
-    fullHeight ? styles["layout--fullHeight"] : "",
-    paddingClass ? styles[paddingClass] : "",
-    gap !== "none" ? styles[`layout--gap-${gap}`] : "",
-    overflow !== "hidden" ? styles[`layout--overflow-${overflow}`] : "",
+    fullHeight ? styles['layout--fullHeight'] : '',
+    paddingClass ? styles[paddingClass] : '',
+    gap !== 'none' ? styles[`layout--gap-${gap}`] : '',
+    overflow !== 'hidden' ? styles[`layout--overflow-${overflow}`] : '',
     className,
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   return (
     <div className={classes} style={style}>

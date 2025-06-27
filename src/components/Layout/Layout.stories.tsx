@@ -1,28 +1,20 @@
-import { Layout } from "./Layout";
+import { Layout } from './Layout';
 
 export default {
-  title: "Dashboard/Layout",
+  title: 'Dashboard/Layout',
   component: Layout,
   parameters: {
     docs: {
       description: {
         component:
-          "Główny kontener layoutu dashboardu. Zapewnia elastyczny układ (flex lub grid), obsługuje kierunek, pełną wysokość oraz przekazuje style i klasy.",
+          'Główny kontener layoutu dashboardu. Zapewnia elastyczny układ (flex lub grid), obsługuje kierunek, pełną wysokość oraz przekazuje style i klasy.',
       },
     },
   },
 };
 
-const Box = ({
-  color = "#eee",
-  children,
-}: {
-  color?: string;
-  children: any;
-}) => (
-  <div style={{ background: color, padding: 16, borderRadius: 8 }}>
-    {children}
-  </div>
+const Box = ({ color = '#eee', children }: { color?: string; children: any }) => (
+  <div style={{ background: color, padding: 16, borderRadius: 8 }}>{children}</div>
 );
 
 export const Default = () => (
@@ -41,7 +33,7 @@ export const Horizontal = () => (
 );
 
 export const CustomClassAndStyle = () => (
-  <Layout className="custom-class" style={{ border: "2px dashed #888" }}>
+  <Layout className="custom-class" style={{ border: '2px dashed #888' }}>
     <Box>Custom class & style</Box>
   </Layout>
 );

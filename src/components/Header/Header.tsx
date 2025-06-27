@@ -1,7 +1,7 @@
-import type { ComponentChildren } from "preact";
-import type { JSX } from "preact/jsx-runtime";
+import type { ComponentChildren } from 'preact';
+import type { JSX } from 'preact/jsx-runtime';
 
-import styles from "./Header.module.scss";
+import styles from './Header.module.scss';
 
 export interface HeaderProps {
   children?: ComponentChildren;
@@ -10,8 +10,8 @@ export interface HeaderProps {
   logo?: preact.VNode;
   nav?: preact.VNode;
   actions?: preact.VNode;
-  "aria-label"?: string;
-  variant?: "default" | "compact" | "prominent" | "minimal";
+  'aria-label'?: string;
+  variant?: 'default' | 'compact' | 'prominent' | 'minimal';
   elevation?: 0 | 1 | 2 | 3 | 4;
   sticky?: boolean;
   borderless?: boolean;
@@ -27,13 +27,13 @@ export interface HeaderProps {
  */
 export function Header({
   children,
-  className = "",
+  className = '',
   style,
   logo,
   nav,
   actions,
-  "aria-label": ariaLabel = "Header",
-  variant = "default",
+  'aria-label': ariaLabel = 'Header',
+  variant = 'default',
   elevation = 1,
   sticky = false,
   borderless = false,
@@ -42,20 +42,15 @@ export function Header({
     styles.header,
     styles[`header--variant-${variant}`],
     styles[`header--elevation-${elevation}`],
-    sticky ? styles["header--sticky"] : "",
-    borderless ? styles["header--borderless"] : "",
+    sticky ? styles['header--sticky'] : '',
+    borderless ? styles['header--borderless'] : '',
     className,
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   return (
-    <header
-      className={classes}
-      style={style}
-      aria-label={ariaLabel}
-      role="banner"
-    >
+    <header className={classes} style={style} aria-label={ariaLabel} role="banner">
       {logo && <div className={styles.logo}>{logo}</div>}
       {nav && (
         <nav className={styles.nav} aria-label="Header navigation">

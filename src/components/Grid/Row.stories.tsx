@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/preact";
+import type { Meta, StoryObj } from '@storybook/preact';
 
-import { Row } from "./Row";
-import { Col } from "./Col";
+import { Row } from './Row';
+import { Col } from './Col';
 
 const meta: Meta = {
-  title: "Dashboard/Row",
+  title: 'Dashboard/Row',
   component: Row,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
 };
 export default meta;
 

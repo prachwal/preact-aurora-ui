@@ -1,35 +1,29 @@
-import { render, screen } from "@testing-library/preact";
-import { describe, it, expect } from "vitest";
+import { render, screen } from '@testing-library/preact';
+import { describe, it, expect } from 'vitest';
 
-import { PageHeader } from "./PageHeader";
-import "@testing-library/jest-dom";
+import { PageHeader } from './PageHeader';
+import '@testing-library/jest-dom';
 
-describe("PageHeader", () => {
-  it("renders title", () => {
+describe('PageHeader', () => {
+  it('renders title', () => {
     render(<PageHeader title="Dashboard" />);
-    expect(screen.getByText("Dashboard")).toBeInTheDocument();
+    expect(screen.getByText('Dashboard')).toBeInTheDocument();
   });
 
-  it("renders subtitle", () => {
+  it('renders subtitle', () => {
     render(<PageHeader title="T" subtitle="Sub" />);
-    expect(screen.getByText("Sub")).toBeInTheDocument();
+    expect(screen.getByText('Sub')).toBeInTheDocument();
   });
 
-  it("renders actions", () => {
+  it('renders actions', () => {
     render(<PageHeader title="T" actions={<button>Act</button>} />);
-    expect(screen.getByText("Act")).toBeInTheDocument();
+    expect(screen.getByText('Act')).toBeInTheDocument();
   });
 
-  it("applies className and style", () => {
-    render(
-      <PageHeader
-        title="T"
-        className="custom"
-        style={{ background: "#eee" }}
-      />,
-    );
-    const header = screen.getByLabelText("Page header");
-    expect(header).toHaveClass("custom");
-    expect(header).toHaveStyle({ background: "#eee" });
+  it('applies className and style', () => {
+    render(<PageHeader title="T" className="custom" style={{ background: '#eee' }} />);
+    const header = screen.getByLabelText('Page header');
+    expect(header).toHaveClass('custom');
+    expect(header).toHaveStyle({ background: '#eee' });
   });
 });

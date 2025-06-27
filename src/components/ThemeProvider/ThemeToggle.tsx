@@ -1,17 +1,17 @@
-import { useTheme } from "./ThemeProvider";
-import styles from "./ThemeToggle.module.scss";
+import { useTheme } from './ThemeProvider';
+import styles from './ThemeToggle.module.scss';
 
 export interface ThemeToggleProps {
-  variant?: "icon" | "button";
-  size?: "sm" | "md" | "lg";
+  variant?: 'icon' | 'button';
+  size?: 'sm' | 'md' | 'lg';
   showLabel?: boolean;
   className?: string;
   style?: preact.JSX.CSSProperties;
 }
 
 export function ThemeToggle({
-  variant = "icon",
-  size = "md",
+  variant = 'icon',
+  size = 'md',
   showLabel = false,
   className,
   style,
@@ -19,13 +19,13 @@ export function ThemeToggle({
   const { theme, toggleMode, isDark } = useTheme();
 
   const getIcon = () => {
-    if (theme.mode === "auto") return "🌗";
-    return isDark ? "🌙" : "☀️";
+    if (theme.mode === 'auto') return '🌗';
+    return isDark ? '🌙' : '☀️';
   };
 
   const getLabel = () => {
-    if (theme.mode === "auto") return "Auto";
-    return isDark ? "Dark" : "Light";
+    if (theme.mode === 'auto') return 'Auto';
+    return isDark ? 'Dark' : 'Light';
   };
 
   const classNames = [
@@ -35,7 +35,7 @@ export function ThemeToggle({
     className,
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   return (
     <button
@@ -43,11 +43,11 @@ export function ThemeToggle({
       className={classNames}
       onClick={toggleMode}
       style={style}
-      aria-label={`Switch to ${isDark ? "light" : "dark"} theme`}
+      aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
       title={`Current theme: ${getLabel()}`}
     >
       <span className={styles.icon}>{getIcon()}</span>
-      {variant === "button" && showLabel && <span>{getLabel()}</span>}
+      {variant === 'button' && showLabel && <span>{getLabel()}</span>}
     </button>
   );
 }

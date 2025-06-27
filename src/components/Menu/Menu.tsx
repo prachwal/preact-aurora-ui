@@ -1,7 +1,7 @@
-import type { ComponentChildren } from "preact";
-import type { JSX } from "preact/jsx-runtime";
+import type { ComponentChildren } from 'preact';
+import type { JSX } from 'preact/jsx-runtime';
 
-import styles from "./Menu.module.scss";
+import styles from './Menu.module.scss';
 
 export interface MenuItem {
   key: string;
@@ -18,7 +18,7 @@ export interface MenuProps {
   style?: JSX.CSSProperties;
   selectedKey?: string;
   onSelect?: (key: string) => void;
-  "aria-label"?: string;
+  'aria-label'?: string;
 }
 
 /**
@@ -26,29 +26,25 @@ export interface MenuProps {
  */
 export function Menu({
   items,
-  className = "",
+  className = '',
   style,
   selectedKey,
   onSelect,
-  "aria-label": ariaLabel = "Menu nawigacyjne",
+  'aria-label': ariaLabel = 'Menu nawigacyjne',
 }: MenuProps) {
   return (
-    <nav
-      className={`${styles.menu} ${className}`.trim()}
-      style={style}
-      aria-label={ariaLabel}
-    >
+    <nav className={`${styles.menu} ${className}`.trim()} style={style} aria-label={ariaLabel}>
       <ul className={styles.list} role="menu">
         {items.map((item) => (
           <li
             key={item.key}
             className={[
               styles.item,
-              item.disabled ? styles.disabled : "",
-              selectedKey === item.key ? styles.selected : "",
+              item.disabled ? styles.disabled : '',
+              selectedKey === item.key ? styles.selected : '',
             ]
               .filter(Boolean)
-              .join(" ")}
+              .join(' ')}
             role="menuitem"
             aria-disabled={item.disabled}
             aria-current={selectedKey === item.key}

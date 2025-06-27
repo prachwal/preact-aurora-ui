@@ -1,15 +1,15 @@
-import type { JSX } from "preact/jsx-runtime";
+import type { JSX } from 'preact/jsx-runtime';
 
-import styles from "./SidebarToggle.module.scss";
+import styles from './SidebarToggle.module.scss';
 
 export interface SidebarToggleProps {
   collapsed: boolean;
   onToggle: () => void;
   className?: string;
   style?: JSX.CSSProperties;
-  size?: "sm" | "md" | "lg";
-  variant?: "default" | "minimal" | "outlined" | "filled";
-  iconType?: "hamburger" | "arrow" | "chevron";
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'default' | 'minimal' | 'outlined' | 'filled';
+  iconType?: 'hamburger' | 'arrow' | 'chevron';
 }
 
 /**
@@ -24,26 +24,26 @@ export interface SidebarToggleProps {
 export function SidebarToggle({
   collapsed,
   onToggle,
-  className = "",
+  className = '',
   style,
-  size = "md",
-  variant = "default",
-  iconType = "hamburger",
+  size = 'md',
+  variant = 'default',
+  iconType = 'hamburger',
 }: SidebarToggleProps) {
   const getIcon = () => {
     switch (iconType) {
-      case "arrow":
-        return collapsed ? "→" : "←";
-      case "chevron":
-        return collapsed ? "❯" : "❮";
-      case "hamburger":
+      case 'arrow':
+        return collapsed ? '→' : '←';
+      case 'chevron':
+        return collapsed ? '❯' : '❮';
+      case 'hamburger':
       default:
-        return "☰";
+        return '☰';
     }
   };
 
   const getLabel = () => {
-    return collapsed ? "Menu" : "Menu";
+    return collapsed ? 'Menu' : 'Menu';
   };
   const classes = [
     styles.sidebarToggle,
@@ -52,7 +52,7 @@ export function SidebarToggle({
     className,
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   return (
     <button
