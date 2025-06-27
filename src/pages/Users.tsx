@@ -1,6 +1,7 @@
 import { Grid, Col } from '../components/Grid';
 import { Card } from '../components/Card';
 import { PageHeader } from '../components/PageHeader';
+import { Button } from '../components/Button';
 
 export function Users() {
   return (
@@ -11,29 +12,8 @@ export function Users() {
         subtitle="Manage your users, roles, and permissions."
         actions={
           <div style={{ display: 'flex', gap: 'var(--space-sm)' }}>
-            <button
-              style={{
-                background: 'transparent',
-                border: '1px solid var(--color-outline)',
-                borderRadius: '8px',
-                padding: 'var(--space-sm) var(--space-md)',
-                cursor: 'pointer',
-              }}
-            >
-              Import Users
-            </button>
-            <button
-              style={{
-                background: 'var(--color-primary)',
-                color: 'var(--color-on-primary)',
-                border: 'none',
-                borderRadius: '8px',
-                padding: 'var(--space-sm) var(--space-md)',
-                cursor: 'pointer',
-              }}
-            >
-              Add User
-            </button>
+            <Button variant="outlined">Import Users</Button>
+            <Button variant="filled">Add User</Button>
           </div>
         }
         style={{ marginBottom: 'var(--space-lg)' }}
@@ -232,17 +212,9 @@ export function Users() {
                     >
                       {user.status}
                     </span>
-                    <button
-                      style={{
-                        background: 'transparent',
-                        border: '1px solid var(--color-outline)',
-                        borderRadius: '6px',
-                        padding: 'var(--space-xs) var(--space-sm)',
-                        cursor: 'pointer',
-                      }}
-                    >
+                    <Button variant="outlined" size="small">
                       Edit
-                    </button>
+                    </Button>
                   </div>
                 </div>
               ))}

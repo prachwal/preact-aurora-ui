@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/preact';
 import { describe, it, expect } from 'vitest';
 
+import { Button } from '../Button';
+
 import { PageHeader } from './PageHeader';
 import '@testing-library/jest-dom';
 
@@ -16,7 +18,7 @@ describe('PageHeader', () => {
   });
 
   it('renders actions', () => {
-    render(<PageHeader title="T" actions={<button>Act</button>} />);
+    render(<PageHeader title="T" actions={<Button>Act</Button>} />);
     expect(screen.getByText('Act')).toBeInTheDocument();
   });
 

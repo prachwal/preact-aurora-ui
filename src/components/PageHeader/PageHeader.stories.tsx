@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/preact';
 
+import { Button } from '../Button';
+
 import { PageHeader } from './PageHeader';
 
 const meta: Meta = {
@@ -17,7 +19,11 @@ export const Default: Story = {
 
 export const WithActions: Story = {
   render: () => (
-    <PageHeader title="Users" subtitle="Manage your users" actions={<button>Invite</button>} />
+    <PageHeader
+      title="Users"
+      subtitle="Manage your users"
+      actions={<Button variant="filled">Invite</Button>}
+    />
   ),
 };
 

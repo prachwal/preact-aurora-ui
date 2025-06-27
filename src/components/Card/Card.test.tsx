@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/preact';
 import { describe, it, expect } from 'vitest';
 
+import { Button } from '../Button';
+
 import { Card } from './Card';
 import '@testing-library/jest-dom';
 
@@ -11,7 +13,7 @@ describe('Card', () => {
   });
   it('renders title, subtitle, actions', () => {
     render(
-      <Card title="T" subtitle="S" actions={<button>Act</button>}>
+      <Card title="T" subtitle="S" actions={<Button>Act</Button>}>
         X
       </Card>,
     );

@@ -1,6 +1,7 @@
 import { Grid, Col } from '../components/Grid';
 import { Card } from '../components/Card';
 import { PageHeader } from '../components/PageHeader';
+import { Button } from '../components/Button';
 
 export function Analytics() {
   return (
@@ -11,29 +12,8 @@ export function Analytics() {
         subtitle="Deep insights into your business performance and trends."
         actions={
           <div style={{ display: 'flex', gap: 'var(--space-sm)' }}>
-            <button
-              style={{
-                background: 'transparent',
-                border: '1px solid var(--color-outline)',
-                borderRadius: '8px',
-                padding: 'var(--space-sm) var(--space-md)',
-                cursor: 'pointer',
-              }}
-            >
-              Export Report
-            </button>
-            <button
-              style={{
-                background: 'var(--color-primary)',
-                color: 'var(--color-on-primary)',
-                border: 'none',
-                borderRadius: '8px',
-                padding: 'var(--space-sm) var(--space-md)',
-                cursor: 'pointer',
-              }}
-            >
-              Custom Report
-            </button>
+            <Button variant="outlined">Export Report</Button>
+            <Button variant="filled">Custom Report</Button>
           </div>
         }
         style={{ marginBottom: 'var(--space-lg)' }}

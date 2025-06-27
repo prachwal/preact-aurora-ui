@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/preact';
 
+import { Button } from '../Button';
+
 import { Sidebar } from './Sidebar';
 
 const meta: Meta = {
@@ -28,7 +30,11 @@ export const Default: Story = {
           <li>Settings</li>
         </ul>
       }
-      actions={<button>Logout</button>}
+      actions={
+        <Button variant="text" size="small">
+          Logout
+        </Button>
+      }
     />
   ),
 };

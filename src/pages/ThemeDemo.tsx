@@ -2,6 +2,7 @@ import { Grid, Col } from '../components/Grid';
 import { Card } from '../components/Card';
 import { PageHeader } from '../components/PageHeader';
 import { ThemeToggle, useTheme } from '../components';
+import { Button } from '../components/Button';
 
 export function ThemeDemo() {
   const { theme, isDark } = useTheme();
@@ -209,30 +210,8 @@ export function ThemeDemo() {
                 alignItems: 'center',
               }}
             >
-              <button
-                style={{
-                  padding: 'var(--space-sm) var(--space-lg)',
-                  backgroundColor: 'var(--color-primary)',
-                  color: 'var(--color-on-primary)',
-                  border: 'none',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                }}
-              >
-                Primary Button
-              </button>
-              <button
-                style={{
-                  padding: 'var(--space-sm) var(--space-lg)',
-                  backgroundColor: 'transparent',
-                  color: 'var(--color-primary)',
-                  border: '1px solid var(--color-primary)',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                }}
-              >
-                Outline Button
-              </button>
+              <Button variant="filled">Primary Button</Button>
+              <Button variant="outlined">Outline Button</Button>
               <input
                 type="text"
                 placeholder="Input field"

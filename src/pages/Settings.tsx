@@ -2,6 +2,7 @@ import { Grid, Col } from '../components/Grid';
 import { Card } from '../components/Card';
 import { PageHeader } from '../components/PageHeader';
 import { ThemeToggle } from '../components';
+import { Button } from '../components/Button';
 
 export function Settings() {
   return (
@@ -404,29 +405,8 @@ export function Settings() {
               gap: 'var(--space-sm)',
             }}
           >
-            <button
-              style={{
-                background: 'transparent',
-                border: '1px solid var(--color-outline)',
-                borderRadius: '8px',
-                padding: 'var(--space-sm) var(--space-lg)',
-                cursor: 'pointer',
-              }}
-            >
-              Reset
-            </button>
-            <button
-              style={{
-                background: 'var(--color-primary)',
-                color: 'var(--color-on-primary)',
-                border: 'none',
-                borderRadius: '8px',
-                padding: 'var(--space-sm) var(--space-lg)',
-                cursor: 'pointer',
-              }}
-            >
-              Save Changes
-            </button>
+            <Button variant="outlined">Reset</Button>
+            <Button variant="filled">Save Changes</Button>
           </div>
         </Col>
       </Grid>

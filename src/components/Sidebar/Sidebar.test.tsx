@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/preact';
 import { describe, it, expect } from 'vitest';
 
+import { Button } from '../Button';
+
 import { Sidebar } from './Sidebar';
 import '@testing-library/jest-dom';
 
@@ -13,7 +15,7 @@ describe('Sidebar', () => {
             <li>NavItem</li>
           </ul>
         }
-        actions={<button data-testid="action">Action</button>}
+        actions={<Button data-testid="action">Action</Button>}
       >
         <div data-testid="children">Children</div>
       </Sidebar>,

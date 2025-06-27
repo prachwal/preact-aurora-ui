@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/preact';
 import { useState } from 'preact/hooks';
 
+import { Button } from '../Button';
+
 import { Breadcrumbs } from './Breadcrumbs';
 import type { BreadcrumbItem } from './Breadcrumbs';
 
@@ -85,12 +87,21 @@ export const DynamicPath: Story = {
     return (
       <div>
         <Breadcrumbs items={path} />
-        <button onClick={() => setPath(path.slice(0, -1))} disabled={path.length <= 1}>
+        <Button
+          onClick={() => setPath(path.slice(0, -1))}
+          disabled={path.length <= 1}
+          variant="outlined"
+          size="small"
+        >
           Remove last
-        </button>
-        <button onClick={() => setPath([...path, { label: `Extra ${path.length + 1}` }])}>
+        </Button>
+        <Button
+          onClick={() => setPath([...path, { label: `Extra ${path.length + 1}` }])}
+          variant="filled"
+          size="small"
+        >
           Add
-        </button>
+        </Button>
       </div>
     );
   },

@@ -279,17 +279,9 @@ export function Dashboard() {
             elevation={2}
             padding="lg"
             actions={
-              <button
-                style={{
-                  background: 'transparent',
-                  border: 'none',
-                  color: 'var(--color-primary)',
-                  cursor: 'pointer',
-                  fontSize: 'var(--font-size-sm)',
-                }}
-              >
+              <Button variant="text" size="small">
                 View All
-              </button>
+              </Button>
             }
           >
             <div
