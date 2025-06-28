@@ -246,12 +246,23 @@ Aby stworzyć w pełni responsywny layout typu dashboard zgodny z Material Desig
 **Dokumentacja:** [MD3 Color System Plan](./PLAN_MD3_COLOR_SYSTEM.md) ✅  
 **Testy:** Integracja z existing components verified ✅
 
-### 🚧 W kolejnej iteracji:
+### 🚧 W kolejnej iteracji - Phase 3:
 
-- [ ] **Theme Generator** - narzędzie do generowania custom MD3 palettes
-- [ ] **Component Migration** - aktualizacja wszystkich komponentów do MD3 tokenów
-- [ ] **Storybook Integration** - dokumentacja kolorów w Storybook
-- [ ] **Design Tokens Export** - eksport do JSON/innych formatów
+- [ ] **Advanced Form Components** - TextField, Select, Checkbox, Radio, Switch, Slider
+  - **Details**: [checklists/ADVANCED_COMPONENTS.md](./checklists/ADVANCED_COMPONENTS.md)
+  - **Implementation Plans**: [components/](./components/) folder (individual PLAN.md files)
+
+- [ ] **Communication Components** - Dialog, Snackbar, Tooltip, Badge
+  - **Details**: [checklists/ADVANCED_COMPONENTS.md](./checklists/ADVANCED_COMPONENTS.md)
+  - **Implementation Plans**: [components/](./components/) folder (individual PLAN.md files)
+
+- [ ] **Enhanced Design System** - Typography tokens, animation system, enhanced theming
+  - **Details**: [design-system/README.md](./design-system/README.md)
+
+- [ ] **Publication Readiness** - API reference, migration guides, contribution docs
+  - **API Reference**: [API_REFERENCE.md](./API_REFERENCE.md) ✅
+  - **Migration Guide**: [MIGRATION_GUIDE.md](./MIGRATION_GUIDE.md) ✅
+  - **Contributing Guide**: [CONTRIBUTING.md](./CONTRIBUTING.md) ✅
 
 ---
 
