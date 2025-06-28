@@ -3,6 +3,12 @@ import preact from '@preact/preset-vite';
 
 export default defineConfig({
   plugins: [preact()],
+  css: {
+    modules: {
+      // Use simple class names in test environment for easier testing
+      generateScopedName: '[name]--[local]',
+    },
+  },
   test: {
     environment: 'jsdom',
     globals: true,

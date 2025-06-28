@@ -267,7 +267,7 @@ export function Tooltip({
     : null;
 
   // Ensure portal container exists before rendering
-  const shouldRenderTooltip = open && (!portal || portalContainer);
+  const shouldRenderTooltip = open && !disabled && (!portal || portalContainer);
 
   return (
     <>
