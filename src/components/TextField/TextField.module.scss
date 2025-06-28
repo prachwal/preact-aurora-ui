@@ -1,0 +1,419 @@
+@use "../styles/colors.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/spacing.scss" as *;
+@use "../styles/breakpoints.scss" as *;
+@use "../styles/mixins-enhanced.scss" as *;
+
+// TextField Material Design 3 Variables
+$textfield-font-family: var(--font-family-base);
+$textfield-font-size: var(--font-size-base);
+$textfield-line-height: var(--line-height-normal);
+$textfield-letter-spacing: var(--letter-spacing-normal);
+$textfield-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+// TextField border radius
+$textfield-border-radius: 4px;
+$textfield-border-radius-top: 4px 4px 0 0;
+
+// TextField heights
+$textfield-height-small: 40px;
+$textfield-height-medium: 48px;
+$textfield-height-large: 56px;
+
+// TextField padding
+$textfield-padding-x: var(--space-md);
+$textfield-label-spacing: var(--space-xs);
+
+// TextField border widths
+$textfield-border-width: 1px;
+$textfield-border-width-focused: 1px;
+
+// TextField colors (using CSS custom properties for theming)
+$textfield-background: var(--md-sys-color-surface-container-highest);
+$textfield-background-hover: var(--md-sys-color-on-surface);
+$textfield-background-disabled: var(--md-sys-color-on-surface);
+
+$textfield-border-color: var(--md-sys-color-outline);
+$textfield-border-color-hover: var(--md-sys-color-on-surface);
+$textfield-border-color-focused: var(--md-sys-color-primary);
+$textfield-border-color-error: var(--md-sys-color-error);
+
+$textfield-text-color: var(--md-sys-color-on-surface);
+$textfield-text-color-disabled: var(--md-sys-color-on-surface);
+$textfield-placeholder-color: var(--md-sys-color-on-surface-variant);
+
+$textfield-label-color: var(--md-sys-color-on-surface-variant);
+$textfield-label-color-focused: var(--md-sys-color-primary);
+$textfield-label-color-error: var(--md-sys-color-error);
+
+$textfield-helper-color: var(--md-sys-color-on-surface-variant);
+$textfield-helper-color-error: var(--md-sys-color-error);
+
+$textfield-icon-color: var(--md-sys-color-on-surface-variant);
+
+// Base TextField styles
+.textField {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-family: $textfield-font-family;
+  font-size: $textfield-font-size;
+  line-height: $textfield-line-height;
+  letter-spacing: $textfield-letter-spacing;
+
+  &--fullWidth {
+    width: 100%;
+  }
+
+  &--disabled {
+    opacity: 0.38;
+    pointer-events: none;
+  }
+}
+
+// Input container (background and border)
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  transition: $textfield-transition;
+
+  .textField--small & {
+    min-height: $textfield-height-small;
+  }
+
+  .textField--medium & {
+    min-height: $textfield-height-medium;
+  }
+
+  .textField--large & {
+    min-height: $textfield-height-large;
+  }
+}
+
+// Outlined variant
+.textField--outlined {
+  .inputContainer {
+    border: $textfield-border-width solid $textfield-border-color;
+    border-radius: $textfield-border-radius;
+    background-color: transparent;
+
+    &:hover:not(.textField--disabled &) {
+      border-color: $textfield-border-color-hover;
+    }
+  }
+
+  &.textField--focused .inputContainer {
+    border-color: $textfield-border-color-focused;
+    box-shadow: 0 0 0 1px $textfield-border-color-focused;
+  }
+
+  &.textField--error .inputContainer {
+    border-color: $textfield-border-color-error;
+  }
+}
+
+// Filled variant
+.textField--filled {
+  .inputContainer {
+    border: none;
+    border-bottom: $textfield-border-width solid $textfield-border-color;
+    border-radius: $textfield-border-radius-top;
+    background-color: $textfield-background;
+
+    &:hover:not(.textField--disabled &) {
+      background-color: $textfield-background-hover;
+      border-bottom-color: $textfield-border-color-hover;
+    }
+  }
+
+  &.textField--focused .inputContainer {
+    border-bottom-color: $textfield-border-color-focused;
+    box-shadow: 0 1px 0 0 $textfield-border-color-focused;
+  }
+
+  &.textField--error .inputContainer {
+    border-bottom-color: $textfield-border-color-error;
+  }
+}
+
+// Standard variant
+.textField--standard {
+  .inputContainer {
+    border: none;
+    border-bottom: $textfield-border-width solid $textfield-border-color;
+    border-radius: 0;
+    background-color: transparent;
+
+    &:hover:not(.textField--disabled &) {
+      border-bottom-color: $textfield-border-color-hover;
+    }
+  }
+
+  &.textField--focused .inputContainer {
+    border-bottom-color: $textfield-border-color-focused;
+    box-shadow: 0 1px 0 0 $textfield-border-color-focused;
+  }
+
+  &.textField--error .inputContainer {
+    border-bottom-color: $textfield-border-color-error;
+  }
+}
+
+// Input wrapper (contains label and input)
+.inputWrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: $textfield-padding-x;
+
+  .textField--withStartIcon & {
+    padding-left: var(--space-xs);
+  }
+
+  .textField--withEndIcon & {
+    padding-right: var(--space-xs);
+  }
+}
+
+// Label styles
+.label {
+  position: absolute;
+  top: 50%;
+  left: $textfield-padding-x;
+  transform: translateY(-50%);
+  color: $textfield-label-color;
+  font-size: $textfield-font-size;
+  line-height: 1;
+  pointer-events: none;
+  transition: $textfield-transition;
+  background-color: transparent;
+  padding: 0 4px;
+
+  .textField--withStartIcon & {
+    left: var(--space-xs);
+  }
+
+  &--floating {
+    top: 0;
+    transform: translateY(-50%) scale(0.75);
+    font-size: calc(#{$textfield-font-size} * 0.75);
+
+    .textField--outlined & {
+      background-color: var(--md-sys-color-surface);
+    }
+  }
+
+  &--required::after {
+    content: " *";
+    color: $textfield-label-color-error;
+  }
+
+  .textField--focused & {
+    color: $textfield-label-color-focused;
+  }
+
+  .textField--error & {
+    color: $textfield-label-color-error;
+  }
+}
+
+// Required indicator
+.requiredIndicator {
+  color: $textfield-label-color-error;
+  margin-left: 2px;
+}
+
+// Input element
+.input {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: $textfield-text-color;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+
+  // Minimal padding to maintain height consistency
+  padding-top: 4px;
+  padding-bottom: 4px;
+
+  &::placeholder {
+    color: $textfield-placeholder-color;
+    opacity: 1;
+  }
+
+  &:disabled {
+    color: $textfield-text-color-disabled;
+    cursor: not-allowed;
+  }
+
+  &--multiline {
+    resize: vertical;
+    min-height: 1.2em;
+  }
+}
+
+// Start icon
+.startIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--space-sm);
+  color: $textfield-icon-color;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+}
+
+// End icon container
+.endIcon {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-sm);
+  gap: var(--space-xs);
+}
+
+// Clear button
+.clearButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: $textfield-icon-color;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: $textfield-transition;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+
+  &:focus {
+    outline: 2px solid $textfield-border-color-focused;
+    outline-offset: 2px;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+}
+
+// Icon wrapper
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $textfield-icon-color;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+}
+
+// Supporting text (helper text and character count)
+.supportingText {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  margin-top: var(--space-xs);
+  padding: 0 $textfield-padding-x;
+  font-size: calc(#{$textfield-font-size} * 0.75);
+  line-height: 1.33;
+}
+
+// Helper text
+.helperText {
+  color: $textfield-helper-color;
+  flex: 1;
+
+  &--error {
+    color: $textfield-helper-color-error;
+  }
+}
+
+// Character count
+.characterCount {
+  color: $textfield-helper-color;
+  white-space: nowrap;
+  margin-left: auto;
+
+  &--overLimit {
+    color: $textfield-helper-color-error;
+  }
+}
+
+// Multiline specific styles
+.textField--multiline {
+  .inputContainer {
+    align-items: flex-start;
+  }
+
+  .inputWrapper {
+    padding-top: $textfield-padding-x;
+    padding-bottom: $textfield-padding-x;
+  }
+
+  .label {
+    top: $textfield-padding-x;
+    transform: none;
+
+    &--floating {
+      top: var(--space-xs);
+      transform: scale(0.75);
+    }
+  }
+
+  .input {
+    min-height: 1.5em;
+    padding-top: var(--space-sm);
+    padding-bottom: var(--space-sm);
+  }
+}
+
+// Size variants
+.textField--small {
+  font-size: calc(#{$textfield-font-size} * 0.875);
+
+  .inputWrapper {
+    padding: calc(#{$textfield-padding-x} * 0.75);
+  }
+
+  .label {
+    left: calc(#{$textfield-padding-x} * 0.75);
+  }
+
+  .supportingText {
+    padding: 0 calc(#{$textfield-padding-x} * 0.75);
+  }
+}
+
+.textField--large {
+  font-size: calc(#{$textfield-font-size} * 1.125);
+
+  .inputWrapper {
+    padding: calc(#{$textfield-padding-x} * 1.25);
+  }
+
+  .label {
+    left: calc(#{$textfield-padding-x} * 1.25);
+  }
+
+  .supportingText {
+    padding: 0 calc(#{$textfield-padding-x} * 1.25);
+  }
+}
