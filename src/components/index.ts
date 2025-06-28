@@ -1,6 +1,7 @@
 export * from './ExampleButton';
 export * from './Button';
 export * from './TextField';
+export * from './Checkbox';
 export * from './Snackbar';
 export * from './Layout';
 export * from './Header';
@@ -17,3 +18,4 @@ export * from './Navigation/Navigation';
 export * from './RouterBreadcrumbs/RouterBreadcrumbs';
 export * from './AppLayout/AppLayout';
 export * from './ThemeProvider';
+export * from './AdvancedComponents';
