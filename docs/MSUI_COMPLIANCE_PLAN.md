@@ -167,25 +167,33 @@ interface ProgressProps {
 
 ### 4. **Header Component** - MD3 App Bar
 
-**Obecny stan:** ⭐⭐⭐⭐ (dobry, ale może być bardziej zgodny z MD3)
+**Obecny stan:** ⭐⭐⭐⭐⭐ **UKOŃCZONE** ✅
 
-**MD3 App Bar dodatkowe props:**
+**MD3 App Bar enhancements - ZAIMPLEMENTOWANE:**
 
 ```typescript
 interface HeaderProps {
-  // Istniejące są OK
+  // Istniejące propsy (zachowane) ✅
+  logo?: preact.VNode;
+  nav?: preact.VNode;
+  actions?: preact.VNode;
+  variant?: 'default' | 'compact' | 'prominent' | 'minimal';
+  elevation?: 0 | 1 | 2 | 3 | 4;
+  sticky?: boolean;
+  borderless?: boolean;
 
-  // NOWE - MD3 App Bar props
+  // MD3 App Bar enhancements ✅
   scrollBehavior?: 'fixed' | 'scroll' | 'hide' | 'elevate';
   centerTitle?: boolean;
-
-  // Navigation
   navigationIcon?: ComponentChildren;
   onNavigationClick?: () => void;
-
-  // Action overflow
   moreActions?: MenuItem[];
+  scrollTarget?: HTMLElement | string;
+  scrollThreshold?: number;
 }
+```
+
+**Zachowana pełna backwards compatibility:** Wszystkie istniejące propsy działają bez zmian.
 ````
 
 ---
@@ -280,10 +288,14 @@ interface HeaderProps {
 
 ### Krok 4: Header App Bar enhancements
 
-- [ ] Scroll behaviors (hide, elevate)
-- [ ] Navigation icon support
-- [ ] Center title option
-- [ ] Action overflow menu
+- [x] **Scroll behaviors (hide, elevate)** ✅ UKOŃCZONE
+- [x] **Navigation icon support** ✅ UKOŃCZONE
+- [x] **Center title option** ✅ UKOŃCZONE
+- [x] **Action overflow menu** ✅ UKOŃCZONE
+- [x] **Custom scroll targets and thresholds** ✅ UKOŃCZONE
+- [x] **Enhanced accessibility** ✅ UKOŃCZONE
+- [x] **Comprehensive tests and Storybook** ✅ UKOŃCZONE
+- [x] **Backwards compatibility preserved** ✅ UKOŃCZONE
 
 ### Krok 5: Design Tokens System
 
@@ -414,6 +426,7 @@ interface BreadcrumbsProps {
 - **Button Component** ✅ UKOŃCZONY 2025-06-27
 - **Menu enhancements** ✅ UKOŃCZONY 2025-06-28
 - **Loader → MD3 Progress Indicators** ✅ UKOŃCZONY 2025-06-28
+- **Header → MD3 App Bar enhancements** ✅ UKOŃCZONY 2025-06-28
 
 ---
 
