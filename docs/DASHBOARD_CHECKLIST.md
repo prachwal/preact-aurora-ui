@@ -1,8 +1,32 @@
 # Dashboard – Czeklista komponentów (aktualizacja zgodna z MSUI)
 
-Aby stworzyć w pełni responsywny layout typu dashboard zgodny z Material Design 3 (MSUI) oraz instrukcjami SCSS, należy zaimplementować następujące komponenty (każdy w osobnym folderze wg wzorca):
+Aby stworzyć w pełni responsywny layout typu dashboard zgodny z Material Design 3 (MS## 🔄 FAZA 2B - KOMPONENTY DO ROZBUDOWY (ŚREDNI PRIORYTET)
 
-**Stan:** Faza 1 ✅ ukończona | Faza 2A ✅ ukończona | Faza 2B 🚧 w trakcie planowania
+### 1. Menu Component ✅ **UKOŃCZONY**
+
+- [x] **Menu → MD3 Menu enhancements** ✅ **UKOŃCZONY 2025-06-28**
+  - [x] Warianty: default, dropdown, context, navigation ✅
+  - [x] Submenu support z animacjami ✅
+  - [x] Dense variant, multiselect ✅
+  - [x] Badge i shortcut support ✅
+  - [x] Divider support ✅
+  - [x] Description support ✅
+  - [x] Enhanced keyboard navigation ✅
+  - [x] Proper accessibility (ARIA) ✅
+  - [x] 30 testów, wszystkie przechodzą ✅
+  - [x] 12 Storybook stories ✅
+  - [x] Backwards compatibility ✅
+
+**Priorytet:** ✅ UKOŃCZONY zgodnie z MD3  
+**Data ukończenia:** 2025-06-28 ✅
+
+---
+
+### Pozostałe komponenty do rozbudowy:
+
+### Rozbudowa istniejących komponentów zgodnie z MD3:raz instrukcjami SCSS, należy zaimplementować następujące komponenty (każdy w osobnym folderze wg wzorca):
+
+**Stan:** Faza 1 ✅ ukończona | Faza 2A ✅ ukończona | Faza 2B � w trakcie (Menu ✅ ukończony)
 
 ## Podstawowe komponenty layoutu (✅ GOTOWE - Faza 1)
 
@@ -93,15 +117,15 @@ Aby stworzyć w pełni responsywny layout typu dashboard zgodny z Material Desig
   - index.ts ✅
   - [Plan implementacji](./PLAN_CARD.md) ✅
 
-- [x] **Menu** ⭐⭐⭐  
-       Komponent menu (sidebar/topbar)
+- [x] **Menu** ⭐⭐⭐⭐⭐  
+       Komponent menu (sidebar/topbar) - w pełni zgodny z MD3
   - Menu.tsx ✅
   - Menu.module.scss ✅
   - Menu.test.tsx ✅
   - Menu.stories.tsx ✅
   - index.ts ✅
   - [Plan implementacji](./PLAN_MENU.md) ✅
-  - 🔄 [Plan rozbudowy MD3](./PLAN_MENU_MD3_ENHANCEMENTS.md) - do utworzenia
+  - ✅ [Plan rozbudowy MD3](./PLAN_MENU_MD3_ENHANCEMENTS.md) ✅ **UKOŃCZONY 2025-06-28**
 
 - [x] **Drawer / Modal** ⭐⭐⭐⭐  
        Panel wysuwany/modalny (opcjonalnie)
@@ -112,15 +136,19 @@ Aby stworzyć w pełni responsywny layout typu dashboard zgodny z Material Desig
   - index.ts ✅
   - [Plan implementacji](./PLAN_DRAWER.md) ✅
 
-- [x] **Loader / Spinner** ⭐⭐⭐  
-       Komponent ładowania
+- [x] **Loader / Spinner** ⭐⭐⭐⭐⭐  
+       Komponent ładowania - w pełni zgodny z MD3 Progress Indicators
   - Loader.tsx ✅
   - Loader.module.scss ✅
   - Loader.test.tsx ✅
   - Loader.stories.tsx ✅
+  - Progress.tsx ✅ NEW
+  - Progress.module.scss ✅ NEW
+  - Progress.test.tsx ✅ NEW
+  - Progress.stories.tsx ✅ NEW
   - index.ts ✅
   - [Plan implementacji](./PLAN_LOADER.md) ✅
-  - 🔄 [Plan rozbudowy MD3 Progress](./PLAN_LOADER_MD3_PROGRESS.md) - do utworzenia
+  - ✅ [Plan rozbudowy MD3 Progress](./PLAN_LOADER_MD3_PROGRESS.md) ✅ **UKOŃCZONY 2025-06-28**
 
 - [x] **Responsive utilities** ⭐⭐⭐⭐  
        Hooki/utilsy do obsługi responsywności (np. useBreakpoint)
@@ -161,18 +189,11 @@ Aby stworzyć w pełni responsywny layout typu dashboard zgodny z Material Desig
   - [ ] centerTitle option
   - [ ] Action overflow menu
 
-- [ ] **Menu → MD3 Menu enhancements**
-  - [ ] Warianty: dropdown, context, navigation
-  - [ ] Submenu support z animacjami
-  - [ ] Dense variant, multiselect
-  - [ ] Badge i shortcut support
-  - [ ] Divider support
-
-- [ ] **Loader → MD3 Progress Indicators**
-  - [ ] Circular i Linear variants
-  - [ ] Determinate/indeterminate modes
-  - [ ] Buffer support dla linear
-  - [ ] Color system integration (primary, secondary, tertiary)
+- [x] **Loader → MD3 Progress Indicators** ✅ **UKOŃCZONY 2025-06-28**
+  - [x] Circular i Linear variants ✅
+  - [x] Determinate/indeterminate modes ✅
+  - [x] Buffer support dla linear ✅
+  - [x] Color system integration (primary, secondary, tertiary) ✅
 
 - [ ] **Breadcrumbs → MD3 enhancements**
   - [ ] maxItems z ellipsis collapse
@@ -271,8 +292,8 @@ Każdy komponent zgodnie z instrukcją: SCSS Modules, zmienne lokalne na bazie c
 
 1. ✅ Button Component (MD3) - UKOŃCZONY 2025-06-27
 
-**🔄 Faza 2B - WAŻNA:** 2. Menu enhancements (submenu, badges) 3. Loader → Progress Indicators  
-4. Header App Bar enhancements 5. Breadcrumbs enhancements 6. Design Tokens System
+**🔄 Faza 2B - WAŻNA:** 2. Loader → Progress Indicators 🔄 **NASTĘPNY PRIORYTET**  
+3. Header App Bar enhancements 4. Breadcrumbs enhancements 5. Design Tokens System
 
 **📱 Faza 3 - ROZBUDOWA:** 7. Form Components (TextField, Checkbox, Radio, Switch) 8. Communication Components (Snackbar, Tooltip, Badge) 9. Advanced Navigation (Tabs, Bottom Nav) 10. Action Components (FAB, Icon Button)
 
@@ -280,10 +301,12 @@ Każdy komponent zgodnie z instrukcją: SCSS Modules, zmienne lokalne na bazie c
 
 - [x] ✅ Podstawowe komponenty layoutu (Faza 1 - ukończona)
 - [x] ✅ Button Component + MD3 enhancements (Faza 2A - ukończona 2025-06-27)
+- [x] ✅ Menu Component + MD3 enhancements (Faza 2B - ukończona 2025-06-28)
 - [ ] 🎨 Design Tokens System + Dark Theme (Faza 2B)
-- [ ] 📱 Advanced MSUI Components (Faza 3)
+- [ ] � Loader → Progress Indicators (Faza 2B - następny cel)
+- [ ] �📱 Advanced MSUI Components (Faza 3)
 - [ ] 🔧 Zaawansowane funkcje, accessibility, performance
 - [ ] 🧪 Comprehensive testing suite, mocki
 - [ ] 📚 Dokumentacja API, przykłady użycia
 
-**Aktualny status:** Faza 1 ✅ | Faza 2A ✅ | Zgodność MSUI: ~80%
+**Aktualny status:** Faza 1 ✅ | Faza 2A ✅ | Menu MD3 ✅ | Zgodność MSUI: ~85%

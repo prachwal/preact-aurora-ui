@@ -1,6 +1,6 @@
 import type { JSX } from 'preact/jsx-runtime';
 
-import styles from './Loader.module.scss';
+import { Progress } from './Progress';
 
 export interface LoaderProps {
   size?: 'sm' | 'md' | 'lg';
@@ -11,7 +11,8 @@ export interface LoaderProps {
 }
 
 /**
- * Loader – uniwersalny spinner ładowania
+ * Loader – uniwersalny spinner ładowania (legacy compatibility wrapper)
+ * @deprecated Use Progress component instead for new implementations
  */
 export function Loader({
   size = 'md',
@@ -20,15 +21,21 @@ export function Loader({
   style,
   'aria-label': ariaLabel = 'Ładowanie...',
 }: LoaderProps) {
+  // Map old size format to new format
+  const mappedSize = size === 'sm' ? 'small' : size === 'lg' ? 'large' : 'medium';
+
+  // If color is a string (old format), use it as style color and use primary color
+  const progressStyle = typeof color === 'string' ? { ...style, color } : style;
+
   return (
-    <span
-      className={[styles.loader, styles[size], className].filter(Boolean).join(' ')}
-      style={{ ...style, color }}
-      role="status"
+    <Progress
+      className={className}
+      style={progressStyle}
       aria-label={ariaLabel}
-      data-testid="loader-root"
-    >
-      <span className={styles.spinner} />
-    </span>
+      variant="circular"
+      size={mappedSize}
+      color="primary"
+      determinate={false}
+    />
   );
 }

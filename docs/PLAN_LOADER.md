@@ -68,6 +68,22 @@ Loader/
 
 ## 3. Status wdrożenia
 
-- [x] Loader w pełni wdrożony zgodnie z checklistą i instrukcją projektu.
-- [x] Testy, lint, build, build-storybook przechodzą poprawnie.
-- [x] Eksport, typy, SCSS Modules, accessibility, dokumentacja – zgodność z wymaganiami.
+- [x] **Loader w pełni wdrożony** zgodnie z checklistą i instrukcją projektu. ✅
+- [x] **Progress (MD3) rozszerzenie ukończone** - nowy Progress komponent z pełną funkcjonalnością MD3. ✅
+- [x] **Backwards compatibility** - Loader nadal działa jako wrapper dla Progress. ✅
+- [x] Testy, lint, build, build-storybook przechodzą poprawnie. ✅
+- [x] Eksport, typy, SCSS Modules, accessibility, dokumentacja – zgodność z wymaganiami. ✅
+
+---
+
+## 4. Dodatkowe informacje
+
+**Nowa funkcjonalność (2024):**
+
+- Komponent został rozszerzony o pełną funkcjonalność MD3 Progress Indicators
+- Nowy Progress komponent z obsługą circular/linear, determinate/indeterminate
+- Buffer support dla linear progress
+- Rozszerzony system kolorów i rozmiarów
+- Zachowana pełna kompatybilność wsteczna z istniejącym API Loader
+
+**Szczegóły implementacji:** Zobacz `PLAN_LOADER_MD3_PROGRESS.md`

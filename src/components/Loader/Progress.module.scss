@@ -1,0 +1,285 @@
+@use '../styles/colors.scss' as *;
+@use '../styles/spacing.scss' as *;
+@use '../styles/typography.scss' as *;
+
+// ============================================================================
+// MD3 Progress Indicators
+// Material Design 3 Progress Components
+// ============================================================================
+
+// Base variables
+$progress-primary-color: var(--md-sys-color-primary, var(--color-primary));
+$progress-secondary-color: var(--md-sys-color-secondary, var(--color-secondary));
+$progress-tertiary-color: var(--md-sys-color-tertiary, var(--color-accent));
+$progress-track-color: var(--md-sys-color-surface-variant, rgba(0, 0, 0, 0.08));
+
+// Size definitions
+$progress-size-small: 16px;
+$progress-size-medium: 24px;
+$progress-size-large: 32px;
+
+// Animation timing
+$progress-animation-duration: 2s;
+$progress-animation-ease: cubic-bezier(0.4, 0, 0.6, 1);
+
+// ============================================================================
+// Base Progress Component
+// ============================================================================
+
+.progress {
+  position: relative;
+  box-sizing: border-box;
+
+  // Accessibility improvements
+  &[role="progressbar"] {
+    outline: none;
+
+    &:focus-visible {
+      outline: 2px solid var(--progress-color, $progress-primary-color);
+      outline-offset: 2px;
+    }
+  }
+}
+
+// ============================================================================
+// Size variants
+// ============================================================================
+
+.progress--size-small {
+  --progress-size: #{$progress-size-small};
+}
+
+.progress--size-medium {
+  --progress-size: #{$progress-size-medium};
+}
+
+.progress--size-large {
+  --progress-size: #{$progress-size-large};
+}
+
+// ============================================================================
+// Color variants
+// ============================================================================
+
+.progress--color-primary {
+  --progress-color: #{$progress-primary-color};
+}
+
+.progress--color-secondary {
+  --progress-color: #{$progress-secondary-color};
+}
+
+.progress--color-tertiary {
+  --progress-color: #{$progress-tertiary-color};
+}
+
+// ============================================================================
+// Circular Progress Variant
+// ============================================================================
+
+.progress--variant-circular {
+  display: inline-block;
+  position: relative;
+
+  svg {
+    transform: rotate(-90deg); // Start from top
+    display: block;
+  }
+
+  // Indeterminate animation
+  &.indeterminate .track {
+    animation: circular-progress $progress-animation-duration linear infinite;
+    transform-origin: center;
+  }
+}
+
+.track {
+  fill: none;
+  stroke: $progress-track-color;
+  stroke-width: 4;
+  opacity: 0.24;
+}
+
+.indicator {
+  fill: none;
+  stroke: var(--progress-color, $progress-primary-color);
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.3s $progress-animation-ease;
+}
+
+@keyframes circular-progress {
+  0% {
+    stroke-dasharray: 0 150;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 75 150;
+    stroke-dashoffset: -37.5;
+  }
+
+  100% {
+    stroke-dasharray: 0 150;
+    stroke-dashoffset: -150;
+  }
+}
+
+// ============================================================================
+// Linear Progress Variant
+// ============================================================================
+
+.progress--variant-linear {
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: $progress-track-color;
+  overflow: hidden;
+  position: relative;
+
+  // Indeterminate animation
+  &.indeterminate .indicator {
+    width: 100%;
+    animation: linear-progress $progress-animation-duration ease-in-out infinite;
+    transform-origin: left;
+  }
+}
+
+.buffer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--progress-color, $progress-primary-color);
+  opacity: 0.3;
+  transition: width 0.3s $progress-animation-ease;
+}
+
+// Used for both circular and linear progress
+.indicator {
+  // Circular context - handled by SVG attributes
+  fill: none;
+  stroke: var(--progress-color, $progress-primary-color);
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.3s $progress-animation-ease;
+
+  // Linear context - for div elements
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--progress-color, $progress-primary-color);
+  border-radius: inherit;
+  transition: width 0.3s $progress-animation-ease;
+}
+
+@keyframes linear-progress {
+  0% {
+    transform: translateX(-100%) scaleX(0);
+  }
+
+  20% {
+    transform: translateX(-100%) scaleX(0);
+  }
+
+  50% {
+    transform: translateX(-25%) scaleX(0.6);
+  }
+
+  80% {
+    transform: translateX(25%) scaleX(0.8);
+  }
+
+  100% {
+    transform: translateX(100%) scaleX(0);
+  }
+}
+
+// ============================================================================
+// Size-specific adjustments for Linear
+// ============================================================================
+
+.progress--variant-linear.progress--size-small {
+  height: 2px;
+  border-radius: 1px;
+}
+
+.progress--variant-linear.progress--size-medium {
+  height: 4px;
+  border-radius: 2px;
+}
+
+.progress--variant-linear.progress--size-large {
+  height: 6px;
+  border-radius: 3px;
+}
+
+// ============================================================================
+// High contrast and accessibility improvements
+// ============================================================================
+
+@media (prefers-contrast: high) {
+  .progress .track {
+    stroke: var(--md-sys-color-outline, currentColor);
+    opacity: 1;
+  }
+
+  .progress--variant-linear {
+    background: var(--md-sys-color-outline, currentColor);
+    opacity: 0.3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .progress .indicator,
+  .progress .buffer {
+    animation: none;
+    transition: none;
+  }
+
+  .progress--variant-circular.indeterminate .indicator {
+    stroke-dasharray: 75 150;
+    stroke-dashoffset: -37.5;
+  }
+
+  .progress--variant-linear.indeterminate .indicator {
+    transform: translateX(0) scaleX(0.6);
+  }
+}
+
+// ============================================================================
+// Backwards compatibility for legacy Loader
+// ============================================================================
+
+// Legacy size mappings (sm/md/lg)
+.progress.sm {
+  @extend .progress--size-small;
+}
+
+.progress.md {
+  @extend .progress--size-medium;
+}
+
+.progress.lg {
+  @extend .progress--size-large;
+}
+
+// Legacy loader class for compatibility
+.loader {
+  @extend .progress;
+  @extend .progress--variant-circular;
+  @extend .progress--size-medium;
+  @extend .progress--color-primary;
+
+  // Legacy indeterminate behavior
+  &:not([aria-valuenow]) {
+    @extend .indeterminate;
+  }
+
+  // Legacy spinner class for compatibility
+  .spinner {
+    display: none; // Hide old spinner element
+  }
+}
