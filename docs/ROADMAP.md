@@ -114,17 +114,17 @@ Create a production-ready, fully accessible Material Design 3 component library 
 
 ## 📋 Component Priority Matrix
 
-| Component  | Priority  | Effort | Impact | Dependencies   | Status     |
-| ---------- | --------- | ------ | ------ | -------------- | ---------- |
-| TextField  | 🔥 High   | Medium | High   | None           | ✅ Done    |
-| Snackbar   | 🔥 High   | Low    | High   | Portal system  | ✅ Done    |
-| Checkbox   | 🔴 Medium | Low    | Medium | None           | ✅ Done    |
-| Tooltip    | 🔴 Medium | Low    | Medium | Positioning    | ✅ Done    |
-| Tabs       | 🔴 Medium | Medium | Medium | None           | ✅ Done    |
-| Radio      | 🔴 Medium | Low    | Medium | None           | ✅ Done    |
-| Switch     | 🔴 Medium | Low    | Medium | None           | ✅ Done    |
-| Data Table | 🟡 Low    | High   | High   | Virtual scroll | 📋 Planned |
-| FAB        | 🟡 Low    | Low    | Low    | None           | 📋 Next    |
+| Component  | Priority  | Effort | Impact | Dependencies   | Status  |
+| ---------- | --------- | ------ | ------ | -------------- | ------- |
+| TextField  | 🔥 High   | Medium | High   | None           | ✅ Done |
+| Snackbar   | 🔥 High   | Low    | High   | Portal system  | ✅ Done |
+| Checkbox   | 🔴 Medium | Low    | Medium | None           | ✅ Done |
+| Tooltip    | 🔴 Medium | Low    | Medium | Positioning    | ✅ Done |
+| Tabs       | 🔴 Medium | Medium | Medium | None           | ✅ Done |
+| Radio      | 🔴 Medium | Low    | Medium | None           | ✅ Done |
+| Switch     | 🔴 Medium | Low    | Medium | None           | ✅ Done |
+| Data Table | 🟡 Low    | High   | High   | Virtual scroll | ✅ Done |
+| FAB        | 🟡 Low    | Low    | Low    | None           | 📋 Next |
 
 ## 🚧 Current Blockers
 

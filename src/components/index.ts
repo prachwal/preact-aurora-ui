@@ -7,6 +7,7 @@ export * from './Switch';
 export * from './Snackbar';
 export * from './Tooltip';
 export * from './Tabs';
+export * from './DataTable';
 export * from './Layout';
 export * from './Header';
 export * from './Sidebar';
