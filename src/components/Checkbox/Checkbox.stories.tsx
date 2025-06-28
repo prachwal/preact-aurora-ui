@@ -42,7 +42,10 @@ export const WithError: Story = {
 
 export const WithHelperText: Story = {
   render: () => (
-    <Checkbox label="Checkbox with helper text" helperText="Additional information about this option" />
+    <Checkbox
+      label="Checkbox with helper text"
+      helperText="Additional information about this option"
+    />
   ),
 };
 

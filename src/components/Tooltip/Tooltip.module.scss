@@ -1,0 +1,236 @@
+@use '../styles/colors.scss' as *;
+@use '../styles/typography.scss' as *;
+@use '../styles/spacing.scss' as *;
+@use '../styles/breakpoints.scss' as *;
+@use '../styles/mixins-enhanced.scss' as *;
+
+// Tooltip Material Design 3 Variables
+$tooltip-font-family: var(--font-family-base);
+$tooltip-font-size: var(--font-size-xs);
+$tooltip-line-height: var(--line-height-normal);
+$tooltip-transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Tooltip dimensions
+$tooltip-max-width: 200px;
+$tooltip-padding: 4px 8px;
+$tooltip-border-radius: 4px;
+$tooltip-z-index: 1500;
+
+// Rich tooltip dimensions
+$tooltip-rich-max-width: 320px;
+$tooltip-rich-padding: 8px 12px;
+
+// Arrow dimensions
+$tooltip-arrow-size: 6px;
+$tooltip-arrow-offset: 8px;
+
+// Tooltip colors (using CSS custom properties for theming)
+$tooltip-background: var(--md-sys-color-inverse-surface);
+$tooltip-text-color: var(--md-sys-color-inverse-on-surface);
+
+// Base tooltip styles
+.tooltip {
+  position: fixed;
+  z-index: $tooltip-z-index;
+  max-width: $tooltip-max-width;
+  padding: $tooltip-padding;
+  background-color: $tooltip-background;
+  color: $tooltip-text-color;
+  border-radius: $tooltip-border-radius;
+  box-shadow: var(--elevation-2);
+  font-family: $tooltip-font-family;
+  font-size: $tooltip-font-size;
+  line-height: $tooltip-line-height;
+  font-weight: 500;
+  text-align: center;
+  pointer-events: none;
+  word-wrap: break-word;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.8);
+  transform-origin: center;
+  transition: $tooltip-transition, top $tooltip-transition, left $tooltip-transition;
+
+  &--visible {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+
+  &--positioning {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(0.6);
+    transition: none; // No transition during positioning
+    // Position off-screen for measurement
+    top: -9999px !important;
+    left: -9999px !important;
+  }
+
+  &--rich {
+    max-width: $tooltip-rich-max-width;
+    padding: $tooltip-rich-padding;
+    text-align: left;
+    font-size: var(--font-size-sm);
+  }
+}
+
+// Arrow styles
+.arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: $tooltip-arrow-size solid transparent;
+  pointer-events: none;
+
+  // Top positions (arrow at bottom of tooltip)
+  &--position-bottom {
+    bottom: -$tooltip-arrow-size;
+    border-top-color: $tooltip-background;
+    border-bottom: none;
+
+    &.arrow--alignment-start {
+      left: $tooltip-arrow-offset;
+    }
+
+    &.arrow--alignment-center {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &.arrow--alignment-end {
+      right: $tooltip-arrow-offset;
+    }
+  }
+
+  // Bottom positions (arrow at top of tooltip)
+  &--position-top {
+    top: -$tooltip-arrow-size;
+    border-bottom-color: $tooltip-background;
+    border-top: none;
+
+    &.arrow--alignment-start {
+      left: $tooltip-arrow-offset;
+    }
+
+    &.arrow--alignment-center {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &.arrow--alignment-end {
+      right: $tooltip-arrow-offset;
+    }
+  }
+
+  // Left positions (arrow at right of tooltip)
+  &--position-right {
+    right: -$tooltip-arrow-size;
+    border-left-color: $tooltip-background;
+    border-right: none;
+
+    &.arrow--alignment-start {
+      top: $tooltip-arrow-offset;
+    }
+
+    &.arrow--alignment-center {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &.arrow--alignment-end {
+      bottom: $tooltip-arrow-offset;
+    }
+  }
+
+  // Right positions (arrow at left of tooltip)
+  &--position-left {
+    left: -$tooltip-arrow-size;
+    border-right-color: $tooltip-background;
+    border-left: none;
+
+    &.arrow--alignment-start {
+      top: $tooltip-arrow-offset;
+    }
+
+    &.arrow--alignment-center {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &.arrow--alignment-end {
+      bottom: $tooltip-arrow-offset;
+    }
+  }
+}
+
+// Portal container
+.portal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: $tooltip-z-index;
+  pointer-events: none;
+}
+
+// Animation variants
+.tooltip {
+
+  // Fade in animation
+  &--enter {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  &--enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: $tooltip-transition;
+  }
+
+  &--exit {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &--exit-active {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: $tooltip-transition;
+  }
+}
+
+// Responsive styles
+@include respond-below(sm) {
+  .tooltip {
+    max-width: calc(100vw - 32px);
+    font-size: var(--font-size-sm);
+
+    &--rich {
+      max-width: calc(100vw - 24px);
+    }
+  }
+}
+
+// Dark theme support (already handled by CSS custom properties)
+// Light theme is default, dark theme overrides are handled by theme system
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .tooltip {
+    border: 1px solid var(--md-sys-color-outline);
+    box-shadow: var(--elevation-3);
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .tooltip {
+    transition: none;
+  }
+
+  .arrow {
+    transition: none;
+  }
+}

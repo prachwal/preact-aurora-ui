@@ -5,6 +5,7 @@ import { SnackbarProvider } from '../components/Snackbar';
 import { TextFieldDemo } from './AdvancedComponents/TextFieldDemo';
 import { CheckboxDemo } from './AdvancedComponents/CheckboxDemo';
 import { SnackbarDemo } from './AdvancedComponents/SnackbarDemo';
+import { TooltipDemo } from './AdvancedComponents/TooltipDemo';
 import { ComponentStatus } from './AdvancedComponents/ComponentStatus';
 
 const AdvancedComponentsContent = () => {
@@ -12,13 +13,14 @@ const AdvancedComponentsContent = () => {
     <Content>
       <PageHeader
         title="Advanced Components"
-        subtitle="Testing TextField, Checkbox, and Snackbar components with Material Design 3"
+        subtitle="Testing TextField, Checkbox, Snackbar, and Tooltip components with Material Design 3"
       />
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '800px' }}>
         <TextFieldDemo />
         <CheckboxDemo />
         <SnackbarDemo />
+        <TooltipDemo />
         <ComponentStatus />
       </div>
     </Content>

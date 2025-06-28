@@ -19,7 +19,7 @@ export const ComponentStatus = () => {
           }}
         >
           <h4 style={{ color: 'var(--color-on-success-container)', margin: '0 0 0.5rem 0' }}>
-            ✅ Completed (3/10)
+            ✅ Completed (4/10)
           </h4>
           <ul
             style={{
@@ -37,6 +37,9 @@ export const ComponentStatus = () => {
             <li>
               <strong>Checkbox</strong> - Selection control with all states
             </li>
+            <li>
+              <strong>Tooltip</strong> - Contextual help with positioning
+            </li>
           </ul>
         </div>
 
@@ -49,7 +52,7 @@ export const ComponentStatus = () => {
           }}
         >
           <h4 style={{ color: 'var(--color-on-warning-container)', margin: '0 0 0.5rem 0' }}>
-            🔄 Next Priority (7/10)
+            🔄 Next Priority (6/10)
           </h4>
           <ul
             style={{
@@ -58,7 +61,6 @@ export const ComponentStatus = () => {
               color: 'var(--color-on-warning-container)',
             }}
           >
-            <li>Tooltip - Contextual help</li>
             <li>Badge - Status indicators</li>
             <li>Radio - Single selection</li>
             <li>Switch - Toggle component</li>
