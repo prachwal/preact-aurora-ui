@@ -92,11 +92,11 @@ export function DataTableHeader({
               onKeyDown={
                 sortable && column.sortable !== false
                   ? (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      handleSort(column.field);
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handleSort(column.field);
+                      }
                     }
-                  }
                   : undefined
               }
               aria-sort={

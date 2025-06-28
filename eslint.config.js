@@ -1,5 +1,5 @@
 import tseslint from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
+import * as tsParser from '@typescript-eslint/parser';
 import preact from 'eslint-plugin-preact';
 import importPlugin from 'eslint-plugin-import';
 import unusedImports from 'eslint-plugin-unused-imports';
@@ -59,7 +59,14 @@ export default [
           project: ['./tsconfig.json', './tsconfig.app.json', './tsconfig.build.json'],
           noWarnOnMultipleProjects: true,
         },
+        node: {
+          extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        },
       },
+      'import/parsers': {
+        '@typescript-eslint/parser': ['.ts', '.tsx'],
+      },
+      'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
     },
     files: ['**/*.{js,jsx,ts,tsx}'],
   },

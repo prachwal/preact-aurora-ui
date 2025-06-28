@@ -8,6 +8,7 @@ export * from './Snackbar';
 export * from './Tooltip';
 export * from './Tabs';
 export * from './DataTable';
+export * from './Select';
 export * from './Layout';
 export * from './Header';
 export * from './Sidebar';

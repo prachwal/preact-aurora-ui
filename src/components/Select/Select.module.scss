@@ -1,0 +1,348 @@
+@use '../styles/colors.scss' as *;
+@use '../styles/typography.scss' as *;
+@use '../styles/spacing.scss' as *;
+@use '../styles/mixins-enhanced.scss' as *;
+
+// Local variables based on global custom properties
+$select-bg: var(--color-surface);
+$select-bg-hover: var(--color-surface-variant);
+$select-border: var(--color-outline);
+$select-border-hover: var(--color-outline-variant);
+$select-border-focus: var(--color-primary);
+$select-border-error: var(--color-error);
+$select-color: var(--color-on-surface);
+$select-color-disabled: var(--color-on-surface-variant);
+$select-placeholder-color: var(--color-on-surface-variant);
+$select-label-color: var(--color-on-surface-variant);
+$select-label-color-focus: var(--color-primary);
+$select-label-color-error: var(--color-error);
+
+$dropdown-bg: var(--color-surface);
+$dropdown-border: var(--color-outline-variant);
+$dropdown-shadow: var(--md-sys-elevation-level2);
+
+$option-color: var(--color-on-surface);
+$option-bg-hover: var(--color-surface-variant);
+$option-bg-selected: var(--color-primary-container);
+$option-color-selected: var(--color-on-primary-container);
+$option-bg-focused: var(--color-surface-variant);
+
+$select-radius: 4px;
+$select-padding: var(--space-sm) var(--space-md);
+$select-font-size: var(--font-size-base);
+$select-line-height: var(--line-height-base);
+
+// Select container
+.select {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  font-family: var(--font-family-base);
+
+  &--disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+// Label
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: $select-label-color;
+  transition: color 200ms ease;
+
+  .select--error & {
+    color: $select-label-color-error;
+  }
+
+  .select:focus-within & {
+    color: $select-label-color-focus;
+  }
+}
+
+.required {
+  color: $select-label-color-error;
+  margin-left: 2px;
+}
+
+// Control (main input area)
+.control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  background: $select-bg;
+  border: 1px solid $select-border;
+  border-radius: $select-radius;
+  cursor: pointer;
+  transition: all 200ms ease;
+
+  &:hover {
+    background: $select-bg-hover;
+    border-color: $select-border-hover;
+  }
+
+  .select--open & {
+    border-color: $select-border-focus;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .select--error & {
+    border-color: $select-border-error;
+  }
+
+  .select--outlined & {
+    background: transparent;
+  }
+
+  .select--filled & {
+    background: $select-bg;
+    border: none;
+    border-bottom: 2px solid $select-border;
+    border-radius: $select-radius $select-radius 0 0;
+
+    &:hover {
+      border-bottom-color: $select-border-hover;
+    }
+
+    &:focus-within {
+      border-bottom-color: $select-border-focus;
+    }
+  }
+}
+
+// Value area
+.value {
+  flex: 1;
+  padding: $select-padding;
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.display {
+  width: 100%;
+  font-size: $select-font-size;
+  line-height: $select-line-height;
+  color: $select-color;
+  outline: none;
+  cursor: pointer;
+}
+
+.placeholder {
+  color: $select-placeholder-color;
+}
+
+// Search input
+.searchInput {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: $select-font-size;
+  line-height: $select-line-height;
+  color: $select-color;
+
+  &::placeholder {
+    color: $select-placeholder-color;
+  }
+}
+
+// Clear button
+.clearButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-right: var(--space-xs);
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  color: $select-placeholder-color;
+  transition: all 200ms ease;
+
+  &:hover {
+    background: $option-bg-hover;
+    color: $select-color;
+  }
+}
+
+// Dropdown arrow
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-right: var(--space-sm);
+  color: $select-placeholder-color;
+  transition: transform 200ms ease;
+  pointer-events: none;
+
+  .select--open & {
+    transform: rotate(180deg);
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+// Dropdown
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: $dropdown-bg;
+  border: 1px solid $dropdown-border;
+  border-top: none;
+  border-radius: 0 0 $select-radius $select-radius;
+  box-shadow: $dropdown-shadow;
+  max-height: 300px;
+  overflow-y: auto;
+
+  &--open {
+    display: block;
+  }
+}
+
+// Loading state
+.loading {
+  padding: var(--space-md);
+  text-align: center;
+  color: $select-placeholder-color;
+  font-size: var(--font-size-sm);
+}
+
+// Empty state
+.empty {
+  padding: var(--space-md);
+  text-align: center;
+  color: $select-placeholder-color;
+  font-size: var(--font-size-sm);
+}
+
+// Option
+.option {
+  display: flex;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+  font-size: $select-font-size;
+  color: $option-color;
+  cursor: pointer;
+  transition: all 200ms ease;
+
+  &:hover {
+    background: $option-bg-hover;
+  }
+
+  &--selected {
+    background: $option-bg-selected;
+    color: $option-color-selected;
+  }
+
+  &--focused {
+    background: $option-bg-focused;
+  }
+
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    &:hover {
+      background: transparent;
+    }
+  }
+}
+
+.checkbox {
+  margin-right: var(--space-sm);
+
+  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--color-primary);
+  }
+}
+
+.optionContent {
+  flex: 1;
+}
+
+// Option groups
+.optionGroup {
+  .optionGroupLabel {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: $select-label-color;
+    background: var(--color-surface-variant);
+    border-bottom: 1px solid $dropdown-border;
+  }
+
+  .optionGroupOptions {
+    .option {
+      padding-left: var(--space-lg);
+    }
+  }
+}
+
+// Hint text
+.hint {
+  font-size: var(--font-size-sm);
+  color: $select-label-color;
+
+  &--error {
+    color: $select-label-color-error;
+  }
+}
+
+// Size variants
+.select--small {
+  .control {
+    min-height: 40px;
+  }
+
+  .value {
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .display,
+  .searchInput {
+    font-size: var(--font-size-sm);
+  }
+
+  .option {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--font-size-sm);
+  }
+}
+
+.select--large {
+  .control {
+    min-height: 64px;
+  }
+
+  .value {
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .display,
+  .searchInput {
+    font-size: var(--font-size-lg);
+  }
+
+  .option {
+    padding: var(--space-sm) var(--space-lg);
+    font-size: var(--font-size-lg);
+  }
+}
