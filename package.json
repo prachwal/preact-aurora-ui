@@ -12,6 +12,9 @@
     "build-storybook": "storybook build",
     "build:all": "sh build-and-copy.sh",
     "lint": "eslint 'src/**/*.{ts,tsx,js,jsx}' --max-warnings=0",
+    "lint:fix": "eslint 'src/**/*.{ts,tsx,js,jsx}' --fix",
+    "format": "prettier --write 'src/**/*.{ts,tsx,js,jsx,json,md}'",
+    "format:check": "prettier --check 'src/**/*.{ts,tsx,js,jsx,json,md}'",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {

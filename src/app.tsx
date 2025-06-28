@@ -4,7 +4,7 @@ import { AppLayout, ThemeProvider } from './components';
 
 export function App() {
   return (
-    <ThemeProvider defaultTheme={{ mode: 'light' }}>
+    <ThemeProvider defaultTheme={{ mode: 'auto' }}>
       <LocationProvider>
         <AppLayout />
       </LocationProvider>

@@ -35,6 +35,12 @@ export function Navigation({ onSelect }: NavigationProps) {
       href: '/theme-demo',
     },
     {
+      key: 'md3-colors',
+      label: 'MD3 Colors',
+      icon: '🎨',
+      href: '/md3-colors',
+    },
+    {
       key: 'settings',
       label: 'Settings',
       icon: '⚙️',

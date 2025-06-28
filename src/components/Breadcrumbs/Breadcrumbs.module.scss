@@ -10,9 +10,17 @@ $breadcrumbs-link-color: var(--color-link-primary, #1976d2);
 $breadcrumbs-active-color: var(--color-text-primary, #222);
 $breadcrumbs-separator-color: var(--color-text-tertiary, #bbb);
 $breadcrumbs-font-size: var(--font-size-sm, 15px);
-$breadcrumbs-padding: var(--space-2xs, 4px) 0; // Zmniejszono padding
+$breadcrumbs-padding: var(--space-2xs, 4px) 0;
 $breadcrumbs-gap: var(--space-xs, 8px);
 $breadcrumbs-radius: 4px;
+
+// MD3 enhancement variables
+$breadcrumbs-expand-button-bg: var(--color-surface-container, #f3f3f3);
+$breadcrumbs-expand-button-hover-bg: var(--color-surface-container-high, #e8e8e8);
+$breadcrumbs-expand-button-color: var(--color-primary, #1976d2);
+$breadcrumbs-ellipsis-color: var(--color-text-secondary, #666);
+$breadcrumbs-condensed-font-size: var(--font-size-xs, 13px);
+$breadcrumbs-condensed-gap: var(--space-2xs, 4px);
 
 .breadcrumbs {
   display: block;
@@ -81,6 +89,150 @@ $breadcrumbs-radius: 4px;
   font-size: 1em;
 }
 
+// MD3 Enhancements - Collapse/Expand functionality
+.expandButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs, 8px);
+  padding: var(--space-2xs, 4px) var(--space-xs, 8px);
+  background: $breadcrumbs-expand-button-bg;
+  color: $breadcrumbs-expand-button-color;
+  border: 1px solid var(--color-outline, #ccc);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.1s ease;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    background: $breadcrumbs-expand-button-hover-bg;
+    border-color: $breadcrumbs-expand-button-color;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $breadcrumbs-expand-button-color;
+    outline-offset: 2px;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.expandIcon {
+  font-size: 0.9em;
+  color: $breadcrumbs-ellipsis-color;
+}
+
+.expandText {
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+.expandArrow {
+  font-size: 0.8em;
+  transition: transform 0.2s ease;
+}
+
+.breadcrumbs--expanded .expandArrow {
+  transform: rotate(180deg);
+}
+
+.ellipsis {
+  display: inline-flex;
+  align-items: center;
+  color: $breadcrumbs-ellipsis-color;
+  font-weight: 500;
+  cursor: help;
+  padding: var(--space-2xs, 4px);
+  border-radius: 2px;
+
+  &:hover {
+    background: var(--color-surface-container-low, #f8f8f8);
+  }
+}
+
+// MD3 Condensed variant
+.breadcrumbs--variant-condensed {
+  font-size: $breadcrumbs-condensed-font-size;
+
+  .list {
+    gap: $breadcrumbs-condensed-gap;
+  }
+
+  .link,
+  .active {
+    padding: var(--space-2xs, 4px) var(--space-xs, 8px);
+    border-radius: 2px;
+  }
+
+  .link:hover,
+  .link:focus {
+    background: var(--color-surface-container-low, #f8f8f8);
+  }
+
+  .separator {
+    font-size: 0.9em;
+    margin: 0 var(--space-2xs, 4px);
+  }
+
+  .expandButton {
+    padding: var(--space-2xs, 4px) var(--space-xs, 8px);
+    font-size: 0.9em;
+  }
+}
+
+// MD3 Collapsible state animations
+.breadcrumbs--collapsible {
+  .item {
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease,
+      max-width 0.3s ease;
+  }
+}
+
+.item.fadeIn {
+  animation: fadeIn 0.3s ease;
+}
+
+.item.fadeOut {
+  animation: fadeOut 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+    max-width: 0;
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    max-width: 200px;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+    max-width: 200px;
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-4px);
+    max-width: 0;
+  }
+}
+
 // Responsive
 @media (max-width: $breakpoint-sm) {
   .breadcrumbs {
@@ -90,6 +242,28 @@ $breadcrumbs-radius: 4px;
 
   .list {
     gap: var(--space-2xs, 4px);
+  }
+
+  // Hide expand text on mobile, show only icon
+  .expandText {
+    display: none;
+  }
+
+  .expandButton {
+    padding: var(--space-2xs, 4px);
+    min-width: 32px;
+    justify-content: center;
+  }
+
+  // Auto-collapse behavior for responsive mode
+  .breadcrumbs--responsive {
+    .item:not(:first-child):not(:last-child) {
+      display: none;
+    }
+
+    &.breadcrumbs--expanded .item {
+      display: flex;
+    }
   }
 }
 
@@ -109,4 +283,33 @@ $breadcrumbs-radius: 4px;
 
 [data-theme="dark"] .separator {
   color: var(--color-text-tertiary-dark, #555);
+}
+
+// Dark theme for MD3 enhancements
+[data-theme="dark"] .expandButton {
+  background: var(--color-surface-container-dark, #2a2a2a);
+  border-color: var(--color-outline-dark, #555);
+  color: var(--color-primary-dark, #90caf9);
+
+  &:hover,
+  &:focus {
+    background: var(--color-surface-container-high-dark, #383838);
+    border-color: var(--color-primary-dark, #90caf9);
+  }
+}
+
+[data-theme="dark"] .ellipsis {
+  color: var(--color-text-secondary-dark, #aaa);
+
+  &:hover {
+    background: var(--color-surface-container-low-dark, #1f1f1f);
+  }
+}
+
+[data-theme="dark"] .breadcrumbs--variant-condensed {
+
+  .link:hover,
+  .link:focus {
+    background: var(--color-surface-container-low-dark, #1f1f1f);
+  }
 }

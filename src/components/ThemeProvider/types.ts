@@ -28,6 +28,19 @@ export interface ThemeConfig {
   customProperties?: Record<string, string>;
 }
 
+// Universal storage interface for different backends (localStorage, Redux, Signal, etc.)
+export interface ThemeStorage {
+  getTheme: (key: string) => ThemeConfig | null;
+  setTheme: (key: string, theme: ThemeConfig) => void;
+}
+
+// Universal DOM target interface for different frameworks/environments
+export interface ThemeTarget {
+  setAttribute: (name: string, value: string) => void;
+  getAttribute: (name: string) => string | null;
+  setStyleProperty: (property: string, value: string) => void;
+}
+
 export interface ThemeContextValue {
   theme: ThemeConfig;
   setTheme: (theme: Partial<ThemeConfig>) => void;

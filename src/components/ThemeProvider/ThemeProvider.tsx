@@ -1,7 +1,8 @@
 import { createContext } from 'preact';
 import { useContext, useEffect, useState } from 'preact/hooks';
 
-import type { ThemeConfig, ThemeContextValue, ThemeMode } from './types';
+import type { ThemeConfig, ThemeContextValue, ThemeMode, ThemeStorage, ThemeTarget } from './types';
+import { localStorageAdapter, documentElementTarget, preventThemeFlicker } from './storageAdapters';
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
@@ -9,41 +10,77 @@ export interface ThemeProviderProps {
   children: preact.ComponentChildren;
   defaultTheme?: ThemeConfig;
   storageKey?: string;
+  // Uniwersalne interfejsy - można podmienić na Redux, Signal, itp.
+  storageAdapter?: ThemeStorage;
+  domTarget?: ThemeTarget;
 }
 
 const DEFAULT_THEME: ThemeConfig = {
   mode: 'light',
 };
 
+// Function to get initial theme synchronously to prevent flicker
+function getInitialTheme(
+  defaultTheme: ThemeConfig,
+  storageKey: string,
+  storageAdapter: ThemeStorage,
+  domTarget: ThemeTarget,
+): ThemeConfig {
+  // Only access storage in browser environment
+  if (typeof window === 'undefined') {
+    return defaultTheme;
+  }
+
+  try {
+    const storedTheme = storageAdapter.getTheme(storageKey);
+    if (storedTheme) {
+      const initialTheme = { ...defaultTheme, ...storedTheme };
+
+      // Apply theme immediately to prevent flicker using universal interface
+      if (initialTheme.mode === 'auto') {
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        domTarget.setAttribute('data-theme', mediaQuery.matches ? 'dark' : 'light');
+      } else {
+        domTarget.setAttribute('data-theme', initialTheme.mode);
+      }
+
+      return initialTheme;
+    }
+  } catch (error) {
+    console.warn('Failed to load theme from storage:', error);
+  }
+
+  // Apply default theme
+  preventThemeFlicker(storageAdapter, domTarget, storageKey, defaultTheme);
+  return defaultTheme;
+}
+
 export function ThemeProvider({
   children,
   defaultTheme = DEFAULT_THEME,
   storageKey = 'aurora-ui-theme',
+  // Domyślne adaptery - localStorage i document.documentElement
+  storageAdapter = localStorageAdapter,
+  domTarget = documentElementTarget,
 }: ThemeProviderProps) {
-  const [theme, setThemeState] = useState<ThemeConfig>(defaultTheme);
+  // Initialize theme synchronously to prevent flicker
+  const [theme, setThemeState] = useState<ThemeConfig>(() =>
+    getInitialTheme(defaultTheme, storageKey, storageAdapter, domTarget),
+  );
 
-  // Load theme from localStorage on mount
+  // Remove the old localStorage loading useEffect since it's now done synchronously
+
+  // Apply theme to document (optimized to prevent flicker)
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem(storageKey);
-      if (stored) {
-        const parsedTheme = JSON.parse(stored);
-        setThemeState({ ...defaultTheme, ...parsedTheme });
-      }
-    } catch (error) {
-      console.warn('Failed to load theme from localStorage:', error);
-    }
-  }, [storageKey, defaultTheme]);
-
-  // Apply theme to document
-  useEffect(() => {
-    const root = document.documentElement;
-
-    // Handle theme mode
+    // Handle theme mode using universal DOM target
     if (theme.mode === 'auto') {
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
       const applyAutoTheme = () => {
-        root.setAttribute('data-theme', mediaQuery.matches ? 'dark' : 'light');
+        const newTheme = mediaQuery.matches ? 'dark' : 'light';
+        // Only update if different to prevent unnecessary DOM changes
+        if (domTarget.getAttribute('data-theme') !== newTheme) {
+          domTarget.setAttribute('data-theme', newTheme);
+        }
       };
 
       applyAutoTheme();
@@ -51,38 +88,36 @@ export function ThemeProvider({
 
       return () => mediaQuery.removeEventListener('change', applyAutoTheme);
     } else {
-      root.setAttribute('data-theme', theme.mode);
+      // Only update if different to prevent unnecessary DOM changes
+      if (domTarget.getAttribute('data-theme') !== theme.mode) {
+        domTarget.setAttribute('data-theme', theme.mode);
+      }
     }
-  }, [theme.mode]);
+  }, [theme.mode, domTarget]);
 
-  // Apply custom colors and properties
+  // Apply custom colors and properties using universal DOM target
   useEffect(() => {
-    const root = document.documentElement;
-
     // Apply custom colors
     if (theme.colors) {
       Object.entries(theme.colors).forEach(([key, value]) => {
-        root.style.setProperty(`--color-${key}`, value);
+        domTarget.setStyleProperty(`--color-${key}`, value);
       });
     }
 
     // Apply custom properties
     if (theme.customProperties) {
       Object.entries(theme.customProperties).forEach(([key, value]) => {
-        root.style.setProperty(key, value);
+        domTarget.setStyleProperty(key, value);
       });
     }
-  }, [theme.colors, theme.customProperties]);
+  }, [theme.colors, theme.customProperties, domTarget]);
 
   const setTheme = (newTheme: Partial<ThemeConfig>) => {
     const updatedTheme = { ...theme, ...newTheme };
     setThemeState(updatedTheme);
 
-    try {
-      localStorage.setItem(storageKey, JSON.stringify(updatedTheme));
-    } catch (error) {
-      console.warn('Failed to save theme to localStorage:', error);
-    }
+    // Save using universal storage adapter
+    storageAdapter.setTheme(storageKey, updatedTheme);
   };
 
   const toggleMode = () => {

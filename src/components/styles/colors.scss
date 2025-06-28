@@ -1,43 +1,119 @@
-// Global color variables and theme structure - Modern design system
+// ============================================================================
+// Material Design 3 Color System - Aurora UI
+// Complete implementation of MD3 Color Tokens for Light and Dark themes
+// ============================================================================
+
 :root {
-  // Primary colors - inspired by Material Design 3
-  --color-primary: #1976d2;
-  --color-primary-dark: #1565c0;
-  --color-primary-light: #42a5f5;
-  --color-primary-50: #e3f2fd;
-  --color-primary-100: #bbdefb;
+  // ========================================
+  // MATERIAL DESIGN 3 COLOR TOKENS - LIGHT THEME
+  // ========================================
+
+  // Primary colors
+  --md-sys-color-primary: #6750a4;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #eaddff;
+  --md-sys-color-on-primary-container: #21005d;
+
+  // Secondary colors
+  --md-sys-color-secondary: #625b71;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #e8def8;
+  --md-sys-color-on-secondary-container: #1d192b;
+
+  // Tertiary colors
+  --md-sys-color-tertiary: #7d5260;
+  --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-color-tertiary-container: #ffd8e4;
+  --md-sys-color-on-tertiary-container: #31111d;
+
+  // Error colors
+  --md-sys-color-error: #ba1a1a;
+  --md-sys-color-on-error: #ffffff;
+  --md-sys-color-error-container: #ffdad6;
+  --md-sys-color-on-error-container: #410002;
 
   // Surface colors
-  --color-surface: #ffffff;
-  --color-surface-variant: #f5f5f5;
-  --color-background: #fafafa;
-  --color-outline: #e0e0e0;
-  --color-outline-variant: #f0f0f0;
+  --md-sys-color-surface: #fffbfe;
+  --md-sys-color-on-surface: #1c1b1f;
+  --md-sys-color-surface-variant: #e7e0ec;
+  --md-sys-color-on-surface-variant: #49454f;
+  --md-sys-color-surface-container-highest: #e6e1e5;
+  --md-sys-color-surface-container-high: #ece6f0;
+  --md-sys-color-surface-container: #f2ecf0;
+  --md-sys-color-surface-container-low: #f7f2fa;
+  --md-sys-color-surface-container-lowest: #ffffff;
 
-  // Text colors
-  --color-on-surface: #1d1b20;
-  --color-on-surface-variant: #49454f;
-  --color-on-primary: #ffffff;
+  // Background
+  --md-sys-color-background: #fffbfe;
+  --md-sys-color-on-background: #1c1b1f;
 
-  // Legacy support
-  --color-bg: var(--color-background);
-  --color-text: var(--color-on-surface);
-  --color-text-secondary: var(--color-on-surface-variant);
-  --color-border: var(--color-outline);
+  // Outline colors
+  --md-sys-color-outline: #79747e;
+  --md-sys-color-outline-variant: #cab4d0;
 
-  // Semantic colors
+  // Inverse colors
+  --md-sys-color-inverse-surface: #313033;
+  --md-sys-color-inverse-on-surface: #f4eff4;
+  --md-sys-color-inverse-primary: #d0bcff;
+
+  // Shadow and scrim
+  --md-sys-color-shadow: #000000;
+  --md-sys-color-scrim: #000000;
+
+  // ========================================
+  // MD3 ELEVATION SYSTEM
+  // ========================================
+
+  --md-sys-elevation-level0: none;
+  --md-sys-elevation-level1: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-level2: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-level3: 0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-level4: 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 6px 10px 4px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-level5: 0px 4px 4px 0px rgba(0, 0, 0, 0.3), 0px 8px 12px 6px rgba(0, 0, 0, 0.15);
+
+  // ========================================
+  // BACKWARDS COMPATIBILITY - LEGACY AURORA UI COLORS
+  // Map legacy colors to MD3 equivalents for seamless migration
+  // ========================================
+
+  // Primary colors - mapped to MD3 primary
+  --color-primary: var(--md-sys-color-primary);
+  --color-primary-dark: #5a3c96;
+  --color-primary-light: var(--md-sys-color-primary-container);
+  --color-primary-50: #f3f0ff;
+  --color-primary-100: var(--md-sys-color-primary-container);
+
+  // Surface and background - mapped to MD3
+  --color-surface: var(--md-sys-color-surface);
+  --color-surface-variant: var(--md-sys-color-surface-variant);
+  --color-background: var(--md-sys-color-background);
+  --color-outline: var(--md-sys-color-outline);
+  --color-outline-variant: var(--md-sys-color-outline-variant);
+
+  // Text colors - mapped to MD3
+  --color-on-surface: var(--md-sys-color-on-surface);
+  --color-on-surface-variant: var(--md-sys-color-on-surface-variant);
+  --color-on-primary: var(--md-sys-color-on-primary);
+
+  // Legacy aliases
+  --color-bg: var(--md-sys-color-background);
+  --color-text: var(--md-sys-color-on-surface);
+  --color-text-secondary: var(--md-sys-color-on-surface-variant);
+  --color-border: var(--md-sys-color-outline);
+
+  // Semantic colors - enhanced with MD3 error
   --color-success: #4caf50;
   --color-warning: #ff9800;
-  --color-error: #f44336;
+  --color-error: var(--md-sys-color-error);
   --color-info: #2196f3;
 
-  // Shadows - Material Design elevation
-  --shadow-1: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.24);
-  --shadow-2: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
-  --shadow-3: 0px 10px 20px rgba(0, 0, 0, 0.19), 0px 6px 6px rgba(0, 0, 0, 0.23);
-  --shadow-4: 0px 14px 28px rgba(0, 0, 0, 0.25), 0px 10px 10px rgba(0, 0, 0, 0.22);
+  // Legacy shadows - mapped to MD3 elevation
+  --shadow-1: var(--md-sys-elevation-level1);
+  --shadow-2: var(--md-sys-elevation-level2);
+  --shadow-3: var(--md-sys-elevation-level3);
+  --shadow-4: var(--md-sys-elevation-level4);
 
-  // Spacing system
+  // Spacing system (preserved)
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
@@ -46,29 +122,200 @@
   --space-2xl: 48px;
 }
 
+// ============================================================================
+// MATERIAL DESIGN 3 DARK THEME
+// ============================================================================
+
 [data-theme="dark"] {
-  // Primary colors for dark theme
-  --color-primary: #90caf9;
-  --color-primary-dark: #64b5f6;
-  --color-primary-light: #bbdefb;
-  --color-primary-50: #0d47a1;
-  --color-primary-100: #1565c0;
+  // ========================================
+  // MATERIAL DESIGN 3 COLOR TOKENS - DARK THEME
+  // ========================================
+
+  // Primary colors
+  --md-sys-color-primary: #d0bcff;
+  --md-sys-color-on-primary: #381e72;
+  --md-sys-color-primary-container: #4f378b;
+  --md-sys-color-on-primary-container: #eaddff;
+
+  // Secondary colors
+  --md-sys-color-secondary: #ccc2dc;
+  --md-sys-color-on-secondary: #332d41;
+  --md-sys-color-secondary-container: #4a4458;
+  --md-sys-color-on-secondary-container: #e8def8;
+
+  // Tertiary colors
+  --md-sys-color-tertiary: #efb8c8;
+  --md-sys-color-on-tertiary: #492532;
+  --md-sys-color-tertiary-container: #633b48;
+  --md-sys-color-on-tertiary-container: #ffd8e4;
+
+  // Error colors
+  --md-sys-color-error: #ffb4ab;
+  --md-sys-color-on-error: #690005;
+  --md-sys-color-error-container: #93000a;
+  --md-sys-color-on-error-container: #ffdad6;
 
   // Surface colors
-  --color-surface: #121212;
-  --color-surface-variant: #1e1e1e;
-  --color-background: #0a0a0a;
-  --color-outline: #333333;
-  --color-outline-variant: #2a2a2a;
+  --md-sys-color-surface: #1c1b1f;
+  --md-sys-color-on-surface: #e6e1e5;
+  --md-sys-color-surface-variant: #49454f;
+  --md-sys-color-on-surface-variant: #cab4d0;
+  --md-sys-color-surface-container-highest: #36343b;
+  --md-sys-color-surface-container-high: #2b2930;
+  --md-sys-color-surface-container: #211f26;
+  --md-sys-color-surface-container-low: #1c1b1f;
+  --md-sys-color-surface-container-lowest: #0f0d13;
 
-  // Text colors
-  --color-on-surface: #e1e1e1;
-  --color-on-surface-variant: #a1a1a1;
-  --color-on-primary: #000000;
+  // Background
+  --md-sys-color-background: #1c1b1f;
+  --md-sys-color-on-background: #e6e1e5;
 
-  // Shadows for dark theme
-  --shadow-1: 0px 1px 3px rgba(0, 0, 0, 0.3), 0px 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-2: 0px 3px 6px rgba(0, 0, 0, 0.4), 0px 3px 6px rgba(0, 0, 0, 0.5);
-  --shadow-3: 0px 10px 20px rgba(0, 0, 0, 0.5), 0px 6px 6px rgba(0, 0, 0, 0.6);
-  --shadow-4: 0px 14px 28px rgba(0, 0, 0, 0.6), 0px 10px 10px rgba(0, 0, 0, 0.7);
+  // Outline colors
+  --md-sys-color-outline: #938f99;
+  --md-sys-color-outline-variant: #49454f;
+
+  // Inverse colors
+  --md-sys-color-inverse-surface: #e6e1e5;
+  --md-sys-color-inverse-on-surface: #313033;
+  --md-sys-color-inverse-primary: #6750a4;
+
+  // Shadow and scrim
+  --md-sys-color-shadow: #000000;
+  --md-sys-color-scrim: #000000;
+
+  // ========================================
+  // MD3 ELEVATION SYSTEM - DARK THEME
+  // Enhanced shadows for dark theme
+  // ========================================
+
+  --md-sys-elevation-level0: none;
+  --md-sys-elevation-level1: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-level2: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-level3: 0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-level4: 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 6px 10px 4px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-level5: 0px 4px 4px 0px rgba(0, 0, 0, 0.3), 0px 8px 12px 6px rgba(0, 0, 0, 0.15);
+
+  // ========================================
+  // BACKWARDS COMPATIBILITY - LEGACY COLORS FOR DARK THEME
+  // ========================================
+
+  // Primary colors - mapped to MD3 primary (dark)
+  --color-primary: var(--md-sys-color-primary);
+  --color-primary-dark: #b8a7d9;
+  --color-primary-light: var(--md-sys-color-primary-container);
+  --color-primary-50: #0d47a1;
+  --color-primary-100: var(--md-sys-color-primary-container);
+
+  // Surface and background - mapped to MD3 (dark)
+  --color-surface: var(--md-sys-color-surface);
+  --color-surface-variant: var(--md-sys-color-surface-variant);
+  --color-background: var(--md-sys-color-background);
+  --color-outline: var(--md-sys-color-outline);
+  --color-outline-variant: var(--md-sys-color-outline-variant);
+
+  // Text colors - mapped to MD3 (dark)
+  --color-on-surface: var(--md-sys-color-on-surface);
+  --color-on-surface-variant: var(--md-sys-color-on-surface-variant);
+  --color-on-primary: var(--md-sys-color-on-primary);
+
+  // Enhanced semantic colors for dark theme
+  --color-success: #66bb6a;
+  --color-warning: #ffb74d;
+  --color-error: var(--md-sys-color-error);
+  --color-info: #64b5f6;
+
+  // Legacy shadows - mapped to enhanced dark theme elevation
+  --shadow-1: var(--md-sys-elevation-level1);
+  --shadow-2: var(--md-sys-elevation-level2);
+  --shadow-3: var(--md-sys-elevation-level3);
+  --shadow-4: var(--md-sys-elevation-level4);
+}
+
+// ============================================================================
+// MD3 UTILITY CLASSES
+// Helper classes for quick access to MD3 color tokens
+// ============================================================================
+
+// Background utilities
+.md3-surface {
+  background-color: var(--md-sys-color-surface);
+}
+
+.md3-surface-variant {
+  background-color: var(--md-sys-color-surface-variant);
+}
+
+.md3-primary-container {
+  background-color: var(--md-sys-color-primary-container);
+}
+
+.md3-secondary-container {
+  background-color: var(--md-sys-color-secondary-container);
+}
+
+.md3-tertiary-container {
+  background-color: var(--md-sys-color-tertiary-container);
+}
+
+.md3-error-container {
+  background-color: var(--md-sys-color-error-container);
+}
+
+// Text utilities
+.md3-on-surface {
+  color: var(--md-sys-color-on-surface);
+}
+
+.md3-on-surface-variant {
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.md3-primary {
+  color: var(--md-sys-color-primary);
+}
+
+.md3-secondary {
+  color: var(--md-sys-color-secondary);
+}
+
+.md3-tertiary {
+  color: var(--md-sys-color-tertiary);
+}
+
+.md3-error {
+  color: var(--md-sys-color-error);
+}
+
+// Border utilities  
+.md3-outline {
+  border-color: var(--md-sys-color-outline);
+}
+
+.md3-outline-variant {
+  border-color: var(--md-sys-color-outline-variant);
+}
+
+// Elevation utilities
+.md3-elevation-0 {
+  box-shadow: var(--md-sys-elevation-level0);
+}
+
+.md3-elevation-1 {
+  box-shadow: var(--md-sys-elevation-level1);
+}
+
+.md3-elevation-2 {
+  box-shadow: var(--md-sys-elevation-level2);
+}
+
+.md3-elevation-3 {
+  box-shadow: var(--md-sys-elevation-level3);
+}
+
+.md3-elevation-4 {
+  box-shadow: var(--md-sys-elevation-level4);
+}
+
+.md3-elevation-5 {
+  box-shadow: var(--md-sys-elevation-level5);
 }
