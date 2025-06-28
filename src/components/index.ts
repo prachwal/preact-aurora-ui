@@ -2,6 +2,8 @@ export * from './ExampleButton';
 export * from './Button';
 export * from './TextField';
 export * from './Checkbox';
+export * from './Radio';
+export * from './Switch';
 export * from './Snackbar';
 export * from './Tooltip';
 export * from './Tabs';

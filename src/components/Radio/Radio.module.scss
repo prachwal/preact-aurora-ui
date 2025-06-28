@@ -1,0 +1,329 @@
+@use "../styles/colors.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/spacing.scss" as *;
+@use "../styles/breakpoints.scss" as *;
+@use "../styles/mixins-enhanced.scss" as *;
+
+// Radio Material Design 3 Variables
+$radio-font-family: var(--font-family-base);
+$radio-font-size: var(--font-size-base);
+$radio-line-height: var(--line-height-normal);
+$radio-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Radio sizes
+$radio-size-small: 16px;
+$radio-size-medium: 20px;
+$radio-size-large: 24px;
+
+// Dot sizes (inner circle)
+$radio-dot-size-small: 6px;
+$radio-dot-size-medium: 8px;
+$radio-dot-size-large: 10px;
+
+// Radio colors (using MD3 tokens)
+$radio-outline: var(--md-sys-color-outline);
+$radio-outline-disabled: var(--md-sys-color-outline-variant);
+
+// Primary colors
+$radio-primary: var(--md-sys-color-primary);
+$radio-primary-on: var(--md-sys-color-on-primary);
+
+// Secondary colors
+$radio-secondary: var(--md-sys-color-secondary);
+$radio-secondary-on: var(--md-sys-color-on-secondary);
+
+// Error colors
+$radio-error: var(--md-sys-color-error);
+$radio-error-on: var(--md-sys-color-on-error);
+
+// Surface colors
+$radio-surface: var(--md-sys-color-surface);
+$radio-surface-variant: var(--md-sys-color-surface-variant);
+
+// Text colors
+$radio-text: var(--md-sys-color-on-surface);
+$radio-text-disabled: var(--md-sys-color-on-surface-variant);
+
+// Base radio styles
+.radio {
+  display: inline-flex;
+  align-items: center;
+  font-family: $radio-font-family;
+  font-size: $radio-font-size;
+  line-height: $radio-line-height;
+  cursor: pointer;
+
+  &--disabled {
+    cursor: not-allowed;
+  }
+}
+
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: var(--space-sm);
+  flex-shrink: 0;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: inherit;
+  z-index: 1;
+
+  &:focus-visible+.indicator {
+    @include focus-ring($radio-primary);
+  }
+}
+
+.indicator {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid $radio-outline;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: $radio-transition;
+
+  &--checked {
+    border-color: $radio-primary;
+    background-color: $radio-primary;
+
+    .dot {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  &--disabled {
+    border-color: $radio-outline-disabled;
+    background-color: transparent;
+
+    .dot {
+      background-color: $radio-outline-disabled;
+    }
+  }
+
+  &--error {
+    border-color: $radio-error;
+
+    &.indicator--checked {
+      background-color: $radio-error;
+    }
+  }
+}
+
+.dot {
+  border-radius: 50%;
+  background-color: $radio-primary-on;
+  transform: scale(0);
+  opacity: 0;
+  transition: $radio-transition;
+}
+
+.label {
+  color: $radio-text;
+  cursor: inherit;
+  user-select: none;
+
+  &--disabled {
+    color: $radio-text-disabled;
+  }
+
+  &--error {
+    color: $radio-error;
+  }
+}
+
+.required {
+  color: $radio-error;
+  margin-left: 2px;
+}
+
+// Size variants
+.radio--small {
+  .indicator {
+    width: $radio-size-small;
+    height: $radio-size-small;
+  }
+
+  .dot {
+    width: $radio-dot-size-small;
+    height: $radio-dot-size-small;
+  }
+}
+
+.radio--medium {
+  .indicator {
+    width: $radio-size-medium;
+    height: $radio-size-medium;
+  }
+
+  .dot {
+    width: $radio-dot-size-medium;
+    height: $radio-dot-size-medium;
+  }
+}
+
+.radio--large {
+  .indicator {
+    width: $radio-size-large;
+    height: $radio-size-large;
+  }
+
+  .dot {
+    width: $radio-dot-size-large;
+    height: $radio-dot-size-large;
+  }
+}
+
+// Color variants
+.radio--secondary {
+  .indicator--checked {
+    border-color: $radio-secondary;
+    background-color: $radio-secondary;
+  }
+
+  .dot {
+    background-color: $radio-secondary-on;
+  }
+
+  .input:focus-visible+.indicator {
+    @include focus-ring($radio-secondary);
+  }
+}
+
+.radio--error {
+  .indicator {
+    border-color: $radio-error;
+
+    &.indicator--checked {
+      background-color: $radio-error;
+    }
+  }
+
+  .dot {
+    background-color: $radio-error-on;
+  }
+
+  .label {
+    color: $radio-error;
+  }
+
+  .input:focus-visible+.indicator {
+    @include focus-ring($radio-error);
+  }
+}
+
+// RadioGroup styles
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+
+  &--horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+
+  &--disabled {
+    pointer-events: none;
+  }
+}
+
+.groupLabel {
+  color: $radio-text;
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-xs);
+
+  &--disabled {
+    color: $radio-text-disabled;
+  }
+
+  &--error {
+    color: $radio-error;
+  }
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+
+  .group--horizontal & {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+}
+
+.helper {
+  color: $radio-text-disabled;
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-xs);
+
+  &--error {
+    color: $radio-error;
+  }
+}
+
+// Hover states
+.radio:not(.radio--disabled) {
+  .indicator:hover {
+    background-color: rgba($radio-primary, 0.08);
+
+    &.indicator--checked {
+      background-color: $radio-primary;
+    }
+  }
+
+  &.radio--secondary .indicator:hover {
+    background-color: rgba($radio-secondary, 0.08);
+
+    &.indicator--checked {
+      background-color: $radio-secondary;
+    }
+  }
+
+  &.radio--error .indicator:hover {
+    background-color: rgba($radio-error, 0.08);
+
+    &.indicator--checked {
+      background-color: $radio-error;
+    }
+  }
+}
+
+// Active states
+.radio:not(.radio--disabled) {
+  .input:active+.indicator {
+    background-color: rgba($radio-primary, 0.12);
+
+    &.indicator--checked {
+      background-color: $radio-primary;
+    }
+  }
+
+  &.radio--secondary .input:active+.indicator {
+    background-color: rgba($radio-secondary, 0.12);
+
+    &.indicator--checked {
+      background-color: $radio-secondary;
+    }
+  }
+
+  &.radio--error .input:active+.indicator {
+    background-color: rgba($radio-error, 0.12);
+
+    &.indicator--checked {
+      background-color: $radio-error;
+    }
+  }
+}

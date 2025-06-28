@@ -39,8 +39,8 @@ Create a production-ready, fully accessible Material Design 3 component library 
 
 - [x] **TextField** - Text input with MD3 variants ✅
 - [x] **Checkbox** - Selection control ✅
-- [ ] **Radio** - Single selection
-- [ ] **Switch** - Toggle control
+- [x] **Radio** - Single selection ✅
+- [x] **Switch** - Toggle control ✅
 - [ ] **Select** - Dropdown selection
 
 #### 3.2 Communication Components (Medium Priority)
@@ -121,10 +121,10 @@ Create a production-ready, fully accessible Material Design 3 component library 
 | Checkbox   | 🔴 Medium | Low    | Medium | None           | ✅ Done    |
 | Tooltip    | 🔴 Medium | Low    | Medium | Positioning    | ✅ Done    |
 | Tabs       | 🔴 Medium | Medium | Medium | None           | ✅ Done    |
-| Radio      | 🔴 Medium | Low    | Medium | None           | 📋 Next    |
-| Switch     | 🔴 Medium | Low    | Medium | None           | 📋 Next    |
+| Radio      | 🔴 Medium | Low    | Medium | None           | ✅ Done    |
+| Switch     | 🔴 Medium | Low    | Medium | None           | ✅ Done    |
 | Data Table | 🟡 Low    | High   | High   | Virtual scroll | 📋 Planned |
-| FAB        | 🟡 Low    | Low    | Low    | None           | 📋 Planned |
+| FAB        | 🟡 Low    | Low    | Low    | None           | 📋 Next    |
 
 ## 🚧 Current Blockers
 
@@ -139,7 +139,9 @@ None identified for Phase 3 components.
 - [x] Checkbox component implementation ✅
 - [x] Tooltip component with advanced positioning ✅
 - [x] Tabs component with full MD3 compliance ✅
-- [ ] Radio and Switch form components
+- [x] Radio component with group support ✅
+- [x] Switch component with smooth animations ✅
+- [ ] Select component with dropdown functionality
 - [ ] Form validation framework
 - [ ] Storybook documentation enhancement
 
@@ -160,4 +162,4 @@ None identified for Phase 3 components.
 ---
 
 _Roadmap last updated: June 28, 2025_  
-_Latest milestone: Tabs component completed with full MD3 compliance and comprehensive features_
+_Latest milestone: Switch component completed with full MD3 compliance, smooth animations, and comprehensive form integration_
