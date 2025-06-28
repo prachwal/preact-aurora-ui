@@ -1,0 +1,260 @@
+@use "../styles/colors.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/spacing.scss" as *;
+@use "../styles/breakpoints.scss" as *;
+@use "../styles/mixins-enhanced.scss" as *;
+
+// Snackbar Material Design 3 Variables
+$snackbar-font-family: var(--font-family-base);
+$snackbar-font-size: var(--font-size-sm);
+$snackbar-line-height: var(--line-height-normal);
+$snackbar-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Snackbar dimensions
+$snackbar-min-width: 288px;
+$snackbar-max-width: 568px;
+$snackbar-mobile-width: calc(100vw - 32px);
+$snackbar-padding: 12px 16px;
+$snackbar-border-radius: 4px;
+
+// Snackbar positioning
+$snackbar-bottom-margin: 16px;
+$snackbar-side-margin: 16px;
+
+// Snackbar colors (using CSS custom properties for theming)
+$snackbar-background: var(--md-sys-color-inverse-surface);
+$snackbar-text-color: var(--md-sys-color-inverse-on-surface);
+$snackbar-action-color: var(--md-sys-color-inverse-primary);
+
+// Severity colors
+$snackbar-success-background: var(--md-sys-color-tertiary-container);
+$snackbar-success-color: var(--md-sys-color-on-tertiary-container);
+$snackbar-warning-background: var(--md-sys-color-error-container);
+$snackbar-warning-color: var(--md-sys-color-on-error-container);
+$snackbar-error-background: var(--md-sys-color-error);
+$snackbar-error-color: var(--md-sys-color-on-error);
+
+// Base snackbar styles
+.snackbar {
+  position: fixed;
+  z-index: 1400;
+  min-width: $snackbar-min-width;
+  max-width: $snackbar-max-width;
+  padding: $snackbar-padding;
+  background-color: $snackbar-background;
+  color: $snackbar-text-color;
+  border-radius: $snackbar-border-radius;
+  box-shadow: var(--elevation-3);
+  font-family: $snackbar-font-family;
+  font-size: $snackbar-font-size;
+  line-height: $snackbar-line-height;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: $snackbar-transition;
+
+  @include mobile-only {
+    width: $snackbar-mobile-width;
+    max-width: none;
+    left: $snackbar-side-margin;
+    right: $snackbar-side-margin;
+  }
+
+  &--open {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// Position variants
+.snackbar--bottom {
+  bottom: $snackbar-bottom-margin;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+
+  &.snackbar--open {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  @include mobile-only {
+    left: $snackbar-side-margin;
+    transform: translateY(100%);
+
+    &.snackbar--open {
+      transform: translateY(0);
+    }
+  }
+}
+
+.snackbar--top {
+  top: $snackbar-bottom-margin;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100%);
+
+  &.snackbar--open {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  @include mobile-only {
+    left: $snackbar-side-margin;
+    transform: translateY(-100%);
+
+    &.snackbar--open {
+      transform: translateY(0);
+    }
+  }
+}
+
+.snackbar--bottom-left {
+  bottom: $snackbar-bottom-margin;
+  left: $snackbar-side-margin;
+  transform: translateY(100%);
+
+  &.snackbar--open {
+    transform: translateY(0);
+  }
+}
+
+.snackbar--bottom-right {
+  bottom: $snackbar-bottom-margin;
+  right: $snackbar-side-margin;
+  transform: translateY(100%);
+
+  &.snackbar--open {
+    transform: translateY(0);
+  }
+}
+
+.snackbar--top-left {
+  top: $snackbar-bottom-margin;
+  left: $snackbar-side-margin;
+  transform: translateY(-100%);
+
+  &.snackbar--open {
+    transform: translateY(0);
+  }
+}
+
+.snackbar--top-right {
+  top: $snackbar-bottom-margin;
+  right: $snackbar-side-margin;
+  transform: translateY(-100%);
+
+  &.snackbar--open {
+    transform: translateY(0);
+  }
+}
+
+// Severity variants
+.snackbar--success {
+  background-color: $snackbar-success-background;
+  color: $snackbar-success-color;
+}
+
+.snackbar--warning {
+  background-color: $snackbar-warning-background;
+  color: $snackbar-warning-color;
+}
+
+.snackbar--error {
+  background-color: $snackbar-error-background;
+  color: $snackbar-error-color;
+}
+
+// Info variant uses default colors (no additional styles needed)
+
+// Snackbar content layout
+.snackbarContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+// Message content
+.message {
+  flex: 1;
+  margin: 0;
+  line-height: $snackbar-line-height;
+}
+
+// Actions container
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-left: var(--space-sm);
+}
+
+// Action button
+.actionButton {
+  background: transparent;
+  border: none;
+  color: $snackbar-action-color;
+  font-family: inherit;
+  font-size: $snackbar-font-size;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: $snackbar-transition;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  &:focus {
+    outline: 2px solid $snackbar-action-color;
+    outline-offset: 2px;
+  }
+
+  &:active {
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .snackbar--success & {
+    color: $snackbar-success-color;
+  }
+
+  .snackbar--warning & {
+    color: $snackbar-warning-color;
+  }
+
+  .snackbar--error & {
+    color: $snackbar-error-color;
+  }
+}
+
+// Close button
+.closeButton {
+  background: transparent;
+  border: none;
+  color: inherit;
+  padding: 4px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: $snackbar-transition;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  &:focus {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  &:active {
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+}
