@@ -1,0 +1,351 @@
+@use '../styles/colors.scss' as *;
+@use '../styles/typography.scss' as *;
+@use '../styles/spacing.scss' as *;
+@use '../styles/mixins-enhanced.scss' as *;
+
+// Local variables based on global custom properties
+$fab-surface-bg: var(--md-sys-color-surface-container-high);
+$fab-surface-color: var(--md-sys-color-primary);
+$fab-primary-bg: var(--md-sys-color-primary-container);
+$fab-primary-color: var(--md-sys-color-on-primary-container);
+$fab-secondary-bg: var(--md-sys-color-secondary-container);
+$fab-secondary-color: var(--md-sys-color-on-secondary-container);
+$fab-tertiary-bg: var(--md-sys-color-tertiary-container);
+$fab-tertiary-color: var(--md-sys-color-on-tertiary-container);
+
+$fab-surface-bg-hover: var(--md-sys-color-surface-container-highest);
+$fab-primary-bg-hover: var(--md-sys-color-primary-container);
+$fab-secondary-bg-hover: var(--md-sys-color-secondary-container);
+$fab-tertiary-bg-hover: var(--md-sys-color-tertiary-container);
+
+$fab-disabled-bg: var(--md-sys-color-on-surface);
+$fab-disabled-color: var(--md-sys-color-surface);
+
+$fab-shadow: var(--md-sys-elevation-level3);
+$fab-shadow-hover: var(--md-sys-elevation-level4);
+$fab-shadow-pressed: var(--md-sys-elevation-level1);
+
+$fab-font-family: var(--md-sys-typescale-label-large-font-family-name);
+$fab-font-size: var(--md-sys-typescale-label-large-font-size);
+$fab-font-weight: var(--md-sys-typescale-label-large-font-weight);
+$fab-line-height: var(--md-sys-typescale-label-large-line-height);
+
+// FAB base styles
+.fab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 16px;
+  font-family: $fab-font-family;
+  font-size: $fab-font-size;
+  font-weight: $fab-font-weight;
+  line-height: $fab-line-height;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 200ms cubic-bezier(0.2, 0, 0, 1);
+  box-shadow: $fab-shadow;
+  user-select: none;
+  outline: none;
+  overflow: hidden;
+
+  &:hover {
+    box-shadow: $fab-shadow-hover;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    box-shadow: $fab-shadow-pressed;
+    transform: scale(0.95);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &:disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+    pointer-events: none;
+    transform: none;
+    box-shadow: none;
+  }
+
+  // Ripple effect container
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    background: currentColor;
+    opacity: 0;
+    transition: opacity 200ms cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  &:hover::before {
+    opacity: 0.08;
+  }
+
+  &:active::before {
+    opacity: 0.12;
+  }
+}
+
+// Size variants
+.fab--mini {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+
+  .fabIcon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.fab--regular {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+
+  .fabIcon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.fab--extended {
+  height: 56px;
+  padding: 0 16px;
+  border-radius: 16px;
+  gap: 8px;
+  min-width: 80px;
+
+  .fabIcon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+  }
+
+  .fabLabel {
+    white-space: nowrap;
+  }
+}
+
+// Color variants
+.fab--surface {
+  background-color: $fab-surface-bg;
+  color: $fab-surface-color;
+
+  &:hover {
+    background-color: $fab-surface-bg-hover;
+  }
+}
+
+.fab--primary {
+  background-color: $fab-primary-bg;
+  color: $fab-primary-color;
+
+  &:hover {
+    background-color: $fab-primary-bg-hover;
+  }
+}
+
+.fab--secondary {
+  background-color: $fab-secondary-bg;
+  color: $fab-secondary-color;
+
+  &:hover {
+    background-color: $fab-secondary-bg-hover;
+  }
+}
+
+.fab--tertiary {
+  background-color: $fab-tertiary-bg;
+  color: $fab-tertiary-color;
+
+  &:hover {
+    background-color: $fab-tertiary-bg-hover;
+  }
+}
+
+// Position variants
+.fab--positioned {
+  position: fixed;
+  z-index: 1050;
+}
+
+.fab--bottom-right {
+  bottom: 16px;
+  right: 16px;
+}
+
+.fab--bottom-left {
+  bottom: 16px;
+  left: 16px;
+}
+
+.fab--top-right {
+  top: 16px;
+  right: 16px;
+}
+
+.fab--top-left {
+  top: 16px;
+  left: 16px;
+}
+
+.fab--static {
+  position: static;
+}
+
+// FAB content
+.fabContent {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 1;
+}
+
+.fabIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.fabLabel {
+  font-family: $fab-font-family;
+  font-size: $fab-font-size;
+  font-weight: $fab-font-weight;
+  line-height: $fab-line-height;
+}
+
+// Speed Dial
+.speedDial {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.speedDialActions {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 1049;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.8);
+  transition: all 200ms cubic-bezier(0.2, 0, 0, 1);
+
+  &--open {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+
+  &--up {
+    bottom: 100%;
+    margin-bottom: 8px;
+  }
+
+  &--down {
+    top: 100%;
+    margin-top: 8px;
+  }
+
+  &--left {
+    right: 100%;
+    margin-right: 8px;
+    flex-direction: row;
+  }
+
+  &--right {
+    left: 100%;
+    margin-left: 8px;
+    flex-direction: row;
+  }
+}
+
+.speedDialAction {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(8px);
+  animation-fill-mode: forwards;
+
+  &--visible {
+    animation: speedDialActionEnter 200ms cubic-bezier(0.2, 0, 0, 1) forwards;
+  }
+
+  .speedDialActionLabel {
+    padding: 4px 8px;
+    background: var(--md-sys-color-inverse-surface);
+    color: var(--md-sys-color-inverse-on-surface);
+    border-radius: 4px;
+    font-size: var(--md-sys-typescale-body-small-font-size);
+    white-space: nowrap;
+    box-shadow: var(--md-sys-elevation-level2);
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: all 200ms cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  &:hover .speedDialActionLabel {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes speedDialActionEnter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .fab--positioned {
+    bottom: 24px;
+    right: 24px;
+  }
+
+  .fab--bottom-left {
+    left: 24px;
+  }
+
+  .fab--top-right {
+    top: 24px;
+  }
+
+  .fab--top-left {
+    top: 24px;
+  }
+}
+
+// Dark theme adjustments
+[data-theme='dark'] {
+  .fab {
+    box-shadow: var(--md-sys-elevation-level3);
+
+    &:hover {
+      box-shadow: var(--md-sys-elevation-level4);
+    }
+
+    &:active {
+      box-shadow: var(--md-sys-elevation-level1);
+    }
+  }
+}
