@@ -1,7 +1,7 @@
 import { useState } from 'preact/hooks';
 
-import { Card } from '../Card';
-import { TextField } from '../TextField';
+import { Card } from '../../components/Card';
+import { TextField } from '../../components/TextField';
 
 export const TextFieldDemo = () => {
   const [textValue, setTextValue] = useState('');

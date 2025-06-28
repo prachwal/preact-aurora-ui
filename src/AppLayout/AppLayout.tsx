@@ -11,7 +11,7 @@ import {
   RouterBreadcrumbs,
   ThemeToggle,
   SidebarToggle,
-} from '../index';
+} from '../components/index';
 
 export function AppLayout() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);

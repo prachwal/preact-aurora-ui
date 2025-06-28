@@ -1,6 +1,6 @@
-import { Card } from '../Card';
-import { Button } from '../Button';
-import { useSnackbar } from '../Snackbar';
+import { Card } from '../../components/Card';
+import { Button } from '../../components/Button';
+import { useSnackbar } from '../../components/Snackbar';
 
 export const SnackbarDemo = () => {
   const { showSnackbar } = useSnackbar();

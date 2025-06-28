@@ -1,7 +1,7 @@
 import { useState } from 'preact/hooks';
 
-import { Card } from '../Card';
-import { Checkbox } from '../Checkbox';
+import { Card } from '../../components/Card';
+import { Checkbox } from '../../components/Checkbox';
 
 export const CheckboxDemo = () => {
   const [basicChecked, setBasicChecked] = useState(false);

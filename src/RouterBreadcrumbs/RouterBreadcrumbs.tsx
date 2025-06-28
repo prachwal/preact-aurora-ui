@@ -1,6 +1,6 @@
 import { useLocation } from 'preact-iso';
 
-import { Breadcrumbs } from '../Breadcrumbs';
+import { Breadcrumbs } from '../components/Breadcrumbs';
 
 export function RouterBreadcrumbs() {
   const { url } = useLocation();

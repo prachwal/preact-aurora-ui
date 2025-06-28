@@ -8,7 +8,7 @@ import {
   ThemeDemo,
   MD3ColorsPage,
   AdvancedComponents,
-} from '../../pages';
+} from '../pages';
 
 export function AppRouter() {
   return (

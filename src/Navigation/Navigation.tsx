@@ -1,6 +1,6 @@
 import { useLocation } from 'preact-iso';
 
-import { Menu } from '../Menu';
+import { Menu } from '../components/Menu';
 
 interface NavigationProps {
   onSelect?: (key: string) => void;
