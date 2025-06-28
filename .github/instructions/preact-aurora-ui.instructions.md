@@ -1,5 +1,5 @@
 ---
-applyTo: "**"
+applyTo: '**'
 ---
 
 # Organizacja plików checklist
@@ -21,9 +21,9 @@ applyTo: "**"
 - Każdy plik SCSS komponentu powinien:
   - Używać `@use` (nie `@import`) do ładowania bazowych plików SCSS:
     ```scss
-    @use "../styles/colors.scss" as *;
-    @use "../styles/typography.scss" as *;
-    @use "../styles/spacing.scss" as *;
+    @use '../styles/colors.scss' as *;
+    @use '../styles/typography.scss' as *;
+    @use '../styles/spacing.scss' as *;
     ```
   - W nagłówku definiować lokalne zmienne SCSS (np. `$button-bg`) i przypisywać im wartości z globalnych custom properties (np. `var(--color-primary)`).
   - Dzięki temu można nadpisać dowolny parametr lokalnie lub globalnie przez kaskadę.
@@ -35,9 +35,9 @@ applyTo: "**"
 ## Przykład nagłówka SCSS komponentu
 
 ```scss
-@use "../styles/colors.scss" as *;
-@use "../styles/typography.scss" as *;
-@use "../styles/spacing.scss" as *;
+@use '../styles/colors.scss' as *;
+@use '../styles/typography.scss' as *;
+@use '../styles/spacing.scss' as *;
 
 // Lokalne zmienne na bazie globalnych custom properties
 $button-bg: var(--color-primary);
@@ -53,11 +53,50 @@ $button-font-size: var(--font-size-base);
 - Używaj `vitest`, `@testing-library/preact`, `@testing-library/jest-dom`.
 - Importy w testach:
   ```tsx
-  import { render, screen } from "@testing-library/preact";
-  import { describe, it, expect } from "vitest";
-  import { ExampleButton } from "./ExampleButton";
-  import "@testing-library/jest-dom";
+  import { render, screen, fireEvent } from '@testing-library/preact';
+  import userEvent from '@testing-library/user-event';
+  import { describe, it, expect, vi } from 'vitest';
+  import { ExampleButton } from './ExampleButton';
+  import '@testing-library/jest-dom';
   ```
+
+### Testy eventów (focus, blur, click, keyboard)
+
+- **ZAWSZE używaj `userEvent` i `async/await` dla testów związanych z eventami użytkownika** (focus, blur, click, keyboard, hover).
+- **NIE używaj `fireEvent` dla interakcji użytkownika** - zostaw `fireEvent` tylko dla testów niskiego poziomu (np. `fireEvent.input` do symulacji zmiany wartości).
+- Przykład prawidłowego testu eventów:
+
+```tsx
+it('calls onFocus and onBlur', async () => {
+  const user = userEvent.setup();
+  const handleFocus = vi.fn();
+  const handleBlur = vi.fn();
+  render(<TextField onFocus={handleFocus} onBlur={handleBlur} />);
+
+  const input = screen.getByRole('textbox');
+
+  await user.click(input); // powoduje focus
+  expect(handleFocus).toHaveBeenCalled();
+
+  await user.tab(); // przenosi focus gdzie indziej = blur
+  expect(handleBlur).toHaveBeenCalled();
+});
+
+it('handles keyboard events', async () => {
+  const user = userEvent.setup();
+  const handleKeyDown = vi.fn();
+  render(<Component onKeyDown={handleKeyDown} />);
+
+  const element = screen.getByRole('...');
+  await user.type(element, 'Hello');
+  await user.keyboard('{Escape}');
+
+  expect(handleKeyDown).toHaveBeenCalled();
+});
+```
+
+- `userEvent` symuluje prawdziwe zachowanie użytkownika i jest bardziej niezawodny niż `fireEvent`.
+- Wszystkie funkcje `userEvent` są asynchroniczne - zawsze używaj `await`.
 
 ## Zasady
 

@@ -1,0 +1,278 @@
+@use "../styles/colors.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/spacing.scss" as *;
+@use "../styles/breakpoints.scss" as *;
+@use "../styles/mixins-enhanced.scss" as *;
+
+// Checkbox Material Design 3 Variables
+$checkbox-font-family: var(--font-family-base);
+$checkbox-font-size: var(--font-size-base);
+$checkbox-line-height: var(--line-height-normal);
+$checkbox-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Checkbox sizes
+$checkbox-size-small: 16px;
+$checkbox-size-medium: 20px;
+$checkbox-size-large: 24px;
+
+// Checkbox colors (using MD3 tokens)
+$checkbox-outline: var(--md-sys-color-outline);
+$checkbox-outline-disabled: var(--md-sys-color-outline-variant);
+
+// Primary colors
+$checkbox-primary: var(--md-sys-color-primary);
+$checkbox-primary-on: var(--md-sys-color-on-primary);
+
+// Secondary colors  
+$checkbox-secondary: var(--md-sys-color-secondary);
+$checkbox-secondary-on: var(--md-sys-color-on-secondary);
+
+// Error colors
+$checkbox-error: var(--md-sys-color-error);
+$checkbox-error-on: var(--md-sys-color-on-error);
+
+// Surface colors
+$checkbox-surface: var(--md-sys-color-surface);
+$checkbox-surface-variant: var(--md-sys-color-surface-variant);
+
+// Text colors
+$checkbox-text: var(--md-sys-color-on-surface);
+$checkbox-text-disabled: var(--md-sys-color-on-surface-variant);
+
+// Base checkbox styles
+.checkbox {
+  display: inline-block;
+  font-family: $checkbox-font-family;
+  font-size: $checkbox-font-size;
+  line-height: $checkbox-line-height;
+}
+
+.checkboxWrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  cursor: pointer;
+
+  &:hover:not(.checkbox--disabled) .checkboxIcon {
+    .checkboxBackground {
+      background-color: rgba($checkbox-primary, 0.08);
+    }
+  }
+}
+
+// Hidden input
+.input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  margin: 0;
+  width: 0;
+  height: 0;
+
+  &:focus+.checkboxIcon {
+    .checkboxBackground {
+      @include focus-ring($checkbox-primary);
+    }
+  }
+
+  &:checked+.checkboxIcon {
+    .checkboxBackground {
+      background-color: $checkbox-primary;
+      border-color: $checkbox-primary;
+      color: $checkbox-primary-on;
+    }
+  }
+
+  &:indeterminate+.checkboxIcon {
+    .checkboxBackground {
+      background-color: $checkbox-primary;
+      border-color: $checkbox-primary;
+      color: $checkbox-primary-on;
+    }
+  }
+}
+
+// Checkbox visual element
+.checkboxIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.checkboxBackground {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $checkbox-size-medium;
+  height: $checkbox-size-medium;
+  border: 2px solid $checkbox-outline;
+  border-radius: 4px;
+  background-color: transparent;
+  color: transparent;
+  transition: $checkbox-transition;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: $checkbox-transition;
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+// Label
+.label {
+  color: $checkbox-text;
+  cursor: pointer;
+  user-select: none;
+  line-height: 1.5;
+  margin-top: 2px; // Align with checkbox center
+
+  &--disabled {
+    color: $checkbox-text-disabled;
+    cursor: not-allowed;
+  }
+
+  &--error {
+    color: $checkbox-error;
+  }
+}
+
+.required {
+  color: $checkbox-error;
+  margin-left: 2px;
+}
+
+// Helper text
+.helperText {
+  margin-top: var(--space-xs);
+  margin-left: calc($checkbox-size-medium + var(--space-sm));
+  font-size: var(--font-size-sm);
+  color: var(--md-sys-color-on-surface-variant);
+
+  .checkbox--error & {
+    color: $checkbox-error;
+  }
+}
+
+// Size variants
+.checkbox--small {
+  .checkboxBackground {
+    width: $checkbox-size-small;
+    height: $checkbox-size-small;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  .helperText {
+    margin-left: calc($checkbox-size-small + var(--space-sm));
+  }
+}
+
+.checkbox--large {
+  .checkboxBackground {
+    width: $checkbox-size-large;
+    height: $checkbox-size-large;
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  .helperText {
+    margin-left: calc($checkbox-size-large + var(--space-sm));
+  }
+}
+
+// Color variants
+.checkbox--secondary {
+
+  .input:checked+.checkboxIcon .checkboxBackground,
+  .input:indeterminate+.checkboxIcon .checkboxBackground {
+    background-color: $checkbox-secondary;
+    border-color: $checkbox-secondary;
+    color: $checkbox-secondary-on;
+  }
+
+  &:hover:not(.checkbox--disabled) .checkboxIcon .checkboxBackground {
+    background-color: rgba($checkbox-secondary, 0.08);
+  }
+
+  .input:focus+.checkboxIcon .checkboxBackground {
+    @include focus-ring($checkbox-secondary);
+  }
+}
+
+.checkbox--error {
+  .checkboxBackground {
+    border-color: $checkbox-error;
+  }
+
+  .input:checked+.checkboxIcon .checkboxBackground,
+  .input:indeterminate+.checkboxIcon .checkboxBackground {
+    background-color: $checkbox-error;
+    border-color: $checkbox-error;
+    color: $checkbox-error-on;
+  }
+
+  &:hover:not(.checkbox--disabled) .checkboxIcon .checkboxBackground {
+    background-color: rgba($checkbox-error, 0.08);
+  }
+
+  .input:focus+.checkboxIcon .checkboxBackground {
+    @include focus-ring($checkbox-error);
+  }
+}
+
+// Disabled state
+.checkbox--disabled {
+  .checkboxWrapper {
+    cursor: not-allowed;
+  }
+
+  .checkboxBackground {
+    border-color: $checkbox-outline-disabled;
+    background-color: transparent;
+  }
+
+  .input:checked+.checkboxIcon .checkboxBackground,
+  .input:indeterminate+.checkboxIcon .checkboxBackground {
+    background-color: $checkbox-outline-disabled;
+    border-color: $checkbox-outline-disabled;
+    color: $checkbox-surface;
+  }
+
+  .label {
+    color: $checkbox-text-disabled;
+  }
+}
+
+// Responsive adjustments
+@include mobile-only {
+  .checkbox {
+
+    // Increase touch target on mobile
+    .checkboxBackground::before {
+      top: -12px;
+      left: -12px;
+      right: -12px;
+      bottom: -12px;
+    }
+  }
+}
