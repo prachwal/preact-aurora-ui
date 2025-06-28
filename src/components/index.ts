@@ -1,6 +1,7 @@
 export * from './ExampleButton';
 export * from './Button';
 export * from './TextField';
+export * from './Snackbar';
 export * from './Layout';
 export * from './Header';
 export * from './Sidebar';

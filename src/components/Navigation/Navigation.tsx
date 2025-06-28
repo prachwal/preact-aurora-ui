@@ -23,6 +23,12 @@ export function Navigation({ onSelect }: NavigationProps) {
       href: '/analytics',
     },
     {
+      key: 'advanced-components',
+      label: 'Advanced Components',
+      icon: '🧩',
+      href: '/advanced-components',
+    },
+    {
       key: 'users',
       label: 'Users',
       icon: '👥',
