@@ -1,7 +1,7 @@
-@use '../../styles/colors.scss' as *;
-@use '../../styles/typography.scss' as *;
-@use '../../styles/spacing.scss' as *;
-@use '../../styles/elevation.scss' as *;
+@use '../styles/colors.scss' as *;
+@use '../styles/typography.scss' as *;
+@use '../styles/spacing.scss' as *;
+@use '../styles/base.scss' as *;
 
 // Local variables based on global custom properties
 $stepper-bg: var(--md-sys-color-surface);

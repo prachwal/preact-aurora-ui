@@ -32,11 +32,18 @@ export function Stepper({
   };
 
   return (
-    <div className={stepperClasses} role="tablist" aria-orientation={orientation}>
+    <div
+      className={stepperClasses}
+      role="tablist"
+      aria-orientation={orientation}
+      data-testid="stepper"
+    >
       {childArray.map((child: any, index: number) => {
         if (child && typeof child === 'object' && 'props' in child) {
           const isActive = activeStep === index;
-          const isCompleted = activeStep > index;
+          const isCompletedByPosition = activeStep > index;
+          const isCompletedByProp = child.props.completed || false;
+          const isCompleted = isCompletedByPosition || isCompletedByProp;
           const isError = child.props.error || false;
           const isDisabled = child.props.disabled || false;
 

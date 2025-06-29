@@ -3,283 +3,215 @@ import { useState } from 'preact/hooks';
 import { BottomNavigation, BottomNavigationTab } from '../../components/BottomNavigation';
 
 export function BottomNavigationDemo() {
-  const [activeTab, setActiveTab] = useState('home');
-  const [compactMode, setCompactMode] = useState(false);
-  const [hideOnScroll, setHideOnScroll] = useState(false);
-
-  const basicTabs: BottomNavigationTab[] = [
-    {
-      id: 'home',
-      label: 'Home',
-      icon: '🏠',
-    },
-    {
-      id: 'search',
-      label: 'Search',
-      icon: '🔍',
-    },
-    {
-      id: 'favorites',
-      label: 'Favorites',
-      icon: '❤️',
-    },
-    {
-      id: 'profile',
-      label: 'Profile',
-      icon: '👤',
-    },
-  ];
-
-  const tabsWithBadges: BottomNavigationTab[] = [
-    {
-      id: 'inbox',
-      label: 'Inbox',
-      icon: '📧',
-      badge: 5,
-    },
-    {
-      id: 'notifications',
-      label: 'Notifications',
-      icon: '🔔',
-      badge: 12,
-    },
-    {
-      id: 'messages',
-      label: 'Messages',
-      icon: '💬',
-      badge: 'new',
-    },
-    {
-      id: 'settings',
-      label: 'Settings',
-      icon: '⚙️',
-    },
-  ];
+  const [activeTab, setActiveTab] = useState(0);
+  const [showLabels, setShowLabels] = useState(true);
+  const [autoHide, setAutoHide] = useState(false);
 
   return (
-    <ComponentDemo
-      title="Bottom Navigation"
-      subtitle="Material Design 3 bottom navigation component"
-    >
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-        {/* Basic Example */}
-        <section>
-          <h3>Basic Bottom Navigation</h3>
-          <p>Standard bottom navigation with icons and labels.</p>
-
-          <div
-            style={{
-              position: 'relative',
-              height: '300px',
-              background: 'var(--md-sys-color-surface-variant)',
-              borderRadius: '12px',
-              overflow: 'hidden',
-            }}
-          >
-            <div
-              style={{
-                padding: '2rem',
-                textAlign: 'center',
-                paddingBottom: '6rem',
-              }}
-            >
-              <h4>App Content Area</h4>
-              <p>
-                Current tab: <strong>{activeTab}</strong>
-              </p>
-            </div>
-
-            <BottomNavigation
-              tabs={basicTabs}
-              activeTab={activeTab}
-              onTabChange={setActiveTab}
-              compact={compactMode}
-              hideOnScroll={hideOnScroll}
-            />
-          </div>
-
-          <div style={{ marginTop: '1rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <input
-                type="checkbox"
-                checked={compactMode}
-                onChange={(e) => setCompactMode((e.target as HTMLInputElement).checked)}
-              />
-              Compact mode
-            </label>
-            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <input
-                type="checkbox"
-                checked={hideOnScroll}
-                onChange={(e) => setHideOnScroll((e.target as HTMLInputElement).checked)}
-              />
-              Hide on scroll
-            </label>
-          </div>
-        </section>
-
-        {/* With Badges */}
-        <section>
-          <h3>Bottom Navigation with Badges</h3>
-          <p>Navigation tabs can display badges for notifications or counts.</p>
-
-          <div
-            style={{
-              position: 'relative',
-              height: '300px',
-              background: 'var(--md-sys-color-surface-variant)',
-              borderRadius: '12px',
-              overflow: 'hidden',
-            }}
-          >
-            <div
-              style={{
-                padding: '2rem',
-                textAlign: 'center',
-                paddingBottom: '6rem',
-              }}
-            >
-              <h4>Mail App</h4>
-              <p>
-                Check your{' '}
-                {activeTab === 'inbox'
-                  ? 'inbox'
-                  : activeTab === 'notifications'
-                    ? 'notifications'
-                    : activeTab === 'messages'
-                      ? 'messages'
-                      : 'settings'}
-              </p>
-            </div>
-
-            <BottomNavigation
-              tabs={tabsWithBadges}
-              activeTab={activeTab}
-              onTabChange={setActiveTab}
-            />
-          </div>
-        </section>
-
-        {/* Three Tab Layout */}
-        <section>
-          <h3>Three Tab Layout</h3>
-          <p>Simplified navigation with only three tabs.</p>
-
-          <div
-            style={{
-              position: 'relative',
-              height: '300px',
-              background: 'var(--md-sys-color-surface-variant)',
-              borderRadius: '12px',
-              overflow: 'hidden',
-            }}
-          >
-            <div
-              style={{
-                padding: '2rem',
-                textAlign: 'center',
-                paddingBottom: '6rem',
-              }}
-            >
-              <h4>Simple App</h4>
-              <p>
-                Current section: <strong>{activeTab}</strong>
-              </p>
-            </div>
-
-            <BottomNavigation
-              tabs={[
-                { id: 'feed', label: 'Feed', icon: '📰' },
-                { id: 'explore', label: 'Explore', icon: '🌎' },
-                { id: 'account', label: 'Account', icon: '👤' },
-              ]}
-              activeTab={activeTab}
-              onTabChange={setActiveTab}
-            />
-          </div>
-        </section>
-
-        {/* Features */}
-        <section>
-          <h3>Key Features</h3>
-          <ul
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-              gap: '1rem',
-              listStyle: 'none',
-              padding: 0,
-            }}
-          >
-            <li
-              style={{
-                padding: '1rem',
-                background: 'var(--md-sys-color-surface-container)',
-                borderRadius: '8px',
-              }}
-            >
-              <strong>✨ Material Design 3</strong>
-              <br />
-              Full MD3 theming and color system support
-            </li>
-            <li
-              style={{
-                padding: '1rem',
-                background: 'var(--md-sys-color-surface-container)',
-                borderRadius: '8px',
-              }}
-            >
-              <strong>🎯 Badge Support</strong>
-              <br />
-              Display notification counts or indicators
-            </li>
-            <li
-              style={{
-                padding: '1rem',
-                background: 'var(--md-sys-color-surface-container)',
-                borderRadius: '8px',
-              }}
-            >
-              <strong>⌨️ Keyboard Navigation</strong>
-              <br />
-              Full keyboard and screen reader support
-            </li>
-            <li
-              style={{
-                padding: '1rem',
-                background: 'var(--md-sys-color-surface-container)',
-                borderRadius: '8px',
-              }}
-            >
-              <strong>📱 Responsive</strong>
-              <br />
-              Adapts to different screen sizes
-            </li>
-            <li
-              style={{
-                padding: '1rem',
-                background: 'var(--md-sys-color-surface-container)',
-                borderRadius: '8px',
-              }}
-            >
-              <strong>🎨 Customizable</strong>
-              <br />
-              Compact mode and auto-hide options
-            </li>
-            <li
-              style={{
-                padding: '1rem',
-                background: 'var(--md-sys-color-surface-container)',
-                borderRadius: '8px',
-              }}
-            >
-              <strong>🏃 Smooth Animations</strong>
-              <br />
-              Fluid transitions and state changes
-            </li>
-          </ul>
-        </section>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      <div>
+        <h2>Bottom Navigation</h2>
+        <p>Bottom navigation provides quick navigation between top-level views of an app.</p>
       </div>
-    </ComponentDemo>
+
+      {/* Controls */}
+      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <input
+            type="checkbox"
+            checked={showLabels}
+            onChange={(e) => setShowLabels(e.currentTarget.checked)}
+          />
+          Show Labels
+        </label>
+        <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <input
+            type="checkbox"
+            checked={autoHide}
+            onChange={(e) => setAutoHide(e.currentTarget.checked)}
+          />
+          Auto Hide on Scroll
+        </label>
+      </div>
+
+      {/* Basic Bottom Navigation */}
+      <div>
+        <h3>Basic Navigation</h3>
+        <div
+          style={{
+            position: 'relative',
+            height: '400px',
+            border: '1px solid var(--md-sys-color-outline)',
+            borderRadius: '8px',
+            backgroundColor: 'var(--md-sys-color-surface)',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <div
+            style={{
+              flex: 1,
+              padding: '2rem',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <h4>App Content Area</h4>
+            <p>
+              Current tab: <strong>{activeTab}</strong>
+            </p>
+            <p>
+              {activeTab === 0 && 'Home content'}
+              {activeTab === 1 && 'Search content'}
+              {activeTab === 2 && 'Favorites content'}
+              {activeTab === 3 && 'Profile content'}
+            </p>
+          </div>
+
+          <BottomNavigation
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+            showLabels={showLabels}
+            autoHide={autoHide}
+          >
+            <BottomNavigationTab index={0} label="Home" icon="🏠" />
+            <BottomNavigationTab index={1} label="Search" icon="🔍" />
+            <BottomNavigationTab index={2} label="Favorites" icon="❤️" />
+            <BottomNavigationTab index={3} label="Profile" icon="👤" />
+          </BottomNavigation>
+        </div>
+      </div>
+
+      {/* Navigation with Badges */}
+      <div>
+        <h3>Navigation with Badges</h3>
+        <div
+          style={{
+            position: 'relative',
+            height: '400px',
+            border: '1px solid var(--md-sys-color-outline)',
+            borderRadius: '8px',
+            backgroundColor: 'var(--md-sys-color-surface)',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <div
+            style={{
+              flex: 1,
+              padding: '2rem',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <h4>App with Notifications</h4>
+            <p>
+              Current tab: <strong>{activeTab}</strong>
+            </p>
+            <p>
+              {activeTab === 0 && 'Home feed with updates'}
+              {activeTab === 1 && 'Messages - 3 unread'}
+              {activeTab === 2 && 'Notifications - 12 new'}
+              {activeTab === 3 && 'Profile settings'}
+            </p>
+          </div>
+
+          <BottomNavigation
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+            showLabels={showLabels}
+          >
+            <BottomNavigationTab index={0} label="Home" icon="🏠" />
+            <BottomNavigationTab index={1} label="Messages" icon="💬" badge={3} />
+            <BottomNavigationTab index={2} label="Notifications" icon="🔔" badge={12} />
+            <BottomNavigationTab index={3} label="Profile" icon="👤" />
+          </BottomNavigation>
+        </div>
+      </div>
+
+      {/* Compact Navigation */}
+      <div>
+        <h3>Compact Navigation (No Labels)</h3>
+        <div
+          style={{
+            position: 'relative',
+            height: '400px',
+            border: '1px solid var(--md-sys-color-outline)',
+            borderRadius: '8px',
+            backgroundColor: 'var(--md-sys-color-surface)',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <div
+            style={{
+              flex: 1,
+              padding: '2rem',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <h4>Compact Navigation</h4>
+            <p>
+              Current tab: <strong>{activeTab}</strong>
+            </p>
+            <p>Labels are hidden but still accessible via aria-label</p>
+          </div>
+
+          <BottomNavigation activeTab={activeTab} onTabChange={setActiveTab} showLabels={false}>
+            <BottomNavigationTab index={0} label="Home" icon="🏠" />
+            <BottomNavigationTab index={1} label="Search" icon="🔍" />
+            <BottomNavigationTab index={2} label="Library" icon="📚" />
+            <BottomNavigationTab index={3} label="Profile" icon="👤" />
+          </BottomNavigation>
+        </div>
+      </div>
+
+      {/* Features */}
+      <div>
+        <h3>Features</h3>
+        <ul>
+          <li>✅ Material Design 3 styling</li>
+          <li>✅ Keyboard navigation (Tab, Arrow keys)</li>
+          <li>✅ Screen reader support</li>
+          <li>✅ Badge notifications</li>
+          <li>✅ Show/hide labels</li>
+          <li>✅ Auto-hide on scroll</li>
+          <li>✅ Focus management</li>
+          <li>✅ Touch-friendly tap targets</li>
+        </ul>
+      </div>
+
+      {/* Usage */}
+      <div>
+        <h3>Usage</h3>
+        <pre
+          style={{
+            backgroundColor: 'var(--md-sys-color-surface-variant)',
+            padding: '1rem',
+            borderRadius: '4px',
+            overflow: 'auto',
+          }}
+        >
+          {`<BottomNavigation
+  activeTab={activeTab}
+  onTabChange={setActiveTab}
+  showLabels={true}
+  autoHide={false}
+>
+  <BottomNavigationTab index={0} label="Home" icon="🏠" />
+  <BottomNavigationTab index={1} label="Search" icon="🔍" />
+  <BottomNavigationTab index={2} label="Favorites" icon="❤️" badge={5} />
+  <BottomNavigationTab index={3} label="Profile" icon="👤" />
+</BottomNavigation>`}
+        </pre>
+      </div>
+    </div>
   );
 }

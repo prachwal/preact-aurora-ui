@@ -57,7 +57,21 @@ export function Step({
   const isExpanded = active || (orientation === 'vertical' && !linear);
 
   return (
-    <div className={stepClasses}>
+    <div
+      className={stepClasses}
+      role="tab"
+      aria-selected={active}
+      aria-disabled={disabled}
+      tabIndex={isClickable ? 0 : -1}
+      onClick={isClickable ? handleStepClick : undefined}
+      onKeyDown={(e) => {
+        if (isClickable && (e.key === 'Enter' || e.key === ' ')) {
+          e.preventDefault();
+          handleStepClick();
+        }
+      }}
+      data-testid={`step-${index}`}
+    >
       <div className={styles.stepHeader}>
         <StepIndicator
           stepNumber={index + 1}

@@ -144,7 +144,12 @@ export function StepperDemo() {
           }}
         >
           <Stepper activeStep={activeStep2} orientation="vertical">
-            <Step index={0} label="Plan Selection" description="Choose your subscription plan" completed={true}>
+            <Step
+              index={0}
+              label="Plan Selection"
+              description="Choose your subscription plan"
+              completed={true}
+            >
               <div
                 style={{
                   padding: '1rem',
@@ -157,7 +162,12 @@ export function StepperDemo() {
                 <p>You've chosen the Premium plan with all features included.</p>
               </div>
             </Step>
-            <Step index={1} label="Payment Information" description="Enter your billing details" error={false}>
+            <Step
+              index={1}
+              label="Payment Information"
+              description="Enter your billing details"
+              error={false}
+            >
               <div
                 style={{
                   padding: '1rem',
@@ -202,7 +212,12 @@ export function StepperDemo() {
                 </div>
               </div>
             </Step>
-            <Step index={2} label="Confirmation" description="Review and confirm your order" disabled={true}>
+            <Step
+              index={2}
+              label="Confirmation"
+              description="Review and confirm your order"
+              disabled={true}
+            >
               <div
                 style={{
                   padding: '1rem',
@@ -231,7 +246,12 @@ export function StepperDemo() {
             borderRadius: '12px',
           }}
         >
-          <Stepper activeStep={activeStep3} orientation="horizontal" linear={false} onStepChange={setActiveStep3}>
+          <Stepper
+            activeStep={activeStep3}
+            orientation="horizontal"
+            linear={false}
+            onStepChange={setActiveStep3}
+          >
             <Step index={0} label="Profile" description="Personal information" completed={true}>
               <div>Profile content</div>
             </Step>
