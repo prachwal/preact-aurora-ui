@@ -1,7 +1,20 @@
 // @ts-nocheck - Demo file with type assertion workarounds for discriminated unions
 import { useState } from 'preact/hooks';
 
-import { Chip, ChipGroup, CloseIcon, CheckIcon, AddIcon } from '../../components/Chip';
+import { Chip, ChipGroup } from '../../components/Chip';
+
+// Local icon components for demo
+const CheckIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+  </svg>
+);
+
+const AddIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+  </svg>
+);
 
 export function ChipDemo() {
   const [filters, setFilters] = useState({

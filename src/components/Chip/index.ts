@@ -1,4 +1,4 @@
-export { Chip, CloseIcon, CheckIcon, AddIcon } from './Chip';
+export { Chip } from './Chip';
 export { ChipGroup } from './ChipGroup';
 export type {
   ChipProps,

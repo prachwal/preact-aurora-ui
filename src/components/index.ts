@@ -30,3 +30,6 @@ export * from './PageHeader';
 export * from './Menu';
 export * from './ThemeProvider';
 export * from './IconButton';
+export * from './Chip';
+export * from './BottomNavigation';
+export * from './Stepper';
