@@ -12,5 +12,7 @@ export { BannerDemo } from './BannerDemo';
 export { DialogDemo } from './DialogDemo';
 export { TabsDemo } from './TabsDemo';
 export { FABDemo } from './FABDemo';
+export { IconButtonDemo } from './IconButtonDemo';
+export { ChipDemo } from './ChipDemo';
 export { DataTableDemo } from './DataTableDemo';
 export { ComponentStatus } from './ComponentStatus';

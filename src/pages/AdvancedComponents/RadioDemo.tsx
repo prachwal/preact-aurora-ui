@@ -1,4 +1,5 @@
 import { useState } from 'preact/hooks';
+
 import { Radio, RadioGroup } from '../../components/Radio';
 import { Card } from '../../components/Card';
 
@@ -14,11 +15,7 @@ export function RadioDemo() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
         <div>
           <h3>Basic Radio Group</h3>
-          <RadioGroup
-            name="basic-radio"
-            value={value}
-            onChange={setValue}
-          >
+          <RadioGroup name="basic-radio" value={value} onChange={setValue}>
             <Radio value="option1" label="Option 1" />
             <Radio value="option2" label="Option 2" />
             <Radio value="option3" label="Option 3" />
@@ -58,12 +55,7 @@ export function RadioDemo() {
 
         <div>
           <h3>Error State</h3>
-          <RadioGroup
-            name="error-radio"
-            value=""
-            error={true}
-            helperText="Please select an option"
-          >
+          <RadioGroup name="error-radio" value="" error={true} helperText="Please select an option">
             <Radio value="yes" label="Yes" />
             <Radio value="no" label="No" />
           </RadioGroup>

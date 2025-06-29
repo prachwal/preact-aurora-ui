@@ -19,7 +19,10 @@ export function SwitchDemo() {
         <div>
           <h3>Basic Switch</h3>
           <Switch checked={checked1} onChange={handleChange} label="Enable notifications" />
-          <p>Note: This is a simplified demo. Check the Switch component documentation for full API details.</p>
+          <p>
+            Note: This is a simplified demo. Check the Switch component documentation for full API
+            details.
+          </p>
         </div>
       </div>
     </Card>

@@ -22,7 +22,9 @@ export function DialogDemo() {
   return (
     <Card>
       <h2>Dialog Component Demo</h2>
-      <p>Material Design 3 Dialogs with modal functionality, drag & drop, and various configurations</p>
+      <p>
+        Material Design 3 Dialogs with modal functionality, drag & drop, and various configurations
+      </p>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
         {/* Basic Dialog Types */}
@@ -61,7 +63,9 @@ export function DialogDemo() {
         {/* Basic Dialog */}
         <Dialog open={basicOpen} onClose={() => setBasicOpen(false)} title="Basic Dialog">
           <p>This is a basic dialog with simple content.</p>
-          <p>You can close it by clicking the close button, pressing Escape, or clicking outside.</p>
+          <p>
+            You can close it by clicking the close button, pressing Escape, or clicking outside.
+          </p>
           <div style={{ marginTop: '1rem' }}>
             <Button onClick={() => setBasicOpen(false)} variant="text">
               Cancel
@@ -140,14 +144,18 @@ export function DialogDemo() {
             <TextField
               label="Name"
               value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: (e.target as HTMLInputElement).value })}
+              onChange={(e) =>
+                setFormData({ ...formData, name: (e.target as HTMLInputElement).value })
+              }
               placeholder="Enter your name"
             />
             <TextField
               label="Email"
               type="email"
               value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: (e.target as HTMLInputElement).value })}
+              onChange={(e) =>
+                setFormData({ ...formData, email: (e.target as HTMLInputElement).value })
+              }
               placeholder="Enter your email"
             />
           </div>
@@ -160,9 +168,7 @@ export function DialogDemo() {
           title="Draggable Dialog"
           draggable
           initialPosition={{ x: 100, y: 100 }}
-          actions={[
-            { label: 'Close', onClick: () => setDraggableOpen(false), variant: 'filled' },
-          ]}
+          actions={[{ label: 'Close', onClick: () => setDraggableOpen(false), variant: 'filled' }]}
         >
           <p>🖱️ This dialog can be dragged around!</p>
           <p>Click and drag the header to move it.</p>
@@ -175,13 +181,13 @@ export function DialogDemo() {
           title="Resizable Dialog"
           resizable
           size="large"
-          actions={[
-            { label: 'Close', onClick: () => setResizableOpen(false), variant: 'filled' },
-          ]}
+          actions={[{ label: 'Close', onClick: () => setResizableOpen(false), variant: 'filled' }]}
         >
           <p>📐 This dialog can be resized!</p>
           <p>Look for the resize handle in the bottom-right corner.</p>
-          <div style={{ height: '200px', background: '#f5f5f5', padding: '1rem', margin: '1rem 0' }}>
+          <div
+            style={{ height: '200px', background: '#f5f5f5', padding: '1rem', margin: '1rem 0' }}
+          >
             <p>Content area that can benefit from resizing...</p>
           </div>
         </Dialog>
@@ -199,8 +205,12 @@ export function DialogDemo() {
         >
           <div style={{ padding: '2rem' }}>
             <h3>Welcome to Fullscreen Mode</h3>
-            <p>This dialog takes up the entire screen, perfect for complex forms or detailed content.</p>
-            <div style={{ height: '300px', background: '#f0f0f0', padding: '2rem', margin: '2rem 0' }}>
+            <p>
+              This dialog takes up the entire screen, perfect for complex forms or detailed content.
+            </p>
+            <div
+              style={{ height: '300px', background: '#f0f0f0', padding: '2rem', margin: '2rem 0' }}
+            >
               <p>Large content area...</p>
             </div>
           </div>
@@ -212,9 +222,7 @@ export function DialogDemo() {
           onClose={() => setSizedOpen(false)}
           title="Small Dialog"
           size="small"
-          actions={[
-            { label: 'OK', onClick: () => setSizedOpen(false), variant: 'filled' },
-          ]}
+          actions={[{ label: 'OK', onClick: () => setSizedOpen(false), variant: 'filled' }]}
         >
           <p>This is a compact dialog for simple messages.</p>
         </Dialog>

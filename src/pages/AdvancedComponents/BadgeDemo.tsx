@@ -41,7 +41,9 @@ export function BadgeDemo() {
             <BadgeWrapper badge={{ variant: 'numeric', count: 1000, max: 999, color: 'info' }}>
               <Button>Downloads</Button>
             </BadgeWrapper>
-            <BadgeWrapper badge={{ variant: 'numeric', count: 0, showZero: true, color: 'secondary' }}>
+            <BadgeWrapper
+              badge={{ variant: 'numeric', count: 0, showZero: true, color: 'secondary' }}
+            >
               <Button>Archives</Button>
             </BadgeWrapper>
           </div>
@@ -70,16 +72,24 @@ export function BadgeDemo() {
         <div>
           <h3>Badge Positions</h3>
           <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
-            <BadgeWrapper badge={{ variant: 'numeric', count: 1, position: 'top-right', color: 'primary' }}>
+            <BadgeWrapper
+              badge={{ variant: 'numeric', count: 1, position: 'top-right', color: 'primary' }}
+            >
               <Button>Top Right</Button>
             </BadgeWrapper>
-            <BadgeWrapper badge={{ variant: 'numeric', count: 2, position: 'top-left', color: 'secondary' }}>
+            <BadgeWrapper
+              badge={{ variant: 'numeric', count: 2, position: 'top-left', color: 'secondary' }}
+            >
               <Button>Top Left</Button>
             </BadgeWrapper>
-            <BadgeWrapper badge={{ variant: 'numeric', count: 3, position: 'bottom-right', color: 'success' }}>
+            <BadgeWrapper
+              badge={{ variant: 'numeric', count: 3, position: 'bottom-right', color: 'success' }}
+            >
               <Button>Bottom Right</Button>
             </BadgeWrapper>
-            <BadgeWrapper badge={{ variant: 'numeric', count: 4, position: 'bottom-left', color: 'warning' }}>
+            <BadgeWrapper
+              badge={{ variant: 'numeric', count: 4, position: 'bottom-left', color: 'warning' }}
+            >
               <Button>Bottom Left</Button>
             </BadgeWrapper>
           </div>
@@ -92,10 +102,14 @@ export function BadgeDemo() {
             <BadgeWrapper badge={{ variant: 'numeric', count: 5, size: 'small', color: 'primary' }}>
               <Button>Small</Button>
             </BadgeWrapper>
-            <BadgeWrapper badge={{ variant: 'numeric', count: 10, size: 'medium', color: 'primary' }}>
+            <BadgeWrapper
+              badge={{ variant: 'numeric', count: 10, size: 'medium', color: 'primary' }}
+            >
               <Button>Medium</Button>
             </BadgeWrapper>
-            <BadgeWrapper badge={{ variant: 'numeric', count: 15, size: 'large', color: 'primary' }}>
+            <BadgeWrapper
+              badge={{ variant: 'numeric', count: 15, size: 'large', color: 'primary' }}
+            >
               <Button>Large</Button>
             </BadgeWrapper>
           </div>
@@ -105,13 +119,17 @@ export function BadgeDemo() {
         <div>
           <h3>Badge Features</h3>
           <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
-            <BadgeWrapper badge={{ variant: 'numeric', count: 3, animated: true, color: 'primary' }}>
+            <BadgeWrapper
+              badge={{ variant: 'numeric', count: 3, animated: true, color: 'primary' }}
+            >
               <Button>Animated</Button>
             </BadgeWrapper>
             <BadgeWrapper badge={{ variant: 'dot', visible: false, color: 'error' }}>
               <Button>Hidden Badge</Button>
             </BadgeWrapper>
-            <BadgeWrapper badge={{ variant: 'status', content: 'Live', color: 'success', animated: true }}>
+            <BadgeWrapper
+              badge={{ variant: 'status', content: 'Live', color: 'success', animated: true }}
+            >
               <Button>Live Status</Button>
             </BadgeWrapper>
           </div>

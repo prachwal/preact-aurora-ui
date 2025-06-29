@@ -67,9 +67,7 @@ export function BannerDemo() {
                 message="Success! Your changes have been saved successfully."
                 dismissible
                 onDismiss={() => setShowSuccess(false)}
-                actions={[
-                  { label: 'View Details', onClick: () => alert('View details clicked!') },
-                ]}
+                actions={[{ label: 'View Details', onClick: () => alert('View details clicked!') }]}
               />
             )}
           </div>
@@ -98,10 +96,18 @@ export function BannerDemo() {
         <div>
           <h3>Banner Positions</h3>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
-            <Button onClick={() => setShowTopBanner(true)} disabled={showTopBanner} variant="outlined">
+            <Button
+              onClick={() => setShowTopBanner(true)}
+              disabled={showTopBanner}
+              variant="outlined"
+            >
               Show Top Banner
             </Button>
-            <Button onClick={() => setShowBottomBanner(true)} disabled={showBottomBanner} variant="outlined">
+            <Button
+              onClick={() => setShowBottomBanner(true)}
+              disabled={showBottomBanner}
+              variant="outlined"
+            >
               Show Bottom Banner
             </Button>
           </div>

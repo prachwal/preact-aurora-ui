@@ -30,19 +30,27 @@ export function IconButtonDemo() {
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
           <div style={{ textAlign: 'center' }}>
             <IconButton variant="standard" icon={<EditIcon />} aria-label="Edit (Standard)" />
-            <div><small>Standard</small></div>
+            <div>
+              <small>Standard</small>
+            </div>
           </div>
           <div style={{ textAlign: 'center' }}>
             <IconButton variant="filled" icon={<EditIcon />} aria-label="Edit (Filled)" />
-            <div><small>Filled</small></div>
+            <div>
+              <small>Filled</small>
+            </div>
           </div>
           <div style={{ textAlign: 'center' }}>
             <IconButton variant="outlined" icon={<EditIcon />} aria-label="Edit (Outlined)" />
-            <div><small>Outlined</small></div>
+            <div>
+              <small>Outlined</small>
+            </div>
           </div>
           <div style={{ textAlign: 'center' }}>
             <IconButton variant="tonal" icon={<EditIcon />} aria-label="Edit (Tonal)" />
-            <div><small>Tonal</small></div>
+            <div>
+              <small>Tonal</small>
+            </div>
           </div>
         </div>
       </div>
@@ -53,15 +61,21 @@ export function IconButtonDemo() {
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
           <div style={{ textAlign: 'center' }}>
             <IconButton size="small" icon={<ShareIcon />} aria-label="Share (Small)" />
-            <div><small>Small</small></div>
+            <div>
+              <small>Small</small>
+            </div>
           </div>
           <div style={{ textAlign: 'center' }}>
             <IconButton size="medium" icon={<ShareIcon />} aria-label="Share (Medium)" />
-            <div><small>Medium</small></div>
+            <div>
+              <small>Medium</small>
+            </div>
           </div>
           <div style={{ textAlign: 'center' }}>
             <IconButton size="large" icon={<ShareIcon />} aria-label="Share (Large)" />
-            <div><small>Large</small></div>
+            <div>
+              <small>Large</small>
+            </div>
           </div>
         </div>
       </div>
@@ -79,7 +93,9 @@ export function IconButtonDemo() {
               unselectedIcon={<HeartIcon />}
               aria-label={heartLiked ? 'Unlike' : 'Like'}
             />
-            <div><small>{heartLiked ? 'Liked ❤️' : 'Not liked'}</small></div>
+            <div>
+              <small>{heartLiked ? 'Liked ❤️' : 'Not liked'}</small>
+            </div>
           </div>
 
           <div style={{ textAlign: 'center' }}>
@@ -92,7 +108,9 @@ export function IconButtonDemo() {
               unselectedIcon={<StarIcon />}
               aria-label={starSelected ? 'Unstar' : 'Star'}
             />
-            <div><small>{starSelected ? 'Starred ⭐' : 'Not starred'}</small></div>
+            <div>
+              <small>{starSelected ? 'Starred ⭐' : 'Not starred'}</small>
+            </div>
           </div>
 
           <div style={{ textAlign: 'center' }}>
@@ -105,7 +123,9 @@ export function IconButtonDemo() {
               unselectedIcon={<BookmarkIcon />}
               aria-label={bookmarkSaved ? 'Remove bookmark' : 'Bookmark'}
             />
-            <div><small>{bookmarkSaved ? 'Saved 📖' : 'Not saved'}</small></div>
+            <div>
+              <small>{bookmarkSaved ? 'Saved 📖' : 'Not saved'}</small>
+            </div>
           </div>
         </div>
       </div>
@@ -155,9 +175,24 @@ export function IconButtonDemo() {
       <div>
         <h5>Disabled State</h5>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
-          <IconButton variant="standard" disabled icon={<EditIcon />} aria-label="Edit (Disabled)" />
-          <IconButton variant="filled" disabled icon={<DeleteIcon />} aria-label="Delete (Disabled)" />
-          <IconButton variant="outlined" disabled icon={<ShareIcon />} aria-label="Share (Disabled)" />
+          <IconButton
+            variant="standard"
+            disabled
+            icon={<EditIcon />}
+            aria-label="Edit (Disabled)"
+          />
+          <IconButton
+            variant="filled"
+            disabled
+            icon={<DeleteIcon />}
+            aria-label="Delete (Disabled)"
+          />
+          <IconButton
+            variant="outlined"
+            disabled
+            icon={<ShareIcon />}
+            aria-label="Share (Disabled)"
+          />
           <IconButton variant="tonal" disabled icon={<MoreIcon />} aria-label="More (Disabled)" />
         </div>
       </div>
@@ -166,9 +201,15 @@ export function IconButtonDemo() {
       <div>
         <h5>Custom Content</h5>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
-          <IconButton variant="standard" aria-label="Emoji heart">❤️</IconButton>
-          <IconButton variant="filled" aria-label="Emoji star">⭐</IconButton>
-          <IconButton variant="outlined" aria-label="Number one"><strong>1</strong></IconButton>
+          <IconButton variant="standard" aria-label="Emoji heart">
+            ❤️
+          </IconButton>
+          <IconButton variant="filled" aria-label="Emoji star">
+            ⭐
+          </IconButton>
+          <IconButton variant="outlined" aria-label="Number one">
+            <strong>1</strong>
+          </IconButton>
           <IconButton variant="tonal" aria-label="Letter A">
             <span style={{ fontSize: '1.2em', fontWeight: 'bold' }}>A</span>
           </IconButton>
@@ -176,14 +217,30 @@ export function IconButtonDemo() {
       </div>
 
       {/* Usage Notes */}
-      <div style={{ backgroundColor: 'var(--color-surface-variant)', padding: '1rem', borderRadius: '8px' }}>
+      <div
+        style={{
+          backgroundColor: 'var(--color-surface-variant)',
+          padding: '1rem',
+          borderRadius: '8px',
+        }}
+      >
         <h5>🎯 Key Features</h5>
         <ul style={{ margin: 0, paddingLeft: '1.5rem' }}>
-          <li><strong>Four variants:</strong> Standard, Filled, Outlined, Tonal</li>
-          <li><strong>Three sizes:</strong> Small (32px), Medium (40px), Large (48px)</li>
-          <li><strong>Toggle support:</strong> Different icons for selected/unselected states</li>
-          <li><strong>Full accessibility:</strong> ARIA labels, keyboard navigation</li>
-          <li><strong>Material Design 3:</strong> Follows official MD3 specifications</li>
+          <li>
+            <strong>Four variants:</strong> Standard, Filled, Outlined, Tonal
+          </li>
+          <li>
+            <strong>Three sizes:</strong> Small (32px), Medium (40px), Large (48px)
+          </li>
+          <li>
+            <strong>Toggle support:</strong> Different icons for selected/unselected states
+          </li>
+          <li>
+            <strong>Full accessibility:</strong> ARIA labels, keyboard navigation
+          </li>
+          <li>
+            <strong>Material Design 3:</strong> Follows official MD3 specifications
+          </li>
         </ul>
       </div>
     </div>
