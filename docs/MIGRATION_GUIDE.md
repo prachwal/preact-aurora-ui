@@ -19,6 +19,10 @@ Guide for migrating to Aurora UI from other component libraries.
 | `Breadcrumbs`      | `Breadcrumbs`       | MD3 navigation enhancements      |
 | `CircularProgress` | `Progress`          | Circular and linear variants     |
 | `LinearProgress`   | `Progress`          | Combined into Progress component |
+| `TextField`        | `TextField`         | MD3 variants with validation     |
+| `Snackbar`         | `Snackbar`          | Enhanced queue management        |
+| `Badge`            | `Badge`             | Dot, Numeric, Status variants    |
+| `Alert`            | `Banner`            | System messages with actions     |
 
 ### Code Migration Examples
 
@@ -72,6 +76,90 @@ Guide for migrating to Aurora UI from other component libraries.
 // Aurora UI
 <Progress variant="circular" color="primary" />
 <Progress variant="linear" value={75} />
+```
+
+#### TextField Migration
+
+```tsx
+// MUI
+<TextField
+  label="Email"
+  variant="outlined"
+  error={!!error}
+  helperText={error}
+  fullWidth
+/>
+
+// Aurora UI
+<TextField
+  label="Email"
+  variant="outlined"
+  error={error}
+  supportingText={error}
+  fullWidth
+/>
+```
+
+#### Snackbar Migration
+
+```tsx
+// MUI
+<Snackbar
+  open={open}
+  autoHideDuration={6000}
+  onClose={handleClose}
+  message="This is a success message!"
+  action={<Button color="inherit" onClick={handleClose}>Close</Button>}
+/>
+
+// Aurora UI
+<Snackbar
+  message="This is a success message!"
+  variant="success"
+  autoHideDuration={6000}
+  onClose={handleClose}
+  action={{
+    label: "Close",
+    onClick: handleClose
+  }}
+/>
+```
+
+#### Badge Migration
+
+```tsx
+// MUI
+<Badge badgeContent={4} color="primary">
+  <MailIcon />
+</Badge>
+
+// Aurora UI
+<BadgeWrapper>
+  <MailIcon />
+  <Badge variant="numeric" count={4} color="primary" position="top-right" />
+</BadgeWrapper>
+```
+
+#### Banner Migration
+
+```tsx
+// MUI Alert
+<Alert severity="warning" onClose={handleClose} action={
+  <Button color="inherit" size="small">Action</Button>
+}>
+  This is a warning alert
+</Alert>
+
+// Aurora UI
+<Banner
+  message="This is a warning alert"
+  variant="warning"
+  onClose={handleClose}
+  action={{
+    label: "Action",
+    onClick: handleAction
+  }}
+/>
 ```
 
 ### Theme Migration

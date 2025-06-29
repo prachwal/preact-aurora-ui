@@ -401,3 +401,206 @@ All components follow WCAG 2.1 AA guidelines:
 - Focus management
 - Screen reader compatibility
 - Color contrast compliance
+
+## Advanced Components (Phase 3)
+
+### TextField
+
+Material Design 3 text input component with variants and validation.
+
+```typescript
+interface TextFieldProps {
+  value?: string;
+  defaultValue?: string;
+  label?: string;
+  placeholder?: string;
+  variant?: 'outlined' | 'filled' | 'standard';
+  type?: 'text' | 'password' | 'email' | 'number' | 'tel' | 'url';
+
+  // Validation
+  error?: string;
+  required?: boolean;
+  disabled?: boolean;
+  readonly?: boolean;
+
+  // Features
+  multiline?: boolean;
+  rows?: number;
+  maxRows?: number;
+  autoResize?: boolean;
+  maxLength?: number;
+  showCounter?: boolean;
+  clearable?: boolean;
+
+  // Icons
+  startIcon?: ComponentChildren;
+  endIcon?: ComponentChildren;
+
+  // Styling
+  fullWidth?: boolean;
+  size?: 'small' | 'medium' | 'large';
+  supportingText?: string;
+
+  // Events
+  onChange?: (value: string) => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
+  onClear?: () => void;
+}
+```
+
+### Snackbar
+
+Toast notification system with queue management.
+
+```typescript
+interface SnackbarProps {
+  message: ComponentChildren;
+  variant?: 'info' | 'success' | 'warning' | 'error';
+  open?: boolean;
+  autoHideDuration?: number;
+
+  // Actions
+  action?: {
+    label: string;
+    onClick: () => void;
+  };
+
+  // Positioning
+  position?:
+    | 'top-left'
+    | 'top-center'
+    | 'top-right'
+    | 'bottom-left'
+    | 'bottom-center'
+    | 'bottom-right';
+
+  // Events
+  onClose?: () => void;
+
+  // Styling
+  className?: string;
+  style?: JSX.CSSProperties;
+}
+```
+
+### Badge
+
+Status indicator component with positioning and variants.
+
+```typescript
+// Discriminated union types for different badge variants
+interface DotBadgeProps {
+  variant: 'dot';
+  color?: 'primary' | 'secondary' | 'error' | 'warning' | 'success' | 'info';
+  size?: 'small' | 'medium' | 'large';
+  position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
+  animated?: boolean;
+  visible?: boolean;
+}
+
+interface NumericBadgeProps {
+  variant: 'numeric';
+  count: number;
+  maxCount?: number;
+  showZero?: boolean;
+  color?: 'primary' | 'secondary' | 'error' | 'warning' | 'success' | 'info';
+  size?: 'small' | 'medium' | 'large';
+  position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
+  animated?: boolean;
+  visible?: boolean;
+}
+
+interface StatusBadgeProps {
+  variant: 'status';
+  status: string;
+  color?: 'primary' | 'secondary' | 'error' | 'warning' | 'success' | 'info';
+  size?: 'small' | 'medium' | 'large';
+  position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
+  animated?: boolean;
+  visible?: boolean;
+}
+
+// BadgeWrapper for positioning relative to target elements
+interface BadgeWrapperProps {
+  children: ComponentChildren;
+  className?: string;
+  style?: JSX.CSSProperties;
+}
+```
+
+### Banner
+
+System message component with actions and auto-hide functionality.
+
+```typescript
+interface BannerProps {
+  message: ComponentChildren;
+  variant?: 'info' | 'warning' | 'error' | 'success';
+  position?: 'top' | 'bottom';
+  open?: boolean;
+  dismissible?: boolean;
+  autoHideDuration?: number;
+
+  // Actions
+  action?: BannerAction;
+  secondaryAction?: BannerAction;
+
+  // Icons
+  icon?: ComponentChildren;
+  showIcon?: boolean;
+
+  // Events
+  onClose?: () => void;
+
+  // Styling
+  className?: string;
+  style?: JSX.CSSProperties;
+}
+
+interface BannerAction {
+  label: string;
+  onClick: () => void;
+  variant?: 'text' | 'outlined';
+}
+```
+
+**Usage Examples:**
+
+```tsx
+// TextField with validation
+<TextField
+  label="Email"
+  type="email"
+  variant="outlined"
+  error={emailError}
+  required
+  clearable
+  onChange={setEmail}
+/>
+
+// Snackbar notification
+<Snackbar
+  message="Profile updated successfully"
+  variant="success"
+  action={{ label: "View", onClick: viewProfile }}
+  autoHideDuration={4000}
+/>
+
+// Badge with numeric count
+<BadgeWrapper>
+  <IconButton>
+    <NotificationIcon />
+  </IconButton>
+  <Badge variant="numeric" count={3} color="error" position="top-right" />
+</BadgeWrapper>
+
+// Banner with actions
+<Banner
+  message="A new version is available"
+  variant="info"
+  action={{ label: "Update", onClick: startUpdate }}
+  secondaryAction={{ label: "Later", onClick: dismissUpdate, variant: "text" }}
+  autoHideDuration={0}
+/>
+```
