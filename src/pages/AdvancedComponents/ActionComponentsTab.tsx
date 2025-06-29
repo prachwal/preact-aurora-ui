@@ -1,6 +1,7 @@
 import { FABDemo } from './FABDemo';
 import { IconButtonDemo } from './IconButtonDemo';
 import { ChipDemo } from './ChipDemo';
+import { StepperDemo } from './StepperDemo';
 
 export function ActionComponentsTab() {
   return (
@@ -9,6 +10,7 @@ export function ActionComponentsTab() {
       <IconButtonDemo />
       <ChipDemo />
       <FABDemo />
+      <StepperDemo />
     </div>
   );
 }
