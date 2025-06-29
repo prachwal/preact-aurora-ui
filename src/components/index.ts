@@ -29,3 +29,4 @@ export * from './Breadcrumbs';
 export * from './PageHeader';
 export * from './Menu';
 export * from './ThemeProvider';
+export * from './IconButton';

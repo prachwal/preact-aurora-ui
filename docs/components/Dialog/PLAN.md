@@ -23,7 +23,7 @@ Material Design 3 Dialog component with modal functionality and action managemen
 ### Advanced Features ✅
 
 - [x] Full-screen variant
-- [x] Draggable dialogs
+- [ ] Draggable dialogs
 - [x] Resizable dialogs
 - [x] Custom animations
 - [x] Portal rendering
@@ -63,7 +63,7 @@ Material Design 3 Dialog component with modal functionality and action managemen
 - [x] Focus management (focus trap, restoration)
 - [x] Escape key handling (configurable)
 - [x] Overlay click handling (configurable)
-- [x] Drag and resize functionality
+- [ ] Drag and resize functionality
 - [x] Portal rendering support
 - [x] Custom styling capabilities
 

@@ -1,0 +1,198 @@
+@use "../styles/colors.scss" as *;
+@use "../styles/typography.scss" as *;
+@use "../styles/spacing.scss" as *;
+@use "../styles/breakpoints.scss" as *;
+@use "../styles/mixins-enhanced.scss" as *;
+
+// IconButton Material Design 3 Variables
+$icon-button-font-family: var(--font-family-base);
+$icon-button-border-radius: 50%;
+$icon-button-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+// IconButton sizes
+$icon-button-size-small: 32px;
+$icon-button-size-medium: 40px;
+$icon-button-size-large: 48px;
+
+$icon-size-small: 16px;
+$icon-size-medium: 20px;
+$icon-size-large: 24px;
+
+.iconButton {
+  // Base styles
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: $icon-button-border-radius;
+  background: transparent;
+  color: var(--color-on-surface);
+  font-family: $icon-button-font-family;
+  cursor: pointer;
+  transition: $icon-button-transition;
+  position: relative;
+  overflow: hidden;
+
+  // Remove default button styles
+  outline: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  // Focus styles
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  // Hover and active states
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: currentColor;
+    opacity: 0;
+    transition: opacity $icon-button-transition;
+    border-radius: inherit;
+  }
+
+  &:hover::before {
+    opacity: 0.08;
+  }
+
+  &:active::before {
+    opacity: 0.12;
+  }
+
+  // Icon styles
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  // Size variants
+  &.small {
+    width: $icon-button-size-small;
+    height: $icon-button-size-small;
+
+    .icon {
+      width: $icon-size-small;
+      height: $icon-size-small;
+    }
+  }
+
+  &.medium {
+    width: $icon-button-size-medium;
+    height: $icon-button-size-medium;
+
+    .icon {
+      width: $icon-size-medium;
+      height: $icon-size-medium;
+    }
+  }
+
+  &.large {
+    width: $icon-button-size-large;
+    height: $icon-button-size-large;
+
+    .icon {
+      width: $icon-size-large;
+      height: $icon-size-large;
+    }
+  }
+
+  // Variant styles
+  &.standard {
+    color: var(--color-on-surface-variant);
+
+    &:hover {
+      color: var(--color-on-surface);
+    }
+  }
+
+  &.filled {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+
+    &:hover {
+      background-color: color-mix(in srgb, var(--color-primary) 92%, black);
+    }
+
+    &:active {
+      background-color: color-mix(in srgb, var(--color-primary) 88%, black);
+    }
+  }
+
+  &.outlined {
+    border: 1px solid var(--color-outline);
+    color: var(--color-on-surface-variant);
+
+    &:hover {
+      color: var(--color-on-surface);
+      border-color: var(--color-outline-variant);
+    }
+
+    &:focus-visible {
+      border-color: var(--color-primary);
+    }
+  }
+
+  &.tonal {
+    background-color: var(--color-secondary-container);
+    color: var(--color-on-secondary-container);
+
+    &:hover {
+      background-color: color-mix(in srgb, var(--color-secondary-container) 92%, black);
+    }
+
+    &:active {
+      background-color: color-mix(in srgb, var(--color-secondary-container) 88%, black);
+    }
+  }
+
+  // Toggle states
+  &.toggle {
+    &.selected {
+      &.standard {
+        color: var(--color-primary);
+      }
+
+      &.filled {
+        background-color: var(--color-primary);
+        color: var(--color-on-primary);
+      }
+
+      &.outlined {
+        background-color: var(--color-inverse-on-surface);
+        border-color: transparent;
+        color: var(--color-inverse-surface);
+      }
+
+      &.tonal {
+        background-color: var(--color-secondary-container);
+        color: var(--color-on-secondary-container);
+      }
+    }
+  }
+
+  // Disabled state
+  &.disabled,
+  &:disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+    pointer-events: none;
+
+    &::before {
+      display: none;
+    }
+  }
+}
