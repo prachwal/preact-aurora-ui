@@ -1,5 +1,6 @@
 export * from './ExampleButton';
 export * from './Badge';
+export * from './Banner';
 export * from './Button';
 export * from './TextField';
 export * from './Checkbox';

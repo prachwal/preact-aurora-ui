@@ -50,7 +50,9 @@ export const Default: Story = {
 
 export const Directions: Story = {
   render: () => (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '100px', padding: '100px' }}>
+    <div
+      style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '100px', padding: '100px' }}
+    >
       <SpeedDial actions={sampleActions} direction="up" fabProps={{ color: 'primary' }} />
       <SpeedDial actions={sampleActions} direction="down" fabProps={{ color: 'secondary' }} />
       <SpeedDial actions={sampleActions} direction="left" fabProps={{ color: 'tertiary' }} />

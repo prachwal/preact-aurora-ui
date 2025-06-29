@@ -100,7 +100,9 @@ export const Disabled: Story = {
 
 export const Positioned: Story = {
   render: () => (
-    <div style={{ position: 'relative', height: '300px', width: '400px', border: '1px dashed #ccc' }}>
+    <div
+      style={{ position: 'relative', height: '300px', width: '400px', border: '1px dashed #ccc' }}
+    >
       <p style={{ margin: '16px', color: '#666' }}>
         Positioned FABs are typically used for primary actions
       </p>
