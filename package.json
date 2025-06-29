@@ -1,11 +1,13 @@
 {
   "name": "preact-aurora-ui",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.3",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:npm": "sh build-npm-package.sh",
+    "publish:npm": "sh publish-npm.sh",
     "preview": "vite preview",
     "test": "vitest run --config vitest.config.ts",
     "storybook": "storybook dev -p 6006",
@@ -21,6 +23,16 @@
     "preact": "10.26.9",
     "preact-iso": "^2.9.2"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prachwal/preact-aurora-ui.git"
+  },
+  "homepage": "https://github.com/prachwal/preact-aurora-ui#readme",
+  "bugs": {
+    "url": "https://github.com/prachwal/preact-aurora-ui/issues"
+  },
+  "author": "Prachwal",
+  "license": "MIT",
   "devDependencies": {
     "@chromatic-com/storybook": "^4.0.1",
     "@preact/preset-vite": "2.10.1",

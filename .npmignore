@@ -1,0 +1,38 @@
+# Development files
+*.test.js
+*.test.d.ts
+*.stories.js
+*.stories.d.ts
+**/*.test.*
+**/*.stories.*
+
+# Source maps (optional, comment out if you want to include them)
+# *.map
+
+# Documentation (component READMEs are included)
+docs/
+
+# Build artifacts
+node_modules/
+.git/
+.gitignore
+.npmignore
+
+# Development configs
+tsconfig*.json
+vite.config.*
+vitest.config.*
+eslint.config.*
+.storybook/
+storybook-static/
+
+# Scripts
+build-*.sh
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

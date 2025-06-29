@@ -6,7 +6,7 @@
   "editor.insertSpaces": true,
   "files.eol": "\n",
   "files.exclude": {
-    "dist": true,
+    "dist": false,
     "node_modules": true
   },
   "eslint.enable": true,
