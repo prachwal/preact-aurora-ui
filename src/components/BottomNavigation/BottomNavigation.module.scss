@@ -1,0 +1,170 @@
+@use '../../styles/colors.scss' as *;
+@use '../../styles/typography.scss' as *;
+@use '../../styles/spacing.scss' as *;
+@use '../../styles/elevation.scss' as *;
+
+// Local variables based on global custom properties
+$nav-bg: var(--md-sys-color-surface-container);
+$nav-border: var(--md-sys-color-outline-variant);
+$nav-height: 80px;
+$nav-height-compact: 64px;
+$nav-elevation: var(--md-sys-elevation-level2);
+
+$tab-color-inactive: var(--md-sys-color-on-surface-variant);
+$tab-color-active: var(--md-sys-color-on-secondary-container);
+$tab-bg-active: var(--md-sys-color-secondary-container);
+$tab-ripple: var(--md-sys-color-on-surface);
+
+$label-font-size: var(--md-sys-typescale-label-small-size);
+$label-line-height: var(--md-sys-typescale-label-small-line-height);
+$label-font-weight: var(--md-sys-typescale-label-small-weight);
+
+.bottomNavigation {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: $nav-height;
+  background: $nav-bg;
+  border-top: 1px solid $nav-border;
+  box-shadow: $nav-elevation;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+
+  &.compact {
+    height: $nav-height-compact;
+  }
+
+  &.hidden {
+    transform: translateY(100%);
+  }
+
+  @media (max-width: 480px) {
+    height: $nav-height-compact;
+  }
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: var(--space-xs) var(--space-sm);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: $tab-color-inactive;
+
+  &:hover:not(:disabled) {
+    background: rgba(var(--md-sys-color-on-surface-rgb), 0.08);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--md-sys-color-primary);
+    outline-offset: -2px;
+  }
+
+  &:active:not(:disabled) {
+    background: rgba(var(--md-sys-color-on-surface-rgb), 0.12);
+  }
+
+  &.active {
+    color: $tab-color-active;
+    background: $tab-bg-active;
+  }
+
+  &:disabled {
+    color: var(--md-sys-color-on-surface);
+    opacity: 0.38;
+    cursor: not-allowed;
+  }
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: var(--space-xs);
+  transition: transform 0.2s ease;
+  position: relative;
+
+  .tab.active & {
+    transform: scale(1.1);
+  }
+
+  .tab:not(.showLabel) & {
+    margin-bottom: 0;
+  }
+}
+
+.label {
+  font-size: $label-font-size;
+  line-height: $label-line-height;
+  font-weight: $label-font-weight;
+  text-align: center;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  .tab:not(.showLabel) & {
+    display: none;
+  }
+
+  @media (max-width: 480px) {
+    font-size: calc(#{$label-font-size} * 0.9);
+  }
+}
+
+.badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 16px;
+  height: 16px;
+  background: var(--md-sys-color-error);
+  color: var(--md-sys-color-on-error);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 0 4px;
+  box-sizing: border-box;
+
+  &.dot {
+    min-width: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    top: 0;
+    right: 0;
+  }
+}
+
+// Ripple effect
+.tab::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(var(--md-sys-color-on-surface-rgb), 0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+  pointer-events: none;
+}
+
+.tab:active::before {
+  width: 100px;
+  height: 100px;
+}
