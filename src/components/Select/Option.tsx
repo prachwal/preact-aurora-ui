@@ -42,7 +42,7 @@ export const Option = ({
           <input
             type="checkbox"
             checked={selected}
-            onChange={() => { }} // Handled by parent onClick
+            onChange={() => {}} // Handled by parent onClick
             tabIndex={-1}
             aria-hidden="true"
           />

@@ -140,34 +140,34 @@ export const Select = forwardRef<SelectRef, SelectProps>(
 
       return (
         <>
-          {groups.length > 0 ? (
-            // Render grouped options
-            groups.map((group, index) => (
-              <OptionGroup
-                key={`group-${index}`}
-                group={group}
-                selectedValues={selectedOptions.map((opt: any) => opt.value)}
-                focusedValue={filteredOptions[focusedIndex]?.value}
-                multiple={multiple}
-                renderOption={renderOption}
-                onOptionClick={handleSelect}
-              />
-            ))
-          ) : (
-            // Render flat options
-            filteredOptions.map((option: any, index: any) => (
-              <Option
-                key={option.value}
-                option={option}
-                selected={selectedOptions.some((selected: any) => selected.value === option.value)}
-                focused={index === focusedIndex}
-                multiple={multiple}
-                render={renderOption}
-                onClick={() => handleSelect(option)}
-                className={styles.option}
-              />
-            ))
-          )}
+          {groups.length > 0
+            ? // Render grouped options
+              groups.map((group, index) => (
+                <OptionGroup
+                  key={`group-${index}`}
+                  group={group}
+                  selectedValues={selectedOptions.map((opt: any) => opt.value)}
+                  focusedValue={filteredOptions[focusedIndex]?.value}
+                  multiple={multiple}
+                  renderOption={renderOption}
+                  onOptionClick={handleSelect}
+                />
+              ))
+            : // Render flat options
+              filteredOptions.map((option: any, index: any) => (
+                <Option
+                  key={option.value}
+                  option={option}
+                  selected={selectedOptions.some(
+                    (selected: any) => selected.value === option.value,
+                  )}
+                  focused={index === focusedIndex}
+                  multiple={multiple}
+                  render={renderOption}
+                  onClick={() => handleSelect(option)}
+                  className={styles.option}
+                />
+              ))}
         </>
       );
     };

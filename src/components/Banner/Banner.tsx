@@ -121,8 +121,9 @@ export const Banner = ({
           {secondaryAction && (
             <button
               type="button"
-              className={`${styles.banner__action} ${secondaryAction.variant === 'text' ? styles['banner__action--text'] : ''
-                }`}
+              className={`${styles.banner__action} ${
+                secondaryAction.variant === 'text' ? styles['banner__action--text'] : ''
+              }`}
               onClick={secondaryAction.onClick}
             >
               {secondaryAction.label}
@@ -132,8 +133,9 @@ export const Banner = ({
           {action && (
             <button
               type="button"
-              className={`${styles.banner__action} ${action.variant === 'text' ? styles['banner__action--text'] : ''
-                }`}
+              className={`${styles.banner__action} ${
+                action.variant === 'text' ? styles['banner__action--text'] : ''
+              }`}
               onClick={action.onClick}
             >
               {action.label}

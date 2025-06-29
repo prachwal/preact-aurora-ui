@@ -185,17 +185,17 @@ export function Tooltip({
   // Enhanced trigger element with proper refs and props
   const triggerElement = isValidElement(children)
     ? cloneElement(children, {
-      ...triggerProps,
-      ref: (el: HTMLElement) => {
-        triggerRef.current = el;
-        // Preserve original ref if exists
-        if (typeof children.ref === 'function') {
-          children.ref(el);
-        } else if (children.ref) {
-          children.ref.current = el;
-        }
-      },
-    })
+        ...triggerProps,
+        ref: (el: HTMLElement) => {
+          triggerRef.current = el;
+          // Preserve original ref if exists
+          if (typeof children.ref === 'function') {
+            children.ref(el);
+          } else if (children.ref) {
+            children.ref.current = el;
+          }
+        },
+      })
     : children;
 
   // Arrow positioning
@@ -215,31 +215,33 @@ export function Tooltip({
   const tooltipStyles = {
     ...style,
     // Only apply calculated position if we have measured and positioned
-    ...(isPositioned && hasMeasured ? {
-      top: tooltipPosition.top,
-      left: tooltipPosition.left,
-    } : {
-      // Keep off-screen during measurement
-      top: -9999,
-      left: -9999,
-    }),
+    ...(isPositioned && hasMeasured
+      ? {
+          top: tooltipPosition.top,
+          left: tooltipPosition.left,
+        }
+      : {
+          // Keep off-screen during measurement
+          top: -9999,
+          left: -9999,
+        }),
     ...(maxWidth && {
       maxWidth: typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth,
     }),
     // Ensure tooltip is invisible during positioning
-    opacity: (isPositioned && hasMeasured) ? undefined : 0,
-    visibility: (isPositioned && hasMeasured) ? undefined : 'hidden',
+    opacity: isPositioned && hasMeasured ? undefined : 0,
+    visibility: isPositioned && hasMeasured ? undefined : 'hidden',
   };
 
   // Arrow styles
   const arrowClasses = arrowProps
     ? [
-      styles.arrow,
-      styles[`arrow--position-${arrowProps.position}`],
-      styles[`arrow--alignment-${arrowProps.alignment}`],
-    ]
-      .filter(Boolean)
-      .join(' ')
+        styles.arrow,
+        styles[`arrow--position-${arrowProps.position}`],
+        styles[`arrow--alignment-${arrowProps.alignment}`],
+      ]
+        .filter(Boolean)
+        .join(' ')
     : '';
 
   const tooltipContent = (

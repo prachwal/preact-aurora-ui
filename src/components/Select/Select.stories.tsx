@@ -67,11 +67,7 @@ export const Basic: Story = {
 
 export const WithLabel: Story = {
   render: () => (
-    <Select
-      options={fruitOptions}
-      label="Favorite Fruit"
-      placeholder="Choose your favorite..."
-    />
+    <Select options={fruitOptions} label="Favorite Fruit" placeholder="Choose your favorite..." />
   ),
 };
 
@@ -150,12 +146,7 @@ export const Variants: Story = {
         variant="outlined"
         placeholder="Select..."
       />
-      <Select
-        options={fruitOptions}
-        label="Filled"
-        variant="filled"
-        placeholder="Select..."
-      />
+      <Select options={fruitOptions} label="Filled" variant="filled" placeholder="Select..." />
     </div>
   ),
 };
@@ -163,24 +154,14 @@ export const Variants: Story = {
 export const Sizes: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-      <Select
-        options={fruitOptions}
-        label="Small"
-        size="small"
-        placeholder="Small select..."
-      />
+      <Select options={fruitOptions} label="Small" size="small" placeholder="Small select..." />
       <Select
         options={fruitOptions}
         label="Medium (Default)"
         size="medium"
         placeholder="Medium select..."
       />
-      <Select
-        options={fruitOptions}
-        label="Large"
-        size="large"
-        placeholder="Large select..."
-      />
+      <Select options={fruitOptions} label="Large" size="large" placeholder="Large select..." />
     </div>
   ),
 };
@@ -213,11 +194,7 @@ export const Clearable: Story = {
 
 export const WithGroups: Story = {
   render: () => (
-    <Select
-      groups={categoryGroups}
-      label="Grouped Options"
-      placeholder="Select from groups..."
-    />
+    <Select groups={categoryGroups} label="Grouped Options" placeholder="Select from groups..." />
   ),
 };
 
@@ -256,13 +233,7 @@ export const Loading: Story = {
 };
 
 export const EmptyState: Story = {
-  render: () => (
-    <Select
-      options={[]}
-      label="Empty Select"
-      placeholder="No options available"
-    />
-  ),
+  render: () => <Select options={[]} label="Empty Select" placeholder="No options available" />,
 };
 
 export const EmptyWithCustomMessage: Story = {
@@ -304,9 +275,7 @@ export const CustomValueRendering: Story = {
       placeholder="Select a fruit..."
       renderValue={(value, options) => {
         const option = options.find((opt) => opt.value === value);
-        return option
-          ? `${option.data?.emoji} ${option.label}`
-          : value;
+        return option ? `${option.data?.emoji} ${option.label}` : value;
       }}
     />
   ),
