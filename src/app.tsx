@@ -1,6 +1,7 @@
 import { LocationProvider } from 'preact-iso';
 
-import { AppLayout, ThemeProvider } from './components';
+import { ThemeProvider } from './components';
+import { AppLayout } from './AppLayout/AppLayout';
 
 export function App() {
   return (

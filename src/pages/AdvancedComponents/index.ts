@@ -1,7 +1,16 @@
 export { AdvancedComponents } from '../AdvancedComponents';
 export { TextFieldDemo } from './TextFieldDemo';
 export { CheckboxDemo } from './CheckboxDemo';
+export { RadioDemo } from './RadioDemo';
+export { SelectDemo } from './SelectDemo';
+export { SwitchDemo } from './SwitchDemo';
+export { SliderDemo } from './SliderDemo';
 export { SnackbarDemo } from './SnackbarDemo';
 export { TooltipDemo } from './TooltipDemo';
+export { BadgeDemo } from './BadgeDemo';
+export { BannerDemo } from './BannerDemo';
+export { DialogDemo } from './DialogDemo';
 export { TabsDemo } from './TabsDemo';
+export { FABDemo } from './FABDemo';
+export { DataTableDemo } from './DataTableDemo';
 export { ComponentStatus } from './ComponentStatus';

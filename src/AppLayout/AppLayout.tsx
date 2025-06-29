@@ -6,12 +6,12 @@ import {
   Sidebar,
   Content,
   Footer,
-  AppRouter,
-  Navigation,
-  RouterBreadcrumbs,
   ThemeToggle,
   SidebarToggle,
 } from '../components/index';
+import { AppRouter } from '../Router/Router';
+import { Navigation } from '../Navigation/Navigation';
+import { RouterBreadcrumbs } from '../RouterBreadcrumbs/RouterBreadcrumbs';
 
 export function AppLayout() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
