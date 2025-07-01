@@ -1,5 +1,21 @@
 // Test setup file - loads global styles for testing
 import '@testing-library/jest-dom';
+import { vi } from 'vitest';
+
+// Mock window.matchMedia for ThemeProvider tests
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: vi.fn().mockImplementation((query) => ({
+    matches: query === '(prefers-color-scheme: dark)',
+    media: query,
+    onchange: null,
+    addListener: vi.fn(), // deprecated
+    removeListener: vi.fn(), // deprecated
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  })),
+});
 
 // Create a style element with MD3 color tokens for testing
 const style = document.createElement('style');
