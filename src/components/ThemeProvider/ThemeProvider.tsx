@@ -1,5 +1,7 @@
 import { createContext } from 'preact';
-import { useContext, useEffect, useState } from 'preact/hooks';
+import { useContext, useEffect, useState, useRef } from 'preact/hooks';
+
+import { injectUtilityStyles, type UtilityClassConfig } from '../../utils/cssUtilities';
 
 import type { ThemeConfig, ThemeContextValue, ThemeMode, ThemeStorage, ThemeTarget } from './types';
 import { localStorageAdapter, documentElementTarget, preventThemeFlicker } from './storageAdapters';
@@ -10,9 +12,13 @@ export interface ThemeProviderProps {
   children: preact.ComponentChildren;
   defaultTheme?: ThemeConfig;
   storageKey?: string;
-  // Uniwersalne interfejsy - można podmienić na Redux, Signal, itp.
+  // Universal interfaces - can be swapped for Redux, Signal, etc.
   storageAdapter?: ThemeStorage;
   domTarget?: ThemeTarget;
+  // Enhanced features
+  autoGlobalStyles?: boolean;
+  generateUtilities?: boolean;
+  cssVariablesPrefix?: string;
 }
 
 const DEFAULT_THEME: ThemeConfig = {
@@ -59,14 +65,134 @@ export function ThemeProvider({
   children,
   defaultTheme = DEFAULT_THEME,
   storageKey = 'aurora-ui-theme',
-  // Domyślne adaptery - localStorage i document.documentElement
+  // Default adapters - localStorage and document.documentElement
   storageAdapter = localStorageAdapter,
   domTarget = documentElementTarget,
+  // Enhanced features
+  autoGlobalStyles = false,
+  generateUtilities = false,
+  cssVariablesPrefix = 'aurora',
 }: ThemeProviderProps) {
   // Initialize theme synchronously to prevent flicker
   const [theme, setThemeState] = useState<ThemeConfig>(() =>
     getInitialTheme(defaultTheme, storageKey, storageAdapter, domTarget),
   );
+
+  // Reference to utility cleanup function
+  const utilityCleanupRef = useRef<(() => void) | null>(null);
+  const globalStylesCleanupRef = useRef<(() => void) | null>(null);
+
+  // Function to inject global styles
+  const injectGlobalStyles = (): (() => void) => {
+    if (typeof document === 'undefined') {
+      return () => { }; // No-op for SSR
+    }
+
+    const globalCSS = `
+      /* Aurora UI Global Styles */
+      * {
+        box-sizing: border-box;
+      }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
+        box-sizing: border-box;
+      }
+
+      html {
+        height: 100%;
+      }
+
+      body {
+        height: 100%;
+        font-family: var(--font-family-base, system-ui, -apple-system, sans-serif);
+        background: var(--md-sys-color-background, #fef7ff);
+        color: var(--md-sys-color-on-background, #1d1b20);
+        line-height: 1.5;
+      }
+    `;
+
+    const styleId = `aurora-ui-global-styles-${cssVariablesPrefix}`;
+
+    // Remove existing styles with same ID
+    const existingStyle = document.getElementById(styleId);
+    if (existingStyle) {
+      existingStyle.remove();
+    }
+
+    // Create and inject new style element
+    const styleElement = document.createElement('style');
+    styleElement.id = styleId;
+    styleElement.textContent = globalCSS;
+    document.head.appendChild(styleElement);
+
+    // Return cleanup function
+    return () => {
+      const element = document.getElementById(styleId);
+      if (element) {
+        element.remove();
+      }
+    };
+  };
+
+  // Handle automatic global styles injection
+  useEffect(() => {
+    if (!autoGlobalStyles) {
+      return;
+    }
+
+    // Clean up previous global styles
+    if (globalStylesCleanupRef.current) {
+      globalStylesCleanupRef.current();
+    }
+
+    // Inject global styles
+    globalStylesCleanupRef.current = injectGlobalStyles();
+
+    // Cleanup on unmount
+    return () => {
+      if (globalStylesCleanupRef.current) {
+        globalStylesCleanupRef.current();
+        globalStylesCleanupRef.current = null;
+      }
+    };
+  }, [autoGlobalStyles, cssVariablesPrefix]);
+
+  // Handle utility class generation
+  useEffect(() => {
+    if (!generateUtilities) {
+      return;
+    }
+
+    // Clean up previous utilities
+    if (utilityCleanupRef.current) {
+      utilityCleanupRef.current();
+    }
+
+    // Generate and inject new utilities
+    const config: UtilityClassConfig = {
+      prefix: cssVariablesPrefix,
+      generateBackgrounds: true,
+      generateTextColors: true,
+      generateBorderColors: true,
+      generateSpacing: true,
+      includeResponsive: false, // Can be made configurable later
+    };
+
+    utilityCleanupRef.current = injectUtilityStyles(config);
+
+    // Cleanup on unmount
+    return () => {
+      if (utilityCleanupRef.current) {
+        utilityCleanupRef.current();
+        utilityCleanupRef.current = null;
+      }
+    };
+  }, [generateUtilities, cssVariablesPrefix]);
 
   // Remove the old localStorage loading useEffect since it's now done synchronously
 

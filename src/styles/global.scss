@@ -1,3 +1,9 @@
+// Import enhanced style system
+@use 'colors-extended';
+@use 'spacing';
+@use 'typography';
+@use 'elevation';
+
 // Global styles to prevent horizontal scroll
 * {
   box-sizing: border-box;

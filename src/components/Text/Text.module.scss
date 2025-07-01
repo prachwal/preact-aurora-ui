@@ -1,0 +1,244 @@
+/**
+ * Text Component Styles - Aurora UI
+ * Responsive typography system with Material Design 3 variants
+ */
+
+@use '../../styles/colors-extended' as *;
+@use '../../styles/typography' as *;
+@use '../../styles/spacing' as *;
+
+// Base text component styles
+.text {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-base);
+  line-height: var(--line-height-base);
+  color: var(--md-sys-color-on-surface);
+  transition: color 0.2s ease-in-out;
+}
+
+// Display variants
+.text--display-large {
+  font-size: var(--font-size-display-large, 3.5rem);
+  font-weight: var(--font-weight-display-large, 400);
+  line-height: var(--line-height-display-large, 1.2);
+  letter-spacing: var(--letter-spacing-display-large, -0.025em);
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+}
+
+.text--display-medium {
+  font-size: var(--font-size-display-medium, 2.8rem);
+  font-weight: var(--font-weight-display-medium, 400);
+  line-height: var(--line-height-display-medium, 1.2);
+  letter-spacing: var(--letter-spacing-display-medium, 0);
+
+  @media (max-width: 768px) {
+    font-size: 2.2rem;
+  }
+}
+
+.text--display-small {
+  font-size: var(--font-size-display-small, 2.25rem);
+  font-weight: var(--font-weight-display-small, 400);
+  line-height: var(--line-height-display-small, 1.3);
+  letter-spacing: var(--letter-spacing-display-small, 0);
+
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+  }
+}
+
+// Headline variants
+.text--headline-large {
+  font-size: var(--font-size-headline-large, 2rem);
+  font-weight: var(--font-weight-headline-large, 400);
+  line-height: var(--line-height-headline-large, 1.25);
+  letter-spacing: var(--letter-spacing-headline-large, 0);
+
+  @media (max-width: 768px) {
+    font-size: 1.75rem;
+  }
+}
+
+.text--headline-medium {
+  font-size: var(--font-size-headline-medium, 1.75rem);
+  font-weight: var(--font-weight-headline-medium, 400);
+  line-height: var(--line-height-headline-medium, 1.3);
+  letter-spacing: var(--letter-spacing-headline-medium, 0);
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+}
+
+.text--headline-small {
+  font-size: var(--font-size-headline-small, 1.5rem);
+  font-weight: var(--font-weight-headline-small, 400);
+  line-height: var(--line-height-headline-small, 1.35);
+  letter-spacing: var(--letter-spacing-headline-small, 0);
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
+}
+
+// Title variants
+.text--title-large {
+  font-size: var(--font-size-title-large, 1.375rem);
+  font-weight: var(--font-weight-title-large, 500);
+  line-height: var(--line-height-title-large, 1.3);
+  letter-spacing: var(--letter-spacing-title-large, 0);
+}
+
+.text--title-medium {
+  font-size: var(--font-size-title-medium, 1.125rem);
+  font-weight: var(--font-weight-title-medium, 500);
+  line-height: var(--line-height-title-medium, 1.4);
+  letter-spacing: var(--letter-spacing-title-medium, 0.0125em);
+}
+
+.text--title-small {
+  font-size: var(--font-size-title-small, 0.875rem);
+  font-weight: var(--font-weight-title-small, 500);
+  line-height: var(--line-height-title-small, 1.45);
+  letter-spacing: var(--letter-spacing-title-small, 0.025em);
+}
+
+// Body variants
+.text--body-large {
+  font-size: var(--font-size-body-large, 1rem);
+  font-weight: var(--font-weight-body-large, 400);
+  line-height: var(--line-height-body-large, 1.5);
+  letter-spacing: var(--letter-spacing-body-large, 0.03125em);
+}
+
+.text--body-medium {
+  font-size: var(--font-size-body-medium, 0.875rem);
+  font-weight: var(--font-weight-body-medium, 400);
+  line-height: var(--line-height-body-medium, 1.45);
+  letter-spacing: var(--letter-spacing-body-medium, 0.025em);
+}
+
+.text--body-small {
+  font-size: var(--font-size-body-small, 0.75rem);
+  font-weight: var(--font-weight-body-small, 400);
+  line-height: var(--line-height-body-small, 1.35);
+  letter-spacing: var(--letter-spacing-body-small, 0.04em);
+}
+
+// Label variants
+.text--label-large {
+  font-size: var(--font-size-label-large, 0.875rem);
+  font-weight: var(--font-weight-label-large, 500);
+  line-height: var(--line-height-label-large, 1.45);
+  letter-spacing: var(--letter-spacing-label-large, 0.025em);
+}
+
+.text--label-medium {
+  font-size: var(--font-size-label-medium, 0.75rem);
+  font-weight: var(--font-weight-label-medium, 500);
+  line-height: var(--line-height-label-medium, 1.35);
+  letter-spacing: var(--letter-spacing-label-medium, 0.05em);
+}
+
+.text--label-small {
+  font-size: var(--font-size-label-small, 0.6875rem);
+  font-weight: var(--font-weight-label-small, 500);
+  line-height: var(--line-height-label-small, 1.45);
+  letter-spacing: var(--letter-spacing-label-small, 0.05em);
+}
+
+// Text alignment
+.text--align-left {
+  text-align: left;
+}
+
+.text--align-center {
+  text-align: center;
+}
+
+.text--align-right {
+  text-align: right;
+}
+
+.text--align-justify {
+  text-align: justify;
+}
+
+// Font weights
+.text--weight-normal {
+  font-weight: 400;
+}
+
+.text--weight-medium {
+  font-weight: 500;
+}
+
+.text--weight-bold {
+  font-weight: 700;
+}
+
+// Size overrides
+.text--size-xs {
+  font-size: 0.625rem;
+  line-height: 1.2;
+}
+
+.text--size-sm {
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+.text--size-md {
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.text--size-lg {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.text--size-xl {
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+
+// Responsive typography adjustments
+@media (max-width: 480px) {
+
+  .text--display-large,
+  .text--display-medium,
+  .text--display-small {
+    line-height: 1.1;
+  }
+
+  .text--headline-large,
+  .text--headline-medium,
+  .text--headline-small {
+    line-height: 1.2;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .text {
+    font-weight: 500;
+  }
+
+  .text--label-large,
+  .text--label-medium,
+  .text--label-small {
+    font-weight: 600;
+  }
+}
+
+// Print styles
+@media print {
+  .text {
+    color: black !important;
+  }
+}

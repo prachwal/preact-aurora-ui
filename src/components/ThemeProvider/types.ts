@@ -1,5 +1,8 @@
 export type ThemeMode = 'light' | 'dark' | 'auto';
 
+// Import enhanced types from our new type system
+import type { ThemeBreakpoint } from '../../types/theme';
+
 export interface ThemeColors {
   primary: string;
   'primary-dark': string;
@@ -28,6 +31,15 @@ export interface ThemeConfig {
   customProperties?: Record<string, string>;
 }
 
+// Enhanced theme configuration for improved developer experience
+export interface EnhancedThemeConfig extends ThemeConfig {
+  autoGlobalStyles?: boolean;
+  generateUtilities?: boolean;
+  cssVariablesPrefix?: string;
+  customColors?: Record<string, string>;
+  breakpoints?: Partial<Record<ThemeBreakpoint, string>>;
+}
+
 // Universal storage interface for different backends (localStorage, Redux, Signal, etc.)
 export interface ThemeStorage {
   getTheme: (key: string) => ThemeConfig | null;
@@ -47,3 +59,30 @@ export interface ThemeContextValue {
   toggleMode: () => void;
   isDark: boolean;
 }
+
+// Enhanced ThemeProvider props with new features
+export interface EnhancedThemeProviderProps {
+  children: preact.ComponentChildren;
+  defaultTheme?: EnhancedThemeConfig;
+  storageKey?: string;
+  storageAdapter?: ThemeStorage;
+  domTarget?: ThemeTarget;
+  // New enhanced options
+  autoGlobalStyles?: boolean;
+  generateUtilities?: boolean;
+  cssVariablesPrefix?: string;
+}
+
+// Re-export enhanced types for external usage
+export type {
+  MD3ColorToken,
+  ThemeColor,
+  ThemeSurface,
+  ThemeSpacing,
+  ThemeVariant,
+  ThemeElevation,
+  ThemeBreakpoint,
+  ColorProp,
+  SpacingProp,
+  VariantProp,
+} from '../../types/theme';

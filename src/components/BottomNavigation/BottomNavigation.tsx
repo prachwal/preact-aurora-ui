@@ -92,21 +92,21 @@ export function BottomNavigation({
     >
       {Array.isArray(children)
         ? children.map((child, index) => {
-          if (child && typeof child === 'object' && 'props' in child) {
-            return (
-              <BottomNavigationTab
-                key={child.props.id || index}
-                {...child.props}
-                active={activeTab === index}
-                showLabel={showLabels}
-                index={index}
-                onClick={() => onTabChange(index)}
-                tabIndex={activeTab === index ? 0 : -1}
-              />
-            );
-          }
-          return child;
-        })
+            if (child && typeof child === 'object' && 'props' in child) {
+              return (
+                <BottomNavigationTab
+                  key={child.props.id || index}
+                  {...child.props}
+                  active={activeTab === index}
+                  showLabel={showLabels}
+                  index={index}
+                  onClick={() => onTabChange(index)}
+                  tabIndex={activeTab === index ? 0 : -1}
+                />
+              );
+            }
+            return child;
+          })
         : children}
     </nav>
   );

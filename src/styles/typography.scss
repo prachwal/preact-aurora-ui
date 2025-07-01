@@ -1,0 +1,301 @@
+/**
+ * Typography System - Material Design 3 Type Scale
+ * Aurora UI - Complete typography scale with MD3 specifications
+ */
+
+// Material Design 3 Typography Scale
+:root {
+  // Display styles
+  --md-sys-typescale-display-large-font-family: 'Roboto', sans-serif;
+  --md-sys-typescale-display-large-font-weight: 400;
+  --md-sys-typescale-display-large-font-size: 57px;
+  --md-sys-typescale-display-large-line-height: 64px;
+  --md-sys-typescale-display-large-letter-spacing: -0.25px;
+
+  --md-sys-typescale-display-medium-font-family: 'Roboto', sans-serif;
+  --md-sys-typescale-display-medium-font-weight: 400;
+  --md-sys-typescale-display-medium-font-size: 45px;
+  --md-sys-typescale-display-medium-line-height: 52px;
+  --md-sys-typescale-display-medium-letter-spacing: 0;
+
+  --md-sys-typescale-display-small-font-family: 'Roboto', sans-serif;
+  --md-sys-typescale-display-small-font-weight: 400;
+  --md-sys-typescale-display-small-font-size: 36px;
+  --md-sys-typescale-display-small-line-height: 44px;
+  --md-sys-typescale-display-small-letter-spacing: 0;
+
+  // Headline styles
+  --md-sys-typescale-headline-large-font-family: 'Roboto', sans-serif;
+  --md-sys-typescale-headline-large-font-weight: 400;
+  --md-sys-typescale-headline-large-font-size: 32px;
+  --md-sys-typescale-headline-large-line-height: 40px;
+  --md-sys-typescale-headline-large-letter-spacing: 0;
+
+  --md-sys-typescale-headline-medium-font-family: 'Roboto', sans-serif;
+  --md-sys-typescale-headline-medium-font-weight: 400;
+  --md-sys-typescale-headline-medium-font-size: 28px;
+  --md-sys-typescale-headline-medium-line-height: 36px;
+  --md-sys-typescale-headline-medium-letter-spacing: 0;
+
+  --md-sys-typescale-headline-small-font-family: 'Roboto', sans-serif;
+  --md-sys-typescale-headline-small-font-weight: 400;
+  --md-sys-typescale-headline-small-font-size: 24px;
+  --md-sys-typescale-headline-small-line-height: 32px;
+  --md-sys-typescale-headline-small-letter-spacing: 0;
+
+  // Title styles
+  --md-sys-typescale-title-large-font-family: 'Roboto', sans-serif;
+  --md-sys-typescale-title-large-font-weight: 400;
+  --md-sys-typescale-title-large-font-size: 22px;
+  --md-sys-typescale-title-large-line-height: 28px;
+  --md-sys-typescale-title-large-letter-spacing: 0;
+
+  --md-sys-typescale-title-medium-font-family: 'Roboto', sans-serif;
+  --md-sys-typescale-title-medium-font-weight: 500;
+  --md-sys-typescale-title-medium-font-size: 16px;
+  --md-sys-typescale-title-medium-line-height: 24px;
+  --md-sys-typescale-title-medium-letter-spacing: 0.15px;
+
+  --md-sys-typescale-title-small-font-family: 'Roboto', sans-serif;
+  --md-sys-typescale-title-small-font-weight: 500;
+  --md-sys-typescale-title-small-font-size: 14px;
+  --md-sys-typescale-title-small-line-height: 20px;
+  --md-sys-typescale-title-small-letter-spacing: 0.1px;
+
+  // Label styles
+  --md-sys-typescale-label-large-font-family: 'Roboto', sans-serif;
+  --md-sys-typescale-label-large-font-weight: 500;
+  --md-sys-typescale-label-large-font-size: 14px;
+  --md-sys-typescale-label-large-line-height: 20px;
+  --md-sys-typescale-label-large-letter-spacing: 0.1px;
+
+  --md-sys-typescale-label-medium-font-family: 'Roboto', sans-serif;
+  --md-sys-typescale-label-medium-font-weight: 500;
+  --md-sys-typescale-label-medium-font-size: 12px;
+  --md-sys-typescale-label-medium-line-height: 16px;
+  --md-sys-typescale-label-medium-letter-spacing: 0.5px;
+
+  --md-sys-typescale-label-small-font-family: 'Roboto', sans-serif;
+  --md-sys-typescale-label-small-font-weight: 500;
+  --md-sys-typescale-label-small-font-size: 11px;
+  --md-sys-typescale-label-small-line-height: 16px;
+  --md-sys-typescale-label-small-letter-spacing: 0.5px;
+
+  // Body styles
+  --md-sys-typescale-body-large-font-family: 'Roboto', sans-serif;
+  --md-sys-typescale-body-large-font-weight: 400;
+  --md-sys-typescale-body-large-font-size: 16px;
+  --md-sys-typescale-body-large-line-height: 24px;
+  --md-sys-typescale-body-large-letter-spacing: 0.5px;
+
+  --md-sys-typescale-body-medium-font-family: 'Roboto', sans-serif;
+  --md-sys-typescale-body-medium-font-weight: 400;
+  --md-sys-typescale-body-medium-font-size: 14px;
+  --md-sys-typescale-body-medium-line-height: 20px;
+  --md-sys-typescale-body-medium-letter-spacing: 0.25px;
+
+  --md-sys-typescale-body-small-font-family: 'Roboto', sans-serif;
+  --md-sys-typescale-body-small-font-weight: 400;
+  --md-sys-typescale-body-small-font-size: 12px;
+  --md-sys-typescale-body-small-line-height: 16px;
+  --md-sys-typescale-body-small-letter-spacing: 0.4px;
+}
+
+// Responsive typography adjustments
+@media (max-width: 600px) {
+  :root {
+    // Scale down display sizes for mobile
+    --md-sys-typescale-display-large-font-size: 48px;
+    --md-sys-typescale-display-large-line-height: 56px;
+    --md-sys-typescale-display-medium-font-size: 36px;
+    --md-sys-typescale-display-medium-line-height: 44px;
+    --md-sys-typescale-display-small-font-size: 28px;
+    --md-sys-typescale-display-small-line-height: 36px;
+  }
+}
+
+// Backwards compatibility with existing Aurora UI typography
+:root {
+  --font-family-base: var(--md-sys-typescale-body-large-font-family);
+  --font-size-base: var(--md-sys-typescale-body-large-font-size);
+  --line-height-base: var(--md-sys-typescale-body-large-line-height);
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  // Legacy font sizes
+  --font-size-sm: var(--md-sys-typescale-body-small-font-size);
+  --font-size-lg: var(--md-sys-typescale-body-large-font-size);
+  --font-size-xl: var(--md-sys-typescale-title-large-font-size);
+  --font-size-2xl: var(--md-sys-typescale-headline-small-font-size);
+  --font-size-3xl: var(--md-sys-typescale-headline-medium-font-size);
+}
+
+// Typography utility mixins
+@mixin typography-display($size: 'large') {
+  @if $size =='large' {
+    font-family: var(--md-sys-typescale-display-large-font-family);
+    font-weight: var(--md-sys-typescale-display-large-font-weight);
+    font-size: var(--md-sys-typescale-display-large-font-size);
+    line-height: var(--md-sys-typescale-display-large-line-height);
+    letter-spacing: var(--md-sys-typescale-display-large-letter-spacing);
+  }
+
+  @else if $size =='medium' {
+    font-family: var(--md-sys-typescale-display-medium-font-family);
+    font-weight: var(--md-sys-typescale-display-medium-font-weight);
+    font-size: var(--md-sys-typescale-display-medium-font-size);
+    line-height: var(--md-sys-typescale-display-medium-line-height);
+    letter-spacing: var(--md-sys-typescale-display-medium-letter-spacing);
+  }
+
+  @else if $size =='small' {
+    font-family: var(--md-sys-typescale-display-small-font-family);
+    font-weight: var(--md-sys-typescale-display-small-font-weight);
+    font-size: var(--md-sys-typescale-display-small-font-size);
+    line-height: var(--md-sys-typescale-display-small-line-height);
+    letter-spacing: var(--md-sys-typescale-display-small-letter-spacing);
+  }
+}
+
+@mixin typography-headline($size: 'large') {
+  @if $size =='large' {
+    font-family: var(--md-sys-typescale-headline-large-font-family);
+    font-weight: var(--md-sys-typescale-headline-large-font-weight);
+    font-size: var(--md-sys-typescale-headline-large-font-size);
+    line-height: var(--md-sys-typescale-headline-large-line-height);
+    letter-spacing: var(--md-sys-typescale-headline-large-letter-spacing);
+  }
+
+  @else if $size =='medium' {
+    font-family: var(--md-sys-typescale-headline-medium-font-family);
+    font-weight: var(--md-sys-typescale-headline-medium-font-weight);
+    font-size: var(--md-sys-typescale-headline-medium-font-size);
+    line-height: var(--md-sys-typescale-headline-medium-line-height);
+    letter-spacing: var(--md-sys-typescale-headline-medium-letter-spacing);
+  }
+
+  @else if $size =='small' {
+    font-family: var(--md-sys-typescale-headline-small-font-family);
+    font-weight: var(--md-sys-typescale-headline-small-font-weight);
+    font-size: var(--md-sys-typescale-headline-small-font-size);
+    line-height: var(--md-sys-typescale-headline-small-line-height);
+    letter-spacing: var(--md-sys-typescale-headline-small-letter-spacing);
+  }
+}
+
+@mixin typography-title($size: 'large') {
+  @if $size =='large' {
+    font-family: var(--md-sys-typescale-title-large-font-family);
+    font-weight: var(--md-sys-typescale-title-large-font-weight);
+    font-size: var(--md-sys-typescale-title-large-font-size);
+    line-height: var(--md-sys-typescale-title-large-line-height);
+    letter-spacing: var(--md-sys-typescale-title-large-letter-spacing);
+  }
+
+  @else if $size =='medium' {
+    font-family: var(--md-sys-typescale-title-medium-font-family);
+    font-weight: var(--md-sys-typescale-title-medium-font-weight);
+    font-size: var(--md-sys-typescale-title-medium-font-size);
+    line-height: var(--md-sys-typescale-title-medium-line-height);
+    letter-spacing: var(--md-sys-typescale-title-medium-letter-spacing);
+  }
+
+  @else if $size =='small' {
+    font-family: var(--md-sys-typescale-title-small-font-family);
+    font-weight: var(--md-sys-typescale-title-small-font-weight);
+    font-size: var(--md-sys-typescale-title-small-font-size);
+    line-height: var(--md-sys-typescale-title-small-line-height);
+    letter-spacing: var(--md-sys-typescale-title-small-letter-spacing);
+  }
+}
+
+@mixin typography-body($size: 'large') {
+  @if $size =='large' {
+    font-family: var(--md-sys-typescale-body-large-font-family);
+    font-weight: var(--md-sys-typescale-body-large-font-weight);
+    font-size: var(--md-sys-typescale-body-large-font-size);
+    line-height: var(--md-sys-typescale-body-large-line-height);
+    letter-spacing: var(--md-sys-typescale-body-large-letter-spacing);
+  }
+
+  @else if $size =='medium' {
+    font-family: var(--md-sys-typescale-body-medium-font-family);
+    font-weight: var(--md-sys-typescale-body-medium-font-weight);
+    font-size: var(--md-sys-typescale-body-medium-font-size);
+    line-height: var(--md-sys-typescale-body-medium-line-height);
+    letter-spacing: var(--md-sys-typescale-body-medium-letter-spacing);
+  }
+
+  @else if $size =='small' {
+    font-family: var(--md-sys-typescale-body-small-font-family);
+    font-weight: var(--md-sys-typescale-body-small-font-weight);
+    font-size: var(--md-sys-typescale-body-small-font-size);
+    line-height: var(--md-sys-typescale-body-small-line-height);
+    letter-spacing: var(--md-sys-typescale-body-small-letter-spacing);
+  }
+}
+
+@mixin typography-label($size: 'large') {
+  @if $size =='large' {
+    font-family: var(--md-sys-typescale-label-large-font-family);
+    font-weight: var(--md-sys-typescale-label-large-font-weight);
+    font-size: var(--md-sys-typescale-label-large-font-size);
+    line-height: var(--md-sys-typescale-label-large-line-height);
+    letter-spacing: var(--md-sys-typescale-label-large-letter-spacing);
+  }
+
+  @else if $size =='medium' {
+    font-family: var(--md-sys-typescale-label-medium-font-family);
+    font-weight: var(--md-sys-typescale-label-medium-font-weight);
+    font-size: var(--md-sys-typescale-label-medium-font-size);
+    line-height: var(--md-sys-typescale-label-medium-line-height);
+    letter-spacing: var(--md-sys-typescale-label-medium-letter-spacing);
+  }
+
+  @else if $size =='small' {
+    font-family: var(--md-sys-typescale-label-small-font-family);
+    font-weight: var(--md-sys-typescale-label-small-font-weight);
+    font-size: var(--md-sys-typescale-label-small-font-size);
+    line-height: var(--md-sys-typescale-label-small-line-height);
+    letter-spacing: var(--md-sys-typescale-label-small-letter-spacing);
+  }
+}
+
+// Export for CSS modules usage
+:export {
+  // Display
+  displayLargeFontFamily: var(--md-sys-typescale-display-large-font-family);
+  displayLargeFontWeight: var(--md-sys-typescale-display-large-font-weight);
+  displayLargeFontSize: var(--md-sys-typescale-display-large-font-size);
+  displayLargeLineHeight: var(--md-sys-typescale-display-large-line-height);
+  displayLargeLetterSpacing: var(--md-sys-typescale-display-large-letter-spacing);
+
+  // Headline
+  headlineLargeFontFamily: var(--md-sys-typescale-headline-large-font-family);
+  headlineLargeFontWeight: var(--md-sys-typescale-headline-large-font-weight);
+  headlineLargeFontSize: var(--md-sys-typescale-headline-large-font-size);
+  headlineLargeLineHeight: var(--md-sys-typescale-headline-large-line-height);
+  headlineLargeLetterSpacing: var(--md-sys-typescale-headline-large-letter-spacing);
+
+  // Title
+  titleLargeFontFamily: var(--md-sys-typescale-title-large-font-family);
+  titleLargeFontWeight: var(--md-sys-typescale-title-large-font-weight);
+  titleLargeFontSize: var(--md-sys-typescale-title-large-font-size);
+  titleLargeLineHeight: var(--md-sys-typescale-title-large-line-height);
+  titleLargeLetterSpacing: var(--md-sys-typescale-title-large-letter-spacing);
+
+  // Body
+  bodyLargeFontFamily: var(--md-sys-typescale-body-large-font-family);
+  bodyLargeFontWeight: var(--md-sys-typescale-body-large-font-weight);
+  bodyLargeFontSize: var(--md-sys-typescale-body-large-font-size);
+  bodyLargeLineHeight: var(--md-sys-typescale-body-large-line-height);
+  bodyLargeLetterSpacing: var(--md-sys-typescale-body-large-letter-spacing);
+
+  // Label
+  labelLargeFontFamily: var(--md-sys-typescale-label-large-font-family);
+  labelLargeFontWeight: var(--md-sys-typescale-label-large-font-weight);
+  labelLargeFontSize: var(--md-sys-typescale-label-large-font-size);
+  labelLargeLineHeight: var(--md-sys-typescale-label-large-line-height);
+  labelLargeLetterSpacing: var(--md-sys-typescale-label-large-letter-spacing);
+}

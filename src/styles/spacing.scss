@@ -1,0 +1,214 @@
+/**
+ * Spacing System - Material Design 3 Spacing Scale
+ * Aurora UI - Standardized spacing values for consistent layouts
+ */
+
+// Material Design 3 Spacing Scale
+:root {
+  // Base spacing unit (4px base)
+  --md-sys-spacing-none: 0;
+  --md-sys-spacing-xs: 4px; // 0.25rem
+  --md-sys-spacing-sm: 8px; // 0.5rem
+  --md-sys-spacing-md: 16px; // 1rem
+  --md-sys-spacing-lg: 24px; // 1.5rem
+  --md-sys-spacing-xl: 32px; // 2rem
+  --md-sys-spacing-2xl: 48px; // 3rem
+  --md-sys-spacing-3xl: 64px; // 4rem
+
+  // Component-specific spacing
+  --md-sys-spacing-component-xs: 8px;
+  --md-sys-spacing-component-sm: 12px;
+  --md-sys-spacing-component-md: 16px;
+  --md-sys-spacing-component-lg: 24px;
+
+  // Layout spacing
+  --md-sys-spacing-layout-xs: 16px;
+  --md-sys-spacing-layout-sm: 24px;
+  --md-sys-spacing-layout-md: 32px;
+  --md-sys-spacing-layout-lg: 48px;
+  --md-sys-spacing-layout-xl: 64px;
+
+  // Container padding
+  --md-sys-spacing-container-xs: 12px;
+  --md-sys-spacing-container-sm: 16px;
+  --md-sys-spacing-container-md: 24px;
+  --md-sys-spacing-container-lg: 32px;
+
+  // Grid spacing
+  --md-sys-spacing-grid-gutter: 16px;
+  --md-sys-spacing-grid-margin: 16px;
+
+  // Responsive breakpoints for spacing adjustments
+  --md-sys-spacing-mobile-base: 16px;
+  --md-sys-spacing-tablet-base: 24px;
+  --md-sys-spacing-desktop-base: 32px;
+}
+
+// Responsive spacing adjustments
+@media (max-width: 600px) {
+  :root {
+    --md-sys-spacing-layout-md: 24px;
+    --md-sys-spacing-layout-lg: 32px;
+    --md-sys-spacing-container-lg: 24px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --md-sys-spacing-layout-lg: 64px;
+    --md-sys-spacing-layout-xl: 80px;
+    --md-sys-spacing-container-lg: 48px;
+  }
+}
+
+// Backwards compatibility with existing Aurora UI spacing
+:root {
+  --space-xs: var(--md-sys-spacing-xs);
+  --space-sm: var(--md-sys-spacing-sm);
+  --space-md: var(--md-sys-spacing-md);
+  --space-lg: var(--md-sys-spacing-lg);
+  --space-xl: var(--md-sys-spacing-xl);
+}
+
+// Utility mixins for consistent spacing
+@mixin spacing-padding($size: 'md') {
+  @if $size =='none' {
+    padding: var(--md-sys-spacing-none);
+  }
+
+  @else if $size =='xs' {
+    padding: var(--md-sys-spacing-xs);
+  }
+
+  @else if $size =='sm' {
+    padding: var(--md-sys-spacing-sm);
+  }
+
+  @else if $size =='md' {
+    padding: var(--md-sys-spacing-md);
+  }
+
+  @else if $size =='lg' {
+    padding: var(--md-sys-spacing-lg);
+  }
+
+  @else if $size =='xl' {
+    padding: var(--md-sys-spacing-xl);
+  }
+
+  @else if $size =='2xl' {
+    padding: var(--md-sys-spacing-2xl);
+  }
+
+  @else if $size =='3xl' {
+    padding: var(--md-sys-spacing-3xl);
+  }
+}
+
+@mixin spacing-margin($size: 'md') {
+  @if $size =='none' {
+    margin: var(--md-sys-spacing-none);
+  }
+
+  @else if $size =='xs' {
+    margin: var(--md-sys-spacing-xs);
+  }
+
+  @else if $size =='sm' {
+    margin: var(--md-sys-spacing-sm);
+  }
+
+  @else if $size =='md' {
+    margin: var(--md-sys-spacing-md);
+  }
+
+  @else if $size =='lg' {
+    margin: var(--md-sys-spacing-lg);
+  }
+
+  @else if $size =='xl' {
+    margin: var(--md-sys-spacing-xl);
+  }
+
+  @else if $size =='2xl' {
+    margin: var(--md-sys-spacing-2xl);
+  }
+
+  @else if $size =='3xl' {
+    margin: var(--md-sys-spacing-3xl);
+  }
+}
+
+@mixin spacing-gap($size: 'md') {
+  @if $size =='none' {
+    gap: var(--md-sys-spacing-none);
+  }
+
+  @else if $size =='xs' {
+    gap: var(--md-sys-spacing-xs);
+  }
+
+  @else if $size =='sm' {
+    gap: var(--md-sys-spacing-sm);
+  }
+
+  @else if $size =='md' {
+    gap: var(--md-sys-spacing-md);
+  }
+
+  @else if $size =='lg' {
+    gap: var(--md-sys-spacing-lg);
+  }
+
+  @else if $size =='xl' {
+    gap: var(--md-sys-spacing-xl);
+  }
+
+  @else if $size =='2xl' {
+    gap: var(--md-sys-spacing-2xl);
+  }
+
+  @else if $size =='3xl' {
+    gap: var(--md-sys-spacing-3xl);
+  }
+}
+
+// Container spacing mixin
+@mixin container-spacing($size: 'md') {
+  @if $size =='xs' {
+    padding: var(--md-sys-spacing-container-xs);
+  }
+
+  @else if $size =='sm' {
+    padding: var(--md-sys-spacing-container-sm);
+  }
+
+  @else if $size =='md' {
+    padding: var(--md-sys-spacing-container-md);
+  }
+
+  @else if $size =='lg' {
+    padding: var(--md-sys-spacing-container-lg);
+  }
+}
+
+// Export for CSS modules usage
+:export {
+  none: var(--md-sys-spacing-none);
+  xs: var(--md-sys-spacing-xs);
+  sm: var(--md-sys-spacing-sm);
+  md: var(--md-sys-spacing-md);
+  lg: var(--md-sys-spacing-lg);
+  xl: var(--md-sys-spacing-xl);
+  xl2: var(--md-sys-spacing-2xl);
+  xl3: var(--md-sys-spacing-3xl);
+  containerXs: var(--md-sys-spacing-container-xs);
+  containerSm: var(--md-sys-spacing-container-sm);
+  containerMd: var(--md-sys-spacing-container-md);
+  containerLg: var(--md-sys-spacing-container-lg);
+  layoutXs: var(--md-sys-spacing-layout-xs);
+  layoutSm: var(--md-sys-spacing-layout-sm);
+  layoutMd: var(--md-sys-spacing-layout-md);
+  layoutLg: var(--md-sys-spacing-layout-lg);
+  layoutXl: var(--md-sys-spacing-layout-xl);
+}

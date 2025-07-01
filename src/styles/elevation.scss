@@ -1,0 +1,184 @@
+/**
+ * Elevation System - Material Design 3 Elevation Levels
+ * Aurora UI - Complete elevation system with shadows and z-index
+ */
+
+// Material Design 3 Elevation Levels
+:root {
+  // Base elevation values
+  --md-sys-elevation-level0: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  --md-sys-elevation-level1: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-level2: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-level3: 0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-level4: 0px 2px 3px 0px rgba(0, 0, 0, 0.3), 0px 6px 10px 4px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-level5: 0px 4px 4px 0px rgba(0, 0, 0, 0.3), 0px 8px 12px 6px rgba(0, 0, 0, 0.15);
+
+  // Z-index values for elevation layers
+  --md-sys-z-index-level0: 0;
+  --md-sys-z-index-level1: 1;
+  --md-sys-z-index-level2: 2;
+  --md-sys-z-index-level3: 3;
+  --md-sys-z-index-level4: 4;
+  --md-sys-z-index-level5: 5;
+
+  // Component-specific z-index values
+  --md-sys-z-index-tooltip: 1000;
+  --md-sys-z-index-modal: 1050;
+  --md-sys-z-index-drawer: 1100;
+  --md-sys-z-index-dropdown: 1200;
+  --md-sys-z-index-toast: 1300;
+  --md-sys-z-index-overlay: 1400;
+
+  // Surface tint colors for elevation
+  --md-sys-color-surface-tint: var(--md-sys-color-primary);
+}
+
+// Dark theme elevation adjustments
+[data-theme='dark'] {
+  --md-sys-elevation-level1: 0px 1px 2px 0px rgba(0, 0, 0, 0.4), 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
+  --md-sys-elevation-level2: 0px 1px 2px 0px rgba(0, 0, 0, 0.4), 0px 2px 6px 2px rgba(0, 0, 0, 0.2);
+  --md-sys-elevation-level3: 0px 1px 3px 0px rgba(0, 0, 0, 0.4), 0px 4px 8px 3px rgba(0, 0, 0, 0.2);
+  --md-sys-elevation-level4: 0px 2px 3px 0px rgba(0, 0, 0, 0.4), 0px 6px 10px 4px rgba(0, 0, 0, 0.2);
+  --md-sys-elevation-level5: 0px 4px 4px 0px rgba(0, 0, 0, 0.4), 0px 8px 12px 6px rgba(0, 0, 0, 0.2);
+}
+
+// Backwards compatibility with existing Aurora UI elevation
+:root {
+  --shadow-sm: var(--md-sys-elevation-level1);
+  --shadow-md: var(--md-sys-elevation-level2);
+  --shadow-lg: var(--md-sys-elevation-level3);
+  --shadow-xl: var(--md-sys-elevation-level4);
+  --shadow-2xl: var(--md-sys-elevation-level5);
+}
+
+// Elevation utility mixins
+@mixin elevation($level: 1) {
+  @if $level ==0 {
+    box-shadow: var(--md-sys-elevation-level0);
+    z-index: var(--md-sys-z-index-level0);
+  }
+
+  @else if $level ==1 {
+    box-shadow: var(--md-sys-elevation-level1);
+    z-index: var(--md-sys-z-index-level1);
+  }
+
+  @else if $level ==2 {
+    box-shadow: var(--md-sys-elevation-level2);
+    z-index: var(--md-sys-z-index-level2);
+  }
+
+  @else if $level ==3 {
+    box-shadow: var(--md-sys-elevation-level3);
+    z-index: var(--md-sys-z-index-level3);
+  }
+
+  @else if $level ==4 {
+    box-shadow: var(--md-sys-elevation-level4);
+    z-index: var(--md-sys-z-index-level4);
+  }
+
+  @else if $level ==5 {
+    box-shadow: var(--md-sys-elevation-level5);
+    z-index: var(--md-sys-z-index-level5);
+  }
+}
+
+// Surface tint overlay mixin for elevated surfaces
+@mixin surface-tint($level: 1, $opacity: 0.05) {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--md-sys-color-surface-tint);
+    opacity: calc($opacity * $level);
+    pointer-events: none;
+    border-radius: inherit;
+  }
+}
+
+// Component-specific elevation mixins
+@mixin card-elevation($level: 1) {
+  @include elevation($level);
+  border-radius: 12px;
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+}
+
+@mixin fab-elevation($level: 3) {
+  @include elevation($level);
+  border-radius: 16px;
+
+  &:hover {
+    @include elevation(#{$level + 1});
+  }
+
+  &:active {
+    @include elevation(#{$level - 1});
+  }
+}
+
+@mixin modal-elevation() {
+  @include elevation(5);
+  z-index: var(--md-sys-z-index-modal);
+}
+
+@mixin dropdown-elevation() {
+  @include elevation(2);
+  z-index: var(--md-sys-z-index-dropdown);
+}
+
+@mixin tooltip-elevation() {
+  @include elevation(1);
+  z-index: var(--md-sys-z-index-tooltip);
+}
+
+// Animation for elevation changes
+@mixin elevation-transition($duration: 0.2s, $easing: ease-out) {
+  transition: box-shadow $duration $easing, z-index 0s $duration;
+}
+
+// States with elevation changes
+@mixin interactive-elevation($base-level: 1, $hover-level: 2, $active-level: 0) {
+  @include elevation($base-level);
+  @include elevation-transition();
+
+  &:hover {
+    @include elevation($hover-level);
+  }
+
+  &:active {
+    @include elevation($active-level);
+  }
+
+  &:focus-visible {
+    @include elevation($hover-level);
+  }
+}
+
+// Export for CSS modules usage
+:export {
+  level0: var(--md-sys-elevation-level0);
+  level1: var(--md-sys-elevation-level1);
+  level2: var(--md-sys-elevation-level2);
+  level3: var(--md-sys-elevation-level3);
+  level4: var(--md-sys-elevation-level4);
+  level5: var(--md-sys-elevation-level5);
+  zLevel0: var(--md-sys-z-index-level0);
+  zLevel1: var(--md-sys-z-index-level1);
+  zLevel2: var(--md-sys-z-index-level2);
+  zLevel3: var(--md-sys-z-index-level3);
+  zLevel4: var(--md-sys-z-index-level4);
+  zLevel5: var(--md-sys-z-index-level5);
+  zTooltip: var(--md-sys-z-index-tooltip);
+  zModal: var(--md-sys-z-index-modal);
+  zDrawer: var(--md-sys-z-index-drawer);
+  zDropdown: var(--md-sys-z-index-dropdown);
+  zToast: var(--md-sys-z-index-toast);
+  zOverlay: var(--md-sys-z-index-overlay);
+}

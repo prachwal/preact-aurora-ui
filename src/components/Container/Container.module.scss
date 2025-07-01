@@ -1,0 +1,312 @@
+/**
+ * Container Component Styles - Aurora UI
+ * Smart container with surface backgrounds, elevation, and responsive behavior
+ */
+
+@use '../../styles/tokens' as tokens;
+@use '../../styles/mixins' as mixins;
+
+// Base container styles
+.container {
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  transition:
+    background-color tokens.$transition-duration-standard tokens.$transition-easing-standard,
+    box-shadow tokens.$transition-duration-standard tokens.$transition-easing-standard,
+    color tokens.$transition-duration-standard tokens.$transition-easing-standard;
+}
+
+// Surface variants (colors handled via inline styles in component)
+
+// Padding variants
+.container--padding-none {
+  padding: 0;
+}
+
+.container--padding-xs {
+  padding: tokens.$spacing-xs;
+}
+
+.container--padding-sm {
+  padding: tokens.$spacing-sm;
+}
+
+.container--padding-md {
+  padding: tokens.$spacing-md;
+}
+
+.container--padding-lg {
+  padding: tokens.$spacing-lg;
+}
+
+.container--padding-xl {
+  padding: tokens.$spacing-xl;
+}
+
+.container--padding-2xl {
+  padding: tokens.$spacing-2xl;
+}
+
+// Elevation (box-shadow)
+.container--elevation-1 {
+  @include mixins.elevation(1);
+}
+
+.container--elevation-2 {
+  @include mixins.elevation(2);
+}
+
+.container--elevation-3 {
+  @include mixins.elevation(3);
+}
+
+.container--elevation-4 {
+  @include mixins.elevation(4);
+}
+
+.container--elevation-5 {
+  @include mixins.elevation(5);
+}
+
+// Border radius
+.container--radius-none {
+  border-radius: 0;
+}
+
+.container--radius-sm {
+  border-radius: tokens.$shape-corner-extra-small;
+}
+
+.container--radius-md {
+  border-radius: tokens.$shape-corner-small;
+}
+
+.container--radius-lg {
+  border-radius: tokens.$shape-corner-medium;
+}
+
+.container--radius-xl {
+  border-radius: tokens.$shape-corner-large;
+}
+
+.container--radius-full {
+  border-radius: tokens.$shape-corner-full;
+}
+
+// Max width constraints
+.container--max-width-xs {
+  max-width: 20rem; // 320px
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container--max-width-sm {
+  max-width: 24rem; // 384px
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container--max-width-md {
+  max-width: 28rem; // 448px
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container--max-width-lg {
+  max-width: 32rem; // 512px
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container--max-width-xl {
+  max-width: 36rem; // 576px
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container--max-width-2xl {
+  max-width: 42rem; // 672px
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container--max-width-full {
+  max-width: 100%;
+}
+
+// Responsive padding adjustments
+.container--responsive {
+
+  // Smaller padding on mobile
+  @include mixins.mobile {
+    &.container--padding-xs {
+      padding: tokens.$spacing-2xs;
+    }
+
+    &.container--padding-sm {
+      padding: tokens.$spacing-xs;
+    }
+
+    &.container--padding-md {
+      padding: tokens.$spacing-sm;
+    }
+
+    &.container--padding-lg {
+      padding: tokens.$spacing-md;
+    }
+
+    &.container--padding-xl {
+      padding: tokens.$spacing-lg;
+    }
+
+    &.container--padding-2xl {
+      padding: tokens.$spacing-xl;
+    }
+  }
+
+  // Standard padding on tablet and up
+  @include mixins.tablet {
+    &.container--padding-xs {
+      padding: tokens.$spacing-xs;
+    }
+
+    &.container--padding-sm {
+      padding: tokens.$spacing-sm;
+    }
+
+    &.container--padding-md {
+      padding: tokens.$spacing-md;
+    }
+
+    &.container--padding-lg {
+      padding: tokens.$spacing-lg;
+    }
+
+    &.container--padding-xl {
+      padding: tokens.$spacing-xl;
+    }
+
+    &.container--padding-2xl {
+      padding: tokens.$spacing-2xl;
+    }
+  }
+
+  // Responsive max-width adjustments
+  @include mixins.mobile {
+
+    &.container--max-width-xs,
+    &.container--max-width-sm,
+    &.container--max-width-md {
+      max-width: 100%;
+      padding-left: tokens.$spacing-md;
+      padding-right: tokens.$spacing-md;
+    }
+  }
+
+  @include mixins.tablet {
+
+    &.container--max-width-xs,
+    &.container--max-width-sm,
+    &.container--max-width-md,
+    &.container--max-width-lg {
+      padding-left: tokens.$spacing-lg;
+      padding-right: tokens.$spacing-lg;
+    }
+  }
+
+  @include mixins.desktop {
+
+    &.container--max-width-xs,
+    &.container--max-width-sm,
+    &.container--max-width-md,
+    &.container--max-width-lg,
+    &.container--max-width-xl,
+    &.container--max-width-2xl {
+      padding-left: tokens.$spacing-xl;
+      padding-right: tokens.$spacing-xl;
+    }
+  }
+}
+
+// Container nesting adjustments
+.container .container {
+
+  // Reduce padding for nested containers
+  &.container--padding-xs {
+    padding: tokens.$spacing-2xs;
+  }
+
+  &.container--padding-sm {
+    padding: tokens.$spacing-xs;
+  }
+
+  &.container--padding-md {
+    padding: tokens.$spacing-sm;
+  }
+
+  &.container--padding-lg {
+    padding: tokens.$spacing-md;
+  }
+
+  &.container--padding-xl {
+    padding: tokens.$spacing-lg;
+  }
+
+  &.container--padding-2xl {
+    padding: tokens.$spacing-xl;
+  }
+}
+
+// Accessibility improvements
+.container {
+
+  // Ensure focus indicators are visible
+  &:focus-visible {
+    outline: 2px solid var(--md-sys-color-primary);
+    outline-offset: 2px;
+  }
+
+  // High contrast mode support
+  @media (forced-colors: active) {
+    border: 1px solid ButtonText;
+  }
+}
+
+// Container interaction states for interactive containers
+.container[role="button"],
+.container[tabindex],
+.container[onclick] {
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    @include mixins.state-layer('hover');
+  }
+
+  &:focus-visible {
+    @include mixins.state-layer('focus');
+  }
+
+  &:active {
+    @include mixins.state-layer('pressed');
+  }
+
+  &:disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// Print styles
+@media print {
+  .container {
+    // Remove shadows and backgrounds for better print output
+    box-shadow: none !important;
+    background: transparent !important;
+
+    // Ensure text is visible in print
+    color: black !important;
+  }
+}
