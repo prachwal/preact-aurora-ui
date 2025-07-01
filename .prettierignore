@@ -1,0 +1,12 @@
+# Prettier
+node_modules/
+build/
+dist/
+storybook-static/
+coverage/
+*.log
+*.tmp
+*.tsbuildinfo
+.vscode/
+.idea/
+.DS_Store
