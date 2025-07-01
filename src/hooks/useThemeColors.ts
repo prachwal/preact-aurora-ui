@@ -12,6 +12,10 @@ import type { ThemeColors, MD3ColorToken, SemanticColor } from '../types/theme';
  * Colors are resolved from CSS custom properties for real-time theme switching
  */
 export function useThemeColors(): ThemeColors {
+  // Get theme state to trigger re-computation when theme changes
+  const isClient = typeof window !== 'undefined';
+  const currentTheme = isClient ? document.documentElement.getAttribute('data-theme') : null;
+
   return useMemo(() => {
     // Only access DOM in browser environment
     if (typeof window === 'undefined') {
@@ -96,7 +100,7 @@ export function useThemeColors(): ThemeColors {
       ...md3Colors,
       ...semanticColors,
     } as ThemeColors;
-  }, []); // Empty dependency array - colors update automatically via CSS custom properties
+  }, [currentTheme]); // Depend on currentTheme to trigger re-computation when theme changes
 }
 
 /**
@@ -151,6 +155,9 @@ export function useThemeColor(colorName: keyof ThemeColors): string {
  */
 export function useThemeUtils() {
   const colors = useThemeColors();
+  // Also track theme changes for utilities
+  const isClient = typeof window !== 'undefined';
+  const currentTheme = isClient ? document.documentElement.getAttribute('data-theme') : null;
 
   return useMemo(
     () => ({
@@ -209,7 +216,7 @@ export function useThemeUtils() {
 
       colors,
     }),
-    [colors],
+    [colors, currentTheme],
   );
 }
 
