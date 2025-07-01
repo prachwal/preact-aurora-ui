@@ -85,7 +85,7 @@ export function ThemeProvider({
   // Function to inject global styles
   const injectGlobalStyles = (): (() => void) => {
     if (typeof document === 'undefined') {
-      return () => { }; // No-op for SSR
+      return () => {}; // No-op for SSR
     }
 
     const globalCSS = `

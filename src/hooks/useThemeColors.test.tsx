@@ -211,9 +211,9 @@ describe('useThemeColors', () => {
 
     it('should log colors to console in development', () => {
       process.env.NODE_ENV = 'development';
-      const consoleSpy = vi.spyOn(console, 'group').mockImplementation(() => { });
-      const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => { });
-      const consoleGroupEndSpy = vi.spyOn(console, 'groupEnd').mockImplementation(() => { });
+      const consoleSpy = vi.spyOn(console, 'group').mockImplementation(() => {});
+      const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
+      const consoleGroupEndSpy = vi.spyOn(console, 'groupEnd').mockImplementation(() => {});
 
       const { result } = renderHook(() => useColorDebug());
 

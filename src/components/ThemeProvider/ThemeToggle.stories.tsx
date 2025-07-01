@@ -183,19 +183,43 @@ export const PositionVariations: Story = {
     <div style={{ width: '100%', border: '1px dashed #ccc', borderRadius: '8px', padding: '1rem' }}>
       <div style={{ marginBottom: '1rem' }}>
         <strong>Left:</strong>
-        <div style={{ display: 'flex', width: '100%', padding: '0.5rem', background: '#f5f5f5', borderRadius: '4px' }}>
+        <div
+          style={{
+            display: 'flex',
+            width: '100%',
+            padding: '0.5rem',
+            background: '#f5f5f5',
+            borderRadius: '4px',
+          }}
+        >
           <ThemeToggle position="left" />
         </div>
       </div>
       <div style={{ marginBottom: '1rem' }}>
         <strong>Center:</strong>
-        <div style={{ display: 'flex', width: '100%', padding: '0.5rem', background: '#f5f5f5', borderRadius: '4px' }}>
+        <div
+          style={{
+            display: 'flex',
+            width: '100%',
+            padding: '0.5rem',
+            background: '#f5f5f5',
+            borderRadius: '4px',
+          }}
+        >
           <ThemeToggle position="center" />
         </div>
       </div>
       <div>
         <strong>Right:</strong>
-        <div style={{ display: 'flex', width: '100%', padding: '0.5rem', background: '#f5f5f5', borderRadius: '4px' }}>
+        <div
+          style={{
+            display: 'flex',
+            width: '100%',
+            padding: '0.5rem',
+            background: '#f5f5f5',
+            borderRadius: '4px',
+          }}
+        >
           <ThemeToggle position="right" />
         </div>
       </div>
@@ -234,7 +258,14 @@ export const AnimatedVsStatic: Story = {
 
 export const AllVariants: Story = {
   render: () => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem', alignItems: 'center' }}>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        gap: '2rem',
+        alignItems: 'center',
+      }}
+    >
       <div style={{ textAlign: 'center' }}>
         <div style={{ marginBottom: '1rem', fontWeight: 'bold' }}>Icon Variant</div>
         <ThemeToggle variant="icon" size="lg" animated={true} />
@@ -260,16 +291,18 @@ export const AllVariants: Story = {
 
 export const IntegrationExample: Story = {
   render: () => (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      padding: '1rem 2rem',
-      background: 'var(--md-sys-color-surface)',
-      borderRadius: '12px',
-      border: '1px solid var(--md-sys-color-outline-variant)',
-      minWidth: '400px'
-    }}>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: '1rem 2rem',
+        background: 'var(--md-sys-color-surface)',
+        borderRadius: '12px',
+        border: '1px solid var(--md-sys-color-outline-variant)',
+        minWidth: '400px',
+      }}
+    >
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
         <span style={{ fontSize: '1.5rem' }}>🚀</span>
         <span style={{ fontWeight: 'bold', fontSize: '1.125rem' }}>Aurora UI</span>

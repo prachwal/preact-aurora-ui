@@ -1,8 +1,9 @@
 import { render, screen, fireEvent } from '@testing-library/preact';
 import { describe, it, expect, vi } from 'vitest';
 
-import { Header } from './Header';
 import { ThemeProvider } from '../ThemeProvider/ThemeProvider';
+
+import { Header } from './Header';
 
 import '@testing-library/jest-dom';
 

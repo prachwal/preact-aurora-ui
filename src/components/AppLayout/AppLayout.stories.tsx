@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/preact';
 
 import { Header } from '../Header/Header';
+
 import { AppLayout } from './AppLayout';
 
 const meta: Meta<typeof AppLayout> = {
@@ -81,15 +82,20 @@ const SampleHeader = () => (
 const SampleSidebar = () => (
   <nav style={{ padding: '1rem' }}>
     <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-      <li style={{ padding: '0.5rem', background: 'var(--md-sys-color-primary-container)', borderRadius: '8px', marginBottom: '0.5rem' }}>
+      <li
+        style={{
+          padding: '0.5rem',
+          background: 'var(--md-sys-color-primary-container)',
+          borderRadius: '8px',
+          marginBottom: '0.5rem',
+        }}
+      >
         🏠 Dashboard
       </li>
       <li style={{ padding: '0.5rem', borderRadius: '8px', marginBottom: '0.5rem' }}>
         📊 Analytics
       </li>
-      <li style={{ padding: '0.5rem', borderRadius: '8px', marginBottom: '0.5rem' }}>
-        👥 Users
-      </li>
+      <li style={{ padding: '0.5rem', borderRadius: '8px', marginBottom: '0.5rem' }}>👥 Users</li>
       <li style={{ padding: '0.5rem', borderRadius: '8px', marginBottom: '0.5rem' }}>
         ⚙️ Settings
       </li>
@@ -102,16 +108,41 @@ const SampleContent = () => (
     <h1>Welcome to Aurora UI</h1>
     <p>This is a demo of the enhanced AppLayout component from FAZA 4.</p>
 
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1rem', marginTop: '2rem' }}>
-      <div style={{ padding: '1rem', background: 'var(--md-sys-color-surface-variant)', borderRadius: '12px' }}>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+        gap: '1rem',
+        marginTop: '2rem',
+      }}
+    >
+      <div
+        style={{
+          padding: '1rem',
+          background: 'var(--md-sys-color-surface-variant)',
+          borderRadius: '12px',
+        }}
+      >
         <h3>📱 Responsive Design</h3>
         <p>Layout automatycznie dostosowuje się do rozmiaru ekranu.</p>
       </div>
-      <div style={{ padding: '1rem', background: 'var(--md-sys-color-surface-variant)', borderRadius: '12px' }}>
+      <div
+        style={{
+          padding: '1rem',
+          background: 'var(--md-sys-color-surface-variant)',
+          borderRadius: '12px',
+        }}
+      >
         <h3>🎨 Theme Integration</h3>
         <p>Automatic color management i theme-aware styling.</p>
       </div>
-      <div style={{ padding: '1rem', background: 'var(--md-sys-color-surface-variant)', borderRadius: '12px' }}>
+      <div
+        style={{
+          padding: '1rem',
+          background: 'var(--md-sys-color-surface-variant)',
+          borderRadius: '12px',
+        }}
+      >
         <h3>⚡ Performance</h3>
         <p>Optimized layout z minimal re-renders.</p>
       </div>
@@ -122,9 +153,9 @@ const SampleContent = () => (
       <h2>Scroll Test Content</h2>
       {Array.from({ length: 20 }, (_, i) => (
         <p key={i} style={{ marginBottom: '1rem' }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat.
         </p>
       ))}
     </div>

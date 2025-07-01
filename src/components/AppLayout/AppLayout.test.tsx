@@ -45,7 +45,7 @@ describe('AppLayout', () => {
     render(
       <AppLayout>
         <div>Test Content</div>
-      </AppLayout>
+      </AppLayout>,
     );
 
     expect(screen.getByText('Test Content')).toBeInTheDocument();
@@ -55,7 +55,7 @@ describe('AppLayout', () => {
     render(
       <AppLayout header={<div>Test Header</div>}>
         <div>Test Content</div>
-      </AppLayout>
+      </AppLayout>,
     );
 
     expect(screen.getByText('Test Header')).toBeInTheDocument();
@@ -65,7 +65,7 @@ describe('AppLayout', () => {
     render(
       <AppLayout sidebar={<div>Test Sidebar</div>}>
         <div>Test Content</div>
-      </AppLayout>
+      </AppLayout>,
     );
 
     expect(screen.getByText('Test Sidebar')).toBeInTheDocument();
@@ -75,7 +75,7 @@ describe('AppLayout', () => {
     render(
       <AppLayout footer={<div>Test Footer</div>}>
         <div>Test Content</div>
-      </AppLayout>
+      </AppLayout>,
     );
 
     expect(screen.getByText('Test Footer')).toBeInTheDocument();
@@ -93,7 +93,7 @@ describe('AppLayout', () => {
         sidebarBreakpoint={768}
       >
         <div>Test Content</div>
-      </AppLayout>
+      </AppLayout>,
     );
 
     // Check that resize listener is added
@@ -104,7 +104,7 @@ describe('AppLayout', () => {
     render(
       <AppLayout responsive={false}>
         <div>Test Content</div>
-      </AppLayout>
+      </AppLayout>,
     );
 
     // Should not add resize listener when responsive is false
@@ -115,7 +115,7 @@ describe('AppLayout', () => {
     const { container } = render(
       <AppLayout className="custom-layout">
         <div>Test Content</div>
-      </AppLayout>
+      </AppLayout>,
     );
 
     expect(container.firstChild).toHaveClass('custom-layout');
@@ -126,7 +126,7 @@ describe('AppLayout', () => {
     const { container } = render(
       <AppLayout style={customStyle}>
         <div>Test Content</div>
-      </AppLayout>
+      </AppLayout>,
     );
 
     expect(container.firstChild).toHaveStyle('background-color: rgb(255, 0, 0)');
@@ -136,7 +136,7 @@ describe('AppLayout', () => {
     const { container } = render(
       <AppLayout enableGrid={true}>
         <div>Test Content</div>
-      </AppLayout>
+      </AppLayout>,
     );
 
     expect((container.firstChild as HTMLElement)?.className).toContain('appLayout--grid');
@@ -146,7 +146,7 @@ describe('AppLayout', () => {
     const { container } = render(
       <AppLayout maxWidth={1200}>
         <div>Test Content</div>
-      </AppLayout>
+      </AppLayout>,
     );
 
     expect(container.firstChild).toHaveStyle('max-width: 1200px');
@@ -156,7 +156,7 @@ describe('AppLayout', () => {
     const { container } = render(
       <AppLayout maxWidth="100rem">
         <div>Test Content</div>
-      </AppLayout>
+      </AppLayout>,
     );
 
     expect(container.firstChild).toHaveStyle('max-width: 100rem');
@@ -166,7 +166,7 @@ describe('AppLayout', () => {
     render(
       <AppLayout theme="dark" autoThemeManagement={true}>
         <div>Test Content</div>
-      </AppLayout>
+      </AppLayout>,
     );
 
     // Check if content is rendered (indicating ThemeProvider is working)

@@ -303,7 +303,7 @@ describe('Text Component', () => {
 
   describe('Error Handling', () => {
     it('should handle missing theme colors gracefully', () => {
-      const consoleError = vi.spyOn(console, 'error').mockImplementation(() => { });
+      const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
 
       render(<Text color={'non-existent-color' as any}>Fallback text</Text>);
       const element = screen.getByText('Fallback text');
