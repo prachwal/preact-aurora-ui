@@ -29,6 +29,20 @@ if [ -d "$DIST_DIR/components" ]; then
     rmdir "$DIST_DIR/components"
 fi
 
+# Move hooks if compiled separately
+if [ -d "$DIST_DIR/hooks" ]; then
+    echo "  ✅ Hooks found in build output"
+else
+    echo "  ⚠️  Hooks not found in build output"
+fi
+
+# Move types if compiled separately
+if [ -d "$DIST_DIR/types" ]; then
+    echo "  ✅ Types found in build output"
+else
+    echo "  ⚠️  Types not found in build output"
+fi
+
 # Copy global styles if they were compiled
 if [ -d "$DIST_DIR/styles" ]; then
     echo "  ✅ Global styles found in build output"
@@ -154,6 +168,58 @@ find "$DIST_DIR" -name "index.js" -not -path "$DIST_DIR/index.js" | while read -
 
     echo "  ✅ Added export: $component_name"
 done
+
+# Add exports for hooks directory (even if no index.js exists)
+echo "🔗 Adding hooks exports..."
+if [ -d "$DIST_DIR/hooks" ]; then
+    # Add specific hook exports
+    find "$DIST_DIR/hooks" -name "*.js" -not -name "*.test.*" | while read -r file; do
+        hook_file=$(basename "$file" .js)
+        echo "export * from './hooks/$hook_file';" >> "$DIST_DIR/index.js"
+        echo "export * from './hooks/$hook_file';" >> "$DIST_DIR/index.d.ts"
+        echo "  ✅ Added hook export: $hook_file"
+    done
+fi
+
+# Add exports for types directory
+echo "🔗 Adding types exports..."
+if [ -d "$DIST_DIR/types" ]; then
+    echo "export * from './types';" >> "$DIST_DIR/index.js"
+    echo "export * from './types';" >> "$DIST_DIR/index.d.ts"
+    echo "  ✅ Added types export"
+fi
+
+# Fix import paths in .d.ts files
+echo "🔧 Fixing import paths in .d.ts files..."
+find "$DIST_DIR" -name "*.d.ts" -not -path "$DIST_DIR/index.d.ts" | while read -r file; do
+    # Get relative path from the file to the dist root
+    dir_path=$(dirname "$file")
+    relative_path=$(realpath --relative-to="$dir_path" "$DIST_DIR")
+
+    # Fix imports from '../../types/theme' to '../types/theme' (or appropriate relative path)
+    if grep -q "from '[\.\/]*\.\./\.\./types" "$file"; then
+        # Calculate correct relative path to types
+        if [ "$relative_path" = "." ]; then
+            # File is in dist root
+            types_path="./types"
+        else
+            # File is in subdirectory
+            types_path="$relative_path/types"
+        fi
+
+        # Replace the incorrect paths
+        sed -i "s|from '[\.\/]*\.\./\.\./types|from '$types_path|g" "$file"
+        echo "  ✅ Fixed imports in: $(basename "$file")"
+    fi
+done
+
+# Fix duplicate exports issue - remove types export from main index if ThemeProvider already exports them
+echo "🔧 Fixing duplicate type exports..."
+if [ -f "$DIST_DIR/index.d.ts" ]; then
+    # Comment out the duplicate types export temporarily to avoid conflicts
+    sed -i 's|^export \* from '\''./types'\'';$|// export * from '\''./types'\''; // Temporarily disabled to avoid conflicts with ThemeProvider|g' "$DIST_DIR/index.d.ts"
+    echo "  ✅ Temporarily disabled types export to avoid conflicts"
+fi
 
 # Copy .npmignore if exists
 if [ -f ".npmignore" ]; then

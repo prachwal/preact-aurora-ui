@@ -24,6 +24,9 @@
     "src/components/**/*.ts",
     "src/components/**/*.tsx",
     "src/components/**/*.d.ts",
+    "src/hooks/**/*.ts",
+    "src/hooks/**/*.tsx",
+    "src/hooks/**/*.d.ts",
     "src/types/**/*.d.ts",
     "src/styles/**/*.d.ts"
   ],
