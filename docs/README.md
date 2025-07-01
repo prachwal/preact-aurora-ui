@@ -1,124 +1,25 @@
-# Aurora UI Documentation
+# Dokumentacja Aurora UI
 
-**Modern Material Design 3 Component Library for Preact**
+Witaj w centrum dokumentacji biblioteki komponentów Preact Aurora UI. Ta sekcja zawiera wszystkie niezbędne informacje, aby efektywnie korzystać z biblioteki, od przewodników po szczegółową dokumentację API.
 
-A comprehensive, production-ready component library implementing Material Design 3 specifications with full TypeScript support, SCSS modules, and universal theme system.
+## 🚀 Główne Sekcje
 
-## 📊 Project Status
-
-- **MD3 Compliance**: ~95% ⭐⭐⭐⭐⭐
-- **Components**: 22+ core components implemented
-- **Tests**: 261/261 passing ✅
-- **Build Status**: All systems operational ✅
-- **Phase**: Ready for Phase 3 (Advanced Components)
-
-## 📋 Navigation Structure
-
-### 📈 Project Status & Planning
-
-- [**STATUS.md**](./STATUS.md) - Current implementation status and metrics
-- [**ROADMAP.md**](./ROADMAP.md) - Development roadmap and priorities
-- [**COMPLETED.md**](./COMPLETED.md) - Summary of completed features
-
-### ✅ Implementation Checklists
-
-- [**checklists/CORE_COMPONENTS.md**](./checklists/CORE_COMPONENTS.md) - Phase 1 & 2 status ✅
-- [**checklists/MD3_ENHANCEMENTS.md**](./checklists/MD3_ENHANCEMENTS.md) - MD3 compliance status ✅
-- [**checklists/ADVANCED_COMPONENTS.md**](./checklists/ADVANCED_COMPONENTS.md) - Phase 3 components 📋
-
-### 🎨 Design System
-
-- [**design-system/README.md**](./design-system/README.md) - MD3 design system overview
-- [**design-system/COLORS.md**](./design-system/COLORS.md) - MD3 color system ✅
-- [**design-system/ELEVATION.md**](./design-system/ELEVATION.md) - Elevation system ✅
-
-### 📖 Implementation Guides
-
-- [**guides/PHASE_1_CORE.md**](./guides/PHASE_1_CORE.md) - Core layout components ✅
-- [**guides/PHASE_2_MD3.md**](./guides/PHASE_2_MD3.md) - MD3 enhancements ✅
-- [**guides/PHASE_3_ADVANCED.md**](./guides/PHASE_3_ADVANCED.md) - Advanced components 📋
-
-### 🔧 Component Implementation Plans
-
-- [**components/**](./components/) - Individual component implementation plans
-  - Each component has detailed `PLAN.md` with specifications and requirements
-  - Organized by component type (form, communication, navigation, action)
-
-### 📚 Publication-Ready Documentation
-
-- [**API_REFERENCE.md**](./API_REFERENCE.md) - Complete API documentation
-- [**MIGRATION_GUIDE.md**](./MIGRATION_GUIDE.md) - Migration from other libraries
-- [**CONTRIBUTING.md**](./CONTRIBUTING.md) - Development contribution guide
-
-## 🎯 Key Features
-
-- ✅ **Material Design 3** - Full MD3 specification compliance
-- ✅ **TypeScript** - Complete type safety with comprehensive interfaces
-- ✅ **SCSS Modules** - Modular, themeable styles with design tokens
-- ✅ **Universal Themes** - SSR, localStorage, custom storage support
-- ✅ **Accessibility** - WCAG 2.1 AA compliant with full keyboard navigation
-- ✅ **Tree Shaking** - Optimized bundle sizes with selective imports
-- ✅ **Storybook** - Interactive component documentation and testing
-- ✅ **Vitest** - Comprehensive test coverage with accessibility testing
-- ✅ **Accessibility** - WCAG 2.1 AA compliant
-- ✅ **Tree Shaking** - Optimized bundle sizes
-- ✅ **Storybook** - Interactive component documentation
-- ✅ **Vitest** - Comprehensive test coverage
-
-## 🚀 Getting Started
-
-```bash
-npm install @aurora-ui/preact
-```
-
-```tsx
-import { Button, Card, Header } from '@aurora-ui/preact';
-import '@aurora-ui/preact/styles';
-
-function App() {
-  return (
-    <div>
-      <Header title="My App" />
-      <Card>
-        <Button variant="filled">Get Started</Button>
-      </Card>
-    </div>
-  );
-}
-```
-
-## 📁 Documentation Structure
-
-```
-docs/
-├── README.md                 # This file
-├── STATUS.md                 # Current status
-├── ROADMAP.md               # Development roadmap
-├── COMPLETED.md             # Completed features
-├── API_REFERENCE.md         # Complete API docs
-├── MIGRATION_GUIDE.md       # Migration guide
-├── THEME_SYSTEM.md          # Theme system docs
-├── CONTRIBUTING.md          # Development guide
-├── checklists/              # Component checklists
-│   ├── CORE_COMPONENTS.md
-│   ├── MD3_ENHANCEMENTS.md
-│   └── ADVANCED_COMPONENTS.md
-├── components/              # Component plans
-│   ├── Button/
-│   ├── Card/
-│   ├── Header/
-│   └── ...
-├── design-system/           # Design system docs
-│   ├── COLORS.md
-│   ├── TYPOGRAPHY.md
-│   ├── SPACING.md
-│   └── ELEVATION.md
-└── guides/                  # Implementation guides
-    ├── PHASE_1_CORE.md
-    ├── PHASE_2_MD3.md
-    └── PHASE_3_ADVANCED.md
-```
+| Nazwa                     | Opis                                                                                                                       | Link                                                             |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| **Spis Komponentów**      | Pełna lista komponentów dostępnych w bibliotece, wraz z linkami do ich szczegółowej dokumentacji.                          | [Zobacz Komponenty](../src/components)                           |
+| **Przewodniki (Guides)**  | Praktyczne przewodniki dotyczące implementacji, najlepszych praktyk, themingu i optymalizacji wydajności.                  | [Czytaj Przewodniki](./guides)                                   |
+| **Dokumentacja API**      | Szczegółowy opis API każdego komponentu, w tym propsów, typów i metod.                                                     | [Przeglądaj API](./API_REFERENCE.md)                             |
+| **System Designu**        | Informacje o globalnych zmiennych, kolorach, typografii, odstępach i elewacji używanych w systemie.                        | [Poznaj System Designu](./design-system)                         |
+| **Przewodnik Migracji**   | Instrukcje dotyczące migracji ze starszych wersji biblioteki oraz informacje o "breaking changes".                         | [Zobacz Przewodnik](./MIGRATION_GUIDE.md)                        |
+| **Storybook (Live Demo)** | Interaktywne demo wszystkich komponentów, pozwalające na testowanie ich wariantów i funkcjonalności w czasie rzeczywistym. | [Otwórz Storybook](https://prachwal.github.io/preact-aurora-ui/) |
+| **Archiwum Dokumentacji** | Historyczne plany, checklisty i podsumowania faz rozwojowych projektu.                                                     | [Przeglądaj Archiwum](./archive)                                 |
 
 ---
 
-_Last updated: June 29, 2025_
+## 💡 Jak Zacząć?
+
+1.  **Przejrzyj Komponenty:** Zapoznaj się z listą dostępnych komponentów, aby zobaczyć, co oferuje biblioteka.
+2.  **Sprawdź Przewodniki:** Przeczytaj przewodniki, aby zrozumieć, jak najlepiej wykorzystać możliwości Aurora UI.
+3.  **Eksperymentuj w Storybooku:** Użyj Storybooka, aby na żywo przetestować komponenty i ich konfiguracje.
+
+Jeśli masz pytania lub sugestie, zapoznaj się z [CONTRIBUTING.md](./CONTRIBUTING.md).
