@@ -1,8 +1,21 @@
 {
   "name": "preact-aurora-ui",
-  "private": true,
   "version": "0.0.11",
   "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./dist/styles/aurora-ui.css": "./dist/assets/index-DYDpNgXC.css"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
