@@ -1,343 +1,194 @@
-# Problemy z preact-aurora-ui v0.0.4 - Raport błędów
+# Analiza błędów preact-aurora-ui v0.0.5
 
-## Przegląd sytuacji
+## 🚨 Krytyczne błędy - Build System
 
-Podczas migracji z wersji `0.0.3` do `0.0.4` biblioteki preact-aurora-ui napotkano kilka problemów uniemożliwiających prawidłowe działanie aplikacji.
+### Problem 1: Nieprawidłowe relatywne ścieżki importów
 
----
+**Lokalizacja:**
 
-## 🔴 Problemy krytyczne
+- `Container/Container.js:7`
+- `Text/Text.js:7`
+- `ThemeProvider/ThemeProvider.js:4`
 
-### 1. Błędy modułów podczas import
+**Błąd:**
 
-**Status:** Krytyczny  
-**Wpływ:** Aplikacja nie uruchamia się
-
-**Szczegóły błędu:**
-
-```
-[plugin:vite:import-analysis] Failed to resolve import "./types/../../types/theme" from "node_modules/preact-aurora-ui/Text/Text.d.ts"
-[plugin:vite:import-analysis] Failed to resolve import "./types/../../types" from "node_modules/preact-aurora-ui/Container/Container.d.ts"
+```javascript
+// ❌ Nieprawidłowa ścieżka
+import { useThemeColors, useThemeUtils } from '../../hooks/useThemeColors';
+import { injectUtilityStyles } from '../../utils/cssUtilities';
 ```
 
 **Analiza:**
+Struktura katalogów:
 
-- Relatywne ścieżki importów w plikach `.d.ts` są nieprawidłowe
-- Struktura katalogów nie odpowiada ścieżkom używanym w importach
-- Problem dotyczy głównie komponentów `Text` i `Container`
-
-**Dotknięte pliki:**
-
-- `Text/Text.d.ts` - błędny import `../../types/theme`
-- `Container/Container.d.ts` - błędny import `../../types`
-- Prawdopodobnie inne komponenty używające types
-
----
-
-### 2. Brakujące eksporty w głównym index
-
-**Status:** Wysokiej wagi  
-**Wpływ:** Nowe komponenty nie są dostępne
-
-**Problem:**
-
-```typescript
-// Błąd podczas importu
-import { useThemeColors } from 'preact-aurora-ui';
-// Error: 'useThemeColors' is not exported
+```
+preact-aurora-ui/
+├── Container/
+│   └── Container.js
+├── Text/
+│   └── Text.js
+├── ThemeProvider/
+│   └── ThemeProvider.js
+├── hooks/
+│   ├── index.js
+│   └── useThemeColors.js
+└── utils/
+    └── cssUtilities.js
 ```
 
-**Analiza:**
+Ścieżka `../../hooks/useThemeColors` oznacza:
 
-- Hook `useThemeColors` istnieje w `/hooks/useThemeColors.d.ts`
-- Nie jest eksportowany w głównym `index.d.ts`
-- Prawdopodobnie problem dotyczy też innych nowych komponentów/hooks
+- Jeden poziom w górę: `preact-aurora-ui/Container/../` = `preact-aurora-ui/`
+- Drugi poziom w górę: `preact-aurora-ui/../` = `node_modules/` ❌
 
-**Brakujące eksporty:**
+**Rozwiązanie:**
 
-- `useThemeColors` hook
-- Prawdopodobnie inne nowe hooks z katalogu `/hooks/`
+```javascript
+// ✅ Prawidłowa ścieżka
+import { useThemeColors, useThemeUtils } from '../hooks/useThemeColors';
+import { injectUtilityStyles } from '../utils/cssUtilities';
 
----
-
-### 3. Problemy ze strukturą katalogów types
-
-**Status:** Wysokiej wagi  
-**Wpływ:** TypeScript errors w nowych komponentach
-
-**Obserwacje:**
-
-- Komponenty odwołują się do `../../types/theme`
-- Ale struktura to: `/types/` (na root level)
-- Relatywne ścieżki są nieprawidłowe
-
-**Problematyczne ścieżki:**
-
-```typescript
-// W Text/Text.d.ts
-import type { ThemeColor, ThemeVariant, SimpleThemeVariant } from '../../types/theme';
-
-// W Container/Container.d.ts
-import type { BaseComponentProps } from '../../types';
+// ✅ Lub przez index
+import { useThemeColors, useThemeUtils } from '../hooks';
 ```
 
----
+### Problem 2: Brak eksportu w głównym index
 
-## 🟡 Problemy drugorzędne
-
-### 4. Niezgodność API komponentów
-
-**Status:** Średniej wagi  
-**Wpływ:** Kod wymaga refaktoryzacji
-
-**Różnice API Text component:**
+**Analiza:** Sprawdzenie `index.d.ts`:
 
 ```typescript
-// v0.0.3 (oczekiwane)
-<Text variant="headline" as="h1">Content</Text>
+// ❌ Brakuje eksportu hooks i utils
+export * from './Switch';
+export * from './Container';
+// ... inne komponenty ...
 
-// v0.0.4 (rzeczywiste)
-<Text variant="headlineMedium" as="h1">Content</Text>
+// ✅ Powinno być dodane:
+export * from './hooks';
+export * from './utils';
 ```
 
-**Problemy:**
+## 🔧 Zalecenia naprawcze
 
-- Nazwy wariantów nie są zgodne z Material Design 3 guidelines
-- Brak jasnej dokumentacji zmian API między wersjami
+### 1. Natychmiastowe naprawy (High Priority)
 
----
+#### A. Popraw ścieżki importów
 
-### 5. AppLayout dependencies
+**Pliki do zmiany:**
 
-**Status:** Niskiej wagi  
-**Wpływ:** Funkcjonalność może być ograniczona
+- `Container/Container.js` - linia 7
+- `Text/Text.js` - linia 7
+- `ThemeProvider/ThemeProvider.js` - linia 4
 
-**Obserwacje:**
+**Zmiana:**
 
-- AppLayout prawdopodobnie używa wewnętrznych komponentów
-- Może mieć hidden dependencies na componenty które mają problemy
-- Nie testowane ze względu na problemy z importami
+```diff
+- import { useThemeColors, useThemeUtils } from '../../hooks/useThemeColors';
++ import { useThemeColors, useThemeUtils } from '../hooks/useThemeColors';
 
----
-
-## 🛠️ Rekomendowane poprawki
-
-### Poprawka 1: Naprawa ścieżek importów
-
-**Priorytet:** Krytyczny
-
-```typescript
-// BŁĘDNE (obecne)
-import type { ThemeColor } from '../../types/theme';
-import type { BaseComponentProps } from '../../types';
-
-// POPRAWNE (powinno być)
-import type { ThemeColor } from '../types/theme';
-import type { BaseComponentProps } from '../types';
+- import { injectUtilityStyles } from '../../utils/cssUtilities';
++ import { injectUtilityStyles } from '../utils/cssUtilities';
 ```
 
-**Pliki do poprawy:**
+#### B. Dodaj eksporty w index
 
-- `Text/Text.d.ts`
-- `Container/Container.d.ts`
-- Wszystkie inne komponenty używające types
-
-### Poprawka 2: Uzupełnienie eksportów
-
-**Priorytet:** Wysoki
+**Plik:** `index.d.ts` i `index.js`
 
 ```typescript
-// W głównym index.d.ts dodać:
-export * from './hooks/useThemeColors';
-export * from './hooks'; // jeśli są inne hooks
+// Dodaj na końcu
+export * from './hooks';
+export * from './utils';
 ```
 
-### Poprawka 3: Weryfikacja struktury build
+### 2. Długoterminowe ulepszenia
 
-**Priorytet:** Wysoki
+#### A. Standaryzacja importów
 
-**Sprawdzić:**
+Wszystkie komponenty powinny importować przez główny index:
 
-1. Czy pliki `.js` są prawidłowo zbudowane
-2. Czy ścieżki w `.js` odpowiadają tym w `.d.ts`
-3. Czy wszystkie zależności są resolved podczas build
+```javascript
+import { useThemeColors } from 'preact-aurora-ui/hooks';
+import { injectUtilityStyles } from 'preact-aurora-ui/utils';
+```
 
-### Poprawka 4: Dokumentacja API changes
+#### B. Build process validation
 
-**Priorytet:** Średni
+Dodaj do procesu build:
 
-**Utworzyć:**
+1. **Lint ścieżek importów** - sprawdzenie czy wszystkie relatywne ścieżki są prawidłowe
+2. **Bundle analysis** - weryfikacja czy wszystkie dependencje są rozwiązane
+3. **Integration tests** - test importowania w rzeczywistym projekcie
 
-- Migration guide v0.0.3 → v0.0.4
-- Breaking changes documentation
-- Updated examples dla nowych komponentów
-
----
-
-## 🧪 Plan testowania po poprawkach
-
-### Test 1: Import verification
+#### C. Struktura eksportów
 
 ```typescript
-// Powinno działać bez błędów
+// index.d.ts - sugerowana struktura
+// Components
+export * from './Button';
+export * from './Card';
+// ... wszystkie komponenty
+
+// Advanced components
+export * from './AppLayout';
+export * from './Text';
+export * from './Container';
+
+// Hooks
+export * from './hooks';
+
+// Utils
+export * from './utils';
+
+// Types
+export * from './types';
+```
+
+## 🧪 Test case dla weryfikacji
+
+Po naprawie, test powinien przejść:
+
+```javascript
+// test.js
 import {
   Button,
   Card,
   ThemeProvider,
-  IconButton,
+  AppLayout,
+  Text,
+  Container,
   useTheme,
-  AppLayout, // nowy v0.0.4
-  Text, // nowy v0.0.4
-  Container, // nowy v0.0.4
-  useThemeColors, // nowy v0.0.4
-} from 'preact-aurora-ui';
-```
-
-### Test 2: Component rendering
-
-```typescript
-// Basic functionality test
-function TestApp() {
-  return (
-    <ThemeProvider>
-      <AppLayout>
-        <Container surface="surface">
-          <Text variant="headlineMedium">Test</Text>
-        </Container>
-      </AppLayout>
-    </ThemeProvider>
-  );
-}
-```
-
-### Test 3: Build verification
-
-```bash
-# Sprawdzić czy build działa
-npm run build
-
-# Sprawdzić czy preview działa
-npm run preview
-```
-
----
-
-## 📋 Status komponentów w v0.0.4
-
-| Komponent      | Import Status   | Functional Status | Notes                    |
-| -------------- | --------------- | ----------------- | ------------------------ |
-| Button         | ✅ OK           | ✅ OK             | Działa                   |
-| Card           | ✅ OK           | ✅ OK             | Działa                   |
-| ThemeProvider  | ✅ OK           | ✅ OK             | Działa                   |
-| IconButton     | ✅ OK           | ✅ OK             | Działa                   |
-| useTheme       | ✅ OK           | ✅ OK             | Działa                   |
-| AppLayout      | ❌ Import Error | ❓ Unknown        | Module resolution failed |
-| Text           | ❌ Import Error | ❓ Unknown        | Module resolution failed |
-| Container      | ❌ Import Error | ❓ Unknown        | Module resolution failed |
-| useThemeColors | ❌ Not Exported | ❓ Unknown        | Not in main index        |
-
----
-
-## 💡 Tymczasowe rozwiązanie
-
-Do czasu naprawienia v0.0.4, rekomendacja:
-
-1. **Powrót do v0.0.3** dla stabilności
-2. **Ręczna implementacja** brakujących komponentów na bazie propozycji z `aurora-ui-improvements.md`
-3. **Upgrade po naprawie** wszystkich krytycznych problemów
-
-```bash
-# Tymczasowy downgrade
-npm install preact-aurora-ui@0.0.3
-```
-
----
-
-## 📞 Szczegóły techniczne dla developera
-
-### Struktura katalogów (v0.0.4)
-
-```
-preact-aurora-ui/
-├── Text/
-│   ├── Text.d.ts          // ❌ błędne importy
-│   └── Text.js
-├── Container/
-│   ├── Container.d.ts     // ❌ błędne importy
-│   └── Container.js
-├── hooks/
-│   ├── useThemeColors.d.ts // ✅ OK
-│   └── useThemeColors.js   // ✅ OK
-├── types/                 // ✅ istnieje na root level
-│   └── theme.d.ts
-└── index.d.ts            // ❌ brak eksportów hooks
-```
-
-### Oczekiwana poprawka ścieżek
-
-```typescript
-// Text/Text.d.ts - PRZED
-import type { ThemeColor } from '../../types/theme';
-
-// Text/Text.d.ts - PO POPRAWIE
-import type { ThemeColor } from '../types/theme';
-```
-
-**Data raportu:** 1 lipca 2025  
-**Testowana wersja:** preact-aurora-ui@0.0.4  
-**Środowisko:** Vite + Preact + TypeScript
-
----
-
-## ✅ POPRAWKI ZASTOSOWANE
-
-### Naprawione problemy krytyczne:
-
-1. **✅ Błędy modułów podczas import** - ROZWIĄZANE
-   - Dodano post-processing w build script który naprawia relatywne ścieżki w plikach `.d.ts`
-   - Import paths automatycznie zmieniane z `../../types/theme` na `../types/theme`
-
-2. **✅ Brakujące eksporty hooks** - ROZWIĄZANE
-   - Dodano `src/hooks/index.ts` z eksportami hooks
-   - Zaktualizowano `tsconfig.build.json` aby uwzględnić katalog hooks
-   - Poprawiono build script aby eksportować hooks do głównego index
-
-3. **✅ Problemy ze strukturą katalogów types** - ROZWIĄZANE
-   - Build script automatycznie naprawia ścieżki podczas kompilacji
-   - Usunięto duplikujące się eksporty types (konflikt z ThemeProvider)
-
-### Status komponentów po naprawach:
-
-| Komponent          | Import Status | Functional Status | Notes                          |
-| ------------------ | ------------- | ----------------- | ------------------------------ |
-| Button             | ✅ OK         | ✅ OK             | Działa                         |
-| Card               | ✅ OK         | ✅ OK             | Działa                         |
-| ThemeProvider      | ✅ OK         | ✅ OK             | Działa                         |
-| IconButton         | ✅ OK         | ✅ OK             | Działa                         |
-| useTheme           | ✅ OK         | ✅ OK             | Działa                         |
-| **AppLayout**      | ✅ **FIXED**  | ✅ OK             | **Module resolution fixed**    |
-| **Text**           | ✅ **FIXED**  | ✅ OK             | **Module resolution fixed**    |
-| **Container**      | ✅ **FIXED**  | ✅ OK             | **Module resolution fixed**    |
-| **useThemeColors** | ✅ **FIXED**  | ✅ OK             | **Now exported in main index** |
-
-### Testy weryfikacyjne:
-
-```typescript
-// ✅ Wszystkie importy działają poprawnie
-import {
-  Button, Card, ThemeProvider, IconButton, useTheme,
-  AppLayout, Text, Container, useThemeColors
 } from 'preact-aurora-ui';
 
-// ✅ Prawidłowe API (Material Design 3)
-<Text variant="headline-medium">Test</Text> // (nie headlineMedium)
+console.log('All imports successful!');
 ```
 
-### Zmiany w buildzie:
+## 📊 Impact Assessment
 
-1. **tsconfig.build.json** - dodano hooks do include
-2. **build-npm-package.sh** - dodano:
-   - Automatyczne eksportowanie hooks
-   - Post-processing naprawiający ścieżki importów
-   - Fix duplikujących się eksportów types
-3. **src/hooks/index.ts** - nowy plik z eksportami hooks
+**Przed naprawą:**
+
+- ❌ Aplikacja nie startuje
+- ❌ Błędy build-time
+- ❌ Niemożliwe użycie nowych komponentów
+
+**Po naprawie:**
+
+- ✅ Aplikacja działa
+- ✅ Wszystkie komponenty dostępne
+- ✅ Możliwość użycia AppLayout, Text, Container
+- ✅ Dostęp do hooks (useThemeColors)
+
+## 🎯 Kolejność naprawy
+
+1. **CRITICAL:** Popraw ścieżki importów w Container, Text, ThemeProvider
+2. **HIGH:** Dodaj eksporty hooks i utils w index
+3. **MEDIUM:** Weryfikuj build process
+4. **LOW:** Długoterminowe ulepszenia struktury
+
+## 🔍 Dodatkowe sprawdzenia
+
+Po naprawie sprawdź:
+
+- [ ] `npm run build` - działa bez błędów
+- [ ] Import wszystkich nowych komponentów
+- [ ] Testy jednostkowe komponentów
+- [ ] Dokumentacja API jest aktualna
+- [ ] TypeScript definitions są kompletne

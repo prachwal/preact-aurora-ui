@@ -189,6 +189,18 @@ if [ -d "$DIST_DIR/types" ]; then
     echo "  ✅ Added types export"
 fi
 
+# Add exports for utils directory
+echo "🔗 Adding utils exports..."
+if [ -d "$DIST_DIR/utils" ]; then
+    # Add specific util exports
+    find "$DIST_DIR/utils" -name "*.js" -not -name "*.test.*" | while read -r file; do
+        util_file=$(basename "$file" .js)
+        echo "export * from './utils/$util_file';" >> "$DIST_DIR/index.js"
+        echo "export * from './utils/$util_file';" >> "$DIST_DIR/index.d.ts"
+        echo "  ✅ Added util export: $util_file"
+    done
+fi
+
 # Fix import paths in .d.ts files
 echo "🔧 Fixing import paths in .d.ts files..."
 find "$DIST_DIR" -name "*.d.ts" -not -path "$DIST_DIR/index.d.ts" | while read -r file; do
@@ -210,6 +222,47 @@ find "$DIST_DIR" -name "*.d.ts" -not -path "$DIST_DIR/index.d.ts" | while read -
         # Replace the incorrect paths
         sed -i "s|from '[\.\/]*\.\./\.\./types|from '$types_path|g" "$file"
         echo "  ✅ Fixed imports in: $(basename "$file")"
+    fi
+done
+
+# Fix import paths in .js files
+echo "🔧 Fixing import paths in .js files..."
+find "$DIST_DIR" -name "*.js" -not -path "$DIST_DIR/index.js" | while read -r file; do
+    # Get relative path from the file to the dist root
+    dir_path=$(dirname "$file")
+    relative_path=$(realpath --relative-to="$dir_path" "$DIST_DIR")
+
+    # Fix imports from '../../hooks/' to '../hooks/'
+    if grep -q "from '[\.\/]*\.\./\.\./hooks/" "$file"; then
+        if [ "$relative_path" = "." ]; then
+            hooks_path="./hooks"
+        else
+            hooks_path="$relative_path/hooks"
+        fi
+        sed -i "s|from '[\.\/]*\.\./\.\./hooks/|from '$hooks_path/|g" "$file"
+        echo "  ✅ Fixed hooks imports in: $(basename "$file")"
+    fi
+
+    # Fix imports from '../../utils/' to '../utils/'
+    if grep -q "from '[\.\/]*\.\./\.\./utils/" "$file"; then
+        if [ "$relative_path" = "." ]; then
+            utils_path="./utils"
+        else
+            utils_path="$relative_path/utils"
+        fi
+        sed -i "s|from '[\.\/]*\.\./\.\./utils/|from '$utils_path/|g" "$file"
+        echo "  ✅ Fixed utils imports in: $(basename "$file")"
+    fi
+
+    # Fix imports from '../../types/' to '../types/'
+    if grep -q "from '[\.\/]*\.\./\.\./types" "$file"; then
+        if [ "$relative_path" = "." ]; then
+            types_path="./types"
+        else
+            types_path="$relative_path/types"
+        fi
+        sed -i "s|from '[\.\/]*\.\./\.\./types|from '$types_path|g" "$file"
+        echo "  ✅ Fixed types imports in: $(basename "$file")"
     fi
 done
 
