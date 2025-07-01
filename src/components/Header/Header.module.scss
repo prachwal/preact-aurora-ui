@@ -8,8 +8,8 @@
 $header-bg: var(--color-surface);
 $header-color: var(--color-on-surface);
 $header-height: 56px; // Reduced from 64px
-$header-padding-x: var(--space-lg);
-$header-padding-y: var(--space-xs); // Reduced padding
+$header-padding-x: var(--md-sys-spacing-md); // Zmniejszone z lg (24px) na md (16px)
+$header-padding-y: var(--md-sys-spacing-xs); // Użycie MD3 spacing
 $header-shadow: var(--shadow-1);
 $header-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -80,6 +80,45 @@ $header-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
       .actions-container {
         justify-self: end;
+      }
+    }
+  }
+
+  // FAZA 4: Theme Integration Styles
+  &--auto-dark {
+    background: var(--md-sys-color-surface-container);
+    color: var(--md-sys-color-on-surface);
+    border-bottom-color: var(--md-sys-color-outline-variant);
+
+    .logo {
+      color: var(--md-sys-color-primary);
+    }
+
+    .navigation-icon {
+      color: var(--md-sys-color-on-surface);
+      background: transparent;
+
+      &:hover {
+        background: var(--md-sys-color-surface-variant);
+      }
+    }
+  }
+
+  &--auto-light {
+    background: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-surface);
+    border-bottom-color: var(--md-sys-color-outline);
+
+    .logo {
+      color: var(--md-sys-color-primary);
+    }
+
+    .navigation-icon {
+      color: var(--md-sys-color-on-surface);
+      background: transparent;
+
+      &:hover {
+        background: var(--md-sys-color-primary-container);
       }
     }
   }

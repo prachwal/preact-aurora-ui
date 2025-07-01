@@ -6,7 +6,7 @@
 // Local variables - Modern content area
 $content-bg: var(--color-background);
 $content-color: var(--color-on-surface);
-$content-padding: var(--space-2xl);
+$content-padding: var(--md-sys-spacing-lg); // Zmniejszone z 2xl (48px) na lg (24px)
 $content-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
 .content {
@@ -179,19 +179,19 @@ $content-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .content--padding-sm {
-  padding: var(--space-lg);
+  padding: var(--md-sys-spacing-md); // Zmniejszone z lg (24px) na md (16px)
 }
 
 .content--padding-md {
-  padding: var(--space-2xl);
+  padding: var(--md-sys-spacing-lg); // Zmniejszone z 2xl (48px) na lg (24px)
 }
 
 .content--padding-lg {
-  padding: var(--space-3xl);
+  padding: var(--md-sys-spacing-xl); // Zmniejszone z 3xl (64px) na xl (32px)
 }
 
 .content--padding-xl {
-  padding: var(--space-4xl, 80px);
+  padding: var(--md-sys-spacing-2xl); // Zmniejszone z 4xl (80px) na 2xl (48px)
 }
 
 // Layout variants
@@ -212,7 +212,7 @@ $content-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 .content--variant-article {
   max-width: 800px;
   margin: 0 auto;
-  padding: var(--space-3xl) var(--space-2xl);
+  padding: var(--md-sys-spacing-xl) var(--md-sys-spacing-lg); // Zmniejszone z 3xl/2xl na xl/lg
 
   h1,
   h2,
@@ -220,8 +220,8 @@ $content-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   h4,
   h5,
   h6 {
-    margin-top: var(--space-3xl);
-    margin-bottom: var(--space-lg);
+    margin-top: var(--md-sys-spacing-xl); // Zmniejszone z 3xl na xl
+    margin-bottom: var(--md-sys-spacing-md); // Zmniejszone z lg na md
 
     &:first-child {
       margin-top: 0;

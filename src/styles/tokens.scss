@@ -1,0 +1,35 @@
+/**
+ * Design Tokens - Aurora UI
+ * Core design system tokens
+ */
+
+// Export existing styles to maintain compatibility
+@forward 'colors-extended' as color-*;
+@forward 'spacing' as spacing-*;
+@forward 'typography' as type-*;
+@forward 'elevation' as elevation-*;
+
+// Basic transition tokens
+$transition-duration-standard: 250ms;
+$transition-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+
+// Spacing tokens (SCSS variables)
+$spacing-none: 0;
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-2xl: 48px;
+$spacing-3xl: 64px;
+
+// Core variables
+:export {
+  transition-duration-standard: #{$transition-duration-standard};
+  transition-easing-standard: #{$transition-easing-standard};
+  spacing-xs: #{$spacing-xs};
+  spacing-sm: #{$spacing-sm};
+  spacing-md: #{$spacing-md};
+  spacing-lg: #{$spacing-lg};
+  spacing-xl: #{$spacing-xl};
+}

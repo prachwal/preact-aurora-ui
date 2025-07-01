@@ -33,3 +33,10 @@ export * from './IconButton';
 export * from './Chip';
 export * from './BottomNavigation';
 export * from './Stepper';
+
+// FAZA 4: Advanced Features
+export * from './AppLayout';
+
+// Smart Components (FAZA 3)
+export * from './Text';
+export * from './Container';

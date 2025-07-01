@@ -16,6 +16,12 @@ const AddIcon = () => (
   </svg>
 );
 
+const CloseIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+  </svg>
+);
+
 export function ChipDemo() {
   const [filters, setFilters] = useState({
     category: false,
@@ -176,7 +182,7 @@ export function ChipDemo() {
             John Doe
           </Chip>
 
-          <Chip type="filter" icon={<CloseIcon />} selected={false} onSelect={() => {}}>
+          <Chip type="filter" icon={<CloseIcon />} selected={false} onSelect={() => { }}>
             With Icon
           </Chip>
 
@@ -212,16 +218,16 @@ export function ChipDemo() {
       <div>
         <h5>Disabled State</h5>
         <ChipGroup>
-          <Chip type="assist" disabled onClick={() => {}}>
+          <Chip type="assist" disabled onClick={() => { }}>
             Disabled Assist
           </Chip>
-          <Chip type="filter" disabled selected={false} onSelect={() => {}}>
+          <Chip type="filter" disabled selected={false} onSelect={() => { }}>
             Disabled Filter
           </Chip>
-          <Chip type="input" disabled onRemove={() => {}} removable>
+          <Chip type="input" disabled onRemove={() => { }} removable>
             Disabled Input
           </Chip>
-          <Chip type="suggestion" disabled onClick={() => {}}>
+          <Chip type="suggestion" disabled onClick={() => { }}>
             Disabled Suggestion
           </Chip>
         </ChipGroup>
@@ -234,13 +240,13 @@ export function ChipDemo() {
         <div style={{ marginBottom: '1rem' }}>
           <h6>Vertical Layout</h6>
           <ChipGroup orientation="vertical" spacing="compact">
-            <Chip type="assist" onClick={() => {}}>
+            <Chip type="assist" onClick={() => { }}>
               First Item
             </Chip>
-            <Chip type="assist" onClick={() => {}}>
+            <Chip type="assist" onClick={() => { }}>
               Second Item
             </Chip>
-            <Chip type="assist" onClick={() => {}}>
+            <Chip type="assist" onClick={() => { }}>
               Third Item
             </Chip>
           </ChipGroup>
@@ -249,22 +255,22 @@ export function ChipDemo() {
         <div>
           <h6>No Wrap (Scrollable)</h6>
           <ChipGroup wrap={false} spacing="comfortable">
-            <Chip type="suggestion" onClick={() => {}}>
+            <Chip type="suggestion" onClick={() => { }}>
               Very Long Chip Name One
             </Chip>
-            <Chip type="suggestion" onClick={() => {}}>
+            <Chip type="suggestion" onClick={() => { }}>
               Very Long Chip Name Two
             </Chip>
-            <Chip type="suggestion" onClick={() => {}}>
+            <Chip type="suggestion" onClick={() => { }}>
               Very Long Chip Name Three
             </Chip>
-            <Chip type="suggestion" onClick={() => {}}>
+            <Chip type="suggestion" onClick={() => { }}>
               Very Long Chip Name Four
             </Chip>
-            <Chip type="suggestion" onClick={() => {}}>
+            <Chip type="suggestion" onClick={() => { }}>
               Very Long Chip Name Five
             </Chip>
-            <Chip type="suggestion" onClick={() => {}}>
+            <Chip type="suggestion" onClick={() => { }}>
               Very Long Chip Name Six
             </Chip>
           </ChipGroup>

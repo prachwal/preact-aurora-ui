@@ -3,8 +3,15 @@
  * Smart container with surface backgrounds, elevation, and responsive behavior
  */
 
-@use '../../styles/tokens' as tokens;
-@use '../../styles/mixins' as mixins;
+@use '../../styles/colors-extended.scss' as *;
+@use '../../styles/typography.scss' as *;
+@use '../../styles/spacing.scss' as *;
+@use '../../styles/elevation.scss' as *;
+@use '../styles/mixins.scss' as mixins;
+
+// Lokalne zmienne na bazie globalnych custom properties
+$container-transition-duration: 250ms;
+$container-transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
 
 // Base container styles
 .container {
@@ -12,9 +19,9 @@
   position: relative;
   width: 100%;
   transition:
-    background-color tokens.$transition-duration-standard tokens.$transition-easing-standard,
-    box-shadow tokens.$transition-duration-standard tokens.$transition-easing-standard,
-    color tokens.$transition-duration-standard tokens.$transition-easing-standard;
+    background-color $container-transition-duration $container-transition-easing,
+    box-shadow $container-transition-duration $container-transition-easing,
+    color $container-transition-duration $container-transition-easing;
 }
 
 // Surface variants (colors handled via inline styles in component)
@@ -25,48 +32,48 @@
 }
 
 .container--padding-xs {
-  padding: tokens.$spacing-xs;
+  padding: var(--md-sys-spacing-xs);
 }
 
 .container--padding-sm {
-  padding: tokens.$spacing-sm;
+  padding: var(--md-sys-spacing-sm);
 }
 
 .container--padding-md {
-  padding: tokens.$spacing-md;
+  padding: var(--md-sys-spacing-md);
 }
 
 .container--padding-lg {
-  padding: tokens.$spacing-lg;
+  padding: var(--md-sys-spacing-lg);
 }
 
 .container--padding-xl {
-  padding: tokens.$spacing-xl;
+  padding: var(--md-sys-spacing-xl);
 }
 
 .container--padding-2xl {
-  padding: tokens.$spacing-2xl;
+  padding: var(--md-sys-spacing-2xl);
 }
 
 // Elevation (box-shadow)
 .container--elevation-1 {
-  @include mixins.elevation(1);
+  box-shadow: var(--md-sys-elevation-level1);
 }
 
 .container--elevation-2 {
-  @include mixins.elevation(2);
+  box-shadow: var(--md-sys-elevation-level2);
 }
 
 .container--elevation-3 {
-  @include mixins.elevation(3);
+  box-shadow: var(--md-sys-elevation-level3);
 }
 
 .container--elevation-4 {
-  @include mixins.elevation(4);
+  box-shadow: var(--md-sys-elevation-level4);
 }
 
 .container--elevation-5 {
-  @include mixins.elevation(5);
+  box-shadow: var(--md-sys-elevation-level5);
 }
 
 // Border radius
@@ -75,23 +82,23 @@
 }
 
 .container--radius-sm {
-  border-radius: tokens.$shape-corner-extra-small;
+  border-radius: var(--md-sys-shape-corner-extra-small, 4px);
 }
 
 .container--radius-md {
-  border-radius: tokens.$shape-corner-small;
+  border-radius: var(--md-sys-shape-corner-small, 8px);
 }
 
 .container--radius-lg {
-  border-radius: tokens.$shape-corner-medium;
+  border-radius: var(--md-sys-shape-corner-medium, 12px);
 }
 
 .container--radius-xl {
-  border-radius: tokens.$shape-corner-large;
+  border-radius: var(--md-sys-shape-corner-large, 16px);
 }
 
 .container--radius-full {
-  border-radius: tokens.$shape-corner-full;
+  border-radius: var(--md-sys-shape-corner-full, 50%);
 }
 
 // Max width constraints
@@ -139,83 +146,83 @@
 .container--responsive {
 
   // Smaller padding on mobile
-  @include mixins.mobile {
+  @media (max-width: 639px) {
     &.container--padding-xs {
-      padding: tokens.$spacing-2xs;
+      padding: var(--md-sys-spacing-2xs);
     }
 
     &.container--padding-sm {
-      padding: tokens.$spacing-xs;
+      padding: var(--md-sys-spacing-xs);
     }
 
     &.container--padding-md {
-      padding: tokens.$spacing-sm;
+      padding: var(--md-sys-spacing-sm);
     }
 
     &.container--padding-lg {
-      padding: tokens.$spacing-md;
+      padding: var(--md-sys-spacing-md);
     }
 
     &.container--padding-xl {
-      padding: tokens.$spacing-lg;
+      padding: var(--md-sys-spacing-lg);
     }
 
     &.container--padding-2xl {
-      padding: tokens.$spacing-xl;
+      padding: var(--md-sys-spacing-xl);
     }
   }
 
   // Standard padding on tablet and up
-  @include mixins.tablet {
+  @media (min-width: 640px) {
     &.container--padding-xs {
-      padding: tokens.$spacing-xs;
+      padding: var(--md-sys-spacing-xs);
     }
 
     &.container--padding-sm {
-      padding: tokens.$spacing-sm;
+      padding: var(--md-sys-spacing-sm);
     }
 
     &.container--padding-md {
-      padding: tokens.$spacing-md;
+      padding: var(--md-sys-spacing-md);
     }
 
     &.container--padding-lg {
-      padding: tokens.$spacing-lg;
+      padding: var(--md-sys-spacing-lg);
     }
 
     &.container--padding-xl {
-      padding: tokens.$spacing-xl;
+      padding: var(--md-sys-spacing-xl);
     }
 
     &.container--padding-2xl {
-      padding: tokens.$spacing-2xl;
+      padding: var(--md-sys-spacing-2xl);
     }
   }
 
   // Responsive max-width adjustments
-  @include mixins.mobile {
+  @media (max-width: 639px) {
 
     &.container--max-width-xs,
     &.container--max-width-sm,
     &.container--max-width-md {
       max-width: 100%;
-      padding-left: tokens.$spacing-md;
-      padding-right: tokens.$spacing-md;
+      padding-left: var(--md-sys-spacing-md);
+      padding-right: var(--md-sys-spacing-md);
     }
   }
 
-  @include mixins.tablet {
+  @media (min-width: 640px) and (max-width: 1023px) {
 
     &.container--max-width-xs,
     &.container--max-width-sm,
     &.container--max-width-md,
     &.container--max-width-lg {
-      padding-left: tokens.$spacing-lg;
-      padding-right: tokens.$spacing-lg;
+      padding-left: var(--md-sys-spacing-lg);
+      padding-right: var(--md-sys-spacing-lg);
     }
   }
 
-  @include mixins.desktop {
+  @media (min-width: 1024px) {
 
     &.container--max-width-xs,
     &.container--max-width-sm,
@@ -223,8 +230,8 @@
     &.container--max-width-lg,
     &.container--max-width-xl,
     &.container--max-width-2xl {
-      padding-left: tokens.$spacing-xl;
-      padding-right: tokens.$spacing-xl;
+      padding-left: var(--md-sys-spacing-xl);
+      padding-right: var(--md-sys-spacing-xl);
     }
   }
 }
@@ -234,27 +241,27 @@
 
   // Reduce padding for nested containers
   &.container--padding-xs {
-    padding: tokens.$spacing-2xs;
+    padding: var(--md-sys-spacing-2xs);
   }
 
   &.container--padding-sm {
-    padding: tokens.$spacing-xs;
+    padding: var(--md-sys-spacing-xs);
   }
 
   &.container--padding-md {
-    padding: tokens.$spacing-sm;
+    padding: var(--md-sys-spacing-sm);
   }
 
   &.container--padding-lg {
-    padding: tokens.$spacing-md;
+    padding: var(--md-sys-spacing-md);
   }
 
   &.container--padding-xl {
-    padding: tokens.$spacing-lg;
+    padding: var(--md-sys-spacing-lg);
   }
 
   &.container--padding-2xl {
-    padding: tokens.$spacing-xl;
+    padding: var(--md-sys-spacing-xl);
   }
 }
 
@@ -281,15 +288,15 @@
   user-select: none;
 
   &:hover {
-    @include mixins.state-layer('hover');
+    background-color: rgba(0, 0, 0, 0.04);
   }
 
   &:focus-visible {
-    @include mixins.state-layer('focus');
+    background-color: rgba(0, 0, 0, 0.08);
   }
 
   &:active {
-    @include mixins.state-layer('pressed');
+    background-color: rgba(0, 0, 0, 0.12);
   }
 
   &:disabled {

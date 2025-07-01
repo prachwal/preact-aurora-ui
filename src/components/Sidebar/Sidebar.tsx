@@ -1,5 +1,8 @@
+import { useState, useEffect } from 'preact/hooks';
 import type { ComponentChildren } from 'preact';
 import type { JSX } from 'preact/jsx-runtime';
+
+import { useTheme } from '../ThemeProvider/ThemeProvider';
 
 import styles from './Sidebar.module.scss';
 
@@ -20,6 +23,13 @@ export interface SidebarProps {
   elevation?: 0 | 1 | 2 | 3 | 4;
   borderless?: boolean;
   position?: 'left' | 'right';
+
+  // FAZA 4: Enhanced Mobile & Theme Features
+  autoCollapse?: boolean;
+  collapseBreakpoint?: number;
+  themeAware?: boolean;
+  overlay?: boolean;
+  persistent?: boolean;
 }
 
 /**
@@ -44,19 +54,62 @@ export function Sidebar({
   width,
   collapsible = false,
   collapsed = false,
-  onToggle: _onToggle,
+  onToggle,
   elevation = 1,
   borderless = false,
   position = 'left',
+
+  // FAZA 4: Enhanced features
+  autoCollapse = false,
+  collapseBreakpoint = 768,
+  themeAware = false,
+  overlay = false,
+  persistent = false,
 }: SidebarProps) {
+  const { isDark } = useTheme();
+  const [isMobile, setIsMobile] = useState(false);
+  const [internalCollapsed, setInternalCollapsed] = useState(collapsed);
+
+  // Handle auto-collapse on mobile
+  useEffect(() => {
+    if (!autoCollapse) return;
+
+    const checkMobile = () => {
+      const mobile = window.innerWidth < collapseBreakpoint;
+      setIsMobile(mobile);
+
+      if (mobile && !internalCollapsed) {
+        setInternalCollapsed(true);
+        onToggle?.();
+      }
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, [autoCollapse, collapseBreakpoint, internalCollapsed, onToggle]);
+
+  // Sync with external collapsed state
+  useEffect(() => {
+    setInternalCollapsed(collapsed);
+  }, [collapsed]);
+
+  const actualCollapsed = autoCollapse ? internalCollapsed : collapsed;
+  const actualVariant = isMobile && autoCollapse ? 'temporary' : variant;
+
   const classes = [
     styles.sidebar,
-    styles[`sidebar--variant-${variant}`],
+    styles[`sidebar--variant-${actualVariant}`],
     styles[`sidebar--elevation-${elevation}`],
     collapsible ? styles['sidebar--collapsible'] : undefined,
-    collapsed ? styles['sidebar--collapsed'] : undefined,
+    actualCollapsed ? styles['sidebar--collapsed'] : undefined,
     borderless ? styles['sidebar--borderless'] : undefined,
     styles[`sidebar--position-${position}`],
+    themeAware && isDark ? styles['sidebar--theme-dark'] : undefined,
+    themeAware && !isDark ? styles['sidebar--theme-light'] : undefined,
+    overlay ? styles['sidebar--overlay'] : undefined,
+    persistent ? styles['sidebar--persistent'] : undefined,
+    isMobile ? styles['sidebar--mobile'] : undefined,
     className,
   ]
     .filter(Boolean)
@@ -64,7 +117,9 @@ export function Sidebar({
 
   const sidebarStyle = {
     ...style,
-    ...(width && !collapsed ? { width: typeof width === 'number' ? `${width}px` : width } : {}),
+    ...(width && !actualCollapsed
+      ? { width: typeof width === 'number' ? `${width}px` : width }
+      : {}),
   };
 
   return (
@@ -73,8 +128,8 @@ export function Sidebar({
       style={sidebarStyle}
       aria-label={ariaLabel}
       role="complementary"
-      data-variant={variant}
-      data-collapsed={collapsed}
+      data-variant={actualVariant}
+      data-collapsed={actualCollapsed}
     >
       {actions && <div className={styles.actions}>{actions}</div>}
       {nav && (

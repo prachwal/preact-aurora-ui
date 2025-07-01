@@ -3,6 +3,8 @@ import type { JSX } from 'preact/jsx-runtime';
 
 import { Menu } from '../Menu/Menu';
 import type { MenuItem } from '../Menu/Menu';
+import { ThemeToggle } from '../ThemeProvider/ThemeToggle';
+import { useTheme } from '../ThemeProvider/ThemeProvider';
 
 import styles from './Header.module.scss';
 import { useScrollBehavior } from './useScrollBehavior';
@@ -37,6 +39,13 @@ export interface HeaderProps {
   // Advanced scrolling
   scrollTarget?: HTMLElement | string;
   scrollThreshold?: number;
+
+  // FAZA 4: Theme Integration Features
+  showThemeToggle?: boolean;
+  themeTogglePosition?: 'left' | 'right' | 'center';
+  autoColorManagement?: boolean;
+  themeToggleVariant?: 'icon' | 'button' | 'switch';
+  themeToggleSize?: 'sm' | 'md' | 'lg';
 }
 
 /**
@@ -76,7 +85,16 @@ export function Header({
   maxVisibleActions = 3,
   scrollTarget,
   scrollThreshold = 10,
+
+  // FAZA 4: Theme Integration Features
+  showThemeToggle = false,
+  themeTogglePosition = 'right',
+  autoColorManagement = false,
+  themeToggleVariant = 'icon',
+  themeToggleSize = 'md',
 }: HeaderProps) {
+  const { isDark } = useTheme();
+
   const { scrolled, hidden } = useScrollBehavior({
     scrollBehavior,
     scrollTarget,
@@ -100,6 +118,8 @@ export function Header({
     centerTitle ? styles['header--center-title'] : '',
     scrolled ? styles['header--scrolled'] : '',
     hidden ? styles['header--hidden'] : '',
+    autoColorManagement && isDark ? styles['header--auto-dark'] : '',
+    autoColorManagement && !isDark ? styles['header--auto-light'] : '',
     className,
   ]
     .filter(Boolean)
@@ -113,6 +133,41 @@ export function Header({
 
   const handleMoreActionsClick = () => {
     setShowOverflow(!showOverflow);
+  };
+
+  // Create enhanced actions with theme toggle
+  const getEnhancedActions = () => {
+    const themeToggle = showThemeToggle ? (
+      <ThemeToggle
+        variant={themeToggleVariant}
+        size={themeToggleSize}
+        className={styles['theme-toggle']}
+      />
+    ) : null;
+
+    if (themeTogglePosition === 'left') {
+      return (
+        <>
+          {themeToggle}
+          {visibleActions}
+        </>
+      );
+    } else if (themeTogglePosition === 'center') {
+      return (
+        <>
+          {visibleActions}
+          {themeToggle}
+        </>
+      );
+    } else {
+      // right (default)
+      return (
+        <>
+          {visibleActions}
+          {themeToggle}
+        </>
+      );
+    }
   };
 
   return (
@@ -138,9 +193,9 @@ export function Header({
 
       <div className={styles.spacer} />
 
-      {(visibleActions || hasOverflow) && (
+      {(visibleActions || hasOverflow || showThemeToggle) && (
         <div className={styles['actions-container']}>
-          {visibleActions && <div className={styles['visible-actions']}>{visibleActions}</div>}
+          <div className={styles['visible-actions']}>{getEnhancedActions()}</div>
 
           {hasOverflow && (
             <div className={styles['more-actions-wrapper']}>

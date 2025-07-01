@@ -13,8 +13,8 @@ $layout-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   flex-direction: column;
   min-height: 100vh;
   height: 100vh;
-  width: 100vw;
-  max-width: 100vw;
+  width: 100%; // Zmienione z 100vw na 100%
+  max-width: 100%; // Zmienione z 100vw na 100%
   background: $layout-bg;
   box-sizing: border-box;
   font-family: var(--font-family-base);
@@ -26,26 +26,31 @@ $layout-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 .layout--horizontal {
   flex-direction: row;
   gap: 0;
-  width: 100vw;
+  width: 100%; // Zmienione z 100vw na 100%
   height: 100vh;
   overflow: hidden;
+  max-width: 100%; // Dodane max-width
+  box-sizing: border-box; // Dodane box-sizing
 }
 
 .layout--vertical {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 100%; // Usunięte vw - może powodować overflow
   height: 100%;
   flex: 1 1 auto;
   min-height: 0;
-  overflow: visible; // Allow content to be visible
+  max-width: 100%; // Zapobieganie overflow
+  overflow-x: hidden; // Ukryj horizontal overflow
+  overflow-y: auto; // Pozwól na vertical scroll w content
+  box-sizing: border-box; // Proper box model
 }
 
 .layout--fullHeight {
   min-height: 100vh;
   height: 100vh;
-  width: 100vw;
-  max-width: 100vw;
+  width: 100%; // Zmienione z 100vw na 100%
+  max-width: 100%; // Zmienione z 100vw na 100%
 }
 
 // Improved scrollable area - only content scrolls

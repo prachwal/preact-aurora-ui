@@ -9,7 +9,7 @@ $sidebar-bg: var(--color-surface);
 $sidebar-color: var(--color-on-surface);
 $sidebar-width: 280px;
 $sidebar-collapsed-width: 80px;
-$sidebar-padding: var(--space-lg);
+$sidebar-padding: var(--md-sys-spacing-md); // Zmniejszone z lg (24px) na md (16px)
 $sidebar-shadow: var(--shadow-2);
 $sidebar-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -37,9 +37,9 @@ $sidebar-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 .actions {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
-  margin-bottom: var(--space-xl);
-  padding-bottom: var(--space-lg);
+  gap: var(--md-sys-spacing-sm); // 8px zamiast var(--space-sm)
+  margin-bottom: var(--md-sys-spacing-lg); // 24px zamiast var(--space-xl)
+  padding-bottom: var(--md-sys-spacing-md); // 16px zamiast var(--space-lg)
   border-bottom: 1px solid var(--color-outline-variant);
 
   button {
@@ -50,12 +50,12 @@ $sidebar-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     color: var(--color-on-surface);
     border: 1px solid var(--color-outline);
     border-radius: 12px;
-    padding: var(--space-lg); // Increased padding
-    font-size: var(--font-size-xl); // Increased font size for hamburger
+    padding: var(--md-sys-spacing-sm); // Zmniejszone z lg na sm (8px)
+    font-size: var(--font-size-lg); // Zmniejszone z xl na lg
     cursor: pointer;
     transition: $sidebar-transition;
-    min-height: 56px; // Increased size
-    width: 56px; // Increased width
+    min-height: 48px; // Zmniejszone z 56px na 48px
+    width: 48px; // Zmniejszone z 56px na 48px
     align-self: flex-start;
 
     &:hover {
@@ -118,11 +118,11 @@ $sidebar-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
     font-weight: var(--font-weight-medium);
     font-size: var(--font-size-sm);
-    padding: var(--space-md) var(--space-lg);
+    padding: var(--md-sys-spacing-sm) var(--md-sys-spacing-md); // Zmniejszone z md/lg na sm/md
     border-radius: 12px;
     transition: $sidebar-transition;
     position: relative;
-    min-height: 48px;
+    min-height: 40px; // Zmniejszone z 48px na 40px
 
     &:hover {
       background: var(--color-primary-50);
@@ -203,7 +203,7 @@ $sidebar-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 .collapsed {
   min-width: $sidebar-collapsed-width;
   width: $sidebar-collapsed-width;
-  padding: var(--space-lg) var(--space-sm);
+  padding: var(--md-sys-spacing-md) var(--md-sys-spacing-sm); // Zmniejszone lg na md
 
   .actions {
     align-items: center;
@@ -261,7 +261,7 @@ $sidebar-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     li {
       a {
         justify-content: center;
-        padding: var(--space-md);
+        padding: var(--md-sys-spacing-sm); // Zmniejszone z md na sm
 
         .sidebar-label {
           display: none;
@@ -280,7 +280,7 @@ $sidebar-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         transform: translateY(-50%);
         background: var(--color-inverse-surface);
         color: var(--color-inverse-on-surface);
-        padding: var(--space-xs) var(--space-sm);
+        padding: var(--md-sys-spacing-xs) var(--md-sys-spacing-sm); // Użycie MD3 spacing
         border-radius: 6px;
         font-size: var(--font-size-sm);
         white-space: nowrap;
@@ -360,7 +360,7 @@ $sidebar-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 .sidebar--collapsed {
   min-width: $sidebar-collapsed-width;
   width: $sidebar-collapsed-width;
-  padding: var(--space-sm) 0;
+  padding: var(--md-sys-spacing-sm) 0; // Zmniejszone z space-sm na md-sys-spacing-sm
   overflow: visible;
 
   .nav {
@@ -380,10 +380,10 @@ $sidebar-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     :global(.item) {
       justify-content: center;
-      padding: var(--space-md) var(--space-sm);
-      margin: var(--space-xs) var(--space-xs);
+      padding: var(--md-sys-spacing-sm) var(--md-sys-spacing-sm); // Zmniejszone z md/sm na sm/sm
+      margin: var(--md-sys-spacing-xs) var(--md-sys-spacing-xs); // Użycie MD3 spacing
       border-radius: 8px;
-      width: calc(100% - 2 * var(--space-xs));
+      width: calc(100% - 2 * var(--md-sys-spacing-xs)); // Użycie MD3 spacing
       overflow: visible;
       box-sizing: border-box;
 
@@ -461,5 +461,132 @@ $sidebar-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         left: 0;
       }
     }
+  }
+}
+
+// FAZA 4: Enhanced Mobile & Theme Features
+
+// Theme-aware styling
+.sidebar--theme-dark {
+  background: var(--md-sys-color-surface-container-low);
+  color: var(--md-sys-color-on-surface);
+  border-color: var(--md-sys-color-outline-variant);
+
+  .nav a {
+    color: var(--md-sys-color-on-surface);
+
+    &:hover {
+      background: var(--md-sys-color-surface-container);
+      color: var(--md-sys-color-primary);
+    }
+
+    &.active,
+    &[aria-current="page"] {
+      background: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+    }
+  }
+}
+
+.sidebar--theme-light {
+  background: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  border-color: var(--md-sys-color-outline);
+
+  .nav a {
+    color: var(--md-sys-color-on-surface);
+
+    &:hover {
+      background: var(--md-sys-color-surface-variant);
+      color: var(--md-sys-color-primary);
+    }
+
+    &.active,
+    &[aria-current="page"] {
+      background: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+    }
+  }
+}
+
+// Mobile responsive enhancements
+.sidebar--mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 1200;
+
+  &.sidebar--collapsed {
+    transform: translateX(-100%);
+  }
+
+  &:not(.sidebar--collapsed) {
+    transform: translateX(0);
+  }
+
+  // Add backdrop for mobile
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:not(.sidebar--collapsed)::before {
+    opacity: 1;
+  }
+}
+
+// Overlay variant
+.sidebar--overlay {
+  position: fixed;
+  z-index: 1300;
+  box-shadow: var(--shadow-4);
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+// Persistent variant (always visible)
+.sidebar--persistent {
+  position: relative;
+  transform: none !important;
+
+  &.sidebar--collapsed {
+    transform: none !important;
+  }
+}
+
+// Enhanced animations for mobile
+@media (max-width: 768px) {
+  .sidebar {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sidebar--variant-temporary {
+    &.sidebar--collapsed {
+      transform: translateX(-100%);
+    }
+
+    &:not(.sidebar--collapsed) {
+      transform: translateX(0);
+    }
+  }
+}
+
+// Accessibility improvements
+@media (prefers-reduced-motion: reduce) {
+
+  .sidebar,
+  .sidebar--mobile {
+    transition: none;
   }
 }

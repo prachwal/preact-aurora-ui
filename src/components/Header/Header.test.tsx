@@ -2,12 +2,21 @@ import { render, screen, fireEvent } from '@testing-library/preact';
 import { describe, it, expect, vi } from 'vitest';
 
 import { Header } from './Header';
+import { ThemeProvider } from '../ThemeProvider/ThemeProvider';
+
 import '@testing-library/jest-dom';
+
+// Test wrapper with ThemeProvider
+const HeaderWithProvider = (props: any) => (
+  <ThemeProvider>
+    <Header {...props} />
+  </ThemeProvider>
+);
 
 describe('Header', () => {
   it('renders with logo, nav, actions and children', () => {
     render(
-      <Header
+      <HeaderWithProvider
         logo={<span data-testid="logo">Logo</span>}
         nav={
           <ul data-testid="nav">
@@ -17,7 +26,7 @@ describe('Header', () => {
         actions={<button data-testid="action">Action</button>}
       >
         <div data-testid="children">Children</div>
-      </Header>,
+      </HeaderWithProvider>,
     );
     expect(screen.getByTestId('logo')).toBeInTheDocument();
     expect(screen.getByTestId('nav')).toBeInTheDocument();

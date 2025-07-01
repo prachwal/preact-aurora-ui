@@ -1,8 +1,5 @@
 // Enhanced mixins for Aurora UI components
 @use "sass:map";
-@use "./colors.scss" as *;
-@use "./spacing.scss" as *;
-@use "./typography.scss" as *;
 @use "./breakpoints.scss" as *;
 
 // Elevation mixin - Material Design inspired
@@ -12,19 +9,23 @@
   }
 
   @else if $level ==1 {
-    box-shadow: var(--shadow-1);
+    box-shadow: var(--md-sys-elevation-level1);
   }
 
   @else if $level ==2 {
-    box-shadow: var(--shadow-2);
+    box-shadow: var(--md-sys-elevation-level2);
   }
 
   @else if $level ==3 {
-    box-shadow: var(--shadow-3);
+    box-shadow: var(--md-sys-elevation-level3);
   }
 
   @else if $level ==4 {
-    box-shadow: var(--shadow-4);
+    box-shadow: var(--md-sys-elevation-level4);
+  }
+
+  @else if $level ==5 {
+    box-shadow: var(--md-sys-elevation-level5);
   }
 }
 
