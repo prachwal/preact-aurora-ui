@@ -40,3 +40,6 @@ export * from './AppLayout';
 // Smart Components (FAZA 3)
 export * from './Text';
 export * from './Container';
+
+// v0.0.8: New Zero-config Provider
+export * from './AuroraProvider';

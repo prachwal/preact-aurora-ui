@@ -78,6 +78,10 @@ export function ThemeProvider({
     getInitialTheme(defaultTheme, storageKey, storageAdapter, domTarget),
   );
 
+  // New in v0.0.8: Theme ready state and force update
+  const [themeReady, setThemeReady] = useState(false);
+  const [updateCounter, setUpdateCounter] = useState(0);
+
   // Reference to utility cleanup function
   const utilityCleanupRef = useRef<(() => void) | null>(null);
   const globalStylesCleanupRef = useRef<(() => void) | null>(null);
@@ -198,6 +202,9 @@ export function ThemeProvider({
 
   // Apply theme to document (optimized to prevent flicker)
   useEffect(() => {
+    // Mark theme as ready after initial application
+    setThemeReady(true);
+
     // Handle theme mode using universal DOM target
     if (theme.mode === 'auto') {
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -219,7 +226,7 @@ export function ThemeProvider({
         domTarget.setAttribute('data-theme', theme.mode);
       }
     }
-  }, [theme.mode, domTarget]);
+  }, [theme.mode, domTarget, updateCounter]);
 
   // Apply custom colors and properties using universal DOM target
   useEffect(() => {
@@ -253,6 +260,14 @@ export function ThemeProvider({
     setTheme({ mode: nextMode });
   };
 
+  // New in v0.0.8: Force update function to fix stale theme issues
+  const forceUpdate = () => {
+    setUpdateCounter((prev) => prev + 1);
+    // Force re-application of theme
+    setThemeReady(false);
+    setTimeout(() => setThemeReady(true), 50);
+  };
+
   const isDark =
     theme.mode === 'dark' ||
     (theme.mode === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
@@ -262,6 +277,9 @@ export function ThemeProvider({
     setTheme,
     toggleMode,
     isDark,
+    // New in v0.0.8
+    forceUpdate,
+    themeReady,
   };
 
   return <ThemeContext.Provider value={contextValue}>{children}</ThemeContext.Provider>;

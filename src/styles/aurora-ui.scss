@@ -1,0 +1,62 @@
+/**
+ * Aurora UI - Complete Style Bundle
+ * Auto-imported CSS for zero-config experience
+ * v0.0.8+ - All styles in one place
+ */
+
+// Base styles - Material Design 3 system
+@use 'colors-extended';
+@use 'typography';
+@use 'spacing';
+@use 'elevation';
+@use 'tokens';
+
+// Global baseline styles
+@use 'global';
+
+// Smooth transitions for theme switching
+:root {
+  // CSS transition variables for theme switching
+  --aurora-transition-theme: all 200ms cubic-bezier(0.2, 0, 0, 1);
+  --aurora-transition-colors: color 200ms cubic-bezier(0.2, 0, 0, 1),
+    background-color 200ms cubic-bezier(0.2, 0, 0, 1),
+    border-color 200ms cubic-bezier(0.2, 0, 0, 1),
+    box-shadow 200ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+// Apply smooth transitions to all Aurora UI components
+[class*="aurora-"],
+[class*="md3-"] {
+  transition: var(--aurora-transition-colors);
+}
+
+// Special handling for theme transitions
+[data-theme] {
+  transition: var(--aurora-transition-theme);
+}
+
+// Prevent flash of unstyled content
+[data-theme="light"],
+[data-theme="dark"] {
+  visibility: visible;
+}
+
+// Hide content until theme is applied (prevents FOUC)
+:root:not([data-theme]) {
+  visibility: hidden;
+}
+
+:root[data-theme] {
+  visibility: visible;
+}
+
+// Reduce motion for users who prefer it
+@media (prefers-reduced-motion: reduce) {
+
+  [class*="aurora-"],
+  [class*="md3-"],
+  [data-theme] {
+    transition: none !important;
+    animation: none !important;
+  }
+}

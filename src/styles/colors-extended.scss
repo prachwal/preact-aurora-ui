@@ -204,3 +204,42 @@
   info: var(--md-sys-color-info);
   danger: var(--md-sys-color-danger);
 }
+
+/**
+ * v0.0.8: Legacy CSS Variables Support
+ * Backwards compatibility mapping for components using old --color- convention
+ * TODO: Migrate all components to --md-sys-color- in v0.1.0
+ */
+:root {
+  // Legacy primary colors
+  --color-primary: var(--md-sys-color-primary);
+  --color-primary-dark: var(--md-sys-color-primary);
+  --color-primary-light: var(--md-sys-color-primary-container);
+  --color-on-primary: var(--md-sys-color-on-primary);
+
+  // Legacy surface colors
+  --color-surface: var(--md-sys-color-surface);
+  --color-surface-variant: var(--md-sys-color-surface-variant);
+  --color-on-surface: var(--md-sys-color-on-surface);
+  --color-on-surface-variant: var(--md-sys-color-on-surface-variant);
+
+  // Legacy outline colors
+  --color-outline: var(--md-sys-color-outline);
+  --color-outline-variant: var(--md-sys-color-outline-variant);
+
+  // Legacy background colors
+  --color-background: var(--md-sys-color-background);
+  --color-on-background: var(--md-sys-color-on-background);
+
+  // Legacy text colors
+  --color-text: var(--md-sys-color-on-surface);
+  --color-text-secondary: var(--md-sys-color-on-surface-variant);
+
+  // Legacy surface RGB for alpha compositing
+  --color-surface-rgb: 254, 247, 255; // Light mode value
+}
+
+[data-theme='dark'] {
+  // Update RGB values for dark mode
+  --color-surface-rgb: 16, 14, 19; // Dark mode surface RGB
+}

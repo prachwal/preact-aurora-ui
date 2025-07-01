@@ -3,23 +3,28 @@
 @use "../styles/spacing.scss" as *;
 @use "../styles/breakpoints.scss" as *;
 
-$card-bg: var(--color-bg);
-$card-radius: 8px;
-$card-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.04);
+$card-bg: var(--md-sys-color-surface);
+$card-border-color: var(--md-sys-color-outline-variant);
+$card-radius: 12px;
+$card-shadow: var(--md-sys-elevation-1);
 $card-padding: var(--space-lg);
-$card-title-color: var(--color-primary);
+$card-title-color: var(--md-sys-color-on-surface);
 $card-title-size: var(--font-size-lg);
-$card-subtitle-color: var(--color-text-secondary);
+$card-subtitle-color: var(--md-sys-color-on-surface-variant);
 $card-subtitle-size: var(--font-size-sm);
 
 .card {
   background: $card-bg;
+  border: 1px solid $card-border-color;
   border-radius: $card-radius;
   box-shadow: $card-shadow;
   padding: $card-padding;
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
+
+  // v0.0.8: Aurora UI theme transitions
+  transition: var(--aurora-transition-colors, color 200ms ease, background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease);
 }
 
 .header {
@@ -52,9 +57,7 @@ $card-subtitle-size: var(--font-size-sm);
 }
 
 // Variant styles
-.card--variant-default {
-  /* Default styling already applied in base .card class */
-}
+/* Default variant - styling already applied in base .card class */
 
 .card--variant-outlined {
   border: 1px solid var(--color-outline);

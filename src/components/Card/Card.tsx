@@ -50,6 +50,7 @@ export function Card({
 }: CardProps) {
   const classes = [
     styles.card,
+    'aurora-card', // v0.0.8: Aurora UI component identifier
     styles[`card--variant-${variant}`],
     styles[`card--elevation-${elevation}`],
     styles[`card--padding-${padding}`],

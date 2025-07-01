@@ -58,6 +58,9 @@ export interface ThemeContextValue {
   setTheme: (theme: Partial<ThemeConfig>) => void;
   toggleMode: () => void;
   isDark: boolean;
+  // New in v0.0.8: Enhanced features for better UX
+  forceUpdate: () => void;
+  themeReady: boolean;
 }
 
 // Enhanced ThemeProvider props with new features
