@@ -266,6 +266,36 @@ find "$DIST_DIR" -name "*.js" -not -path "$DIST_DIR/index.js" | while read -r fi
     fi
 done
 
+# Fix import paths in .scss files
+echo "🔧 Fixing SCSS import paths..."
+find "$DIST_DIR" -name "*.scss" | while read -r file; do
+    # Get relative path from the file to the dist root
+    dir_path=$(dirname "$file")
+    relative_path=$(realpath --relative-to="$dir_path" "$DIST_DIR")
+
+    # Fix @use imports from '../../styles/' to '../styles/'
+    if grep -q "@use '[\.\/]*\.\./\.\./styles/" "$file"; then
+        if [ "$relative_path" = "." ]; then
+            styles_path="./styles"
+        else
+            styles_path="$relative_path/styles"
+        fi
+        sed -i "s|@use '[\.\/]*\.\./\.\./styles/|@use '$styles_path/|g" "$file"
+        echo "  ✅ Fixed SCSS styles imports in: $(basename "$file")"
+    fi
+
+    # Fix @import imports from '../../styles/' to '../styles/' (legacy)
+    if grep -q "@import '[\.\/]*\.\./\.\./styles/" "$file"; then
+        if [ "$relative_path" = "." ]; then
+            styles_path="./styles"
+        else
+            styles_path="$relative_path/styles"
+        fi
+        sed -i "s|@import '[\.\/]*\.\./\.\./styles/|@import '$styles_path/|g" "$file"
+        echo "  ✅ Fixed SCSS styles @import in: $(basename "$file")"
+    fi
+done
+
 # Fix duplicate exports issue - remove types export from main index if ThemeProvider already exports them
 echo "🔧 Fixing duplicate type exports..."
 if [ -f "$DIST_DIR/index.d.ts" ]; then

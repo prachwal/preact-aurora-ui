@@ -1,194 +1,174 @@
-# Analiza błędów preact-aurora-ui v0.0.5
+# Analiza błędów preact-aurora-ui v0.0.6
 
-## 🚨 Krytyczne błędy - Build System
+## 📈 Postęp napraw względem v0.0.5
 
-### Problem 1: Nieprawidłowe relatywne ścieżki importów
+### ✅ Naprawione problemy
+1. **Ścieżki importów JavaScript** - NAPRAWIONE!
+   ```javascript
+   // ✅ v0.0.6 - prawidłowe ścieżki
+   import { useThemeColors, useThemeUtils } from '../hooks/useThemeColors';
+   ```
+
+2. **Eksporty hooks i utils** - NAPRAWIONE!
+   ```typescript
+   // ✅ v0.0.6 - dodane eksporty w index.d.ts
+   export * from './hooks';
+   export * from './hooks/index';
+   export * from './hooks/useThemeColors';
+   export * from './utils/cssUtilities';
+   ```
+
+### 🚨 Nowe problemy w v0.0.6
+
+#### Problem: Nieprawidłowe ścieżki SCSS imports
 
 **Lokalizacja:**
-
-- `Container/Container.js:7`
-- `Text/Text.js:7`
-- `ThemeProvider/ThemeProvider.js:4`
+- `Container/Container.module.scss:6`
+- `Text/Text.module.scss:6`
 
 **Błąd:**
-
-```javascript
-// ❌ Nieprawidłowa ścieżka
-import { useThemeColors, useThemeUtils } from '../../hooks/useThemeColors';
-import { injectUtilityStyles } from '../../utils/cssUtilities';
+```scss
+// ❌ Nieprawidłowa ścieżka SCSS
+@use '../../styles/colors-extended.scss' as *;
+@use '../../styles/typography.scss' as *;
+@use '../../styles/spacing.scss' as *;
 ```
 
-**Analiza:**
-Struktura katalogów:
-
+**Analiza struktury:**
 ```
 preact-aurora-ui/
 ├── Container/
-│   └── Container.js
+│   └── Container.module.scss  <-- tutaj jesteśmy
 ├── Text/
-│   └── Text.js
-├── ThemeProvider/
-│   └── ThemeProvider.js
-├── hooks/
-│   ├── index.js
-│   └── useThemeColors.js
-└── utils/
-    └── cssUtilities.js
+│   └── Text.module.scss
+└── styles/                    <-- tutaj chcemy dotrzeć
+    ├── colors-extended.scss
+    ├── typography.scss
+    └── spacing.scss
 ```
 
-Ścieżka `../../hooks/useThemeColors` oznacza:
-
-- Jeden poziom w górę: `preact-aurora-ui/Container/../` = `preact-aurora-ui/`
-- Drugi poziom w górę: `preact-aurora-ui/../` = `node_modules/` ❌
+**Ścieżka `../../styles/` oznacza:**
+- `Container/../` = `preact-aurora-ui/`
+- `preact-aurora-ui/../` = `node_modules/` ❌
 
 **Rozwiązanie:**
-
-```javascript
-// ✅ Prawidłowa ścieżka
-import { useThemeColors, useThemeUtils } from '../hooks/useThemeColors';
-import { injectUtilityStyles } from '../utils/cssUtilities';
-
-// ✅ Lub przez index
-import { useThemeColors, useThemeUtils } from '../hooks';
+```scss
+// ✅ Prawidłowa ścieżka SCSS
+@use '../styles/colors-extended.scss' as *;
+@use '../styles/typography.scss' as *;
+@use '../styles/spacing.scss' as *;
+@use '../styles/elevation.scss' as *;
+@use '../styles/mixins.scss' as mixins;  // nie ../styles/mixins.scss!
 ```
 
-### Problem 2: Brak eksportu w głównym index
+## 🔧 Zalecenia naprawcze dla v0.0.7
 
-**Analiza:** Sprawdzenie `index.d.ts`:
+### Krytyczne zmiany (SCSS imports)
 
-```typescript
-// ❌ Brakuje eksportu hooks i utils
-export * from './Switch';
-export * from './Container';
-// ... inne komponenty ...
-
-// ✅ Powinno być dodane:
-export * from './hooks';
-export * from './utils';
-```
-
-## 🔧 Zalecenia naprawcze
-
-### 1. Natychmiastowe naprawy (High Priority)
-
-#### A. Popraw ścieżki importów
-
-**Pliki do zmiany:**
-
-- `Container/Container.js` - linia 7
-- `Text/Text.js` - linia 7
-- `ThemeProvider/ThemeProvider.js` - linia 4
+**Pliki do poprawy:**
+1. `Container/Container.module.scss` - linie 6-10
+2. `Text/Text.module.scss` - linia 6
 
 **Zmiana:**
-
 ```diff
-- import { useThemeColors, useThemeUtils } from '../../hooks/useThemeColors';
-+ import { useThemeColors, useThemeUtils } from '../hooks/useThemeColors';
-
-- import { injectUtilityStyles } from '../../utils/cssUtilities';
-+ import { injectUtilityStyles } from '../utils/cssUtilities';
+- @use '../../styles/colors-extended.scss' as *;
+- @use '../../styles/typography.scss' as *;
+- @use '../../styles/spacing.scss' as *;
+- @use '../../styles/elevation.scss' as *;
++ @use '../styles/colors-extended.scss' as *;
++ @use '../styles/typography.scss' as *;
++ @use '../styles/spacing.scss' as *;
++ @use '../styles/elevation.scss' as *;
 ```
 
-#### B. Dodaj eksporty w index
+## 🧪 Test case v0.0.6
 
-**Plik:** `index.d.ts` i `index.js`
+### Aktualne wyniki testów:
 
-```typescript
-// Dodaj na końcu
-export * from './hooks';
-export * from './utils';
+**✅ Działające:**
+```javascript
+import { 
+  Button, 
+  Card, 
+  ThemeProvider, 
+  IconButton, 
+  useTheme 
+} from 'preact-aurora-ui';
+// ✅ Importy podstawowych komponentów działają
 ```
 
-### 2. Długoterminowe ulepszenia
+**❌ Niedziałające (błędy SCSS):**
+```javascript
+import { 
+  AppLayout,
+  Text,
+  Container 
+} from 'preact-aurora-ui';
+// ❌ SCSS build errors - Can't find stylesheet to import
+```
 
-#### A. Standaryzacja importów
+### Błędy w konsoli:
+```
+[sass] Error: Can't find stylesheet to import.
+  ╷
+6 │ @use '../../styles/colors-extended.scss' as *;
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  Container/Container.module.scss 6:1  root stylesheet
+```
 
-Wszystkie komponenty powinny importować przez główny index:
+## 📊 Podsumowanie jakości v0.0.6
+
+| Kategoria | Status | Uwagi |
+|-----------|--------|-------|
+| **JavaScript imports** | ✅ Naprawione | Ścieżki ../hooks/ działają |
+| **TypeScript exports** | ✅ Naprawione | Hooks i utils eksportowane |
+| **SCSS imports** | ❌ Błędy | Nieprawidłowe ścieżki ../../styles/ |
+| **Podstawowe komponenty** | ✅ Działają | Button, Card, ThemeProvider |
+| **Zaawansowane komponenty** | ❌ Zablokowane | AppLayout, Text, Container |
+
+## 🎯 Priorytet dla v0.0.7
+
+1. **CRITICAL:** Popraw ścieżki SCSS w Container i Text
+2. **HIGH:** Przetestuj build wszystkich komponentów
+3. **MEDIUM:** Weryfikuj CI/CD dla SCSS
+4. **LOW:** Dodaj dokumentację do SCSS structure
+
+## ✨ Gdy v0.0.7 będzie gotowe
+
+Po naprawie SCSS będzie możliwe wykorzystanie pełnego potencjału biblioteki:
 
 ```javascript
-import { useThemeColors } from 'preact-aurora-ui/hooks';
-import { injectUtilityStyles } from 'preact-aurora-ui/utils';
-```
-
-#### B. Build process validation
-
-Dodaj do procesu build:
-
-1. **Lint ścieżek importów** - sprawdzenie czy wszystkie relatywne ścieżki są prawidłowe
-2. **Bundle analysis** - weryfikacja czy wszystkie dependencje są rozwiązane
-3. **Integration tests** - test importowania w rzeczywistym projekcie
-
-#### C. Struktura eksportów
-
-```typescript
-// index.d.ts - sugerowana struktura
-// Components
-export * from './Button';
-export * from './Card';
-// ... wszystkie komponenty
-
-// Advanced components
-export * from './AppLayout';
-export * from './Text';
-export * from './Container';
-
-// Hooks
-export * from './hooks';
-
-// Utils
-export * from './utils';
-
-// Types
-export * from './types';
-```
-
-## 🧪 Test case dla weryfikacji
-
-Po naprawie, test powinien przejść:
-
-```javascript
-// test.js
-import {
-  Button,
-  Card,
-  ThemeProvider,
+// 🎯 Docelowy kod aplikacji z v0.0.7
+import { 
   AppLayout,
   Text,
   Container,
+  Button,
+  Card,
   useTheme,
+  useThemeColors 
 } from 'preact-aurora-ui';
 
-console.log('All imports successful!');
+function App() {
+  return (
+    <AppLayout 
+      header={<Text variant="headlineLarge">My App</Text>}
+      theme="auto"
+    >
+      <Container surface="surface" padding="lg">
+        <Text variant="bodyMedium">
+          Wszystkie komponenty działają! 🎉
+        </Text>
+      </Container>
+    </AppLayout>
+  );
+}
 ```
 
-## 📊 Impact Assessment
+---
 
-**Przed naprawą:**
-
-- ❌ Aplikacja nie startuje
-- ❌ Błędy build-time
-- ❌ Niemożliwe użycie nowych komponentów
-
-**Po naprawie:**
-
-- ✅ Aplikacja działa
-- ✅ Wszystkie komponenty dostępne
-- ✅ Możliwość użycia AppLayout, Text, Container
-- ✅ Dostęp do hooks (useThemeColors)
-
-## 🎯 Kolejność naprawy
-
-1. **CRITICAL:** Popraw ścieżki importów w Container, Text, ThemeProvider
-2. **HIGH:** Dodaj eksporty hooks i utils w index
-3. **MEDIUM:** Weryfikuj build process
-4. **LOW:** Długoterminowe ulepszenia struktury
-
-## 🔍 Dodatkowe sprawdzenia
-
-Po naprawie sprawdź:
-
-- [ ] `npm run build` - działa bez błędów
-- [ ] Import wszystkich nowych komponentów
-- [ ] Testy jednostkowe komponentów
-- [ ] Dokumentacja API jest aktualna
-- [ ] TypeScript definitions są kompletne
+**Progress: v0.0.5 → v0.0.6 → v0.0.7**
+- v0.0.5: ❌ JS imports broken
+- v0.0.6: ⚠️ JS fixed, SCSS broken  
+- v0.0.7: 🎯 Target - wszystko naprawione
