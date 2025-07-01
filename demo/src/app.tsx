@@ -85,7 +85,7 @@ function AppContent() {
           }}
         >
           <Text variant="headline-medium" as="h1" color="on-surface">
-            Vite + Preact + Aurora UI v0.0.9
+            Vite + Preact + Aurora UI v0.0.13
           </Text>
           <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
             <Text variant="body-small" color="on-surface-variant">
@@ -130,7 +130,7 @@ function AppContent() {
 
           <Card
             title="Counter Demo"
-            subtitle="Przykład użycia komponentów Aurora UI v0.0.9 🎉"
+            subtitle="Przykład użycia komponentów Aurora UI v0.0.13 🎉"
             variant="elevated"
             padding="lg"
             style={{ maxWidth: '400px', margin: '2rem auto' }}
@@ -146,7 +146,7 @@ function AppContent() {
           </Card>
 
           <Card
-            title="Aurora UI v0.0.9 - Zero-Config Setup!"
+            title="Aurora UI v0.0.13 - Enhanced Theme System!"
             variant="elevated"
             padding="md"
             style={{ maxWidth: '600px', margin: '2rem auto' }}
@@ -156,12 +156,15 @@ function AppContent() {
             </Text>
             <br />
             <Text variant="body-small" color="auto">
-              🎨 <strong>Smooth theme transitions</strong> - No more flickering or reloading
+              🎨 <strong>Improved theme switching</strong> - Instant color updates with
+              MutationObserver
               <br />
-              📝 <strong>Enhanced useTheme hook</strong> - forceUpdate() and themeReady state
+              📝 <strong>Enhanced useThemeColors hook</strong> - Real-time color synchronization
               <br />
-              🔧 <strong>Development warnings</strong> - Helpful debugging in dev mode
+              🔧 <strong>Better AuroraProvider tests</strong> - Comprehensive test coverage
               <br />⚡ <strong>Zero-config setup</strong> - Works out of the box!
+              <br />
+              🚀 <strong>Better performance</strong> - Optimized color propagation
             </Text>
             <br />
             <Text variant="body-small" color="auto">
