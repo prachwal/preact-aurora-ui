@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "preact": "10.26.9",
-    "preact-aurora-ui": "file:../dist"
+    "preact-aurora-ui": "^0.0.10"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.1",

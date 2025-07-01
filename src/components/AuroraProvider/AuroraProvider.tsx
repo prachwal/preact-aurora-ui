@@ -87,7 +87,7 @@ function logSetupSuccess() {
 
 export function AuroraProvider({
   children,
-  theme = 'auto',
+  theme = 'light',
   config = {},
   fallback = null,
   storageKey = 'aurora-ui-theme',
@@ -154,26 +154,35 @@ export function AuroraProvider({
         document.documentElement.style.setProperty('--aurora-transition-colors', 'none');
       }
 
-      // Respect user's motion preferences
+      // Respect user's motion preferences (if available)
       console.log('🌟 AuroraProvider: Setting up motion preferences');
-      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-      const handleMotionPreference = () => {
-        console.log('🌟 AuroraProvider: Motion preference changed:', mediaQuery.matches);
-        if (mediaQuery.matches) {
-          document.documentElement.style.setProperty('--aurora-transition-theme', 'none');
-          document.documentElement.style.setProperty('--aurora-transition-colors', 'none');
-        }
-      };
+      let mediaQuery: MediaQueryList | null = null;
+      let handleMotionPreference: (() => void) | null = null;
 
-      handleMotionPreference();
-      mediaQuery.addEventListener('change', handleMotionPreference);
+      if (typeof window !== 'undefined' && window.matchMedia) {
+        mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        handleMotionPreference = () => {
+          console.log('🌟 AuroraProvider: Motion preference changed:', mediaQuery?.matches);
+          if (mediaQuery?.matches) {
+            document.documentElement.style.setProperty('--aurora-transition-theme', 'none');
+            document.documentElement.style.setProperty('--aurora-transition-colors', 'none');
+          }
+        };
+
+        handleMotionPreference();
+        mediaQuery.addEventListener('change', handleMotionPreference);
+      } else {
+        console.log('🌟 AuroraProvider: matchMedia not available (test environment)');
+      }
 
       console.log('🌟 AuroraProvider: Setup complete, setting ready state');
       setIsReady(true);
 
       return () => {
         console.log('🌟 AuroraProvider: Cleanup function called');
-        mediaQuery.removeEventListener('change', handleMotionPreference);
+        if (mediaQuery && handleMotionPreference) {
+          mediaQuery.removeEventListener('change', handleMotionPreference);
+        }
       };
     } catch (err) {
       console.error('🌟 AuroraProvider: Setup error:', err);

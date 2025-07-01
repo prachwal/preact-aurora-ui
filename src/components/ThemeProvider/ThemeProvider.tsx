@@ -44,8 +44,13 @@ function getInitialTheme(
 
       // Apply theme immediately to prevent flicker using universal interface
       if (initialTheme.mode === 'auto') {
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        domTarget.setAttribute('data-theme', mediaQuery.matches ? 'dark' : 'light');
+        if (typeof window !== 'undefined' && window.matchMedia) {
+          const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+          domTarget.setAttribute('data-theme', mediaQuery.matches ? 'dark' : 'light');
+        } else {
+          // Fallback to light theme in test environment
+          domTarget.setAttribute('data-theme', 'light');
+        }
       } else {
         domTarget.setAttribute('data-theme', initialTheme.mode);
       }
@@ -89,7 +94,7 @@ export function ThemeProvider({
   // Function to inject global styles
   const injectGlobalStyles = (): (() => void) => {
     if (typeof document === 'undefined') {
-      return () => {}; // No-op for SSR
+      return () => { }; // No-op for SSR
     }
 
     const globalCSS = `
@@ -207,19 +212,26 @@ export function ThemeProvider({
 
     // Handle theme mode using universal DOM target
     if (theme.mode === 'auto') {
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      const applyAutoTheme = () => {
-        const newTheme = mediaQuery.matches ? 'dark' : 'light';
-        // Only update if different to prevent unnecessary DOM changes
-        if (domTarget.getAttribute('data-theme') !== newTheme) {
-          domTarget.setAttribute('data-theme', newTheme);
+      if (typeof window !== 'undefined' && window.matchMedia) {
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        const applyAutoTheme = () => {
+          const newTheme = mediaQuery.matches ? 'dark' : 'light';
+          // Only update if different to prevent unnecessary DOM changes
+          if (domTarget.getAttribute('data-theme') !== newTheme) {
+            domTarget.setAttribute('data-theme', newTheme);
+          }
+        };
+
+        applyAutoTheme();
+        mediaQuery.addEventListener('change', applyAutoTheme);
+
+        return () => mediaQuery.removeEventListener('change', applyAutoTheme);
+      } else {
+        // Fallback to light theme in test environment
+        if (domTarget.getAttribute('data-theme') !== 'light') {
+          domTarget.setAttribute('data-theme', 'light');
         }
-      };
-
-      applyAutoTheme();
-      mediaQuery.addEventListener('change', applyAutoTheme);
-
-      return () => mediaQuery.removeEventListener('change', applyAutoTheme);
+      }
     } else {
       // Only update if different to prevent unnecessary DOM changes
       if (domTarget.getAttribute('data-theme') !== theme.mode) {
@@ -270,7 +282,10 @@ export function ThemeProvider({
 
   const isDark =
     theme.mode === 'dark' ||
-    (theme.mode === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    (theme.mode === 'auto' &&
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches);
 
   const contextValue: ThemeContextValue = {
     theme,
