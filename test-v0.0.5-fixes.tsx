@@ -16,7 +16,7 @@ console.log('✅ All imports work correctly after v0.0.5 fixes!');
 // Test component rendering
 function TestApp() {
   const colors = useThemeColors();
-  
+
   return (
     <ThemeProvider>
       <AppLayout>
