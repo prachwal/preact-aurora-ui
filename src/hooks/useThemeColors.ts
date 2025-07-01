@@ -3,7 +3,7 @@
  * Provides runtime access to theme colors with full TypeScript support
  */
 
-import { useMemo } from 'preact/hooks';
+import { useMemo, useEffect, useState } from 'preact/hooks';
 
 import type { ThemeColors, MD3ColorToken, SemanticColor } from '../types/theme';
 
@@ -12,9 +12,33 @@ import type { ThemeColors, MD3ColorToken, SemanticColor } from '../types/theme';
  * Colors are resolved from CSS custom properties for real-time theme switching
  */
 export function useThemeColors(): ThemeColors {
+  // State to force re-computation when theme changes
+  const [, forceUpdate] = useState({});
+
   // Get theme state to trigger re-computation when theme changes
   const isClient = typeof window !== 'undefined';
   const currentTheme = isClient ? document.documentElement.getAttribute('data-theme') : null;
+
+  // Listen for theme changes on the document element
+  useEffect(() => {
+    if (!isClient) return;
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+          // Force re-computation when data-theme changes
+          forceUpdate({});
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+
+    return () => observer.disconnect();
+  }, [isClient]);
 
   return useMemo(() => {
     // Only access DOM in browser environment
@@ -100,7 +124,7 @@ export function useThemeColors(): ThemeColors {
       ...md3Colors,
       ...semanticColors,
     } as ThemeColors;
-  }, [currentTheme]); // Depend on currentTheme to trigger re-computation when theme changes
+  }, [currentTheme, forceUpdate]); // Depend on currentTheme and forceUpdate to trigger re-computation
 }
 
 /**
