@@ -50,9 +50,11 @@ interface AuroraProviderProps {
 const isDev = process.env.NODE_ENV === 'development';
 
 function validateSetup() {
+  console.log('🌟 AuroraProvider: Running validateSetup', { isDev });
   if (!isDev) return;
 
   // Check if CSS variables are available
+  console.log('🌟 AuroraProvider: Checking CSS variables');
   const testEl = document.createElement('div');
   document.body.appendChild(testEl);
 
@@ -61,22 +63,25 @@ function validateSetup() {
 
   document.body.removeChild(testEl);
 
+  console.log('🌟 AuroraProvider: CSS validation result', { primaryColor });
+
   if (!primaryColor) {
     console.warn(
       '🌟 Aurora UI: CSS variables not found. Make sure styles are imported correctly.\n' +
-        'If you see this warning, please check: https://aurora-ui.dev/docs/troubleshooting#styles-not-applied',
+      'If you see this warning, please check: https://aurora-ui.dev/docs/troubleshooting#styles-not-applied',
     );
   }
 }
 
 function logSetupSuccess() {
+  console.log('🌟 AuroraProvider: Running logSetupSuccess', { isDev });
   if (!isDev) return;
 
   console.info(
     '🌟 Aurora UI v0.0.8 initialized successfully!\n' +
-      '🎨 Theme switching available\n' +
-      '📚 Docs: https://aurora-ui.dev/docs\n' +
-      '🐛 Issues: https://github.com/prachwal/preact-aurora-ui/issues',
+    '🎨 Theme switching available\n' +
+    '📚 Docs: https://aurora-ui.dev/docs\n' +
+    '🐛 Issues: https://github.com/prachwal/preact-aurora-ui/issues',
   );
 }
 
@@ -93,9 +98,22 @@ export function AuroraProvider({
 
   const { devMode = isDev, cssPrefix = 'aurora', disableTransitions = false } = config;
 
+  // Comprehensive logging
+  console.log('🌟 AuroraProvider: Starting initialization', {
+    theme,
+    config,
+    storageKey,
+    isDev,
+    devMode,
+    isReady,
+    error: error?.message,
+  });
+
   // Enhanced error boundary
   useEffect(() => {
+    console.log('🌟 AuroraProvider: Setting up error boundary');
     const handleError = (event: ErrorEvent) => {
+      console.log('🌟 AuroraProvider: Error caught:', event.error);
       if (event.error?.message?.includes('Aurora')) {
         setError(event.error);
       }
@@ -107,25 +125,40 @@ export function AuroraProvider({
 
   // Setup and validation
   useEffect(() => {
-    if (setupRef.current) return;
+    console.log('🌟 AuroraProvider: Setup effect running', {
+      setupRefCurrent: setupRef.current,
+      isReady,
+      error: error?.message,
+    });
+
+    if (setupRef.current) {
+      console.log('🌟 AuroraProvider: Setup already done, skipping');
+      return;
+    }
     setupRef.current = true;
 
     try {
+      console.log('🌟 AuroraProvider: Starting setup...');
+
       // Development mode setup
       if (devMode) {
+        console.log('🌟 AuroraProvider: Dev mode enabled, running validation');
         validateSetup();
         logSetupSuccess();
       }
 
       // Apply transition preferences
       if (disableTransitions) {
+        console.log('🌟 AuroraProvider: Disabling transitions');
         document.documentElement.style.setProperty('--aurora-transition-theme', 'none');
         document.documentElement.style.setProperty('--aurora-transition-colors', 'none');
       }
 
       // Respect user's motion preferences
+      console.log('🌟 AuroraProvider: Setting up motion preferences');
       const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
       const handleMotionPreference = () => {
+        console.log('🌟 AuroraProvider: Motion preference changed:', mediaQuery.matches);
         if (mediaQuery.matches) {
           document.documentElement.style.setProperty('--aurora-transition-theme', 'none');
           document.documentElement.style.setProperty('--aurora-transition-colors', 'none');
@@ -135,23 +168,29 @@ export function AuroraProvider({
       handleMotionPreference();
       mediaQuery.addEventListener('change', handleMotionPreference);
 
+      console.log('🌟 AuroraProvider: Setup complete, setting ready state');
       setIsReady(true);
 
       return () => {
+        console.log('🌟 AuroraProvider: Cleanup function called');
         mediaQuery.removeEventListener('change', handleMotionPreference);
       };
     } catch (err) {
+      console.error('🌟 AuroraProvider: Setup error:', err);
       setError(err as Error);
     }
   }, [devMode, disableTransitions]);
 
   // Handle errors
   if (error) {
+    console.error('🌟 AuroraProvider: Error state active', error);
     if (fallback) {
+      console.log('🌟 AuroraProvider: Rendering fallback');
       return <>{fallback}</>;
     }
 
     if (devMode) {
+      console.log('🌟 AuroraProvider: Rendering error component');
       return (
         <div
           style={{
@@ -182,12 +221,10 @@ export function AuroraProvider({
     console.error('Aurora UI Error:', error);
   }
 
-  // Show loading state until ready (prevents FOUC)
-  if (!isReady) {
-    return <div style={{ visibility: 'hidden' }}>{children}</div>;
-  }
-
   // Enhanced ThemeProvider with Aurora UI defaults
+  // Always render ThemeProvider to provide context, but hide children until ready
+  console.log('🌟 AuroraProvider: Rendering ThemeProvider (isReady:', isReady, ')');
+
   return (
     <ThemeProvider
       defaultTheme={{ mode: theme }}
@@ -196,7 +233,7 @@ export function AuroraProvider({
       cssVariablesPrefix={cssPrefix}
       storageKey={storageKey}
     >
-      {children}
+      {!isReady ? <div style={{ visibility: 'hidden' }}>{children}</div> : children}
     </ThemeProvider>
   );
 }
@@ -206,3 +243,12 @@ export { useTheme } from '../ThemeProvider';
 
 // Legacy compatibility - users can still import ThemeProvider directly
 export { ThemeProvider } from '../ThemeProvider';
+
+// Debug exports
+if (process.env.NODE_ENV === 'development') {
+  console.log('🌟 AuroraProvider: Module loaded, exports available:', {
+    AuroraProvider: typeof AuroraProvider,
+    useTheme: 'function (re-exported)',
+    ThemeProvider: 'function (re-exported)',
+  });
+}
