@@ -4,7 +4,7 @@ import { ThemeProvider } from './ThemeProvider';
 import { ThemeToggle } from './ThemeToggle';
 
 const meta: Meta<typeof ThemeToggle> = {
-  title: 'FAZA 4/ThemeToggle Enhanced',
+  title: 'Providers/ThemeToggle',
   component: ThemeToggle,
   decorators: [
     (Story) => (

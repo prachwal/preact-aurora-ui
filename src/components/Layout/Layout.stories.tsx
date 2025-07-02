@@ -1,7 +1,7 @@
 import { Layout } from './Layout';
 
 export default {
-  title: 'Dashboard/Layout',
+  title: 'Layout/Layout',
   component: Layout,
   parameters: {
     docs: {

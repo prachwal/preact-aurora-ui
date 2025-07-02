@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/preact';
 import { Header } from './Header';
 
 const meta: Meta = {
-  title: 'Dashboard/Header',
+  title: 'Layout/Header',
   component: Header,
   tags: ['autodocs'],
   argTypes: {

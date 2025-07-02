@@ -7,7 +7,7 @@ import { Breadcrumbs } from './Breadcrumbs';
 import type { BreadcrumbItem } from './Breadcrumbs';
 
 const meta: Meta = {
-  title: 'Dashboard/Breadcrumbs',
+  title: 'Navigation/Breadcrumbs',
   component: Breadcrumbs,
   tags: ['autodocs'],
   argTypes: {

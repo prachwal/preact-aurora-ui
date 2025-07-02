@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Button Component Integration', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/iframe.html?id=example-button--primary');
+    await page.goto('/iframe.html?id=form-button--primary');
   });
 
   test('should be visible and clickable', async ({ page }) => {
@@ -41,7 +41,7 @@ test.describe('Button Component Integration', () => {
 
 test.describe('Theme System Integration', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/iframe.html?id=theme-themetoggle--default');
+    await page.goto('/iframe.html?id=providers-themetoggle--default');
   });
 
   test('should toggle theme on click', async ({ page }) => {
@@ -105,7 +105,7 @@ test.describe('Responsive Design', () => {
 
 test.describe('Accessibility Integration', () => {
   test('should have no accessibility violations', async ({ page }) => {
-    await page.goto('/iframe.html?id=example-button--primary');
+    await page.goto('/iframe.html?id=form-button--primary');
 
     // Inject axe-core
     await page.addScriptTag({
@@ -146,7 +146,7 @@ test.describe('Accessibility Integration', () => {
 test.describe('Performance Integration', () => {
   test('should load within performance budget', async ({ page }) => {
     // Start performance measurement
-    await page.goto('/iframe.html?id=example-button--primary', {
+    await page.goto('/iframe.html?id=form-button--primary', {
       waitUntil: 'networkidle',
     });
 
@@ -169,7 +169,7 @@ test.describe('Performance Integration', () => {
   });
 
   test('should handle rapid interactions without performance degradation', async ({ page }) => {
-    await page.goto('/iframe.html?id=example-button--primary');
+    await page.goto('/iframe.html?id=form-button--primary');
 
     const button = page.getByRole('button').first();
 

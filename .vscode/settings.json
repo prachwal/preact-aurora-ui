@@ -16,5 +16,7 @@
     "javascript",
     "javascriptreact"
   ],
-  "scss.validate": true
+  "scss.validate": true,
+  "vitest.config": "config/vitest.config.ts",
+  "vitest.workspaceConfig": "config/vitest.config.ts"
 }

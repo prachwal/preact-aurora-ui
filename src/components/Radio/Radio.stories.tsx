@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/preact';
 import { Radio, RadioGroup } from './index';
 
 const meta = {
-  title: 'Components/Radio',
+  title: 'Form/Radio',
   component: Radio,
   parameters: {
     layout: 'centered',
@@ -90,7 +90,7 @@ export const Colors: Story = {
 
 // RadioGroup Stories
 export const RadioGroupMeta = {
-  title: 'Components/RadioGroup',
+  title: 'Form/RadioGroup',
   component: RadioGroup,
   parameters: {
     layout: 'centered',

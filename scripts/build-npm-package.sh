@@ -19,7 +19,7 @@ mkdir -p "$DIST_DIR"
 
 # Build TypeScript components
 echo "📦 Building TypeScript components..."
-npx tsc --project tsconfig.build.json
+npx tsc --project config/tsconfig.build.json
 
 # Move compiled files from dist/components to dist root
 echo "📁 Restructuring build output..."

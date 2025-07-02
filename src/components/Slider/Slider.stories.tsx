@@ -5,7 +5,7 @@ import { Slider } from './Slider';
 import { RangeSlider } from './RangeSlider';
 
 const meta: Meta<typeof Slider> = {
-  title: 'Components/Slider',
+  title: 'Form/Slider',
   component: Slider,
   parameters: {
     layout: 'centered',

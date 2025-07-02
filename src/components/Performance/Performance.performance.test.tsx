@@ -6,7 +6,7 @@ import {
   estimateComponentSize,
   expectPerformance,
   PERFORMANCE_THRESHOLDS,
-} from '../../../test-setup-performance';
+} from '../../../config/test-setup-performance';
 import { renderWithTheme } from '../../test-utils';
 import { Button } from '../Button';
 import { Header } from '../Header/Header';

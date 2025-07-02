@@ -4,7 +4,7 @@ import { useState } from 'preact/hooks';
 import { Tabs, Tab, TabPanel } from './index';
 
 const meta = {
-  title: 'Components/Tabs',
+  title: 'Navigation/Tabs',
   component: Tabs,
   parameters: {
     layout: 'centered',

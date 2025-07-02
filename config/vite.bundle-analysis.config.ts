@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
     preact(),
     visualizer({
-      filename: 'dist/bundle-analysis.html',
+      filename: '../dist/bundle-analysis.html',
       open: true,
       gzipSize: true,
       brotliSize: true,
@@ -15,7 +15,7 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
+      entry: resolve(__dirname, '../src/index.ts'),
       name: 'PreactAuroraUI',
       formats: ['es', 'umd'],
       fileName: (format) => `preact-aurora-ui.${format}.js`,

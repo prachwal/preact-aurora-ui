@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/preact';
 import { TextField } from './TextField';
 
 const meta: Meta<typeof TextField> = {
-  title: 'Components/TextField',
+  title: 'Form/TextField',
   component: TextField,
   parameters: {
     layout: 'centered',

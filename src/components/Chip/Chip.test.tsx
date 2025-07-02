@@ -1,11 +1,20 @@
+/**
+ * @vitest-environment jsdom
+ */
 // @ts-nocheck
-import { render, screen, fireEvent } from '@testing-library/preact';
+
+import { render, screen, cleanup } from '@testing-library/preact';
 import userEvent from '@testing-library/user-event';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, afterEach } from 'vitest';
+import '@testing-library/jest-dom';
 
 import { Chip, CloseIcon, CheckIcon, AddIcon } from './Chip';
 import { ChipGroup } from './ChipGroup';
 import styles from './Chip.module.scss';
+
+afterEach(() => {
+  cleanup();
+});
 
 describe('Chip', () => {
   describe('Basic Functionality', () => {
@@ -45,7 +54,8 @@ describe('Chip', () => {
   });
 
   describe('Chip Types', () => {
-    it('renders assist chip correctly', () => {
+    it('renders assist chip correctly', async () => {
+      const user = userEvent.setup();
       const handleClick = vi.fn();
       render(
         <Chip type="assist" onClick={handleClick}>
@@ -56,7 +66,7 @@ describe('Chip', () => {
       const chip = screen.getByRole('button');
       expect(chip).toHaveClass(styles.assist);
 
-      fireEvent.click(chip);
+      await user.click(chip);
       expect(handleClick).toHaveBeenCalledTimes(1);
     });
 
@@ -89,7 +99,8 @@ describe('Chip', () => {
       expect(removeButton).toBeInTheDocument();
     });
 
-    it('renders suggestion chip correctly', () => {
+    it('renders suggestion chip correctly', async () => {
+      const user = userEvent.setup();
       const handleClick = vi.fn();
       render(
         <Chip type="suggestion" onClick={handleClick}>
@@ -100,13 +111,14 @@ describe('Chip', () => {
       const chip = screen.getByRole('button');
       expect(chip).toHaveClass(styles.suggestion);
 
-      fireEvent.click(chip);
+      await user.click(chip);
       expect(handleClick).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('Filter Chip Selection', () => {
-    it('handles selection state changes', () => {
+    it('handles selection state changes', async () => {
+      const user = userEvent.setup();
       const handleSelect = vi.fn();
       render(
         <Chip type="filter" onSelect={handleSelect}>
@@ -116,7 +128,7 @@ describe('Chip', () => {
 
       const chip = screen.getByRole('option');
 
-      fireEvent.click(chip);
+      await user.click(chip);
       expect(handleSelect).toHaveBeenCalledWith(true);
       expect(chip).toHaveAttribute('aria-selected', 'true');
       expect(chip).toHaveClass(styles.selected);
@@ -173,7 +185,8 @@ describe('Chip', () => {
       expect(removeButton).not.toBeInTheDocument();
     });
 
-    it('calls onRemove when remove button is clicked', () => {
+    it('calls onRemove when remove button is clicked', async () => {
+      const user = userEvent.setup();
       const handleRemove = vi.fn();
       render(
         <Chip type="input" onRemove={handleRemove} removable>
@@ -182,12 +195,13 @@ describe('Chip', () => {
       );
 
       const removeButton = screen.getByRole('button', { name: 'Remove' });
-      fireEvent.click(removeButton);
+      await user.click(removeButton);
 
       expect(handleRemove).toHaveBeenCalledTimes(1);
     });
 
-    it('prevents event bubbling on remove button click', () => {
+    it('prevents event bubbling on remove button click', async () => {
+      const user = userEvent.setup();
       const handleRemove = vi.fn();
       const handleChipClick = vi.fn();
 
@@ -200,7 +214,7 @@ describe('Chip', () => {
       );
 
       const removeButton = screen.getByRole('button', { name: 'Remove' });
-      fireEvent.click(removeButton);
+      await user.click(removeButton);
 
       expect(handleRemove).toHaveBeenCalledTimes(1);
       expect(handleChipClick).not.toHaveBeenCalled();
@@ -364,7 +378,8 @@ describe('Chip', () => {
   });
 
   describe('Disabled State', () => {
-    it('prevents interactions when disabled', () => {
+    it('prevents interactions when disabled', async () => {
+      const user = userEvent.setup();
       const handleClick = vi.fn();
       render(
         <Chip type="assist" disabled onClick={handleClick}>
@@ -373,7 +388,7 @@ describe('Chip', () => {
       );
 
       const chip = screen.getByRole('button');
-      fireEvent.click(chip);
+      await user.click(chip);
 
       expect(handleClick).not.toHaveBeenCalled();
     });

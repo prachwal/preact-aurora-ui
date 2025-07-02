@@ -15,7 +15,7 @@ import { SpeedDial } from './SpeedDial';
  * - **Accessibility**: Keyboard navigation and screen reader support
  */
 const meta: Meta<typeof SpeedDial> = {
-  title: 'Components/Actions/SpeedDial',
+  title: 'Advanced/SpeedDial',
   component: SpeedDial,
   parameters: {
     layout: 'centered',

@@ -2,6 +2,19 @@
 
 Kompletna dokumentacja biblioteki komponentów Aurora UI dla Preact z Material Design 3.
 
+## 🚀 Dostęp do dokumentacji
+
+- **Storybook Online**: https://prachwal.github.io/preact-aurora-ui
+- **GitHub Repository**: https://github.com/prachwal/preact-aurora-ui
+- **NPM Package**: https://www.npmjs.com/package/preact-aurora-ui
+
+## 📁 Struktura dokumentacji
+
+- `index.html` - Główna strona dokumentacji
+- `archive/` - Archiwum dokumentów z rozwoju projektu
+- `REORGANIZATION_SUMMARY.md` - Podsumowanie reorganizacji projektu
+- `.nojekyll` - Wyłącza przetwarzanie Jekyll na GitHub Pages
+
 ## 📋 Status Dokumentacji Komponentów
 
 ### ✅ Ukończone (34/34)

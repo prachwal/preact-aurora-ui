@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/preact';
 import { useBreakpoint } from './useBreakpoint';
 
 const meta: Meta = {
-  title: 'Dashboard/Responsive/useBreakpoint',
+  title: 'Examples/Responsive',
   tags: ['autodocs'],
 };
 export default meta;

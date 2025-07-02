@@ -5,7 +5,7 @@ import { Button } from '../Button';
 import { PageHeader } from './PageHeader';
 
 const meta: Meta = {
-  title: 'Dashboard/PageHeader',
+  title: 'Layout/PageHeader',
   component: PageHeader,
   tags: ['autodocs'],
 };

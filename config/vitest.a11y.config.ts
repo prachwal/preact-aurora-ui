@@ -9,16 +9,15 @@ export default defineConfig({
     },
   },
   test: {
-    name: 'performance',
+    name: 'accessibility',
     environment: 'jsdom',
     globals: true,
-    setupFiles: ['./test-setup.ts', './test-setup-performance.ts'],
-    include: ['src/**/*.performance.test.{ts,tsx}'],
-    testTimeout: 30000, // Performance tests may take longer
+    setupFiles: ['./test-setup.ts', './test-setup-a11y.ts'],
+    include: ['../src/**/*.a11y.test.{ts,tsx}'],
     coverage: {
       reporter: ['text', 'html'],
-      include: ['src/**/*.{ts,tsx}'],
-      exclude: ['src/**/*.test.{ts,tsx}', 'src/**/*.stories.{ts,tsx}'],
+      include: ['../src/**/*.{ts,tsx}'],
+      exclude: ['../src/**/*.test.{ts,tsx}', '../src/**/*.stories.{ts,tsx}'],
     },
   },
 });

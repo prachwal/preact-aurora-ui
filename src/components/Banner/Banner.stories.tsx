@@ -4,7 +4,7 @@ import { Banner } from './Banner';
 import { BannerVariant, BannerPosition } from './types';
 
 const meta: Meta<typeof Banner> = {
-  title: 'Components/Banner',
+  title: 'Communication/Banner',
   component: Banner,
   parameters: {
     layout: 'centered',

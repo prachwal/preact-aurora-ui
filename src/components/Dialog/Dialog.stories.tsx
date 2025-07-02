@@ -8,7 +8,7 @@ import { useDialog } from './useDialog';
 import type { DialogAction, DialogProps } from './types';
 
 const meta: Meta<typeof Dialog> = {
-  title: 'Components/Dialog',
+  title: 'Communication/Dialog',
   component: Dialog,
   parameters: {
     layout: 'centered',
@@ -134,8 +134,8 @@ export const Basic: Story = {
     <DialogWrapper
       title="Basic Dialog"
       actions={[
-        { label: 'Cancel', onClick: () => {}, variant: 'text' },
-        { label: 'Save', onClick: () => {}, variant: 'filled' },
+        { label: 'Cancel', onClick: () => { }, variant: 'text' },
+        { label: 'Save', onClick: () => { }, variant: 'filled' },
       ]}
     >
       <p>This is a basic dialog with some content. You can add any content here.</p>
@@ -150,8 +150,8 @@ export const Alert: Story = {
       title="Delete Item"
       icon="⚠️"
       actions={[
-        { label: 'Cancel', onClick: () => {}, variant: 'text' },
-        { label: 'Delete', onClick: () => {}, variant: 'filled', destructive: true },
+        { label: 'Cancel', onClick: () => { }, variant: 'text' },
+        { label: 'Delete', onClick: () => { }, variant: 'filled', destructive: true },
       ]}
     >
       <p>Are you sure you want to delete this item? This action cannot be undone.</p>
@@ -167,8 +167,8 @@ export const Confirmation: Story = {
       subtitle="You have unsaved changes"
       icon="💾"
       actions={[
-        { label: 'Discard', onClick: () => {}, variant: 'text' },
-        { label: 'Save', onClick: () => {}, variant: 'filled' },
+        { label: 'Discard', onClick: () => { }, variant: 'text' },
+        { label: 'Save', onClick: () => { }, variant: 'filled' },
       ]}
     >
       <p>Do you want to save your changes before leaving this page?</p>
@@ -183,8 +183,8 @@ export const Fullscreen: Story = {
       title="Fullscreen Dialog"
       subtitle="Takes up the entire viewport"
       actions={[
-        { label: 'Cancel', onClick: () => {}, variant: 'text' },
-        { label: 'Save', onClick: () => {}, variant: 'filled' },
+        { label: 'Cancel', onClick: () => { }, variant: 'text' },
+        { label: 'Save', onClick: () => { }, variant: 'filled' },
       ]}
     >
       <div style={{ padding: '1rem' }}>
@@ -229,7 +229,7 @@ export const Draggable: Story = {
       title="Draggable Dialog"
       draggable={true}
       initialPosition={{ x: 100, y: 100 }}
-      actions={[{ label: 'Close', onClick: () => {}, variant: 'text' }]}
+      actions={[{ label: 'Close', onClick: () => { }, variant: 'text' }]}
     >
       <p>This dialog can be dragged around the screen by clicking and dragging the header.</p>
       <p>Try dragging it to a different position!</p>
@@ -243,7 +243,7 @@ export const Resizable: Story = {
       title="Resizable Dialog"
       resizable={true}
       size="small"
-      actions={[{ label: 'Close', onClick: () => {}, variant: 'text' }]}
+      actions={[{ label: 'Close', onClick: () => { }, variant: 'text' }]}
     >
       <p>This dialog can be resized by dragging the resize handle in the bottom-right corner.</p>
       <p>Try making it larger or smaller!</p>
@@ -259,8 +259,8 @@ export const DraggableAndResizable: Story = {
       resizable={true}
       initialPosition={{ x: 50, y: 50 }}
       actions={[
-        { label: 'Reset', onClick: () => {}, variant: 'outlined' },
-        { label: 'Close', onClick: () => {}, variant: 'text' },
+        { label: 'Reset', onClick: () => { }, variant: 'outlined' },
+        { label: 'Close', onClick: () => { }, variant: 'text' },
       ]}
     >
       <p>This dialog combines both dragging and resizing capabilities.</p>
@@ -276,7 +276,7 @@ export const NonModal: Story = {
         title="Non-Modal Dialog"
         modal={false}
         closeOnOverlayClick={false}
-        actions={[{ label: 'Close', onClick: () => {}, variant: 'text' }]}
+        actions={[{ label: 'Close', onClick: () => { }, variant: 'text' }]}
       >
         <p>This is a non-modal dialog. You can interact with the background content.</p>
         <p>It doesn't have an overlay and won't block other interactions.</p>
@@ -295,7 +295,7 @@ export const WithCustomActions: Story = {
     const actions: DialogAction[] = [
       { label: 'Help', onClick: () => alert('Help clicked'), variant: 'text' },
       { label: 'Reset', onClick: () => alert('Reset clicked'), variant: 'outlined' },
-      { label: 'Cancel', onClick: () => {}, variant: 'text' },
+      { label: 'Cancel', onClick: () => { }, variant: 'text' },
       { label: 'Save & Continue', onClick: () => alert('Saved'), variant: 'filled' },
     ];
 
@@ -326,7 +326,7 @@ export const Sizes: Story = {
         <DialogWrapper
           title={`${activeSize.charAt(0).toUpperCase() + activeSize.slice(1)} Dialog`}
           size={activeSize}
-          actions={[{ label: 'Close', onClick: () => {}, variant: 'text' }]}
+          actions={[{ label: 'Close', onClick: () => { }, variant: 'text' }]}
         >
           <p>This is a {activeSize} dialog size demonstration.</p>
           <p>Dialog sizes help you choose the appropriate width for your content.</p>
@@ -342,8 +342,8 @@ export const AccessibilityDemo: Story = {
       title="Accessibility Features"
       aria-describedby="dialog-description"
       actions={[
-        { label: 'Cancel', onClick: () => {}, variant: 'text' },
-        { label: 'Confirm', onClick: () => {}, variant: 'filled', autoFocus: true },
+        { label: 'Cancel', onClick: () => { }, variant: 'text' },
+        { label: 'Confirm', onClick: () => { }, variant: 'filled', autoFocus: true },
       ]}
     >
       <div id="dialog-description">

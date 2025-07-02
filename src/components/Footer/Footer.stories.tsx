@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/preact';
 import { Footer } from './Footer';
 
 const meta: Meta = {
-  title: 'Dashboard/Footer',
+  title: 'Layout/Footer',
   component: Footer,
   tags: ['autodocs'],
 };

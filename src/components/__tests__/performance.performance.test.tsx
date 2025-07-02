@@ -7,7 +7,7 @@ import {
   estimateComponentSize,
   expectPerformance,
   PERFORMANCE_THRESHOLDS,
-} from '../../../test-setup-performance';
+} from '../../../config/test-setup-performance';
 import { Button } from '../Button/Button';
 import { TextField } from '../TextField/TextField';
 import { Card } from '../Card/Card';

@@ -5,7 +5,7 @@ import { Button } from '../Button';
 import { Card } from './Card';
 
 const meta: Meta = {
-  title: 'Dashboard/Card',
+  title: 'Advanced/Card',
   component: Card,
   tags: ['autodocs'],
 };

@@ -11,11 +11,6 @@ const config: StorybookConfig = {
     '@storybook/addon-docs',
     '@storybook/addon-a11y',
     '@storybook/addon-vitest',
-    '@storybook/addon-controls',
-    '@storybook/addon-actions',
-    '@storybook/addon-backgrounds',
-    '@storybook/addon-viewport',
-    '@storybook/addon-toolbars',
   ],
   framework: {
     name: '@storybook/preact-vite',

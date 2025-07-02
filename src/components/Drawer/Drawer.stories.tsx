@@ -4,7 +4,7 @@ import { useState } from 'preact/hooks';
 import { Drawer } from './Drawer';
 
 const meta: Meta = {
-  title: 'Dashboard/Drawer',
+  title: 'Communication/Drawer',
   component: Drawer,
   tags: ['autodocs'],
 };

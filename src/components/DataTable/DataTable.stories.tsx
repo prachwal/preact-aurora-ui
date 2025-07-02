@@ -5,7 +5,7 @@ import { DataTable } from './DataTable';
 import type { Column, RowData, SortConfig, SelectionConfig } from './types';
 
 const meta: Meta<typeof DataTable> = {
-  title: 'Data/DataTable',
+  title: 'Advanced/DataTable',
   component: DataTable,
   parameters: {
     layout: 'padded',

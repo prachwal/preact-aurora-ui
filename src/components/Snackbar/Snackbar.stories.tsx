@@ -4,7 +4,7 @@ import { Snackbar } from './Snackbar';
 import { SnackbarProvider, useSnackbar } from './SnackbarProvider';
 
 const meta: Meta<typeof Snackbar> = {
-  title: 'Components/Snackbar',
+  title: 'Communication/Snackbar',
   component: Snackbar,
   parameters: {
     layout: 'fullscreen',

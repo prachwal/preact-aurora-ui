@@ -26,7 +26,7 @@ import {
  * - **States**: Hover, focus, active, disabled
  */
 const meta: Meta<typeof IconButton> = {
-  title: 'Components/Action/IconButton',
+  title: 'Advanced/IconButton',
   component: IconButton,
   parameters: {
     layout: 'centered',

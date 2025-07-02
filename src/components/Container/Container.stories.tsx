@@ -10,7 +10,7 @@ import { Text } from '../Text';
 import { Container } from './Container';
 
 const meta: Meta<typeof Container> = {
-  title: 'Smart Components/Container',
+  title: 'Layout/Container',
   component: Container,
   parameters: {
     layout: 'padded',

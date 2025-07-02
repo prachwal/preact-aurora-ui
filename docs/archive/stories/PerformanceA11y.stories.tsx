@@ -6,7 +6,7 @@
 import type { Meta, StoryObj } from '@storybook/preact';
 
 const meta: Meta = {
-  title: 'FAZA 5/Documentation/Performance & A11y',
+  title: 'Examples/Performance & A11y',
   parameters: {
     layout: 'fullscreen',
     docs: {

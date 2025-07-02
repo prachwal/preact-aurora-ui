@@ -9,7 +9,7 @@ import type {
 } from './types';
 
 const meta: Meta = {
-  title: 'Components/Chip',
+  title: 'Advanced/Chip',
   component: Chip,
   parameters: {
     layout: 'centered',

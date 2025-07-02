@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/preact';
 import { Switch } from './index';
 
 const meta = {
-  title: 'Components/Switch',
+  title: 'Form/Switch',
   component: Switch,
   parameters: {
     layout: 'centered',

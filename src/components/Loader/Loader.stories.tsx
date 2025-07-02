@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/preact';
 import { Loader } from './Loader';
 
 const meta: Meta = {
-  title: 'Dashboard/Loader',
+  title: 'Advanced/Loader',
   component: Loader,
   tags: ['autodocs'],
 };

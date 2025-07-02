@@ -7,7 +7,7 @@ import { TextField } from '../TextField';
 import { Tooltip } from './Tooltip';
 
 const meta = {
-  title: 'Components/Tooltip',
+  title: 'Communication/Tooltip',
   component: Tooltip,
   parameters: {
     layout: 'centered',

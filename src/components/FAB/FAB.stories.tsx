@@ -16,7 +16,7 @@ import { FAB } from './FAB';
  * - **Animations**: Material Design motion and ripple effects
  */
 const meta: Meta<typeof FAB> = {
-  title: 'Components/Actions/FAB',
+  title: 'Advanced/FAB',
   component: FAB,
   parameters: {
     layout: 'centered',

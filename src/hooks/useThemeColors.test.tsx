@@ -14,7 +14,19 @@ import {
 } from './useThemeColors';
 
 describe('useThemeColors', () => {
+  let mockObserve: any;
+  let mockDisconnect: any;
+
   beforeEach(() => {
+    // Mock MutationObserver
+    mockObserve = vi.fn();
+    mockDisconnect = vi.fn();
+
+    global.MutationObserver = vi.fn().mockImplementation(() => ({
+      observe: mockObserve,
+      disconnect: mockDisconnect,
+    }));
+
     // Mock CSS custom properties
     const mockGetComputedStyle = vi.fn(() => ({
       getPropertyValue: vi.fn((prop: string) => {
@@ -42,20 +54,16 @@ describe('useThemeColors', () => {
       value: mockGetComputedStyle,
     });
 
-    // Mock document.documentElement
-    Object.defineProperty(document, 'documentElement', {
-      value: {
-        getAttribute: vi.fn((name: string) => {
-          if (name === 'data-theme') return 'light';
-          return null;
-        }),
-      },
-      configurable: true,
+    // Mock document.documentElement.getAttribute
+    vi.spyOn(document.documentElement, 'getAttribute').mockImplementation((name: string) => {
+      if (name === 'data-theme') return 'light';
+      return null;
     });
   });
 
   afterEach(() => {
     vi.clearAllMocks();
+    vi.restoreAllMocks();
   });
 
   describe('useThemeColors', () => {
@@ -211,9 +219,9 @@ describe('useThemeColors', () => {
 
     it('should log colors to console in development', () => {
       process.env.NODE_ENV = 'development';
-      const consoleSpy = vi.spyOn(console, 'group').mockImplementation(() => {});
-      const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-      const consoleGroupEndSpy = vi.spyOn(console, 'groupEnd').mockImplementation(() => {});
+      const consoleSpy = vi.spyOn(console, 'group').mockImplementation(() => { });
+      const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => { });
+      const consoleGroupEndSpy = vi.spyOn(console, 'groupEnd').mockImplementation(() => { });
 
       const { result } = renderHook(() => useColorDebug());
 

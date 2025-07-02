@@ -4,8 +4,8 @@
     "declaration": true,
     "declarationMap": false,
     "emitDeclarationOnly": false,
-    "outDir": "./dist",
-    "rootDir": "./src",
+    "outDir": "../dist",
+    "rootDir": "../src",
     "composite": false,
     "module": "ESNext",
     "moduleResolution": "bundler",
@@ -15,20 +15,20 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
     "paths": {
-      "react": ["./node_modules/preact/compat/"],
-      "react-dom": ["./node_modules/preact/compat/"]
+      "react": ["../node_modules/preact/compat/"],
+      "react-dom": ["../node_modules/preact/compat/"]
     },
     "noEmit": false
   },
   "include": [
-    "src/components/**/*.ts",
-    "src/components/**/*.tsx",
-    "src/components/**/*.d.ts",
-    "src/hooks/**/*.ts",
-    "src/hooks/**/*.tsx",
-    "src/hooks/**/*.d.ts",
-    "src/types/**/*.d.ts",
-    "src/styles/**/*.d.ts"
+    "../src/components/**/*.ts",
+    "../src/components/**/*.tsx",
+    "../src/components/**/*.d.ts",
+    "../src/hooks/**/*.ts",
+    "../src/hooks/**/*.tsx",
+    "../src/hooks/**/*.d.ts",
+    "../src/types/**/*.d.ts",
+    "../src/styles/**/*.d.ts"
   ],
   "exclude": [
     "**/*.test.ts",

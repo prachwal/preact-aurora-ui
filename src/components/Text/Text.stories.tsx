@@ -8,7 +8,7 @@ import type { Meta, StoryObj } from '@storybook/preact';
 import { Text } from './Text';
 
 const meta: Meta<typeof Text> = {
-  title: 'Components/Smart/Text',
+  title: 'Advanced/Text',
   component: Text,
   parameters: {
     layout: 'padded',

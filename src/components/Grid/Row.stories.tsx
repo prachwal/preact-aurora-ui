@@ -4,7 +4,7 @@ import { Row } from './Row';
 import { Col } from './Col';
 
 const meta: Meta = {
-  title: 'Dashboard/Row',
+  title: 'Layout/Row',
   component: Row,
   tags: ['autodocs'],
 };

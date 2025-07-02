@@ -6,7 +6,7 @@
 import type { Meta, StoryObj } from '@storybook/preact';
 
 const meta: Meta = {
-  title: 'FAZA 5/Documentation/Color Palette',
+  title: 'Design System/Color Palette',
   parameters: {
     layout: 'fullscreen',
     docs: {

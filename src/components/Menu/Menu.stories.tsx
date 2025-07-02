@@ -5,7 +5,7 @@ import { Menu } from './Menu';
 import type { MenuItem } from './Menu';
 
 const meta: Meta = {
-  title: 'Dashboard/Menu',
+  title: 'Navigation/Menu',
   component: Menu,
   tags: ['autodocs'],
   argTypes: {

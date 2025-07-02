@@ -5,7 +5,7 @@ import { Button } from '../Button';
 import { Sidebar } from './Sidebar';
 
 const meta: Meta = {
-  title: 'Dashboard/Sidebar',
+  title: 'Layout/Sidebar',
   component: Sidebar,
   tags: ['autodocs'],
 };

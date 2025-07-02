@@ -5,7 +5,7 @@ import { Header } from '../Header/Header';
 import { AppLayout } from './AppLayout';
 
 const meta: Meta<typeof AppLayout> = {
-  title: 'FAZA 4/AppLayout',
+  title: 'Layout/AppLayout',
   component: AppLayout,
   parameters: {
     layout: 'fullscreen',

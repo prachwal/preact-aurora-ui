@@ -80,7 +80,7 @@ describe('Universal Theme System', () => {
   it('initTheme powinien działać synchronicznie', () => {
     const mockStorage = createCustomStorageAdapter(
       () => ({ mode: 'dark' }),
-      () => {},
+      () => { },
     );
 
     initTheme({
@@ -113,8 +113,8 @@ describe('Universal Theme System', () => {
       writable: true,
       value: (query: string) => ({
         matches: query.includes('dark'),
-        addEventListener: () => {},
-        removeEventListener: () => {},
+        addEventListener: () => { },
+        removeEventListener: () => { },
       }),
     });
 

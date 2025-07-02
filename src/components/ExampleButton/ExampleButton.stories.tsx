@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/preact';
 import { ExampleButton } from './ExampleButton';
 
 const meta: Meta<typeof ExampleButton> = {
-  title: 'Components/ExampleButton',
+  title: 'Examples/ExampleButton',
   component: ExampleButton,
   args: {
     children: 'Click me',

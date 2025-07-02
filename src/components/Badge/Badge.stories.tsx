@@ -16,7 +16,7 @@ import { Badge, BadgeWrapper } from './Badge';
  * - **Accessibility**: ARIA labels and screen reader support
  */
 const meta: Meta<typeof Badge> = {
-  title: 'Components/Communication/Badge',
+  title: 'Communication/Badge',
   component: Badge,
   parameters: {
     layout: 'centered',
