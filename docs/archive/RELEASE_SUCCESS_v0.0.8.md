@@ -47,7 +47,7 @@ import { AuroraProvider } from 'preact-aurora-ui';
 
 - **📦 NPM Package:** https://www.npmjs.com/package/preact-aurora-ui
 - **🐙 GitHub Repository:** https://github.com/prachwal/preact-aurora-ui
-- **📚 Quick Start Guide:** `/docs/QUICK_START_v0.0.8.md`
+- **📚 Quick Start Guide:** `/docs/QUICK_START.md`
 - **🗺️ v0.1.0 Roadmap:** `/docs/ROADMAP_v0.1.0.md`
 
 ## 🏁 Installation & Setup

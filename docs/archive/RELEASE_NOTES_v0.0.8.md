@@ -47,7 +47,7 @@
 
 ### New Guides
 
-- **`docs/QUICK_START_v0.0.8.md`** - 2-minute setup guide
+- **`docs/QUICK_START.md`** - 2-minute setup guide
 - **`docs/ROADMAP_v0.1.0.md`** - Detailed v0.1.0 planning
 - **Updated `README.md`** with zero-config examples
 - **Migration examples** for existing users
@@ -116,7 +116,7 @@ Special thanks to the community for feedback and contributions that made this re
 
 - **NPM Package:** https://www.npmjs.com/package/preact-aurora-ui
 - **GitHub Repository:** https://github.com/prachwal/preact-aurora-ui
-- **Documentation:** `/docs/QUICK_START_v0.0.8.md`
+- **Documentation:** `/docs/QUICK_START.md`
 - **Storybook:** (Coming in v0.0.9)
 
 ---
