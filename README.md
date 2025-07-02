@@ -1,4 +1,4 @@
-# Aurora UI - Dokumentacja v0.0.13
+# Aurora UI - Dokumentacja v0.0.14
 
 Kompletna dokumentacja biblioteki komponentów Aurora UI dla Preact z Material Design 3.
 
@@ -119,6 +119,6 @@ Stara dokumentacja została przeniesiona do [folderu archive](./archive/).
 
 ---
 
-**Wersja:** v0.0.13  
-**Ostatnia aktualizacja:** 1 lipca 2025  
+**Wersja:** v0.0.14  
+**Ostatnia aktualizacja:** 2 lipca 2025  
 **Status:** ✅ Dokumentacja kompletna
