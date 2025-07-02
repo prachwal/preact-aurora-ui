@@ -65,7 +65,8 @@
     "lint:fix": "eslint 'src/**/*.{ts,tsx,js,jsx}' --fix --config config/eslint.config.js",
     "format": "prettier --write 'src/**/*.{ts,tsx,js,jsx,json,md}'",
     "format:check": "prettier --check 'src/**/*.{ts,tsx,js,jsx,json,md}'",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "md-to-html": "bash scripts/md-to-html.sh"
   },
   "dependencies": {
     "@playwright/test": "^1.53.2",
