@@ -38,9 +38,7 @@ jobs:
         run: bash scripts/copy-readme-to-docs.sh
 
       - name: Convert Markdown to HTML
-        run: |
-          npm install -g markdown-cli
-          npm run md-to-html
+        run: npm run md-to-html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
