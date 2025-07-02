@@ -1,137 +1,193 @@
-# Aurora UI - Dokumentacja v0.0.14
+# 🌟 Aurora UI
 
-Kompletna dokumentacja biblioteki komponentów Aurora UI dla Preact z Material Design 3.
+**Modern Material Design 3 components for Preact applications**
 
-## 🚀 Dostęp do dokumentacji
+[![NPM Version](https://img.shields.io/npm/v/preact-aurora-ui?style=flat-square&color=6750A4)](https://www.npmjs.com/package/preact-aurora-ui)
+[![Bundle Size](https://img.shields.io/bundlephobia/minzip/preact-aurora-ui?style=flat-square&color=success)](https://bundlephobia.com/package/preact-aurora-ui)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue?style=flat-square)](https://www.typescriptlang.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![Documentation](https://img.shields.io/badge/docs-storybook-FF4785?style=flat-square)](https://prachwal.github.io/preact-aurora-ui/)
 
-- **Storybook Online**: https://prachwal.github.io/preact-aurora-ui
-- **GitHub Repository**: https://github.com/prachwal/preact-aurora-ui
-- **NPM Package**: https://www.npmjs.com/package/preact-aurora-ui
+> A comprehensive, accessible, and performant UI component library built with Preact and Material Design 3 principles.
 
-## 📁 Struktura dokumentacji
+## ✨ Key Features
 
-- `index.html` - Główna strona dokumentacji
-- `archive/` - Archiwum dokumentów z rozwoju projektu
-- `REORGANIZATION_SUMMARY.md` - Podsumowanie reorganizacji projektu
-- `.nojekyll` - Wyłącza przetwarzanie Jekyll na GitHub Pages
+🚀 **Zero-Config Setup** - Get started in 2 minutes with automatic style injection  
+🎨 **Material Design 3** - Complete MD3 design system with dynamic theming  
+⚡ **Smooth Theme Switching** - Flicker-free light/dark/auto modes  
+♿ **Full Accessibility** - WCAG 2.1 AA compliant with screen reader support  
+💅 **Flexible Theming** - CSS Custom Properties with easy customization  
+✅ **TypeScript First** - Complete type safety and IntelliSense support  
+📚 **Rich Documentation** - Interactive Storybook + comprehensive guides  
+🔧 **Developer Experience** - Helpful warnings, debugging tools, and error messages
 
-## 📋 Status Dokumentacji Komponentów
+## 🚀 Quick Start
 
-### ✅ Ukończone (34/34)
+### Installation
 
-- [x] **AppLayout** - Główny wrapper aplikacji z zarządzaniem motywem
-- [x] **Badge** - Wskaźniki statusu, powiadomień i liczników
-- [x] **Button** - Przyciski akcji z różnymi wariantami MD3
-- [x] **Text** - Tekst z kontrolowaną typografią i polimorfizmem
-- [x] **TextField** - Pola tekstowe i obszary tekstu z walidacją
-- [x] **Card** - Kontenery treści z elevacją i interaktywnością
-- [x] **Container** - Wrapper z zarządzaniem surface'ami i spacing
-- [x] **Checkbox** - Pola wyboru wielokrotnego z indeterminate
+```bash
+npm install preact-aurora-ui
+```
 
-### 🔄 W trakcie (0/34)
+### Setup (Zero-Config)
 
-**Komponenty formularzy (Priority 2):**
+```tsx
+// main.tsx
+import { render } from 'preact';
+import { AuroraProvider } from 'preact-aurora-ui';
+import App from './App';
 
-- [x] **Radio** - ✅ Complete (enhanced documentation with RadioGroup, useRadioGroup hook, accessibility, theming, examples)
-- [x] **Switch** - ✅ Complete (enhanced documentation with controlled/uncontrolled modes, accessibility, theming, form integration)
-- [x] **Select** - ✅ Complete (comprehensive documentation with multiple selection, search, groups, async loading, accessibility, custom renderers)
-- [x] **Slider** - ✅ Complete (comprehensive documentation with continuous/discrete variants, orientations, custom thumbs, accessibility, theming)
+render(
+  <AuroraProvider>
+    <App />
+  </AuroraProvider>,
+  document.getElementById('app')!,
+);
+```
 
-**Komponenty nawigacji (Priority 3):**
+### Use Components
 
-- [x] **Menu** - ✅ Complete (comprehensive documentation with variants, submenus, multi-select, positioning, accessibility, keyboard navigation)
-- [x] **Tabs** - ✅ Complete (comprehensive documentation with variants, icons, badges, lazy loading, accessibility, keyboard navigation, router integration)
-- [x] **Breadcrumbs** - ✅ Complete (comprehensive documentation with separators, links, overflow handling, accessibility, theming)
-- [x] **BottomNavigation** - ✅ Complete (comprehensive documentation with tabs, badges, auto-hide, keyboard navigation, accessibility, router integration)
+```tsx
+// App.tsx
+import { Button, Card, TextField, useTheme } from 'preact-aurora-ui';
 
-**Komponenty layout (Priority 4):**
+export default function App() {
+  const { toggleMode, isDark } = useTheme();
 
-- [x] **Layout** - ✅ Complete (comprehensive documentation with variants, directions, padding, gap, overflow, accessibility, responsive patterns)
-- [x] **Grid** - ✅ Complete (comprehensive documentation with CSS Grid, Row/Col system, responsive breakpoints, accessibility, advanced patterns)
-- [x] **Header** - ✅ Complete (comprehensive documentation with variants, scroll behaviors, navigation integration, overflow menu, theme toggle, accessibility)
-- [x] **Footer** - ✅ Complete (comprehensive documentation with variants, links, social media, sticky behavior, accessibility, responsive design)
-- [x] **Sidebar** - ✅ Complete (comprehensive documentation with variants, toggle functionality, responsive behavior, auto-collapse, positioning, accessibility)
-- [x] **Content** - ✅ Complete (comprehensive documentation with variants, padding options, responsive behavior, accessibility, theming)
-- [x] **PageHeader** - ✅ Complete (comprehensive documentation with title/subtitle, action buttons, responsive design, accessibility, integration patterns)
+  return (
+    <Card>
+      <h2>Welcome to Aurora UI! 🌟</h2>
+      <TextField label="Your name" placeholder="Enter your name" />
+      <Button onClick={toggleMode} variant="filled">
+        Switch to {isDark ? 'Light' : 'Dark'} Mode
+      </Button>
+    </Card>
+  );
+}
+```
 
-**Komponenty komunikacji (Priority 5):**
+That's it! 🎉 Your app now has beautiful, accessible components with automatic theming.
 
-- [x] **Dialog** - ✅ Complete (comprehensive documentation with types, drag/drop, resizing, focus management, actions, accessibility, advanced usage patterns)
-- [x] **Drawer** - ✅ Complete (comprehensive documentation with positions, modal/non-modal behavior, accessibility, navigation patterns, action sheets)
-- [x] **Snackbar** - ✅ Complete (comprehensive documentation with provider, severities, positions, actions, auto-dismiss, accessibility, advanced patterns)
-- [x] **Tooltip** - ✅ Complete (comprehensive documentation with positioning, triggers, accessibility, portal rendering, interactive content, advanced patterns)
-- [x] **Banner** - ✅ Complete (comprehensive documentation with variants, positioning, actions, auto-dismiss, accessibility, layout integration)
-- [x] **Loader** - ✅ Complete (legacy Loader + modern Progress component with circular/linear variants, determinate/indeterminate modes, MD3 styling, accessibility)
+## 📦 What's Included
 
-**Komponenty zaawansowane (Priority 6):**
+### Core Components (34 total)
 
-- [x] **DataTable** - ✅ Complete (comprehensive documentation with sorting, filtering, pagination, selection, virtual scrolling, export, accessibility, advanced patterns)
-- [x] **Stepper** - ✅ Complete (comprehensive documentation with horizontal/vertical orientations, step states, linear/non-linear progression, interactive navigation, accessibility)
-- [x] **FAB** - ✅ Complete (comprehensive documentation with sizes, colors, positioning, Speed Dial expandable menus, accessibility, advanced patterns)
-- [x] **IconButton** - ✅ Complete (comprehensive documentation with MD3 variants, sizes, toggle functionality, built-in icons, accessibility, advanced patterns)
-- [x] **Chip** - ✅ Complete (comprehensive documentation with all chip types, ChipGroup, interactive states, accessibility, advanced usage patterns)
-- [x] **ThemeProvider** - ✅ Complete (comprehensive documentation with universal interfaces, storage adapters, DOM targets, SSR support, accessibility, testing)
-- [x] **AuroraProvider** - ✅ Complete (comprehensive documentation with zero-config setup, enhanced features, error handling, migration guide, integration patterns)
+```tsx
+// Form Components
+import { Button, TextField, Checkbox, Radio, Switch, Select, Slider } from 'preact-aurora-ui';
 
-## 📚 Struktura Dokumentacji
+// Layout Components
+import { AppLayout, Container, Grid, Header, Footer, Sidebar } from 'preact-aurora-ui';
 
-Każdy komponent zawiera:
+// Navigation
+import { Menu, Tabs, Breadcrumbs, BottomNavigation } from 'preact-aurora-ui';
 
-### 🎯 Opis i Zastosowanie
+// Communication
+import { Dialog, Drawer, Snackbar, Tooltip, Banner } from 'preact-aurora-ui';
 
-- Krótki opis funkcjonalności
-- Przypadki użycia w realnych aplikacjach
-- Zalecenia UX/UI
+// Advanced
+import { DataTable, Stepper, FAB, IconButton, Chip } from 'preact-aurora-ui';
 
-### 💻 Przykłady Kodu
+// Providers
+import { AuroraProvider, ThemeProvider, useTheme } from 'preact-aurora-ui';
+```
 
-- Podstawowe użycie (copy-paste ready)
-- Zaawansowane scenariusze
-- Integracja z innymi komponentami
-- Real-world patterns
+### Theme System
 
-### 🔧 API Reference
+```tsx
+// Automatic theme management
+const { theme, toggleMode, isDark, themeReady } = useTheme();
 
-- Kompletna lista props z typami TypeScript
-- Wartości domyślne
-- Wymagane vs opcjonalne parametry
-- Event handlers i callbacks
+// Custom theming
+<AuroraProvider theme="auto" config={{ systemThemeSync: true }}>
+  <App />
+</AuroraProvider>;
+```
 
-### 🎨 Stylowanie i Theming
+## 🎨 Theming
 
-- Dostępne warianty kolorystyczne
-- CSS Custom Properties
-- Nadpisywanie stylów
-- Responsywność
+Aurora UI provides a complete Material Design 3 theming system:
 
-### ♿ Accessibility (A11y)
+```tsx
+// CSS Custom Properties (automatic)
+:root {
+  --md-sys-color-primary: #6750A4;
+  --md-sys-color-secondary: #625B71;
+  --md-sys-color-surface: #FFFBFE;
+  /* + 50+ more MD3 tokens */
+}
 
-- Role i aria-labels
-- Keyboard navigation
-- Screen reader support
-- WCAG 2.1 AA compliance
+// Programmatic theming
+const customTheme = {
+  mode: 'light',
+  colors: {
+    primary: '#1976D2',
+    secondary: '#DC004E',
+  }
+};
+```
 
-### 🧪 Wzorce Testowania
+## 📚 Documentation
 
-- Przykłady testów jednostkowych
-- Testing Library patterns
-- Mock handlers
-- Accessibility testing
+- 📖 **[Complete Documentation](https://prachwal.github.io/preact-aurora-ui/)** - Full guides and API reference
+- 🧩 **[Interactive Storybook](https://prachwal.github.io/preact-aurora-ui/storybook)** - Live component playground
+- � **[Component Library](./src/components/README.md)** - Individual component docs
+- 🚀 **[Quick Start Guide](./docs/guides/QUICK_STARTmd)** - Detailed setup instructions
 
-## 🔄 Proces Aktualizacji
+## 🆕 What's New in v0.0.14
 
-1. **Analiza komponentu** - przegląd kodu, typów, testów
-2. **Spisanie API** - dokumentacja wszystkich props i metod
-3. **Tworzenie przykładów** - praktyczne use cases
-4. **Testowanie dokumentacji** - sprawdzenie poprawności kodu
-5. **Review i publikacja** - kontrola jakości
+✅ **Complete Component Documentation** - Every component fully documented with examples  
+✅ **Enhanced TypeScript Support** - Improved type definitions and IntelliSense  
+✅ **Accessibility Improvements** - WCAG 2.1 AA compliance across all components  
+✅ **Performance Optimizations** - Reduced bundle size and faster rendering  
+✅ **Better Developer Experience** - Improved error messages and debugging tools  
+✅ **Storybook Integration** - Interactive documentation and testing
 
-## 📖 Archiwum
+## � Testing
 
-Stara dokumentacja została przeniesiona do [folderu archive](./archive/).
+Aurora UI components come with comprehensive testing utilities:
+
+```tsx
+import { render, screen } from '@testing-library/preact';
+import userEvent from '@testing-library/user-event';
+import { Button } from 'preact-aurora-ui';
+
+test('button interaction', async () => {
+  const user = userEvent.setup();
+  const handleClick = vi.fn();
+
+  render(<Button onClick={handleClick}>Click me</Button>);
+
+  await user.click(screen.getByRole('button'));
+  expect(handleClick).toHaveBeenCalled();
+});
+```
+
+## 📱 Browser Support
+
+- ✅ Chrome 90+
+- ✅ Firefox 88+
+- ✅ Safari 14+
+- ✅ Edge 90+
+- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](./docs/CONTRIBUTING.md) for details.
+
+## 📄 License
+
+MIT License - see [LICENSE](./LICENSE) file for details.
 
 ---
 
-**Wersja:** v0.0.14  
-**Ostatnia aktualizacja:** 2 lipca 2025  
-**Status:** ✅ Dokumentacja kompletna
+<div align="center">
+
+**[📖 Documentation](https://prachwal.github.io/preact-aurora-ui/)** •
+**[🧩 Storybook](https://prachwal.github.io/preact-aurora-ui/storybook)** •
+**[🐛 Issues](https://github.com/prachwal/preact-aurora-ui/issues)** •
+**[💬 Discussions](https://github.com/prachwal/preact-aurora-ui/discussions)**
+
+Made with ❤️ for the Preact community
+
+</div>

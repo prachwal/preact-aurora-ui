@@ -132,9 +132,9 @@ const customTheme = {
 - 📖 **[Complete Documentation](https://prachwal.github.io/preact-aurora-ui/)** - Full guides and API reference
 - 🧩 **[Interactive Storybook](https://prachwal.github.io/preact-aurora-ui/storybook)** - Live component playground
 - � **[Component Library](./src/components/README.md)** - Individual component docs
-- 🚀 **[Quick Start Guide](./docs/guides/QUICK_START_v0.0.8.md)** - Detailed setup instructions
+- 🚀 **[Quick Start Guide](./docs/guides/QUICK_STARTmd)** - Detailed setup instructions
 
-## 🆕 What's New in v0.0.13
+## 🆕 What's New in v0.0.14
 
 ✅ **Complete Component Documentation** - Every component fully documented with examples  
 ✅ **Enhanced TypeScript Support** - Improved type definitions and IntelliSense  

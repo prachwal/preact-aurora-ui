@@ -58,6 +58,8 @@
     "validate:all": "./scripts/validate-tests.sh",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "build-storybook-to-docs": "bash scripts/build-storybook-to-docs.sh",
+    "copy-readme-to-docs": "bash scripts/copy-readme-to-docs.sh",
     "build:all": "sh scripts/build-and-copy.sh",
     "lint": "eslint 'src/**/*.{ts,tsx,js,jsx}' --max-warnings=0 --config config/eslint.config.js",
     "lint:fix": "eslint 'src/**/*.{ts,tsx,js,jsx}' --fix --config config/eslint.config.js",
