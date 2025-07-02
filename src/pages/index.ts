@@ -1,7 +1,6 @@
-export { Dashboard } from './Dashboard';
-export { Analytics } from './Analytics';
-export { Users } from './Users';
-export { Settings } from './Settings';
-export { ThemeDemo } from './ThemeDemo';
-export { MD3ColorsPage } from './MD3Colors';
-export { AdvancedComponents } from './AdvancedComponents';
+export { DocsPage } from './DocsPage';
+export { DocsReadmePage, DocsComponentsPage, DocsQuickStartPage } from './DocsPages';
+export { MarkdownPage } from './MarkdownPage';
+export { DocsHomepage } from './DocsHomepage';
+export { NotFound } from './NotFound';
+export { ReadmePage } from './ReadmePage';

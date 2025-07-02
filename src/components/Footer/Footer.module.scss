@@ -3,11 +3,11 @@
 @use "../styles/spacing.scss" as *;
 @use "../styles/breakpoints.scss" as *;
 
-// Local variables - Modern footer design
-$footer-bg: var(--color-surface);
-$footer-color: var(--color-on-surface-variant);
-$footer-padding: var(--space-lg) var(--space-2xl);
-$footer-shadow: var(--shadow-1);
+// Local variables - Modern footer design with theme adaptation
+$footer-bg: var(--md-sys-color-surface-container-low);
+$footer-color: var(--color-on-surface);
+$footer-padding: var(--space-2xl) var(--space-2xl); // Increased padding for better presence
+$footer-shadow: var(--shadow-2);
 $footer-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
 .footer {
@@ -16,21 +16,25 @@ $footer-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   border-top: 1px solid var(--color-outline-variant);
   color: $footer-color;
   padding: $footer-padding;
-  min-height: 56px;
+  min-height: 88px; // Increased height for better presence
   box-shadow: $footer-shadow;
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-base); // Increased font size
+  font-weight: var(--font-weight-medium); // Increased font weight
   line-height: var(--line-height-base);
   font-family: var(--font-family-base);
   transition: $footer-transition;
 
-  // Subtle hover effect
+  // Remove backdrop filter for solid background
+  // backdrop-filter: blur(8px);
+  // -webkit-backdrop-filter: blur(8px);
+
+  // Subtle hover effect with theme adaptation
   &:hover {
-    background: var(--color-surface-variant);
+    background: var(--md-sys-color-surface-container);
   }
 
   // Links in footer
@@ -113,7 +117,8 @@ $footer-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
   // Variant styles
   &--variant-default {
-    /* Default styling already applied in base .footer class */
+    // Default styling already applied in base .footer class
+    background: $footer-bg;
   }
 
   &--variant-minimal {
@@ -179,19 +184,32 @@ $footer-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   .bottom {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; // All items in same line
     gap: var(--space-lg);
     flex-wrap: wrap;
+    width: 100%;
+    margin: 0; // Remove any default margins
+    padding: 0; // Remove any default padding
   }
 
   .copyright {
-    color: var(--color-on-surface-variant);
-    font-size: var(--font-size-sm);
+    color: var(--color-on-surface);
+    font-size: var(--font-size-base); // Increased from sm to base for better alignment
     white-space: nowrap;
+    display: flex;
+    align-items: center; // Ensure vertical alignment
+    line-height: var(--line-height-base);
+    font-weight: var(--font-weight-medium); // Same weight as links
+    margin: 0; // Remove any default margins
+    padding: 0; // Remove any default padding
   }
 
   .nav {
     flex-shrink: 0;
+    display: flex;
+    align-items: center; // Ensure nav is aligned with copyright
+    margin: 0; // Remove any default margins
+    padding: 0; // Remove any default padding
   }
 
   .linksList {
@@ -200,12 +218,26 @@ $footer-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     list-style: none;
     margin: 0;
     padding: 0;
+    align-items: center; // Ensure all links are aligned
+
+    li {
+      display: flex;
+      align-items: center;
+      margin: 0; // Remove any default margins
+      padding: 0; // Remove any default padding
+    }
 
     a {
-      color: var(--color-on-surface-variant);
+      color: var(--color-on-surface);
       text-decoration: none;
-      font-size: var(--font-size-sm);
+      font-size: var(--font-size-base); // Increased from sm to base for better alignment
+      font-weight: var(--font-weight-medium); // Same weight as copyright
       transition: color 0.2s ease;
+      display: flex;
+      align-items: center; // Ensure vertical alignment
+      line-height: var(--line-height-base);
+      margin: 0; // Remove any default margins
+      padding: 0; // Remove any default padding
 
       &:hover {
         color: var(--color-primary);
@@ -251,6 +283,32 @@ $footer-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       }
     }
   }
+
+  // Special class when footer is inside content area
+  &--in-content {
+    margin-top: var(--space-2xl);
+    border-top: 2px solid var(--color-outline-variant);
+    border-radius: 0;
+    background: var(--md-sys-color-surface-container-low); // Theme-adapted background
+    padding: var(--space-2xl) var(--space-lg); // Increased padding
+    min-height: 88px; // Increased height
+
+    &:hover {
+      background: var(--md-sys-color-surface-container); // Theme-adapted hover
+    }
+
+    // When footer is both in-content and sticky
+    &.footer--sticky {
+      position: sticky;
+      bottom: 0;
+      z-index: 100;
+      margin-top: auto; // Push to bottom of container
+      box-shadow: 0px -2px 12px rgba(0, 0, 0, 0.15); // Enhanced shadow for sticky footer
+      backdrop-filter: none; // Remove blur for solid background
+      -webkit-backdrop-filter: none;
+      border-top: 2px solid var(--color-outline);
+    }
+  }
 }
 
 // Responsive design
@@ -269,13 +327,15 @@ $footer-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
 @media (max-width: $breakpoint-md) {
   .footer {
-    padding: var(--space-lg);
+    padding: var(--space-xl); // Increased padding for mobile
+    min-height: 80px; // Adequate height for mobile
   }
 
   .bottom {
     flex-direction: column;
     gap: var(--space-md);
     text-align: center;
+    align-items: center; // Better center alignment on mobile
   }
 
   .linksList {

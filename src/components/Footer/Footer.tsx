@@ -28,6 +28,7 @@ export interface FooterProps {
   copyright?: string;
   links?: FooterLink[];
   social?: SocialLink[];
+  inContent?: boolean; // New prop to indicate footer is inside content area
 }
 
 /**
@@ -39,6 +40,7 @@ export interface FooterProps {
  * @param copyright - Tekst copyright
  * @param links - Lista linków
  * @param social - Lista linków społecznościowych
+ * @param inContent - Czy footer jest renderowany wewnątrz Content (wpływa na styling)
  */
 export function Footer({
   children,
@@ -51,21 +53,21 @@ export function Footer({
   copyright,
   links = [],
   social = [],
+  inContent = false, // New prop with default false
 }: FooterProps) {
   const classes = [
     styles.footer,
     styles[`footer--variant-${variant}`],
     styles[`footer--elevation-${elevation}`],
     sticky ? styles['footer--sticky'] : '',
+    inContent ? styles['footer--in-content'] : '', // Add in-content class
     className,
   ]
     .filter(Boolean)
     .join(' ');
 
   const currentYear = new Date().getFullYear();
-  const copyrightText = copyright || `© ${currentYear} Aurora UI`;
-
-  return (
+  const copyrightText = copyright || `© ${currentYear} Aurora UI`; return (
     <footer className={classes} style={style} aria-label={ariaLabel} role="contentinfo">
       {variant === 'extended' && (
         <div className={styles.main}>

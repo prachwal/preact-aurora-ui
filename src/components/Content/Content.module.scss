@@ -261,6 +261,25 @@ $content-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   >* {
     width: 100%;
   }
+
+  // Special handling for Footer inside Content
+  footer {
+    margin-top: auto; // Push footer to bottom
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+
+    // When footer is sticky, ensure proper spacing
+    &.footer--sticky {
+      // Compensate for content padding to make footer full-width
+      margin-left: calc(-1 * var(--space-lg));
+      margin-right: calc(-1 * var(--space-lg));
+      width: calc(100% + 2 * var(--space-lg));
+    }
+  }
 }
 
 .content--variant-form {

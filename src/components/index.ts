@@ -43,3 +43,6 @@ export * from './Container';
 
 // v0.0.8: New Zero-config Provider
 export * from './AuroraProvider';
+
+// Documentation Layout
+export * from './DocsLayout';
