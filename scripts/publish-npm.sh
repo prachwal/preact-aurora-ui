@@ -27,9 +27,9 @@ find dist/components/styles -name "*.test.*" -delete
 # Copy component SCSS files
 find src/components -name "*.scss" -not -path "*/styles/*" | while read -r file; do
     rel_path=${file#src/components/}
-    target_dir="dist/components/$(dirname "$rel_path")"
+    target_dir="dist/components/components/$(dirname "$rel_path")"
     mkdir -p "$target_dir"
-    cp "$file" "dist/components/$rel_path"
+    cp "$file" "dist/components/components/$rel_path"
     echo "  ✅ Copied: $rel_path"
 done
 
@@ -37,9 +37,9 @@ done
 echo "📚 Copying README files..."
 find src/components -name "README.md" | while read -r file; do
     rel_path=${file#src/components/}
-    target_dir="dist/components/$(dirname "$rel_path")"
+    target_dir="dist/components/components/$(dirname "$rel_path")"
     mkdir -p "$target_dir"
-    cp "$file" "dist/components/$rel_path"
+    cp "$file" "dist/components/components/$rel_path"
     echo "  ✅ Copied: $rel_path"
 done
 
