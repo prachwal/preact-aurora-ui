@@ -1,7 +1,7 @@
-@use '../../styles/colors-extended.scss' as *;
-@use '../../styles/typography.scss' as *;
-@use '../../styles/spacing.scss' as *;
-@use '../../styles/tokens.scss' as *;
+@use '../../components/styles/colors-extended.scss' as *;
+@use '../../components/styles/typography.scss' as *;
+@use '../../components/styles/spacing.scss' as *;
+@use '../../components/styles/tokens.scss' as *;
 @use '../../components/styles/breakpoints.scss' as *;
 
 // DocsHomepage specific styles (layout is handled by DocsLayout)

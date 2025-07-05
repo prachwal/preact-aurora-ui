@@ -3,10 +3,10 @@
  * Smart container with surface backgrounds, elevation, and responsive behavior
  */
 
-@use '../../styles/colors-extended.scss' as *;
-@use '../../styles/typography.scss' as *;
-@use '../../styles/spacing.scss' as *;
-@use '../../styles/elevation.scss' as *;
+@use '../styles/colors-extended.scss' as *;
+@use '../styles/typography.scss' as *;
+@use '../styles/spacing.scss' as *;
+@use '../styles/elevation.scss' as *;
 @use '../styles/mixins.scss' as mixins;
 
 // Lokalne zmienne na bazie globalnych custom properties

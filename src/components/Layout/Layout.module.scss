@@ -12,7 +12,7 @@ $layout-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  height: 100vh;
+  height: auto; // ❌ CHANGED: was 100vh
   width: 100%; // Zmienione z 100vw na 100%
   max-width: 100%; // Zmienione z 100vw na 100%
   background: $layout-bg;
@@ -20,7 +20,12 @@ $layout-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: var(--font-family-base);
   color: var(--color-on-surface);
   transition: $layout-transition;
-  overflow: hidden; // Prevent body scrolling
+  /* Pozwól na naturalne scrollowanie dokumentu */
+  overflow: visible; // ❌ CHANGED: was 'hidden'
+
+  &.layout--overflow-hidden {
+    overflow: hidden;
+  }
 }
 
 .layout--horizontal {
@@ -163,6 +168,31 @@ $layout-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
 .layout--overflow-hidden {
   overflow: hidden;
+}
+
+// Additional scroll control utilities
+.layout--scroll-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.layout--no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+// Height utilities for scroll containers
+.layout--h-screen {
+  height: 100vh !important;
+}
+
+.layout--h-auto {
+  height: auto !important;
+}
+
+.layout--min-h-screen {
+  min-height: 100vh !important;
 }
 
 @media (max-width: $breakpoint-sm) {

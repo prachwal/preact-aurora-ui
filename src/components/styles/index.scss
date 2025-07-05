@@ -1,0 +1,34 @@
+/**
+ * Aurora UI - Complete Style System Export
+ *
+ * This file exports all SCSS files for the Aurora UI component library.
+ * Import this file to get access to the complete styling system.
+ *
+ * @example
+ * // Import the complete Aurora UI style system
+ * @use '@aurora-ui/preact-aurora-ui/styles' as aurora;
+ *
+ * // Or import specific modules
+ * @use '@aurora-ui/preact-aurora-ui/styles/colors' as *;
+ * @use '@aurora-ui/preact-aurora-ui/styles/typography' as *;
+ *
+ */
+
+// Core style system
+@forward 'colors';
+@forward 'colors-extended';
+@forward 'typography';
+@forward 'spacing';
+@forward 'elevation';
+@forward 'tokens';
+
+// Layout and components
+@forward 'breakpoints';
+@forward 'base';
+@forward 'utilities';
+@forward 'mixins';
+@forward 'mixins-enhanced';
+
+// Global styles (optional - can be imported separately)
+@forward 'global';
+@forward 'aurora-ui';

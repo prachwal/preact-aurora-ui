@@ -32,7 +32,7 @@ export function Layout({
   variant = 'default',
   padding = false,
   gap = 'none',
-  overflow = 'hidden',
+  overflow = 'visible', // ❌ CHANGED: was 'hidden'
 }: LayoutProps) {
   const paddingClass =
     padding !== false ? `layout--padding-${typeof padding === 'boolean' ? 'md' : padding}` : '';

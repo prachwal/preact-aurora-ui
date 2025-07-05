@@ -1,6 +1,6 @@
 {
   "name": "preact-aurora-ui",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Modern Material Design 3 components for Preact applications with zero-config setup, full accessibility, and smooth theming",
   "keywords": [
     "preact",
@@ -26,10 +26,13 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
+    "./styles": "./src/components/styles/index.scss",
+    "./styles/*": "./src/components/styles/*.scss",
     "./dist/styles/aurora-ui.css": "./dist/assets/index-DYDpNgXC.css"
   },
   "files": [
     "dist",
+    "src/components/styles/",
     "src/components/*/README.md",
     "docs",
     "README.md",

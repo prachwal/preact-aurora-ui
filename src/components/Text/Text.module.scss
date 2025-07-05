@@ -3,9 +3,9 @@
  * Responsive typography system with Material Design 3 variants
  */
 
-@use '../../styles/colors-extended' as *;
-@use '../../styles/typography' as *;
-@use '../../styles/spacing' as *;
+@use '../styles/colors-extended' as *;
+@use '../styles/typography' as *;
+@use '../styles/spacing' as *;
 
 // Base text component styles
 .text {

@@ -19,6 +19,7 @@ export interface ThemeProviderProps {
   autoGlobalStyles?: boolean;
   generateUtilities?: boolean;
   cssVariablesPrefix?: string;
+  allowHorizontalScroll?: boolean;
 }
 
 const DEFAULT_THEME: ThemeConfig = {
@@ -77,6 +78,7 @@ export function ThemeProvider({
   autoGlobalStyles = false,
   generateUtilities = false,
   cssVariablesPrefix = 'aurora',
+  allowHorizontalScroll = false,
 }: ThemeProviderProps) {
   // Initialize theme synchronously to prevent flicker
   const [theme, setThemeState] = useState<ThemeConfig>(() =>
@@ -108,16 +110,15 @@ export function ThemeProvider({
         padding: 0;
         width: 100%;
         max-width: 100vw;
-        overflow-x: hidden;
+        min-height: 100vh;
+        height: auto;
+        /* Pozwól deweloperom kontrolować overflow */
+        overflow-x: ${allowHorizontalScroll ? 'auto' : 'hidden'};
+        overflow-y: auto;
         box-sizing: border-box;
       }
 
-      html {
-        height: 100%;
-      }
-
       body {
-        height: 100%;
         font-family: var(--font-family-base, system-ui, -apple-system, sans-serif);
         background: var(--md-sys-color-background, #fef7ff);
         color: var(--md-sys-color-on-background, #1d1b20);
