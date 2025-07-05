@@ -29,8 +29,21 @@ find src/components -name "*.scss" -not -path "*/styles/*" | while read -r file;
     rel_path=${file#src/components/}
     target_dir="dist/components/components/$(dirname "$rel_path")"
     mkdir -p "$target_dir"
-    cp "$file" "dist/components/components/$rel_path"
-    echo "  ✅ Copied: $rel_path"
+
+    # Copy file and fix relative imports - handle ALL possible patterns
+    sed -e "s|@use '../styles/|@use '../../styles/|g" \
+        -e 's|@use "../styles/|@use "../../styles/|g' \
+        -e "s|@use '../styles|@use '../../styles|g" \
+        -e 's|@use "../styles|@use "../../styles|g' \
+        -e "s|@import '../styles/|@import '../../styles/|g" \
+        -e 's|@import "../styles/|@import "../../styles/|g' \
+        -e "s|@import '../styles|@import '../../styles|g" \
+        -e 's|@import "../styles|@import "../../styles|g' \
+        -e "s|'../styles/|'../../styles/|g" \
+        -e 's|"../styles/|"../../styles/|g' \
+        -e "s|'../styles|'../../styles|g" \
+        -e 's|"../styles|"../../styles|g' "$file" > "dist/components/components/$rel_path"
+    echo "  ✅ Copied and fixed imports: $rel_path"
 done
 
 # Copy README files
