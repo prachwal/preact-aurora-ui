@@ -1,41 +1,58 @@
 #!/bin/bash
 
-# Aurora UI - Quick NPM Publish Script
-# Builds and publishes the package to NPM
+# Aurora UI - Simple NPM Publish Script
+# Builds components and publishes to NPM
 
 set -e
 
 echo "🚀 Aurora UI - NPM Publish Process"
 echo "=================================="
 
-# Build the package
-echo "📦 Step 1/3: Building NPM package..."
-./build-npm-package.sh
+# Clean previous build
+echo "🧹 Cleaning previous build..."
+rm -rf dist/components
 
-# Change to dist directory
-cd dist
+# Build TypeScript components
+echo "📦 Building TypeScript components..."
+npm run build:components
+
+# Copy SCSS files to dist
+echo "🎨 Copying SCSS files..."
+mkdir -p dist/components/styles
+cp -r src/components/styles/* dist/components/styles/
+
+# Remove any test files from styles
+find dist/components/styles -name "*.test.*" -delete
+
+# Copy component SCSS files
+find src/components -name "*.scss" -not -path "*/styles/*" | while read -r file; do
+    rel_path=${file#src/components/}
+    target_dir="dist/components/$(dirname "$rel_path")"
+    mkdir -p "$target_dir"
+    cp "$file" "dist/components/$rel_path"
+    echo "  ✅ Copied: $rel_path"
+done
+
+# Copy README files
+echo "📚 Copying README files..."
+find src/components -name "README.md" | while read -r file; do
+    rel_path=${file#src/components/}
+    target_dir="dist/components/$(dirname "$rel_path")"
+    mkdir -p "$target_dir"
+    cp "$file" "dist/components/$rel_path"
+    echo "  ✅ Copied: $rel_path"
+done
 
 echo ""
-echo "📋 Step 2/3: Package contents preview:"
-echo "-------------------------------------"
-ls -la
+echo "📊 Build Summary:"
+echo "  📦 JS files: $(find dist/components -name "*.js" | wc -l)"
+echo "  🎨 SCSS files: $(find dist/components -name "*.scss" | wc -l)"
+echo "  📚 README files: $(find dist/components -name "README.md" | wc -l)"
+echo "  📄 Type definitions: $(find dist/components -name "*.d.ts" | wc -l)"
 
 echo ""
-echo "📄 Package.json preview:"
-echo "------------------------"
-cat package.json | head -20
+echo "🚀 Publishing to NPM..."
+npm publish
 
 echo ""
-echo "🤔 Step 3/3: Ready to publish?"
-echo "------------------------------"
-echo "Review the package contents above."
-echo ""
-echo "To publish:"
-echo "  - For testing: npm publish --dry-run"
-echo "  - For real: npm publish"
-echo ""
-echo "Commands to run from dist/ directory:"
-echo "  cd dist"
-echo "  npm publish --dry-run  # Test run"
-echo "  npm publish           # Real publish"
-echo ""
+echo "✅ Published successfully!"
