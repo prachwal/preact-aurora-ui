@@ -28,12 +28,19 @@
     "../src/hooks/**/*.tsx",
     "../src/hooks/**/*.d.ts",
     "../src/types/**/*.d.ts",
+    "../src/utils/**/*.ts",
+    "../src/utils/**/*.tsx",
     "../src/styles/**/*.d.ts"
   ],
   "exclude": [
     "**/*.test.ts",
     "**/*.test.tsx",
+    "**/*.a11y.test.tsx",
+    "**/*.performance.test.tsx",
     "**/*.stories.tsx",
+    "**/Accessibility/**",
+    "**/Performance/**",
+    "**/__tests__/**",
     "node_modules",
     "dist",
     "storybook-static"

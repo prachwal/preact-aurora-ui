@@ -38,7 +38,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build:components": "bash scripts/build-and-copy.sh",
+    "build:components": "bash scripts/build-npm-package.sh",
     "build:npm": "npm run build:components",
     "publish:npm": "npm run build:npm && npm publish",
     "preview": "vite preview",

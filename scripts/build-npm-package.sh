@@ -17,9 +17,36 @@ echo "🧹 Cleaning up previous build..."
 rm -rf "$DIST_DIR"
 mkdir -p "$DIST_DIR"
 
+# Temporarily move problematic test folders to avoid compilation issues
+echo "📦 Temporarily moving test folders..."
+TEMP_DIR=".temp_build"
+mkdir -p "$TEMP_DIR"
+if [ -d "src/components/Accessibility" ]; then
+    mv "src/components/Accessibility" "$TEMP_DIR/"
+fi
+if [ -d "src/components/Performance" ]; then
+    mv "src/components/Performance" "$TEMP_DIR/"
+fi
+if [ -d "src/components/__tests__" ]; then
+    mv "src/components/__tests__" "$TEMP_DIR/"
+fi
+
 # Build TypeScript components
 echo "📦 Building TypeScript components..."
 npx tsc --project config/tsconfig.build.json
+
+# Restore moved folders
+echo "📦 Restoring test folders..."
+if [ -d "$TEMP_DIR/Accessibility" ]; then
+    mv "$TEMP_DIR/Accessibility" "src/components/"
+fi
+if [ -d "$TEMP_DIR/Performance" ]; then
+    mv "$TEMP_DIR/Performance" "src/components/"
+fi
+if [ -d "$TEMP_DIR/__tests__" ]; then
+    mv "$TEMP_DIR/__tests__" "src/components/"
+fi
+rm -rf "$TEMP_DIR"
 
 # Move compiled files from dist/components to dist root
 echo "📁 Restructuring build output..."
