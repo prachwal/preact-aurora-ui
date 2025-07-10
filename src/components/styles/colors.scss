@@ -286,7 +286,7 @@
   color: var(--md-sys-color-error);
 }
 
-// Border utilities  
+// Border utilities
 .md3-outline {
   border-color: var(--md-sys-color-outline);
 }
@@ -319,3 +319,82 @@
 .md3-elevation-5 {
   box-shadow: var(--md-sys-elevation-level5);
 }
+
+// ========================================
+// SCSS VARIABLES FOR COMPONENT USE
+// Map CSS custom properties to SCSS variables for cleaner code
+// ========================================
+
+// Primary colors
+$md-sys-color-primary: var(--md-sys-color-primary);
+$md-sys-color-on-primary: var(--md-sys-color-on-primary);
+$md-sys-color-primary-container: var(--md-sys-color-primary-container);
+$md-sys-color-on-primary-container: var(--md-sys-color-on-primary-container);
+
+// Secondary colors
+$md-sys-color-secondary: var(--md-sys-color-secondary);
+$md-sys-color-on-secondary: var(--md-sys-color-on-secondary);
+$md-sys-color-secondary-container: var(--md-sys-color-secondary-container);
+$md-sys-color-on-secondary-container: var(--md-sys-color-on-secondary-container);
+
+// Tertiary colors
+$md-sys-color-tertiary: var(--md-sys-color-tertiary);
+$md-sys-color-on-tertiary: var(--md-sys-color-on-tertiary);
+$md-sys-color-tertiary-container: var(--md-sys-color-tertiary-container);
+$md-sys-color-on-tertiary-container: var(--md-sys-color-on-tertiary-container);
+
+// Error colors
+$md-sys-color-error: var(--md-sys-color-error);
+$md-sys-color-on-error: var(--md-sys-color-on-error);
+$md-sys-color-error-container: var(--md-sys-color-error-container);
+$md-sys-color-on-error-container: var(--md-sys-color-on-error-container);
+
+// Surface colors
+$md-sys-color-surface: var(--md-sys-color-surface);
+$md-sys-color-on-surface: var(--md-sys-color-on-surface);
+$md-sys-color-surface-variant: var(--md-sys-color-surface-variant);
+$md-sys-color-on-surface-variant: var(--md-sys-color-on-surface-variant);
+$md-sys-color-surface-container-highest: var(--md-sys-color-surface-container-highest);
+$md-sys-color-surface-container-high: var(--md-sys-color-surface-container-high);
+$md-sys-color-surface-container: var(--md-sys-color-surface-container);
+$md-sys-color-surface-container-low: var(--md-sys-color-surface-container-low);
+$md-sys-color-surface-container-lowest: var(--md-sys-color-surface-container-lowest);
+
+// Background
+$md-sys-color-background: var(--md-sys-color-background);
+$md-sys-color-on-background: var(--md-sys-color-on-background);
+
+// Outline colors
+$md-sys-color-outline: var(--md-sys-color-outline);
+$md-sys-color-outline-variant: var(--md-sys-color-outline-variant);
+
+// Inverse colors
+$md-sys-color-inverse-surface: var(--md-sys-color-inverse-surface);
+$md-sys-color-inverse-on-surface: var(--md-sys-color-inverse-on-surface);
+$md-sys-color-inverse-primary: var(--md-sys-color-inverse-primary);
+
+// Shadow and scrim
+$md-sys-color-shadow: var(--md-sys-color-shadow);
+$md-sys-color-scrim: var(--md-sys-color-scrim);
+
+// Elevations
+$md-sys-elevation-level0: var(--md-sys-elevation-level0);
+$md-sys-elevation-level1: var(--md-sys-elevation-level1);
+$md-sys-elevation-level2: var(--md-sys-elevation-level2);
+$md-sys-elevation-level3: var(--md-sys-elevation-level3);
+$md-sys-elevation-level4: var(--md-sys-elevation-level4);
+$md-sys-elevation-level5: var(--md-sys-elevation-level5);
+
+// RGB values for rgba() usage (commonly needed)
+$md-sys-color-on-surface-rgb: 28, 27, 31; // #1c1b1f in light theme
+$md-sys-color-primary-rgb: 103, 80, 164; // #6750a4 in light theme
+$md-sys-color-on-primary-rgb: 255, 255, 255; // #ffffff
+
+// Legacy color aliases (for backwards compatibility)
+$color-primary: var(--color-primary);
+$color-primary-dark: var(--color-primary-dark);
+$color-primary-light: var(--color-primary-light);
+$color-surface: var(--color-surface);
+$color-background: var(--color-background);
+$color-text: var(--color-text);
+$color-outline: var(--color-outline);
