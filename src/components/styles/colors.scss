@@ -61,6 +61,17 @@
   --md-sys-color-scrim: #000000;
 
   // ========================================
+  // RGB VALUES FOR RGBA() USAGE
+  // These are needed for creating semi-transparent colors
+  // ========================================
+
+  --md-sys-color-on-surface-rgb: 28, 27, 31;
+  --md-sys-color-primary-rgb: 103, 80, 164;
+  --md-sys-color-on-primary-rgb: 255, 255, 255;
+  --md-sys-color-surface-rgb: 254, 251, 255;
+  --md-sys-color-on-background-rgb: 28, 27, 31;
+
+  // ========================================
   // MD3 ELEVATION SYSTEM
   // ========================================
 

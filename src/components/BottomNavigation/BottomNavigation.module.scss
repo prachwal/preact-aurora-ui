@@ -63,7 +63,7 @@ $label-font-weight: $md-sys-typescale-label-small-weight;
   color: $tab-color-inactive;
 
   &:hover:not(:disabled) {
-    background: rgba($md-sys-color-on-surface-rgb, 0.08);
+    background: rgba(var(--md-sys-color-on-surface-rgb), 0.08);
   }
 
   &:focus-visible {
@@ -72,7 +72,7 @@ $label-font-weight: $md-sys-typescale-label-small-weight;
   }
 
   &:active:not(:disabled) {
-    background: rgba($md-sys-color-on-surface-rgb, 0.12);
+    background: rgba(var(--md-sys-color-on-surface-rgb), 0.12);
   }
 
   &.active {
@@ -157,7 +157,7 @@ $label-font-weight: $md-sys-typescale-label-small-weight;
   left: 50%;
   width: 0;
   height: 0;
-  background: radial-gradient(circle, rgba($md-sys-color-on-surface-rgb, 0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(var(--md-sys-color-on-surface-rgb), 0.12) 0%, transparent 70%);
   border-radius: 50%;
   transform: translate(-50%, -50%);
   transition: width 0.3s ease, height 0.3s ease;
