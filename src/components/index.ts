@@ -2,7 +2,6 @@
 // Do NOT add exports from other folders (Router, Navigation, AppLayout, pages, etc.)
 // Those should be exported from their respective index files or the main src/index.ts
 
-export * from './ExampleButton';
 export * from './Badge';
 export * from './Banner';
 export * from './Button';
