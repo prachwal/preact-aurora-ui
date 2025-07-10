@@ -181,8 +181,8 @@ find "$DIST_DIR" -name "index.js" -not -path "$DIST_DIR/index.js" | while read -
     component_dir=$(dirname "$file")
     component_name=$(basename "$component_dir")
 
-    # Skip if it's the styles directory
-    if [ "$component_name" = "styles" ]; then
+    # Skip if it's the styles directory or test-utils (handled separately)
+    if [ "$component_name" = "styles" ] || [ "$component_name" = "test-utils" ]; then
         continue
     fi
 
@@ -226,6 +226,14 @@ if [ -d "$DIST_DIR/utils" ]; then
         echo "export * from './utils/$util_file';" >> "$DIST_DIR/index.d.ts"
         echo "  ✅ Added util export: $util_file"
     done
+fi
+
+# Add exports for test-utils directory
+echo "🔗 Adding test-utils exports..."
+if [ -d "$DIST_DIR/test-utils" ]; then
+    echo "export * from './test-utils';" >> "$DIST_DIR/index.js"
+    echo "export * from './test-utils';" >> "$DIST_DIR/index.d.ts"
+    echo "  ✅ Added test-utils export"
 fi
 
 # Fix import paths in .d.ts files
@@ -290,6 +298,16 @@ find "$DIST_DIR" -name "*.js" -not -path "$DIST_DIR/index.js" | while read -r fi
         fi
         sed -i "s|from '[\.\/]*\.\./\.\./types|from '$types_path|g" "$file"
         echo "  ✅ Fixed types imports in: $(basename "$file")"
+    fi
+
+    # Fix imports from '../components/' for test-utils (should point to root)
+    if grep -q "from '\.\./components" "$file"; then
+        dir_name=$(basename "$dir_path")
+        if [ "$dir_name" = "test-utils" ]; then
+            # In test-utils, ../components should become ../index.js (since components are in dist root)
+            sed -i "s|from '\.\./components'|from '../index.js'|g" "$file"
+            echo "  ✅ Fixed components index import in test-utils: $(basename "$file")"
+        fi
     fi
 done
 

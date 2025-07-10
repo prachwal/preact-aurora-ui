@@ -21,7 +21,9 @@
     "src/components/**/*.ts",
     "src/types/**/*.ts",
     "src/utils/**/*.ts",
-    "src/hooks/**/*.ts"
+    "src/hooks/**/*.ts",
+    "src/test-utils/**/*.ts",
+    "src/test-utils/**/*.tsx"
   ],
   "exclude": [
     "**/*.test.tsx",
