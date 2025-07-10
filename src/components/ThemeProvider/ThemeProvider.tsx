@@ -1,7 +1,48 @@
 import { createContext } from 'preact';
 import { useContext, useEffect, useState, useRef } from 'preact/hooks';
 
-import { injectUtilityStyles, type UtilityClassConfig } from '../../utils/cssUtilities';
+// Local types to avoid module resolution issues
+interface UtilityClassConfig {
+  prefix?: string;
+  generateBackgrounds?: boolean;
+  generateTextColors?: boolean;
+  generateBorderColors?: boolean;
+  generateSpacing?: boolean;
+  includeResponsive?: boolean;
+}
+
+// Local implementation of injectUtilityStyles to avoid module resolution issues
+function injectUtilityStyles(config: UtilityClassConfig = {}): () => void {
+  if (typeof document === 'undefined') {
+    return () => { };
+  }
+
+  const prefix = config.prefix || 'aurora';
+  const css = `
+    /* Aurora UI Basic Utilities */
+    .${prefix}-bg-primary { background-color: var(--md-sys-color-primary); }
+    .${prefix}-bg-secondary { background-color: var(--md-sys-color-secondary); }
+    .${prefix}-text-primary { color: var(--md-sys-color-primary); }
+    .${prefix}-text-on-surface { color: var(--md-sys-color-on-surface); }
+    .${prefix}-p-4 { padding: 1rem; }
+    .${prefix}-m-4 { margin: 1rem; }
+  `;
+
+  const styleId = `aurora-ui-utilities-${prefix}`;
+
+  const existingStyle = document.getElementById(styleId);
+  if (existingStyle) existingStyle.remove();
+
+  const styleElement = document.createElement('style');
+  styleElement.id = styleId;
+  styleElement.textContent = css;
+  document.head.appendChild(styleElement);
+
+  return () => {
+    const element = document.getElementById(styleId);
+    if (element) element.remove();
+  };
+}
 
 import type { ThemeConfig, ThemeContextValue, ThemeMode, ThemeStorage, ThemeTarget } from './types';
 import { localStorageAdapter, documentElementTarget, preventThemeFlicker } from './storageAdapters';

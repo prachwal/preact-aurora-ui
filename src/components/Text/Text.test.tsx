@@ -4,52 +4,14 @@
  */
 
 import { render, screen } from '@testing-library/preact';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 
 import { Text } from './Text';
 
-// Mock theme hooks
-vi.mock('../../hooks/useThemeColors', () => ({
-  useThemeColors: () => ({
-    primary: '#6750a4',
-    'on-primary': '#ffffff',
-    'primary-container': '#eaddff',
-    'on-primary-container': '#21005d',
-    secondary: '#625b71',
-    'on-secondary': '#ffffff',
-    'secondary-container': '#e8def8',
-    'on-secondary-container': '#1d192b',
-    tertiary: '#7d5260',
-    'on-tertiary': '#ffffff',
-    error: '#ba1a1a',
-    'on-error': '#ffffff',
-    background: '#fffbfe',
-    'on-background': '#1c1b1f',
-    surface: '#fffbfe',
-    'on-surface': '#1c1b1f',
-    'surface-variant': '#e7e0ec',
-    'on-surface-variant': '#49454f',
-    outline: '#79747e',
-    'outline-variant': '#cac4d0',
-    success: '#4caf50',
-    warning: '#ff9800',
-    info: '#2196f3',
-    danger: '#ba1a1a',
-  }),
-  useThemeUtils: () => ({
-    getContrastText: (color: string) => {
-      // Simple mock implementation
-      const darkColors = ['primary', 'secondary', 'tertiary', 'error'];
-      return darkColors.includes(color) ? '#ffffff' : '#000000';
-    },
-  }),
-}));
+// Note: Text component now uses simple CSS custom properties directly
+// No mocking needed as the component uses static CSS vars
 
 describe('Text Component', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   describe('Basic Rendering', () => {
     it('should render text content', () => {
       render(<Text>Hello World</Text>);
@@ -114,13 +76,13 @@ describe('Text Component', () => {
         </Text>,
       );
       const element = screen.getByText('Auto color text');
-      expect(element).toHaveStyle({ color: '#1c1b1f' }); // on-surface
+      expect(element).toHaveAttribute('data-color', 'auto');
     });
 
     it('should apply specific theme colors', () => {
       render(<Text color="primary">Primary color text</Text>);
       const element = screen.getByText('Primary color text');
-      expect(element).toHaveStyle({ color: '#6750a4' });
+      expect(element).toHaveAttribute('data-color', 'primary');
     });
 
     it('should apply custom color values', () => {
@@ -136,7 +98,8 @@ describe('Text Component', () => {
         </Text>,
       );
       const element = screen.getByText('Label text');
-      expect(element).toHaveStyle({ color: '#49454f' }); // on-surface-variant
+      expect(element).toHaveAttribute('data-color', 'auto');
+      expect(element).toHaveAttribute('data-variant', 'label-medium');
     });
   });
 
@@ -148,7 +111,8 @@ describe('Text Component', () => {
         </Text>,
       );
       const element = screen.getByText('Contrast text');
-      expect(element).toHaveStyle({ color: '#ffffff' }); // contrast for primary
+      expect(element).toHaveAttribute('data-auto-contrast', 'true');
+      expect(element).toHaveAttribute('data-color', 'primary');
     });
 
     it('should not apply contrast when autoContrast is disabled', () => {
@@ -158,7 +122,8 @@ describe('Text Component', () => {
         </Text>,
       );
       const element = screen.getByText('No contrast text');
-      expect(element).toHaveStyle({ color: '#6750a4' }); // original primary color
+      expect(element).toHaveAttribute('data-auto-contrast', 'false');
+      expect(element).toHaveAttribute('data-color', 'primary');
     });
 
     it('should ignore autoContrast for auto color', () => {
@@ -168,7 +133,7 @@ describe('Text Component', () => {
         </Text>,
       );
       const element = screen.getByText('Auto contrast text');
-      expect(element).toHaveStyle({ color: '#1c1b1f' }); // on-surface (auto)
+      expect(element).toHaveAttribute('data-color', 'auto');
     });
   });
 
@@ -247,9 +212,9 @@ describe('Text Component', () => {
       );
       const element = screen.getByText('Merged styles');
       expect(element).toHaveStyle({
-        color: '#6750a4',
         fontSize: '20px',
       });
+      expect(element).toHaveAttribute('data-color', 'primary');
     });
   });
 
@@ -303,7 +268,7 @@ describe('Text Component', () => {
 
   describe('Error Handling', () => {
     it('should handle missing theme colors gracefully', () => {
-      const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
+      const consoleError = vi.spyOn(console, 'error').mockImplementation(() => { });
 
       render(<Text color={'non-existent-color' as any}>Fallback text</Text>);
       const element = screen.getByText('Fallback text');

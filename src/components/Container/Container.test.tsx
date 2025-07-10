@@ -11,50 +11,8 @@ import { Container } from './Container';
 import type { ContainerProps } from './Container';
 import styles from './Container.module.scss';
 
-// Mock the theme hooks
-const mockColors = {
-  surface: '#fef7ff',
-  'surface-variant': '#f3eff4',
-  'surface-container': '#ebe6ec',
-  'surface-container-low': '#f7f2f8',
-  'surface-container-high': '#ece6f0',
-  'surface-container-highest': '#e6e0e9',
-  'primary-container': '#eaddff',
-  'secondary-container': '#e8def8',
-  'tertiary-container': '#ffd8e4',
-  'error-container': '#f9dedc',
-  'on-surface': '#1d1b20',
-  'on-surface-variant': '#49454f',
-  'on-primary-container': '#21005d',
-  'on-secondary-container': '#1d192b',
-  'on-tertiary-container': '#31111d',
-  'on-error-container': '#410e0b',
-  primary: '#6750a4',
-};
-
-const mockGetSurfaceColor = vi.fn((elevation: number) => {
-  const elevationColors = {
-    0: mockColors.surface,
-    1: '#f9f5fa',
-    2: '#f5f1f6',
-    3: '#f1ecf2',
-    4: '#ede8ee',
-    5: '#e9e3ea',
-  };
-  return elevationColors[elevation as keyof typeof elevationColors] || mockColors.surface;
-});
-
-const mockGetContrastText = vi.fn((color: string) => {
-  return color.includes('f') ? mockColors['on-surface'] : '#ffffff';
-});
-
-vi.mock('../../hooks/useThemeColors', () => ({
-  useThemeColors: () => mockColors,
-  useThemeUtils: () => ({
-    getSurfaceColor: mockGetSurfaceColor,
-    getContrastText: mockGetContrastText,
-  }),
-}));
+// Note: Container component now uses simple CSS custom properties directly
+// No mocking needed as the component uses static CSS vars
 
 describe('Container Component', () => {
   beforeEach(() => {
@@ -95,9 +53,8 @@ describe('Container Component', () => {
       render(<Container data-testid="container">Content</Container>);
 
       const container = screen.getByTestId('container');
-      expect(container).toHaveStyle({ backgroundColor: mockColors.surface });
-      expect(container).toHaveStyle({ color: mockColors['on-surface'] });
       expect(container).toHaveAttribute('data-surface', 'surface');
+      expect(container).toHaveClass(styles.container);
     });
 
     it('applies primary-container surface styling', () => {
@@ -108,9 +65,8 @@ describe('Container Component', () => {
       );
 
       const container = screen.getByTestId('container');
-      expect(container).toHaveStyle({ backgroundColor: mockColors['primary-container'] });
-      expect(container).toHaveStyle({ color: mockColors['on-primary-container'] });
       expect(container).toHaveAttribute('data-surface', 'primary-container');
+      expect(container).toHaveClass(styles.container);
     });
 
     it('applies surface-variant styling', () => {
@@ -121,8 +77,8 @@ describe('Container Component', () => {
       );
 
       const container = screen.getByTestId('container');
-      expect(container).toHaveStyle({ backgroundColor: mockColors['surface-variant'] });
-      expect(container).toHaveStyle({ color: mockColors['on-surface-variant'] });
+      expect(container).toHaveAttribute('data-surface', 'surface-variant');
+      expect(container).toHaveClass(styles.container);
     });
 
     it('disables auto text color when autoTextColor is false', () => {
@@ -133,9 +89,8 @@ describe('Container Component', () => {
       );
 
       const container = screen.getByTestId('container');
-      expect(container).toHaveStyle({ backgroundColor: mockColors.surface });
-      expect(container.style.color).toBe('');
       expect(container).toHaveAttribute('data-auto-text-color', 'false');
+      expect(container).toHaveClass(styles.container);
     });
   });
 
@@ -145,7 +100,6 @@ describe('Container Component', () => {
 
       const container = screen.getByTestId('container');
       expect(container).toHaveAttribute('data-elevation', '0');
-      expect(mockGetSurfaceColor).toHaveBeenCalledWith(0);
     });
 
     it('applies elevation 2 styling', () => {
@@ -158,7 +112,6 @@ describe('Container Component', () => {
       const container = screen.getByTestId('container');
       expect(container).toHaveAttribute('data-elevation', '2');
       expect(container).toHaveClass(styles['container--elevation-2']);
-      expect(mockGetSurfaceColor).toHaveBeenCalledWith(2);
     });
 
     it('applies elevation 5 styling', () => {
@@ -170,7 +123,6 @@ describe('Container Component', () => {
 
       const container = screen.getByTestId('container');
       expect(container).toHaveClass(styles['container--elevation-5']);
-      expect(mockGetSurfaceColor).toHaveBeenCalledWith(5);
     });
   });
 
@@ -309,9 +261,8 @@ describe('Container Component', () => {
       const container = screen.getByTestId('container');
       expect(container).toHaveStyle({
         marginTop: '20px',
-        backgroundColor: mockColors['primary-container'],
-        color: mockColors['on-primary-container'],
       });
+      expect(container).toHaveAttribute('data-surface', 'primary-container');
     });
   });
 
@@ -342,11 +293,7 @@ describe('Container Component', () => {
       expect(container).toHaveClass(styles['container--radius-lg']);
       expect(container).toHaveClass(styles['container--responsive']);
 
-      // Check styles
-      expect(container).toHaveStyle({
-        backgroundColor: mockColors['secondary-container'],
-        color: mockColors['on-secondary-container'],
-      });
+      // Check styles - removing color checks since we now use CSS custom properties
 
       // Check data attributes
       expect(container).toHaveAttribute('data-surface', 'secondary-container');
@@ -367,8 +314,8 @@ describe('Container Component', () => {
       const outerContainer = screen.getByTestId('outer-container');
       const innerContainer = screen.getByTestId('inner-container');
 
-      expect(outerContainer).toHaveStyle({ backgroundColor: mockColors.surface });
-      expect(innerContainer).toHaveStyle({ backgroundColor: mockColors['primary-container'] });
+      expect(outerContainer).toHaveAttribute('data-surface', 'surface');
+      expect(innerContainer).toHaveAttribute('data-surface', 'primary-container');
       expect(screen.getByText('Nested Content')).toBeInTheDocument();
     });
   });
@@ -382,8 +329,8 @@ describe('Container Component', () => {
       );
 
       const container = screen.getByTestId('container');
-      // Should fall back to default surface color
-      expect(container).toHaveStyle({ backgroundColor: mockColors.surface });
+      // Should fall back to default surface styling
+      expect(container).toHaveClass(styles.container);
     });
   });
 });

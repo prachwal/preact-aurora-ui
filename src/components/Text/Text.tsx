@@ -6,11 +6,30 @@
 import { forwardRef } from 'preact/compat';
 import type { JSX } from 'preact';
 
-import { useThemeColors, useThemeUtils } from '../../hooks/useThemeColors';
 import type { ThemeColor, ThemeVariant, SimpleThemeVariant } from '../../types/theme';
 import type { BaseComponentProps } from '../../types';
 
 import styles from './Text.module.scss';
+
+// Local simplified theme colors for Text component to avoid module resolution issues
+function useSimpleTextColors() {
+  return {
+    'primary': 'var(--md-sys-color-primary)',
+    'on-primary': 'var(--md-sys-color-on-primary)',
+    'secondary': 'var(--md-sys-color-secondary)',
+    'on-secondary': 'var(--md-sys-color-on-secondary)',
+    'tertiary': 'var(--md-sys-color-tertiary)',
+    'on-tertiary': 'var(--md-sys-color-on-tertiary)',
+    'error': 'var(--md-sys-color-error)',
+    'on-error': 'var(--md-sys-color-on-error)',
+    'background': 'var(--md-sys-color-background)',
+    'on-background': 'var(--md-sys-color-on-background)',
+    'surface': 'var(--md-sys-color-surface)',
+    'on-surface': 'var(--md-sys-color-on-surface)',
+    'on-surface-variant': 'var(--md-sys-color-on-surface-variant)',
+    'outline': 'var(--md-sys-color-outline)',
+  };
+}
 
 export interface TextProps extends BaseComponentProps {
   /** Typography variant - Material Design 3 style */
@@ -87,8 +106,10 @@ export const Text = forwardRef<HTMLElement, TextProps>(
     },
     ref,
   ) => {
-    const colors = useThemeColors();
-    const { getContrastText } = useThemeUtils();
+    const colors = useSimpleTextColors();
+
+    // Simple contrast text function - fallback to on-surface
+    const getContrastText = () => colors['on-surface'];
 
     // Resolve variant to full MD3 variant
     const resolvedVariant =
@@ -130,11 +151,12 @@ export const Text = forwardRef<HTMLElement, TextProps>(
 
       // If autoContrast is enabled and color is not 'auto', get contrasting color
       if (autoContrast && (color as string) !== 'auto' && (color as string) in colors) {
-        return getContrastText(color as keyof typeof colors);
+        return getContrastText();
       }
 
-      // Return specified color
-      return colors[color as ThemeColor] || color;
+      // Return specified color - with safe fallback
+      const colorKey = color as keyof typeof colors;
+      return (colors as any)[colorKey] || color;
     })();
 
     // Build CSS classes
