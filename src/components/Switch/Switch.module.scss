@@ -1,9 +1,4 @@
-@use "../styles/colors.scss" as *;
-@use "../styles/typography.scss" as *;
-@use "../styles/spacing.scss" as *;
-@use "../styles/breakpoints.scss" as *;
-@use "../styles/mixins-enhanced.scss" as *;
-
+@use "../styles/core.scss" as *;
 // Switch Material Design 3 Variables
 $switch-font-family: var(--font-family-base);
 $switch-font-size: var(--font-size-base);

@@ -1,9 +1,4 @@
-@use "../styles/colors.scss" as *;
-@use "../styles/typography.scss" as *;
-@use "../styles/spacing.scss" as *;
-@use "../styles/breakpoints.scss" as *;
-@use "../styles/mixins-enhanced.scss" as *;
-
+@use '../styles/core.scss' as *;
 // Local variables - Compact header design
 $header-bg: var(--color-surface);
 $header-color: var(--color-on-surface);

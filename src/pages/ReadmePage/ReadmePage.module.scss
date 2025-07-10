@@ -1,8 +1,4 @@
-@use '../../components/styles/colors-extended.scss' as *;
-@use '../../components/styles/typography.scss' as *;
-@use '../../components/styles/spacing.scss' as *;
-@use '../../components/styles/tokens.scss' as *;
-
+@use '../../components/styles/core.scss' as *;
 // ReadmePage specific styles (layout is handled by DocsLayout)
 // Card styling variables - softer, less contrasting
 $card-bg: rgba(255, 255, 255, 0.25);

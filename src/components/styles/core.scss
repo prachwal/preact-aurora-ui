@@ -1,0 +1,118 @@
+/**
+ * Aurora UI Core Styles - Centralized Import System
+ *
+ * Single import file to reduce duplication across components.
+ * This replaces multiple @use statements in every component.
+ *
+ * Migration to Aurora UI v0.1.0 - Material Design 3 System
+ *
+ * @version v0.1.0-alpha
+ * @author Aurora UI Team
+ */
+
+// ========================================
+// CORE DESIGN SYSTEM - CENTRALIZED IMPORTS
+// ========================================
+
+// Material Design 3 color system (v0.1.0)
+@forward 'colors-extended';
+
+// Typography scale and utilities
+@forward 'typography';
+
+// Spacing tokens and utilities
+@forward 'spacing';
+
+// Elevation and shadow system
+@forward 'elevation';
+
+// Responsive breakpoints
+@forward 'breakpoints';
+
+// Component mixins and utilities (excluding conflicting elevation mixin)
+@forward 'mixins-enhanced' hide elevation;
+
+// Enhanced mixins and utilities
+@use 'mixins-enhanced' as *;
+
+// Design tokens for components
+@use 'tokens' as *;
+
+// ========================================
+// COMPONENT UTILITIES
+// ========================================
+
+// Common component patterns
+@mixin component-base {
+  box-sizing: border-box;
+  font-family: var(--font-family-base);
+  transition: var(--aurora-transition-colors);
+}
+
+@mixin component-focus {
+  &:focus-visible {
+    outline: 2px solid var(--md-sys-color-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@mixin component-disabled {
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    opacity: 0.38;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// ========================================
+// MIGRATION HELPERS (v0.0.x → v0.1.0)
+// ========================================
+
+// Deprecated color mapping (will be removed in v0.1.0)
+$color-primary-legacy: var(--color-primary);
+$color-surface-legacy: var(--color-surface);
+$color-on-surface-legacy: var(--color-on-surface);
+
+// ✅ New MD3 color system (v0.1.0)
+$md3-primary: var(--md-sys-color-primary);
+$md3-surface: var(--md-sys-color-surface-container);
+$md3-on-surface: var(--md-sys-color-on-surface);
+$md3-outline: var(--md-sys-color-outline-variant);
+
+// Migration warning mixin
+@mixin warn-deprecated($property) {
+  @warn "#{$property} is deprecated and will be removed in Aurora UI v0.1.0. Use MD3 equivalent.";
+}
+
+// ========================================
+// EXPORT DECLARATIONS
+// ========================================
+
+// Re-export key design tokens for CSS modules
+:export {
+  // Colors
+  primary: var(--md-sys-color-primary);
+  surface: var(--md-sys-color-surface-container);
+  onSurface: var(--md-sys-color-on-surface);
+  outline: var(--md-sys-color-outline-variant);
+
+  // Spacing
+  spaceXs: var(--md-sys-spacing-4);
+  spaceSm: var(--md-sys-spacing-8);
+  spaceMd: var(--md-sys-spacing-16);
+  spaceLg: var(--md-sys-spacing-24);
+  spaceXl: var(--md-sys-spacing-32);
+
+  // Typography
+  fontSizeBase: var(--font-size-base);
+  fontWeightMedium: var(--font-weight-medium);
+  lineHeightBase: var(--line-height-base);
+
+  // Elevation
+  elevation1: var(--md-sys-elevation-level1);
+  elevation2: var(--md-sys-elevation-level2);
+  elevation3: var(--md-sys-elevation-level3);
+}

@@ -1,7 +1,4 @@
-@use '../styles/colors.scss' as *;
-@use '../styles/typography.scss' as *;
-@use '../styles/spacing.scss' as *;
-
+@use '../styles/core.scss' as *;
 // Badge local variables based on global custom properties
 $badge-bg-primary: var(--color-primary);
 $badge-bg-secondary: var(--color-secondary);

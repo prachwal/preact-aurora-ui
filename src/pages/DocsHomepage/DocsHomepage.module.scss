@@ -1,9 +1,4 @@
-@use '../../components/styles/colors-extended.scss' as *;
-@use '../../components/styles/typography.scss' as *;
-@use '../../components/styles/spacing.scss' as *;
-@use '../../components/styles/tokens.scss' as *;
-@use '../../components/styles/breakpoints.scss' as *;
-
+@use '../../components/styles/core.scss' as *;
 // DocsHomepage specific styles (layout is handled by DocsLayout)
 $card-bg: var(--md-sys-color-surface-container-low);
 $card-color: var(--color-on-surface);

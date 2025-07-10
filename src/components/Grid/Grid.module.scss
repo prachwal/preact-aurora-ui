@@ -1,8 +1,4 @@
-@use "../styles/colors.scss" as *;
-@use "../styles/spacing.scss" as *;
-@use "../styles/typography.scss" as *;
-@use "../styles/breakpoints.scss" as *;
-
+@use "../styles/core.scss" as *;
 $grid-gap: var(--space-md);
 
 .grid {

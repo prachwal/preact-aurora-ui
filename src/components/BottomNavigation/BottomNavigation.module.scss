@@ -1,23 +1,20 @@
-@use '../styles/colors.scss' as *;
-@use '../styles/typography.scss' as *;
-@use '../styles/spacing.scss' as *;
-@use '../styles/base.scss' as *;
+@use '../styles/core.scss' as *;
 
-// Local variables based on global SCSS variables
-$nav-bg: $md-sys-color-surface-container;
-$nav-border: $md-sys-color-outline-variant;
+// Local variables based on CSS custom properties
+$nav-bg: var(--md-sys-color-surface-container);
+$nav-border: var(--md-sys-color-outline-variant);
 $nav-height: 80px;
 $nav-height-compact: 64px;
-$nav-elevation: $md-sys-elevation-level2;
+$nav-elevation: var(--md-sys-elevation-level2);
 
-$tab-color-inactive: $md-sys-color-on-surface-variant;
-$tab-color-active: $md-sys-color-on-secondary-container;
-$tab-bg-active: $md-sys-color-secondary-container;
-$tab-ripple: $md-sys-color-on-surface;
+$tab-color-inactive: var(--md-sys-color-on-surface-variant);
+$tab-color-active: var(--md-sys-color-on-secondary-container);
+$tab-bg-active: var(--md-sys-color-secondary-container);
+$tab-ripple: var(--md-sys-color-on-surface);
 
-$label-font-size: $md-sys-typescale-label-small-size;
-$label-line-height: $md-sys-typescale-label-small-line-height;
-$label-font-weight: $md-sys-typescale-label-small-weight;
+$label-font-size: var(--md-sys-typescale-label-small-size);
+$label-line-height: var(--md-sys-typescale-label-small-line-height);
+$label-font-weight: var(--md-sys-typescale-label-small-weight);
 
 .bottomNavigation {
   position: fixed;
@@ -67,7 +64,7 @@ $label-font-weight: $md-sys-typescale-label-small-weight;
   }
 
   &:focus-visible {
-    outline: 2px solid $md-sys-color-primary;
+    outline: 2px solid var(--md-sys-color-primary);
     outline-offset: -2px;
   }
 
@@ -81,7 +78,7 @@ $label-font-weight: $md-sys-typescale-label-small-weight;
   }
 
   &:disabled {
-    color: $md-sys-color-on-surface;
+    color: var(--md-sys-color-on-surface);
     opacity: 0.38;
     cursor: not-allowed;
   }
@@ -128,8 +125,8 @@ $label-font-weight: $md-sys-typescale-label-small-weight;
   right: -2px;
   min-width: 16px;
   height: 16px;
-  background: $md-sys-color-error;
-  color: $md-sys-color-on-error;
+  background: var(--md-sys-color-error);
+  color: var(--md-sys-color-on-error);
   border-radius: 8px;
   display: flex;
   align-items: center;

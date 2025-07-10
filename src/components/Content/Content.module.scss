@@ -1,8 +1,4 @@
-@use "../styles/colors.scss" as *;
-@use "../styles/typography.scss" as *;
-@use "../styles/spacing.scss" as *;
-@use "../styles/breakpoints.scss" as *;
-
+@use "../styles/core.scss" as *;
 // Local variables - Modern content area
 $content-bg: var(--color-background);
 $content-color: var(--color-on-surface);

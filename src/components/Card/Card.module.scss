@@ -1,8 +1,4 @@
-@use "../styles/colors.scss" as *;
-@use "../styles/typography.scss" as *;
-@use "../styles/spacing.scss" as *;
-@use "../styles/breakpoints.scss" as *;
-
+@use "../styles/core.scss" as *;
 $card-bg: var(--md-sys-color-surface);
 $card-border-color: var(--md-sys-color-outline-variant);
 $card-radius: 12px;

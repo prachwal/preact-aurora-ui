@@ -1,9 +1,5 @@
-@use "../styles/colors.scss" as *;
-@use "../styles/typography.scss" as *;
-@use "../styles/spacing.scss" as *;
-@use "../styles/breakpoints.scss" as *;
-@use "../styles/mixins-enhanced.scss" as *;
-
+@use '../styles/core.scss' as *;
+@use '../styles/mixins-enhanced.scss' as mixins;
 // Radio Material Design 3 Variables
 $radio-font-family: var(--font-family-base);
 $radio-font-size: var(--font-size-base);
@@ -77,7 +73,7 @@ $radio-text-disabled: var(--md-sys-color-on-surface-variant);
   z-index: 1;
 
   &:focus-visible+.indicator {
-    @include focus-ring($radio-primary);
+    @include mixins.focus-ring($radio-primary);
   }
 }
 

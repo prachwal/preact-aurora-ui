@@ -1,6 +1,4 @@
-@use '../styles/colors.scss' as *;
-@use '../styles/typography.scss' as *;
-@use '../styles/spacing.scss' as *;
+@use '../styles/core.scss' as *;
 
 // Banner local variables based on global custom properties
 $banner-bg-info: var(--color-surface-variant);

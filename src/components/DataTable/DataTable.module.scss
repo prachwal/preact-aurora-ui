@@ -1,8 +1,5 @@
+@use '../styles/core.scss' as *;
 // DataTable SCSS Module - Material Design 3 compliant
-@use '../styles/colors.scss' as *;
-@use '../styles/typography.scss' as *;
-@use '../styles/spacing.scss' as *;
-
 .dataTable {
   width: 100%;
   border-collapse: collapse;

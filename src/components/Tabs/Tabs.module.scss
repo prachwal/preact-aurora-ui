@@ -1,9 +1,4 @@
-@use '../styles/colors.scss' as *;
-@use '../styles/typography.scss' as *;
-@use '../styles/spacing.scss' as *;
-@use '../styles/breakpoints.scss' as *;
-@use '../styles/mixins-enhanced.scss' as *;
-
+@use '../styles/core.scss' as *;
 // Tabs Material Design 3 Variables
 $tabs-font-family: var(--font-family-base);
 $tabs-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
