@@ -307,6 +307,9 @@ find "$DIST_DIR" -name "*.js" -not -path "$DIST_DIR/index.js" | while read -r fi
             # In test-utils, ../components should become ../index.js (since components are in dist root)
             sed -i "s|from '\.\./components'|from '../index.js'|g" "$file"
             echo "  ✅ Fixed components index import in test-utils: $(basename "$file")"
+            # Zamień importy '../components/XYZ' na '../XYZ' (np. ThemeProvider)
+            sed -i "s|from '\.\./components/|from '../|g" "$file"
+            echo "  ✅ Fixed direct component imports in test-utils: $(basename "$file")"
         fi
     fi
 done
