@@ -1,6 +1,6 @@
 {
   "name": "preact-aurora-ui",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "description": "Modern Material Design 3 components for Preact applications with zero-config setup, full accessibility, and smooth theming",
   "keywords": [
     "preact",
