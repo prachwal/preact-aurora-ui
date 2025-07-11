@@ -3,7 +3,7 @@ import { render } from '@testing-library/preact';
 import type { RenderResult } from '@testing-library/preact';
 import type { ComponentChildren } from 'preact';
 
-import { ThemeProvider } from '../components';
+import { ThemeProvider } from '../components/ThemeProvider';
 
 export const renderWithTheme = (
   ui: ComponentChildren,

@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { screen } from '@testing-library/preact';
 
 import { renderWithTheme } from '../../test-utils';
-import { runA11yTest, checkColorContrast } from '../../../config/test-setup-a11y';
+import { runA11yTest, checkColorContrast } from '../../test-utils/test-setup-a11y';
 import { Button } from '../Button/Button';
 import { TextField } from '../TextField/TextField';
 import { Header } from '../Header/Header';

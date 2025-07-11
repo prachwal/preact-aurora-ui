@@ -28,3 +28,4 @@ export declare const expectPerformance: (metrics: Partial<PerformanceMetrics>) =
     reRenderCountOk: boolean;
 };
 export {};
+//# sourceMappingURL=test-setup-performance.d.ts.map

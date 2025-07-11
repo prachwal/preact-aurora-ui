@@ -1,0 +1,1 @@
+{"version":3,"file":"test-setup-a11y.d.ts","sourceRoot":"","sources":["test-setup-a11y.ts"],"names":[],"mappings":"AACA,OAAO,kCAAkC,CAAC;AA8C1C,OAAO,CAAC,MAAM,CAAC;IACb,UAAU,MAAM;QACd,GAAG,EAAE,GAAG,CAAC;KACV;CACF;AAcD,eAAO,MAAM,WAAW,GAAU,WAAW,WAAW,iBAavD,CAAC;AAGF,eAAO,MAAM,kBAAkB,GAAI,YAAY,MAAM,EAAE,YAAY,MAAM,KAAG,MAsB3E,CAAC"}

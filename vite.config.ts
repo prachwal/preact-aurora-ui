@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import path from 'path';
 import preact from '@preact/preset-vite';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
@@ -8,6 +9,15 @@ import postcssMergeRules from 'postcss-merge-rules';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [preact()],
+  resolve: {
+    alias: {
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@test-utils': path.resolve(__dirname, 'src/test-utils'),
+      '@styles': path.resolve(__dirname, 'src/styles'),
+      '@ThemeProvider': path.resolve(__dirname, 'src/components/ThemeProvider'),
+      '@ThemeProvider/index': path.resolve(__dirname, 'src/components/ThemeProvider/index.ts'),
+    },
+  },
   base: process.env.NODE_ENV === 'production' ? '/preact-aurora-ui/' : '/',
   css: {
     modules: {

@@ -1,6 +1,6 @@
 {
   "name": "preact-aurora-ui",
-  "version": "0.0.31",
+  "version": "0.0.33",
   "description": "Modern Material Design 3 components for Preact applications with zero-config setup, full accessibility, and smooth theming",
   "keywords": [
     "preact",
@@ -36,7 +36,7 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && tsc-alias -p config/tsconfig.app.json --outDir dist/src && vite build",
     "build:components": "bash scripts/build-npm-package.sh",
     "build:npm": "npm run build:components",
     "publish:npm": "npm run build:npm && npm publish",
@@ -55,20 +55,18 @@
     "test:all": "npm run test && npm run test:a11y && npm run test:performance",
     "bundle-analyze": "vite build --config config/vite.bundle-analysis.config.ts && open dist/bundle-analysis.html",
     "bundle-analyze:ci": "vite build --config config/vite.bundle-analysis.config.ts",
-    "validate:all": "./scripts/validate-tests.sh",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build-storybook-to-docs": "bash scripts/build-storybook-to-docs.sh",
     "copy-readme-to-docs": "bash scripts/copy-readme-to-docs.sh",
-    "build:all": "sh scripts/build-and-copy.sh",
     "lint": "eslint 'src/**/*.{ts,tsx,js,jsx}' --max-warnings=0 --config config/eslint.config.js",
     "lint:fix": "eslint 'src/**/*.{ts,tsx,js,jsx}' --fix --config config/eslint.config.js",
     "format": "prettier --write 'src/**/*.{ts,tsx,js,jsx,json,md}'",
     "format:check": "prettier --check 'src/**/*.{ts,tsx,js,jsx,json,md}'",
-    "type-check": "tsc --noEmit",
-    "md-to-html": "bash scripts/md-to-html.sh"
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "rollup-plugin-visualizer": "^6.0.3",
     "sass-embedded": "^1.89.2"
   },
   "peerDependencies": {
@@ -87,6 +85,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.9.1",
     "@chromatic-com/storybook": "^4.0.1",
+    "@playwright/test": "^1.54.1",
     "@preact/preset-vite": "2.10.1",
     "@storybook/addon-a11y": "^9.0.13",
     "@storybook/addon-docs": "^9.0.13",
@@ -121,6 +120,7 @@
     "preact-iso": "^2.9.2",
     "sass-embedded": "^1.89.2",
     "storybook": "^9.0.13",
+    "tsc-alias": "^1.8.16",
     "typescript": "5.8.3",
     "vite": "6.3.5",
     "vite-bundle-analyzer": "^0.11.0",

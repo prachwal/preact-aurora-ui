@@ -3,7 +3,7 @@ import { screen } from '@testing-library/preact';
 import userEvent from '@testing-library/user-event';
 
 import { renderWithTheme } from '../../test-utils';
-import { runA11yTest, checkColorContrast } from '../../../config/test-setup-a11y';
+import { runA11yTest, checkColorContrast } from '../../test-utils/test-setup-a11y';
 import { Button } from '../Button';
 import { Header } from '../Header/Header';
 import { Text } from '../Text/Text';
